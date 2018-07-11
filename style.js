@@ -43,7 +43,7 @@
 			// console.log('onCourseDataLoaded:');
 			console.log(data);
 			console.log(JSON.stringify(data));
-			// SantillanaMicrocontenidos.init(data);
+			SantillanaMicrocontenidosStyle.init(data);
 		}
 	};
 
