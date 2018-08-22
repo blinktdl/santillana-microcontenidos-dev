@@ -4045,7 +4045,7 @@ if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus
 }this.started=true;this.unit=data.unit;console.log(data.unit);var unitElement=document.getElementById('sm-unit');// Header
 var headerElement=unitElement.getElementsByClassName('sm-unit__header')[0];headerElement.style.backgroundImage='url('+this.unit.image+')';headerElement.querySelector('.sm-unit__header__number').innerHTML=this.unit.numberformenu;headerElement.querySelector('.sm-unit__header__title').innerHTML=this.unit.title;headerElement.querySelector('.sm-unit__header__progress__title').innerHTML='76% completado';// Main activities
 var mainActivitiesContainer=unitElement.querySelector('.sm-unit__activities__main');while(mainActivitiesContainer.firstChild){mainActivitiesContainer.removeChild(mainActivitiesContainer.firstChild);}var mainActivityTemplate=document.querySelector('#sm-unit__activity_main--template');this.unit.subunitsmain.forEach(function(subunit,index){var activityElement=mainActivityTemplate.cloneNode(true);activityElement.removeAttribute('id');activityElement.getElementsByTagName('a')[0].setAttribute('href','#activity_'+subunit.id);activityElement.querySelector('.sm-unit__activity_main__image').style.backgroundImage='url('+subunit.image+')';activityElement.querySelector('.sm-unit__activity_main__number').innerHTML=index+1;activityElement.querySelector('.sm-unit__activity_main__title').innerHTML=subunit.title;activityElement.querySelector('.sm-unit__activity_main__type').innerHTML='Microcontenido';activityElement.querySelector('.sm-unit__activity_main__progress__title').innerHTML='76%';mainActivitiesContainer.appendChild(activityElement);});// Aside activities
-var asideActivitiesContainer=unitElement.querySelector('.sm-unit__activities__aside');while(asideActivitiesContainer.firstChild){asideActivitiesContainer.removeChild(asideActivitiesContainer.firstChild);}var asideActivityTemplate=document.querySelector('#sm-unit__activity_aside--template');this.unit.subunitsaside.forEach(function(subunit,index){var activityElement=asideActivityTemplate.cloneNode(true);activityElement.removeAttribute('id');var svgElements=activityElement.querySelectorAll('.sm-unit__activity_aside__icon svg');svgElements.forEach(function(svgElement){if(!svgElement.classList.contains(subunit.smtype+'-icon')){svgElement.remove();// svgElement.style.display = 'none';
+var asideActivitiesContainer=unitElement.querySelector('.sm-unit__activities__aside');while(asideActivitiesContainer.firstChild){asideActivitiesContainer.removeChild(asideActivitiesContainer.firstChild);}var asideActivityTemplate=document.querySelector('#sm-unit__activity_aside--template');this.unit.resourcesmain.forEach(function(subunit,index){var activityElement=asideActivityTemplate.cloneNode(true);activityElement.removeAttribute('id');var svgElements=activityElement.querySelectorAll('.sm-unit__activity_aside__icon svg');svgElements.forEach(function(svgElement){if(!svgElement.classList.contains(subunit.smtype+'-icon')){svgElement.remove();// svgElement.style.display = 'none';
 }});activityElement.getElementsByTagName('a')[0].setAttribute('href','#activity_'+subunit.id);activityElement.querySelector('.sm-unit__activity_aside__title').innerHTML=subunit.title;activityElement.querySelector('.sm-unit__activity_aside__type').innerHTML='TEXTO POR DEFINIR';activityElement.querySelector('.sm-unit__activity_aside__progress__title').innerHTML='76%';asideActivitiesContainer.appendChild(activityElement);});}},{key:'processHash',value:function processHash(hashParts){return{is:hashParts[0]=='#unit'&&parseInt(hashParts[1])>0&&hashParts.length==2,data:{id:hashParts[1]}};}},{key:'transformInputData',value:function transformInputData(inputData,data){var screenData={unit:_.find(data.units,{id:inputData.id})};return screenData;}},{key:'onBackButton',value:function onBackButton(){this.disable();this.goTo('#');}},{key:'disable',value:function disable(){//document.querySelector('#sm-units-menu').classList.remove('active');
 }}]);return ScreenUnit;}();exports.default=ScreenUnit;
 
@@ -4233,31 +4233,31 @@ data.units.shift();data.homeBackgroundImageUrl=homeBackgroundImageUrl;//if user 
 if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){if(blink.user.esAlumno()){data.units.forEach(function(unit){var i=unit.subunits.length;while(i--){if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.resources.length;while(i--){if(unit.resources[i].onlyVisibleTeachers){unit.resources.splice(i,1);}}});}}//Regenerate units number with new property
 data.units.forEach(function(unit,index){unit.numberformenu=index+1;});//Divide subunits in main, aside and evaluation
 //TODO QUEDA POR ENTENDER COMO SE GESTIONA EVALUACION, PERO POR AHORA LO SEPARO
-var asideClassesName=['flipped','refuerzo','microproyecto','ampliacion'];var evaluationClassesName=['evaluacion'];data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsaside=[];unit.subunitsevaluation=[];unit.subunits.forEach(function(subunit){var added=false;if(subunit.tag){asideClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){subunit.smtype=tagName;unit.subunitsaside.push(subunit);added=true;}}});evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});//--NO Si es tags es un array o string
-// Suponemos que es string
-// if(typeof subunit.tag != 'string'){
-// 	console.log("STRING");
-// 	asideClassesName.forEach(tagName => {
-// 		if(subunit.tag.indexOf(tagName)>=0){
-// 			if(!added){
-// 				unit.subunitsaside.push(subunit);
-// 				added = true;
-// 			}
+// const asideClassesName = [
+// 	'flipped',
+// 	'refuerzo',
+// 	'microproyecto',
+// 	'ampliacion',
+// ];
+var evaluationClassesName=['evaluacion'];data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;if(subunit.tag){// asideClassesName.forEach(tagName => {
+// 	if(subunit.tag.indexOf(tagName)>=0){
+// 		if(!added){
+// 			subunit.smtype=tagName;
+// 			unit.subunitsaside.push(subunit);
+// 			added = true;
 // 		}
-// 	});
-// 	evaluationClassesName.forEach(tagName => {
-// 		if(subunit.tag.indexOf(tagName)>=0){
-// 			if(!added){
-// 				unit.subunitsevaluation.push(subunit);
-// 				added = true;
-// 			}
+// 	}
+// });
+evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});}if(subunit.evalType==2){unit.subunitsevaluation.push(subunit);added=true;}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;if(resource.tag){// asideClassesName.forEach(tagName => {
+// 	if(resource.tag.indexOf(tagName)>=0){
+// 		if(!added){
+// 			resource.smtype=tagName;
+// 			unit.resourcesmain.push(resource);
+// 			added = true;
 // 		}
-// 	});
-// }
-// } else if(subunit.tag.search('interactive')>=0){
-// 	selectedType = 'actividad_html';
-// }
-}if(!added){unit.subunitsmain.push(subunit);}});});if(_config2.default.dev){console.log('%c Iniciando estilos Santillana ','background: #29495e; color: white');console.log('%c Unidades: '+data.units.length+' ','background: #29495e; color: white');}// console.log("data.units[1].subunitsmain");
+// 	}
+// });
+evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);added=true;}}});}if(resource.evalType==2){unit.resourcesevaluation.push(resource);added=true;}if(!added){unit.resourcesmain.push(resource);}});});if(_config2.default.dev){console.log('%c Iniciando estilos Santillana ','background: #29495e; color: white');console.log('%c Unidades: '+data.units.length+' ','background: #29495e; color: white');}// console.log("data.units[1].subunitsmain");
 // console.log(data.units[1].subunitsmain);
 // console.log("data.units[1].subunitsaside");
 // console.log(data.units[1].subunitsaside);
