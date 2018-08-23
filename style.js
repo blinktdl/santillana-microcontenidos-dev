@@ -4222,7 +4222,7 @@ var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);
 // 	console.log('Unit 0:', data.units[0]);
 // }
 //Check if we are in first subunit of book
-if(idclase==data.units[0].subunits[0].id){// if(config.dev)
+if(idclase==data.units[0].subunits[0].id){if(_config2.default.dev){console.log('%c Iniciando estilos Santillana ','background: #29495e; color: white');console.log('%c Unidades: '+data.units.length+' ','background: #29495e; color: white');console.log('%c Data: ','background: #29495e; color: white');var newData=_.cloneDeep(data);console.log(newData);}// if(config.dev)
 // 	console.log('It\'s fisrt unit, so we\'ll launch menu');
 //Get home image
 var homeBackgroundImageUrl='';if(data.units[0].subunits.length>=1){if(data.units[0].subunits[0].image){homeBackgroundImageUrl=data.units[0].subunits[0].image;// if(config.dev){
@@ -4257,7 +4257,7 @@ evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>
 // 		}
 // 	}
 // });
-evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);added=true;}}});}if(resource.evalType==2){unit.resourcesevaluation.push(resource);added=true;}if(!added){unit.resourcesmain.push(resource);}});});if(_config2.default.dev){console.log('%c Iniciando estilos Santillana ','background: #29495e; color: white');console.log('%c Unidades: '+data.units.length+' ','background: #29495e; color: white');}// console.log("data.units[1].subunitsmain");
+evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);added=true;}}});}if(resource.evalType==2){unit.resourcesevaluation.push(resource);added=true;}if(!added){unit.resourcesmain.push(resource);}});});// console.log("data.units[1].subunitsmain");
 // console.log(data.units[1].subunitsmain);
 // console.log("data.units[1].subunitsaside");
 // console.log(data.units[1].subunitsaside);
