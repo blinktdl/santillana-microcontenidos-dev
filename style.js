@@ -8,9 +8,9 @@
 	}
 
 	SantillanaMicrocontenidosDev.prototype = {
-		// bodyClassName: 'santillana-microcontenidos-dev',
+		// bodyClassName: 'santillana-microcontenidos',
 		// ckEditorStyles: {
-		// 	name: 'santillana-microcontenidos-dev',
+		// 	name: 'santillana-microcontenidos',
 		// 	styles: [
 		// 		{ name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis'} }
 		// 	]
@@ -49,7 +49,7 @@
 
 	SantillanaMicrocontenidosDev.prototype = _.extend({}, new blink.theme.styles.basic(), SantillanaMicrocontenidosDev.prototype);
 
-	blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDev;
+	blink.theme.styles['santillana-microcontenidos'] = SantillanaMicrocontenidosDev;
 
 	// blink.events.on('loadSeguimientoCurso', function() {
 	// 	// Ejemplo carga de datos del libro en el toc del curso.
