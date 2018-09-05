@@ -1,86 +1,76 @@
-
-
 (function (blink) {
-	'use strict';
+    'use strict';
 
-	var SantillanaMicrocontenidosDev = function() {
+    var SantillanaMicrocontenidosStyle = function () {
 		blink.theme.styles.basic.apply(this, arguments);
-	}
+		
+		
+    };
 
-	SantillanaMicrocontenidosDev.prototype = {
-		// bodyClassName: 'santillana-microcontenidos',
-		// ckEditorStyles: {
-		// 	name: 'santillana-microcontenidos',
-		// 	styles: [
-		// 		{ name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis'} }
-		// 	]
-		// },
+    SantillanaMicrocontenidosStyle.prototype = {
+        parent: blink.theme.styles.basic.prototype,
+        bodyClassName: 'content_type_clase_santillana_microcontenidos',
+        ckEditorStyles: {
+			name: 'santillana-microcontenidos',
+			styles: [
+				{ name: 'TÃ­tulo 1', element: 'h4', attributes: { 'class': 'bck-title1'} },
+				{ name: 'TÃ­tulo 2', element: 'h4', attributes: { 'class': 'bck-title2'} },
+				{ name: 'TÃ­tulo 3', element: 'h4', attributes: { 'class': 'bck-title3'} },
 
-		init: function() {
-			var parent = blink.theme.styles.basic.prototype;
-			parent.init.call(this);
+				{ name: 'Ã‰nfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
+				{ name: 'Enunciado actividad', element: 'h4', attributes: { 'class': 'bck-title-activity' }},
 
-			// Ejemplo carga de datos de la clase en una actividad.
-			blink.getActivity(idcurso, idclase).done((function(data) {
-				this.onActivityDataLoaded(data);
-			}).bind(this));
+				{ name: 'Tabla centrada', element: 'table', type: 'bck-stack-class', attributes: { 'class': 'bck-table-center'} },
+				{ name: 'Celda encabezado', element: 'td', attributes: { 'class': 'bck-td' } },
 
-			// Ejemplo carga de datos del libro en una actividad.
+				{ name: 'Caja 1', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-1' } },
+				{ name: 'Caja 2', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-2' } },
+				{ name: 'Caja 3', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-3' } }
+			]
+		},
+
+        init: function (scope) {
+            var that = scope || this;
+			this.parent.init.call(that);
+			
 			blink.getCourse(idcurso).done((function(data) {
-				this.onCourseDataLoaded(data);
+				SantillanaMicrocontenidosStyleUI.init(data);
 			}).bind(this));
+        },
 
+        isEmbeddedAudio: function() {
+			return true;
+        },
+        
+        removeFinalSlide: function (scope) {
+            var that = scope || this;
+            this.parent.removeFinalSlide.call(that, true);
+        },
+        
+        allocateCanvas: function (scope, sectionIndex) {
+            var that = scope || this;
+			if (sectionIndex !== 0) return;
+			this.parent.allocateCanvas.call(that, sectionIndex);
+        },
+        
+        showBookIndexInClass: function () {
+			return true;
 		},
+    };
 
-		onActivityDataLoaded: function(data) {
-			console.log('onActivityDataLoaded:');
-			console.log(JSON.parse(JSON.stringify(data)));
-			// console.log(JSON.stringify(data));
-		},
+    SantillanaMicrocontenidosStyle.prototype = _.extend({}, new blink.theme.styles.basic(), SantillanaMicrocontenidosStyle.prototype);
 
-		onCourseDataLoaded: function(data) {
-			console.log('onCourseDataLoaded:');
-			console.log(JSON.parse(JSON.stringify(data)));
-			// console.log(data);
-			// console.log(JSON.stringify(data));
-			SantillanaMicrocontenidosStyle.init(data);
-		}
-	};
-
-	SantillanaMicrocontenidosDev.prototype = _.extend({}, new blink.theme.styles.basic(), SantillanaMicrocontenidosDev.prototype);
-
-	blink.theme.styles['santillana-microcontenidos'] = SantillanaMicrocontenidosDev;
-
-	// blink.events.on('loadSeguimientoCurso', function() {
-	// 	// Ejemplo carga de datos del libro en el toc del curso.
-	// 	blink.getCourse(idcurso).done(function(data) {
-	// 		var style = new SantillanaMicrocontenidosDev;
-	// 		style.onCourseDataLoaded(data);
-	// 	});
-	// });
-	blink.events.on('digitalbook:bpdfloaded', function() {
-		// Ejemplo carga de datos del curso desde un libro digital.
-		blink.getCourse(idcurso).done(function(data) {
-				var style = new SantillanaMicrocontenidosDev;
-				style.onCourseDataLoaded(data);
-		});
-	});
-
-
-	
-
-})(blink);
-
-
-(function webpackUniversalModuleDefinition(root, factory) {
+    blink.theme.styles['santillana-microcontenidos'] = SantillanaMicrocontenidosStyle;
+ 
+})( blink );(function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("lodash"));
 	else if(typeof define === 'function' && define.amd)
 		define(["_"], factory);
 	else if(typeof exports === 'object')
-		exports["SantillanaMicrocontenidosStyle"] = factory(require("lodash"));
+		exports["SantillanaMicrocontenidosStyleUI"] = factory(require("lodash"));
 	else
-		root["SantillanaMicrocontenidosStyle"] = factory(root["_"]);
+		root["SantillanaMicrocontenidosStyleUI"] = factory(root["_"]);
 })(window, function(__WEBPACK_EXTERNAL_MODULE__37__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
@@ -192,9 +182,9 @@ module.exports = __webpack_require__(37);
 	else if(typeof define === 'function' && define.amd)
 		define([], factory);
 	else if(typeof exports === 'object')
-		exports["SantillanaMicrocontenidosStyle"] = factory();
+		exports["SantillanaMicrocontenidosStyleUI"] = factory();
 	else
-		root["SantillanaMicrocontenidosStyle"] = factory();
+		root["SantillanaMicrocontenidosStyleUI"] = factory();
 })(window, function() {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
