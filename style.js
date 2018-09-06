@@ -1,23 +1,21 @@
 (function (blink) {
     'use strict';
-
-    var SantillanaMicrocontenidosStyle = function () {
-		blink.theme.styles.basic.apply(this, arguments);
-		
-		
+ 
+    var SantillanaMicrocontenidosDevStyle = function () {
+        blink.theme.styles['santillana-microcontenidos'].apply(this, arguments);
     };
 
-    SantillanaMicrocontenidosStyle.prototype = {
-        parent: blink.theme.styles.basic.prototype,
-        bodyClassName: 'content_type_clase_santillana_microcontenidos',
+    SantillanaMicrocontenidosDevStyle.prototype = {
+        parent: blink.theme.styles['santillana-microcontenidos'].prototype,
+        bodyClassName: 'content_type_clase_santillana_microcontenidos_dev',
         ckEditorStyles: {
-			name: 'santillana-microcontenidos',
+			name: 'santillana-microcontenidos-dev',
 			styles: [
-				{ name: 'TÃ­tulo 1', element: 'h4', attributes: { 'class': 'bck-title1'} },
-				{ name: 'TÃ­tulo 2', element: 'h4', attributes: { 'class': 'bck-title2'} },
-				{ name: 'TÃ­tulo 3', element: 'h4', attributes: { 'class': 'bck-title3'} },
+				{ name: 'Título 1', element: 'h4', attributes: { 'class': 'bck-title1'} },
+				{ name: 'Título 2', element: 'h4', attributes: { 'class': 'bck-title2'} },
+				{ name: 'Título 3', element: 'h4', attributes: { 'class': 'bck-title3'} },
 
-				{ name: 'Ã‰nfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
+				{ name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
 				{ name: 'Enunciado actividad', element: 'h4', attributes: { 'class': 'bck-title-activity' }},
 
 				{ name: 'Tabla centrada', element: 'table', type: 'bck-stack-class', attributes: { 'class': 'bck-table-center'} },
@@ -29,38 +27,29 @@
 			]
 		},
 
-        init: function (scope) {
-            var that = scope || this;
-			this.parent.init.call(that);
-			
-			blink.getCourse(idcurso).done((function(data) {
+        init: function () {
+            this.parent.init.call(this.parent, this);
+            
+            blink.getCourse(idcurso).done((function(data) {
 				SantillanaMicrocontenidosStyleUI.init(data);
 			}).bind(this));
         },
 
-        isEmbeddedAudio: function() {
-			return true;
+        removeFinalSlide: function () {
+            this.parent.removeFinalSlide.call(this.parent, this, true);
         },
         
-        removeFinalSlide: function (scope) {
-            var that = scope || this;
-            this.parent.removeFinalSlide.call(that, true);
-        },
-        
-        allocateCanvas: function (scope, sectionIndex) {
-            var that = scope || this;
+        allocateCanvas: function (sectionIndex) {
 			if (sectionIndex !== 0) return;
-			this.parent.allocateCanvas.call(that, sectionIndex);
-        },
-        
-        showBookIndexInClass: function () {
-			return true;
-		},
+			//BK-15873 Utilizamos this.parent declarada al inicio de la clase
+			this.parent.allocateCanvas.call(this.parent, this, sectionIndex);
+		}
+    
     };
 
-    SantillanaMicrocontenidosStyle.prototype = _.extend({}, new blink.theme.styles.basic(), SantillanaMicrocontenidosStyle.prototype);
+    SantillanaMicrocontenidosDevStyle.prototype = _.extend({}, new blink.theme.styles['santillana-microcontenidos'](), SantillanaMicrocontenidosDevStyle.prototype);
 
-    blink.theme.styles['santillana-microcontenidos'] = SantillanaMicrocontenidosStyle;
+    blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDevStyle;
  
 })( blink );(function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
