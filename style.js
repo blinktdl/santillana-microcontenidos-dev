@@ -4099,16 +4099,7 @@ contentTop:0,//desktop
 isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(){// if(config.dev)
 //     console.log("ScreenSubUnitIndicators.Init");
 if(!this.started){this.responsiveStatus=new _responsiveStatus2.default();//Apply book colors with class
-var slidesNaveButtons=document.querySelectorAll('.navbar-bottom ol.slider-indicators li.slider-indicator');this.state.blinkSlidesLength=slidesNaveButtons.length;slidesNaveButtons.forEach(function(slideButton,index){slideButton.classList.add('sm-color-background-color--active');slideButton.classList.add('sm-color-border-color--active');// let textInButton = index;
-// if(index == 0){
-//     textInButton = 'Inicio';
-//     slideButton.classList.add('sm-big');
-// } else if(index == slidesNaveButtons.length - 1){
-//     textInButton = 'Fin';
-//     slideButton.classList.add('sm-big');
-// }
-// slideButton.innerHTML = textInButton;
-});// Add start and end buttons
+var slidesNavbarButtons=document.querySelectorAll('.navbar-bottom ol.slider-indicators li.slider-indicator');this.state.blinkSlidesLength=slidesNavbarButtons.length;slidesNavbarButtons.forEach(function(slideButton,index){slideButton.classList.add('sm-color-background-color--active');slideButton.classList.add('sm-color-border-color--active');});// Add start and end buttons
 document.querySelector('.navbar-bottom .slider-indicators').insertAdjacentHTML('afterbegin',_sliderIndicatorStartButton2.default);document.querySelector('.navbar-bottom .slider-indicators').insertAdjacentHTML('beforeend',_sliderIndicatorEndButton2.default);document.querySelector('.navbar-bottom .slider-indicators .sm-start').addEventListener('click',this.onStartButtonClick.bind(this),false);document.querySelector('.navbar-bottom .slider-indicators .sm-end').addEventListener('click',this.onEndButtonClick.bind(this),false);// Add arrows
 document.querySelector('.navbar-bottom').insertAdjacentHTML('afterbegin',_sliderIndicatorArrowLeft2.default);document.querySelector('.navbar-bottom').insertAdjacentHTML('beforeend',_sliderIndicatorArrowRight2.default);document.querySelector('.navbar-bottom .sm-slider-indicator-arrow-left').addEventListener('click',this.onArrowLeftClick.bind(this),false);document.querySelector('.navbar-bottom .sm-slider-indicator-arrow-right').addEventListener('click',this.onArrowRightClick.bind(this),false);//Add event to buttons to center focused
 var sliderIndicatorButtons=document.querySelectorAll('.navbar-bottom .slider-indicators .slider-indicator');var _this=this;_.forEach(sliderIndicatorButtons,function(button){if(!button.classList.contains('sm-big')){//Si no es botón de inicio o final
@@ -5972,7 +5963,7 @@ this.leftMenu=new _0LeftMenu2.default(data);//Else show content of subunit
 }else{if(_config2.default.dev)console.log('NO es la actividad Portada');if(_config2.default.dev)console.log(data);//Get subunit object from data
 var subunitObject={};var subunitIndex=-1;var unit={};data.units.forEach(function(unitData){unitData.subunitsmain.forEach(function(subunit,index){if(subunit.id==''+idclase){subunitObject=subunit;subunitIndex=index;unit=unitData;}});});//Copy slides (sections) of this types to Activities Tab
 // const inActivities = [2, 4, 5, 6, 31, 9, 10, 12, 13, 17, 18, 19, 26, 8, 14, 11, 20, 25, 29, 21, 22, 23, 28, 27 ];
-subunitObject.activitiesInTab=[];_.forEach(subunitObject.sections,function(section){_.forEach(_config2.default.slideTypes,function(type){if(section.type==type.number){section.typeName=type.name;subunitObject.activitiesInTab.push(section);}});});if(subunitObject==={}){alert("Error:\nNinguna lección con esta id.");}this.ScreenSubUnit=new _ScreenSubUnit2.default();this.ScreenSubUnit.init(subunitObject,subunitIndex+1,unit,data);//Menú
+subunitObject.activitiesNotInTab=[];subunitObject.activitiesInTab=[];_.forEach(subunitObject.sections,function(section){_.forEach(_config2.default.slideTypes,function(type){section.typeName=type.name;if(section.type==type.number){subunitObject.activitiesInTab.push(section);}else{subunitObject.activitiesNotInTab.push(section);}});});if(subunitObject==={}){alert("Error:\nNinguna lección con esta id.");}this.ScreenSubUnit=new _ScreenSubUnit2.default();this.ScreenSubUnit.init(subunitObject,subunitIndex+1,unit,data);//Menú
 this.leftMenu=new _0LeftMenu2.default(data,subunitObject.id);}(0,_bookColors.setBookColor)();//Global commands to open menú
 window.SantillanaMicrocontenidosMenuToggle=this.leftMenu.toggleMenu;window.SantillanaMicrocontenidosMenuOpen=this.leftMenu.openMenu;window.SantillanaMicrocontenidosMenuClose=this.leftMenu.closeMenu;if(_config2.default.dev)console.log("Inicio terminado");}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
