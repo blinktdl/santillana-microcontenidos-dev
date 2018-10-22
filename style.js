@@ -4048,7 +4048,9 @@ document.querySelector('.sm-subunit-start__actividades__list').insertAdjacentHTM
 // this.dropdown.init(document.querySelector('.sm-subunit-start__nav .sm-dropdown-group'));
 //Añade acciones a los botones tabs
 // document.getElementById('subunit-boton-secuencia-didactica').addEventListener('click', this.goTabSecuenciaDidactica.bind(this));
-document.getElementById('subunit-boton-actividades').addEventListener('click',this.goTabActividades.bind(this));document.getElementById('subunit-boton-evaluacion-final').addEventListener('click',this.goTabEvaluacionFinal.bind(this));this.state.isVisible=true;}},{key:'show',value:function show(){document.querySelector('.sm-subunit-start').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-start').classList.remove('active');this.state.isVisible=false;}},{key:'goTabSecuenciaDidactica',value:function goTabSecuenciaDidactica(){// console.log('goTabSecuenciaDidactica');
+document.getElementById('subunit-boton-actividades').addEventListener('click',this.goTabActividades.bind(this));document.getElementById('subunit-boton-evaluacion-final').addEventListener('click',this.goTabEvaluacionFinal.bind(this));//Evaluación
+// document.querySelector('.subunit-boton-evaluacion-final').addEventListener('click', this.);
+this.state.isVisible=true;}},{key:'show',value:function show(){document.querySelector('.sm-subunit-start').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-start').classList.remove('active');this.state.isVisible=false;}},{key:'goTabSecuenciaDidactica',value:function goTabSecuenciaDidactica(){// console.log('goTabSecuenciaDidactica');
 document.querySelector('.sm-subunit-start__secuencia').style.display='block';document.querySelector('.sm-subunit-start__actividades').style.display='none';document.querySelector('.navbar-bottom').style.display='block';//Tabs
 // document.getElementById('subunit-boton-secuencia-didactica').classList.add('active');
 document.querySelector('.sm-subunit-start__nav__actions').style.display='block';// document.getElementById('subunit-boton-evaluacion-final').classList.remove('active');
@@ -4134,9 +4136,37 @@ button.addEventListener('click',function(e){_this.onSliderIndicatorClick(e.curre
 // });
 //Refresh on resize
 window.addEventListener('resize',this.update.bind(this),false);//Start start page
-this.onStartButtonClick();this.removeActivitiesSlides();this.started=true;}this.update();}},{key:'removeActivitiesSlides',value:function removeActivitiesSlides(){//Remove Buttons
-var buttons=document.querySelectorAll('.slider-indicators .slider-indicator');var itemsToRemove=[];if(buttons.length>0){for(var indexButton=0;indexButton<buttons.length;indexButton++){var button=buttons[indexButton];for(var indexActivity=0;indexActivity<this.subunit.activitiesInTab.length;indexActivity++){var activity=this.subunit.activitiesInTab[indexActivity];if(parseInt(button.getAttribute('data-go-to'))+1==activity.page){itemsToRemove.push(button);}}}}for(var _indexButton=0;_indexButton<itemsToRemove.length;_indexButton++){var _button=itemsToRemove[_indexButton];// button.remove();
-_button.style.display='none';}var buttonsCleaned=document.querySelectorAll('.slider-indicators .slider-indicator');if(buttonsCleaned.length>0){var counter=0;for(var _indexButton2=0;_indexButton2<buttonsCleaned.length;_indexButton2++){var _button2=buttonsCleaned[_indexButton2];if(_button2.getAttribute('data-go-to')){counter++;_button2.innerHTML=counter;}}}}},{key:'update',value:function update(){var content=document.querySelector('.navbar-bottom ol.slider-indicators');var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){this.state.contentTop=this.contentTopLimit(this.state.contentTop);content.style.top=this.state.contentTop+'px';content.style.left='0';}else{this.state.contentLeft=this.contentLeftLimit(this.state.contentLeft);content.style.left=this.state.contentLeft+'px';content.style.top='0';}}},{key:'onArrowLeftClick',value:function onArrowLeftClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
+this.onStartButtonClick();this.removeActivitiesSlides();this.started=true;}this.update();}},{key:'removeActivitiesSlides',value:function removeActivitiesSlides(){// //Remove Buttons
+// const buttons = document.querySelectorAll('.slider-indicators .slider-indicator');
+// const itemsToRemove = [];
+// if(buttons.length>0){
+//     for (let indexButton = 0; indexButton < buttons.length; indexButton++) {
+//         const button = buttons[indexButton];
+//         for (let indexActivity = 0; indexActivity < this.subunit.activitiesInTab.length; indexActivity++) {
+//             const activity = this.subunit.activitiesInTab[indexActivity];
+//             if(parseInt(button.getAttribute('data-go-to')) + 1 == activity.page){
+//                 itemsToRemove.push(button);
+//             }
+//         }
+//     }
+// }
+// for (let indexButton = 0; indexButton < itemsToRemove.length; indexButton++) {
+//     const button = itemsToRemove[indexButton];
+//     // button.remove();
+//     button.style.display = 'none';
+// }
+// const buttonsCleaned = document.querySelectorAll('.slider-indicators .slider-indicator');
+// if(buttonsCleaned.length>0){
+//     let counter = 0;
+//     for (let indexButton = 0; indexButton < buttonsCleaned.length; indexButton++) {
+//         const button = buttonsCleaned[indexButton];
+//         if(button.getAttribute('data-go-to')){
+//             counter++;
+//             button.innerHTML = counter;
+//         }
+//     }
+// }
+}},{key:'update',value:function update(){var content=document.querySelector('.navbar-bottom ol.slider-indicators');var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){this.state.contentTop=this.contentTopLimit(this.state.contentTop);content.style.top=this.state.contentTop+'px';content.style.left='0';}else{this.state.contentLeft=this.contentLeftLimit(this.state.contentLeft);content.style.left=this.state.contentLeft+'px';content.style.top='0';}}},{key:'onArrowLeftClick',value:function onArrowLeftClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
 //         element.classList.remove('active');
 // });
 if(this.state.isEndSlide){blink.activity.currentSection=this.state.blinkSlidesLength-1;}if(!this.state.isStartSlide){//If is the first slide (0)
