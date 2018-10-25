@@ -299,7 +299,9 @@ number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar 
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatus=function(){function responsiveStatus(sizeChangedFunction){_classCallCheck(this,responsiveStatus);this.state={size:null};if(typeof sizeChangedFunction==='function'){this.sizeChanged=sizeChangedFunction;}else{this.sizeChanged=function(){};}window.addEventListener('resize',this.check.bind(this),false);this.check();}_createClass(responsiveStatus,[{key:'check',value:function check(){if(_config2.default.dev)console.log("responsiveStatus.check");var width=window.innerWidth;var size=void 0;if(width<768){size='mobile';}else if(width<1024){size='tablet-portrait';}else if(width<=1168){size='tablet-landscape';}else{size='desktop';}if(size!=this.state.size){this.state.size=size;this.sizeChanged(size);}}},{key:'getSize',value:function getSize(){return this.state.size;}}]);return responsiveStatus;}();exports.default=responsiveStatus;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatus=function(){function responsiveStatus(sizeChangedFunction){_classCallCheck(this,responsiveStatus);this.state={size:null};if(typeof sizeChangedFunction==='function'){this.sizeChanged=sizeChangedFunction;}else{this.sizeChanged=function(){};}window.addEventListener('resize',this.check.bind(this),false);this.check();}_createClass(responsiveStatus,[{key:'check',value:function check(){// if(config.dev)
+//     console.log("responsiveStatus.check");
+var width=window.innerWidth;var size=void 0;if(width<768){size='mobile';}else if(width<1024){size='tablet-portrait';}else if(width<=1168){size='tablet-landscape';}else{size='desktop';}if(size!=this.state.size){this.state.size=size;this.sizeChanged(size);}}},{key:'getSize',value:function getSize(){return this.state.size;}}]);return responsiveStatus;}();exports.default=responsiveStatus;
 
 /***/ }),
 /* 3 */
@@ -4099,7 +4101,7 @@ var box=elem.getBoundingClientRect();var body=document.body;var docEl=document.d
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
 var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(3);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(2);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(18);var _sliderIndicatorArrowLeft=__webpack_require__(17);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(16);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(15);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(14);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
 contentTop:0,//desktop
-isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){// if(config.dev)
+isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};this.line=null;}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){// if(config.dev)
 //     console.log("ScreenSubUnitIndicators.Init");
 if(!this.started){this.responsiveStatus=new _responsiveStatus2.default();this.subunit=subunit;//Apply book colors with class
 var slidesNavbarButtons=document.querySelectorAll('.navbar-bottom ol.slider-indicators li.slider-indicator');this.state.blinkSlidesLength=slidesNavbarButtons.length;slidesNavbarButtons.forEach(function(slideButton,index){slideButton.classList.add('sm-color-background-color--active');slideButton.classList.add('sm-color-border-color--active');});// Add start and end buttons
@@ -4134,9 +4136,12 @@ button.addEventListener('click',function(e){_this.onSliderIndicatorClick(e.curre
 //     console.log(blink.activity.currentSection);
 //     // comprobar si es la última y mostrar la slide fin
 // });
-//Refresh on resize
+//Create line
+this.line=document.createElement('div');this.line.setAttribute('class','slider-indicators__line');document.querySelector('.navbar-bottom').appendChild(this.line);//Refresh on resize
 window.addEventListener('resize',this.update.bind(this),false);//Start start page
-this.onStartButtonClick();this.removeActivitiesSlides();this.started=true;}this.update();}},{key:'removeActivitiesSlides',value:function removeActivitiesSlides(){// //Remove Buttons
+this.onStartButtonClick();// this.removeActivitiesSlides();
+this.started=true;}this.update();}// removeActivitiesSlides(){
+// //Remove Buttons
 // const buttons = document.querySelectorAll('.slider-indicators .slider-indicator');
 // const itemsToRemove = [];
 // if(buttons.length>0){
@@ -4166,25 +4171,127 @@ this.onStartButtonClick();this.removeActivitiesSlides();this.started=true;}this.
 //         }
 //     }
 // }
-}},{key:'update',value:function update(){var content=document.querySelector('.navbar-bottom ol.slider-indicators');var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){this.state.contentTop=this.contentTopLimit(this.state.contentTop);content.style.top=this.state.contentTop+'px';content.style.left='0';}else{this.state.contentLeft=this.contentLeftLimit(this.state.contentLeft);content.style.left=this.state.contentLeft+'px';content.style.top='0';}}},{key:'onArrowLeftClick',value:function onArrowLeftClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
+// }
+},{key:'update',value:function update(){var navBar=document.querySelector('.navbar-bottom');var olList=document.querySelector('.navbar-bottom ol.slider-indicators');var buttons=document.querySelectorAll('.navbar-bottom ol.slider-indicators li');var activeButton=document.querySelector('.navbar-bottom ol.slider-indicators li.active');var activeButtonIndex=parseInt(activeButton.getAttribute('data-go-to'));if(activeButton.classList.contains('sm-start')){activeButtonIndex=-1;}if(activeButton.classList.contains('sm-end')){activeButtonIndex=buttons.length-2;}var windowSize=this.responsiveStatus.getSize();var buttonsInMiddle=1;// mobile
+if(windowSize!='desktop'){if(windowSize=='mobile'){}else if(windowSize=='tablet-portrait'){buttonsInMiddle=5;}else if(windowSize=='tablet-landscape'){buttonsInMiddle=8;}}else{var huecoHeight=document.querySelector('ol.slider-indicators').offsetHeight-80;if(huecoHeight>450){buttonsInMiddle=5;}else if(huecoHeight>650){buttonsInMiddle=8;}}for(var index=-1;index<buttons.length-1;index++){var button=buttons[index+1];//If is not start or end
+if(!button.classList.contains('sm-big')){//If active is on 4 first numbers
+if(activeButtonIndex<=1+buttonsInMiddle){if(index<=2+buttonsInMiddle){//número 4
+button.style.display='inline-block';}else{button.style.display='none';}}else if(activeButtonIndex<buttons.length-(3+buttonsInMiddle)){if(index>=activeButtonIndex-buttonsInMiddle&&index<=activeButtonIndex+buttonsInMiddle){button.style.display='inline-block';}else{button.style.display='none';}}else{if(index>=buttons.length-(5+buttonsInMiddle)){//número 4
+button.style.display='inline-block';}else{button.style.display='none';}}if(index==0||index==buttons.length-3){button.style.display='inline-block';}}}//Add spaces
+var marginRight=6+8*2;//mobile
+var marginBottom=0;//mobile
+if(windowSize=='tablet-portrait'){marginRight=10+8*3;}else if(windowSize=='tablet-landscape'){marginRight=10+8*3;}else if(windowSize=='desktop'){marginRight=0;marginBottom=48;}for(var _index=0;_index<buttons.length-3;_index++){var _button=buttons[_index];var buttonNext=buttons[_index+1];if(!(_button.classList.contains('sm-start')||_button.classList.contains('sm-end'))){if(_button.style.display=='inline-block'&&buttonNext.style.display=='none'){_button.style.marginRight=marginRight+'px';_button.style.marginBottom=marginBottom+'px';}else{_button.style.marginRight=null;_button.style.marginBottom=null;}}}//Linea
+var startButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-start');var endButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-end');if(windowSize!='desktop'){this.line.style.top=null;this.line.style.bottom=null;this.line.style.left=startButton.offsetLeft+olList.offsetLeft+'px';this.line.style.right=navBar.offsetWidth-endButton.offsetLeft-olList.offsetLeft+'px';}else{this.line.style.top=startButton.offsetTop+olList.offsetTop+'px';this.line.style.bottom=navBar.offsetHeight-endButton.offsetTop-olList.offsetTop+'px';this.line.style.left=null;this.line.style.right=null;}}},{key:'onArrowLeftClick',value:function onArrowLeftClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
 //         element.classList.remove('active');
 // });
 if(this.state.isEndSlide){blink.activity.currentSection=this.state.blinkSlidesLength-1;}if(!this.state.isStartSlide){//If is the first slide (0)
 if(blink.activity.currentSection==0){this.onStartButtonClick();}else{// document.querySelector(`.slider-indicators li[data-go-to="${blink.activity.currentSection-1}"]`).classList.add('active');
 if(this.state.isEndSlide){//If is in start button, goes to slide 0
-document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]'));document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]').click();}else{document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection-1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection-1)+'"]'));document.querySelector('.left.slider-control').click();}}this.state.isEndSlide=false;this.onEndHide();}}},{key:'onArrowRightClick',value:function onArrowRightClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
+document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]'));document.querySelector('.slider-indicators li[data-go-to="'+(this.state.blinkSlidesLength-1)+'"]').click();}else{document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection-1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection-1)+'"]'));document.querySelector('.left.slider-control').click();}}this.state.isEndSlide=false;this.onEndHide();this.update();}}},{key:'onArrowRightClick',value:function onArrowRightClick(){// document.querySelectorAll('.slider-indicators li').forEach((element) => {
 //     element.classList.remove('active');
 // });
 if(this.state.isStartSlide){blink.activity.currentSection=0;}if(!this.state.isEndSlide){//If is the last slide
 if(blink.activity.currentSection==this.state.blinkSlidesLength-1){this.onEndButtonClick();}else{// document.querySelector(`.slider-indicators li[data-go-to="${blink.activity.currentSection+1}"]`).classList.add('active');
 if(this.state.isStartSlide){//If is in start button, goes to slide 0
-document.querySelector('.slider-indicators li[data-go-to="0"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));document.querySelector('.slider-indicators li[data-go-to="0"]').click();}else{document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection+1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection+1)+'"]'));document.querySelector('.right.slider-control').click();}}this.state.isStartSlide=false;this.onStartHide();}}},{key:'onStartButtonClick',value:function onStartButtonClick(){if(!this.state.isStartSlide){document.querySelectorAll('.slider-indicators li').forEach(function(element){element.classList.remove('active');});document.querySelector('.slider-indicators .sm-start').classList.add('active');this.state.isEndSlide=false;this.state.isStartSlide=true;blink.activity.currentSection=0;//External function
-this.onStartShow();this.onEndHide();}}},{key:'onEndButtonClick',value:function onEndButtonClick(){if(!this.state.isEndSlide){document.querySelectorAll('.slider-indicators li').forEach(function(element){element.classList.remove('active');});document.querySelector('.slider-indicators .sm-end').classList.add('active');this.state.isStartSlide=false;this.state.isEndSlide=true;blink.activity.currentSection=this.state.blinkSlidesLength-1;//External function
-this.onEndShow();this.onStartHide();}}},{key:'jumpTo',value:function jumpTo(nextContentPoint){var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){var nextContentTop=this.contentTopLimit(nextContentPoint);var _this=this;(0,_animejs2.default)({targets:_this.state,contentTop:nextContentTop,duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,round:1,update:function update(){_this.update();}});}else{var nextContentLeft=this.contentLeftLimit(nextContentPoint);var _this2=this;(0,_animejs2.default)({targets:_this2.state,contentLeft:nextContentLeft,duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,round:1,update:function update(){_this2.update();}});}}},{key:'onSliderIndicatorClick',value:function onSliderIndicatorClick(activeButton){document.querySelectorAll('.slider-indicators li').forEach(function(element){if(activeButton!=element){element.classList.remove('active');}else{element.classList.add('active');}});this.state.isStartSlide=false;this.onStartHide();this.state.isEndSlide=false;//Check if active is not visible
-if(this.isOutside(activeButton)){var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){var activeButtonHeight=activeButton.clientHeight;var activeButtonOffsetCenter=activeButton.offsetTop+activeButtonHeight*0.5;var container=document.querySelector('.navbar-bottom');var containerHeight=container.clientHeight;var containerHeightCenter=containerHeight*0.5;var nextContentTop=containerHeightCenter-activeButtonOffsetCenter;this.jumpTo(nextContentTop);}else{var activeButtonWidth=activeButton.clientWidth;var _activeButtonOffsetCenter=activeButton.offsetLeft+activeButtonWidth*0.5;var _container=document.querySelector('.navbar-bottom');var containerWidth=_container.clientWidth;var containerWidthCenter=containerWidth*0.5;var nextContentLeft=containerWidthCenter-_activeButtonOffsetCenter;this.jumpTo(nextContentLeft);}}}},{key:'isOutside',value:function isOutside(activeButton){var windowSize=this.responsiveStatus.getSize();if(windowSize=='desktop'){var navbarHeight=0;if(document.querySelectorAll('.navbar').length){navbarHeight=document.querySelector('.navbar').clientHeight;}var activeButtonHeight=activeButton.clientHeight;var topPos=(0,_getCoords.getCoords)(activeButton).top-navbarHeight;var container=document.querySelector('.navbar-bottom');var containerHeight=container.clientHeight;return topPos<50||topPos+activeButtonHeight>containerHeight-50;}else{var activeButtonWidth=activeButton.clientWidth;var leftPos=(0,_getCoords.getCoords)(activeButton).left;var _container2=document.querySelector('.navbar-bottom');var containerWidth=_container2.clientWidth;return leftPos<20||leftPos+activeButtonWidth>containerWidth-20;}}//Be sure this.state.contentLeft is not ouuside limit
-},{key:'contentLeftLimit',value:function contentLeftLimit(nextContentLeft){var container=document.querySelector('.navbar-bottom');var content=document.querySelector('.navbar-bottom ol.slider-indicators');var containerWidth=container.clientWidth;var contentWidth=content.clientWidth;//Be sure this.state.contentLeft is not ouuside limit
-nextContentLeft=nextContentLeft<=0?nextContentLeft:0;nextContentLeft=contentWidth+nextContentLeft>containerWidth?nextContentLeft:containerWidth-contentWidth;return nextContentLeft;}},{key:'contentTopLimit',value:function contentTopLimit(nextContentTop){var container=document.querySelector('.navbar-bottom');var content=document.querySelector('.navbar-bottom ol.slider-indicators');var containerHeight=container.clientHeight;var contentHeight=content.clientHeight;//Be sure this.state.contentTop is not outside limit
-nextContentTop=nextContentTop<=0?nextContentTop:0;nextContentTop=contentHeight+nextContentTop>containerHeight?nextContentTop:containerHeight-contentHeight;return nextContentTop;}},{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
+document.querySelector('.slider-indicators li[data-go-to="0"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));document.querySelector('.slider-indicators li[data-go-to="0"]').click();}else{document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection+1)+'"]').classList.add('active');this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="'+(blink.activity.currentSection+1)+'"]'));document.querySelector('.right.slider-control').click();}}this.state.isStartSlide=false;this.onStartHide();this.update();}}},{key:'onStartButtonClick',value:function onStartButtonClick(){if(!this.state.isStartSlide){document.querySelectorAll('.slider-indicators li').forEach(function(element){element.classList.remove('active');});document.querySelector('.slider-indicators .sm-start').classList.add('active');this.state.isEndSlide=false;this.state.isStartSlide=true;blink.activity.currentSection=0;//External function
+this.onStartShow();this.onEndHide();this.update();}}},{key:'onEndButtonClick',value:function onEndButtonClick(){if(!this.state.isEndSlide){document.querySelectorAll('.slider-indicators li').forEach(function(element){element.classList.remove('active');});document.querySelector('.slider-indicators .sm-end').classList.add('active');this.state.isStartSlide=false;this.state.isEndSlide=true;blink.activity.currentSection=this.state.blinkSlidesLength-1;//External function
+this.onEndShow();this.onStartHide();this.update();}}// jumpTo(nextContentPoint){
+//     const windowSize = this.responsiveStatus.getSize();
+//     if(windowSize == 'desktop'){
+//         var nextContentTop = this.contentTopLimit(nextContentPoint);
+//         const _this = this;
+//         anime(
+//             {
+//                 targets: _this.state,
+//                 contentTop: nextContentTop,
+//                 duration: config.velocityTransitions,
+//                 easing: config.easingTransitionOut,
+//                 round: 1,
+//                 update: function() {
+//                     _this.update();
+//                 }
+//             }
+//         );
+//     } else {
+//         var nextContentLeft = this.contentLeftLimit(nextContentPoint);
+//         const _this = this;
+//         anime(
+//             {
+//                 targets: _this.state,
+//                 contentLeft: nextContentLeft,
+//                 duration: config.velocityTransitions,
+//                 easing: config.easingTransitionOut,
+//                 round: 1,
+//                 update: function() {
+//                     _this.update();
+//                 }
+//             }
+//         );
+//     }
+// }
+},{key:'onSliderIndicatorClick',value:function onSliderIndicatorClick(activeButton){document.querySelectorAll('.slider-indicators li').forEach(function(element){if(activeButton!=element){element.classList.remove('active');}else{element.classList.add('active');}});this.state.isStartSlide=false;this.onStartHide();this.state.isEndSlide=false;this.update();//Check if active is not visible
+// if(this.isOutside(activeButton)){
+//     const windowSize = this.responsiveStatus.getSize();
+//     if(windowSize == 'desktop'){
+//         const activeButtonHeight = activeButton.clientHeight;
+//         const activeButtonOffsetCenter = activeButton.offsetTop + (activeButtonHeight * 0.5);
+//         const container = document.querySelector('.navbar-bottom');
+//         const containerHeight = container.clientHeight;
+//         const containerHeightCenter = containerHeight*0.5;
+//         const nextContentTop = containerHeightCenter - activeButtonOffsetCenter;
+//         this.jumpTo(nextContentTop);
+//     } else {
+//         const activeButtonWidth = activeButton.clientWidth;
+//         const activeButtonOffsetCenter = activeButton.offsetLeft + (activeButtonWidth * 0.5);
+//         const container = document.querySelector('.navbar-bottom');
+//         const containerWidth = container.clientWidth;
+//         const containerWidthCenter = containerWidth*0.5;
+//         const nextContentLeft = containerWidthCenter - activeButtonOffsetCenter;
+//         this.jumpTo(nextContentLeft);
+//     }
+// }
+}// isOutside(activeButton){
+//     const windowSize = this.responsiveStatus.getSize();
+//     if(windowSize == 'desktop'){
+//         let navbarHeight = 0;
+//         if(document.querySelectorAll('.navbar').length){
+//             navbarHeight = document.querySelector('.navbar').clientHeight;
+//         }
+//         const activeButtonHeight = activeButton.clientHeight;
+//         const topPos = getCoords(activeButton).top - navbarHeight;
+//         const container = document.querySelector('.navbar-bottom');
+//         const containerHeight = container.clientHeight;
+//         return (topPos < 50 || topPos + activeButtonHeight > containerHeight - 50 );
+//     } else {
+//         const activeButtonWidth = activeButton.clientWidth;
+//         const leftPos = getCoords(activeButton).left;
+//         const container = document.querySelector('.navbar-bottom');
+//         const containerWidth = container.clientWidth;
+//         return (leftPos < 20 || leftPos + activeButtonWidth > containerWidth - 20 );
+//     }
+// }
+//Be sure this.state.contentLeft is not ouuside limit
+// contentLeftLimit(nextContentLeft){
+//     const container = document.querySelector('.navbar-bottom');
+//     const content = document.querySelector('.navbar-bottom ol.slider-indicators');
+//     const containerWidth = container.clientWidth;
+//     const contentWidth = content.clientWidth;
+//     //Be sure this.state.contentLeft is not ouuside limit
+//     nextContentLeft = nextContentLeft <= 0 ? nextContentLeft : 0;
+//     nextContentLeft = contentWidth + nextContentLeft > containerWidth ? nextContentLeft : containerWidth - contentWidth;
+//     return nextContentLeft;
+// }
+// contentTopLimit(nextContentTop){
+//     const container = document.querySelector('.navbar-bottom');
+//     const content = document.querySelector('.navbar-bottom ol.slider-indicators');
+//     const containerHeight = container.clientHeight;
+//     const contentHeight = content.clientHeight;
+//     //Be sure this.state.contentTop is not outside limit
+//     nextContentTop = nextContentTop <= 0 ? nextContentTop : 0;
+//     nextContentTop = contentHeight + nextContentTop > containerHeight ? nextContentTop : containerHeight - contentHeight;
+//     return nextContentTop;
+// }
+},{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
 /* 20 */
