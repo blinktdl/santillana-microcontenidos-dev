@@ -4038,7 +4038,9 @@ htmlText+='<em>'+node.data+'</em>';}else{htmlText+=node.outerHTML;}});remainBox.
 //     imageDivMobile.innerHTML = `<img src="${backgroundImgUrl}" />`;
 //     slide.appendChild(imageDivMobile);
 // })
-this.update();}_createClass(Activities,[{key:'update',value:function update(){//Activitie header book color small block
+//JS fixes for styling
+//Calculo
+var calculoTrCifras=document.querySelectorAll('.workspace.calculo tr');calculoTrCifras.forEach(function(tr){var tds=tr.querySelectorAll('td.cifra');var lastTd=document.createElement('td');tds.forEach(function(td){if(td.querySelectorAll('input').length){td.classList.add('cifra_con_input');if(lastTd.querySelectorAll('input').length){lastTd.classList.remove('cifra_con_input--fin');}else{td.classList.add('cifra_con_input--inicio');}td.classList.add('cifra_con_input--fin');}lastTd=td;});});this.update();}_createClass(Activities,[{key:'update',value:function update(){//Activitie header book color small block
 var activityHeaderSmallBlockElement=document.createElement('div');activityHeaderSmallBlockElement.classList.add('header_small_block');activityHeaderSmallBlockElement.classList.add('sm-color-background-color');var allTitles=document.querySelectorAll('#actividad .class_slide .header .title');//onsole.log("HEADERS");
 _.forEach(allTitles,function(header){//onsole.log(header);
 if(!header.querySelector('.header_small_block')){header.appendChild(activityHeaderSmallBlockElement.cloneNode(true));}});}}]);return Activities;}();exports.default=Activities;
