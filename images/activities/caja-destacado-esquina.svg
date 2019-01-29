@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54" height="54" viewBox="0 0 54 54">
+  <defs>
+    <polygon id="caja-destacado-esquina-b" points="847 656 847 696 889 696"/>
+    <filter id="caja-destacado-esquina-a" width="159.5%" height="162.5%" x="-39.3%" y="-21.2%" filterUnits="objectBoundingBox">
+      <feOffset dx="-4" dy="4" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="3.5"/>
+      <feComposite in="shadowBlurOuter1" in2="SourceAlpha" operator="out" result="shadowBlurOuter1"/>
+      <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0.164705882   0 0 0 0 0.28627451   0 0 0 0 0.364705882  0 0 0 0.2 0"/>
+    </filter>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(-835 -656)">
+    <rect width="42" height="40" x="847" y="656" fill="#FFF" fill-rule="nonzero"/>
+    <use fill="#000" filter="url(#caja-destacado-esquina-a)" xlink:href="#caja-destacado-esquina-b"/>
+    <path fill="#FFF" stroke="#2A495D" stroke-linejoin="square" d="M847.5,657.166667 L847.5,695.5 L887.75,695.5 L847.5,657.166667 Z"/>
+  </g>
+</svg>

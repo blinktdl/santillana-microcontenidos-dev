@@ -11,12 +11,13 @@
         ckEditorStyles: {
 			name: 'santillana-microcontenidos-dev',
 			styles: [
-				{ name: 'Título H1 (bold)', element: 'h1', attributes: { 'class': 'bck-title1'} },
 				{ name: 'Título H2 (bold)', element: 'h2', attributes: { 'class': 'h_bold'} },
 				{ name: 'Título H2', element: 'h2', attributes: {} },
-				{ name: 'Título H3 (bold)', element: 'h3', attributes: { 'class': 'h_bold'} },
-				{ name: 'Título H4', element: 'h3', attributes: { } },
-				{ name: 'Caja Enlace', element: 'div', attributes: { 'class': 'sm__caja-enlace'} }
+				{ name: 'Título H3 (bold)', element: 'h3', attributes: { } },
+				{ name: 'Título H4', element: 'h4', attributes: { } },
+				{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
+				{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
+
 				
 				// { name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
 				// { name: 'Enunciado actividad', element: 'h4', attributes: { 'class': 'bck-title-activity' }},
