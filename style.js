@@ -6160,7 +6160,7 @@ var homeBackgroundImageUrl='';if(data.units[0].subunits.length>=1){if(data.units
 data.units.shift();data.homeBackgroundImageUrl=homeBackgroundImageUrl;//If user is student, remove subunits and resources not visible for her
 if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){if(blink.user.esAlumno()){data.units.forEach(function(unit){var i=unit.subunits.length;while(i--){if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.resources.length;while(i--){if(unit.resources[i].onlyVisibleTeachers){unit.resources.splice(i,1);}}});}}//If ocultar == true, remove it
 data.units.forEach(function(unit){var i=unit.subunits.length;while(i--){if(unit.subunits[i].ocultar){unit.subunits.splice(i,1);//Check if next subunit is an evaluacion
-if(unit.subunits[i]){if(typeof unit.subunits[i].tag!=='undefinded'){if(unit.subunits[i].tag.indexOf('evaluacion')>=0){//if exists, delete it
+if(unit.subunits[i]){if(unit.subunits[i].hasOwnProperty('tag')){if(unit.subunits[i].tag.indexOf('evaluacion')>=0){//if exists, delete it
 unit.subunits.splice(i,1);}}}}}i=unit.resources.length;while(i--){if(unit.resources[i].ocultar){unit.resources.splice(i,1);}}});//Regenerate units number with new property
 data.units.forEach(function(unit,index){unit.numberformenu=index+1;});//Divide subunits in main, aside and evaluation
 //TODO QUEDA POR ENTENDER COMO SE GESTIONA EVALUACION, PERO POR AHORA LO SEPARO
