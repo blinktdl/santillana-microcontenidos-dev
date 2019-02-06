@@ -18,16 +18,7 @@
 				{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
 				{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
 				{ name: 'Icono Sonido', element: 'span', attributes: { 'class': 'sm-icon sm-icon--sonido' } },
-				
-				// { name: 'Énfasis', element: 'span', attributes: { 'class': 'bck-enfasis' }},
-				// { name: 'Enunciado actividad', element: 'h4', attributes: { 'class': 'bck-title-activity' }},
-
-				// { name: 'Tabla centrada', element: 'table', type: 'bck-stack-class', attributes: { 'class': 'bck-table-center'} },
-				// { name: 'Celda encabezado', element: 'td', attributes: { 'class': 'bck-td' } },
-
-				// { name: 'Caja 1', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-1' } },
-				// { name: 'Caja 2', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-2' } },
-				// { name: 'Caja 3', type: 'widget', widget: 'blink_box', attributes: { 'class': 'box-3' } }
+				{ name: 'Icono Vídeo', element: 'span', attributes: { 'class': 'sm-icon sm-icon--video' } },
 			]
 		},
 		configEditor: function (editor) {
@@ -4057,17 +4048,7 @@ text=(0,_getTextOfNode.getTextOfNode)(elemento.previousElementSibling);}if(!text
 // console.log(elemento.parentElement.nextElementSibling);
 text=(0,_getTextOfNode.getTextOfNode)(elemento.parentElement.nextElementSibling);}if(!text&&elemento.parentElement.previousElementSibling){// console.log("elemento.parentElement.previousElementSibling");
 // console.log(elemento.parentElement.previousElementSibling);
-text=(0,_getTextOfNode.getTextOfNode)(elemento.parentElement.previousElementSibling);}// if(!text && ){
-// }
-// if(!text && ){
-// }
-// if(!text && ){
-// }
-// if(!text && ){
-// }
-// if(!text && ){
-// }
-// console.log('---' + text + '---');
+text=(0,_getTextOfNode.getTextOfNode)(elemento.parentElement.previousElementSibling);}// console.log('---' + text + '---');
 var fbiDraggableDiv=document.createElement('div');fbiDraggableDiv.appendChild(elemento);var textElement=document.createElement('p');textElement.innerText=text;fbiDraggableDiv.appendChild(elemento);fbiDraggableDiv.appendChild(textElement);fbiDraggableDivsElement.appendChild(fbiDraggableDiv);});fillBlankImagesWorkspace.innerHTML='';fillBlankImagesWorkspace.appendChild(fbiDraggableDivsElement);});//Calculo
 var calculoTrCifras=document.querySelectorAll('.workspace.calculo tr');calculoTrCifras.forEach(function(tr){var tds=tr.querySelectorAll('td.cifra');var lastTd=document.createElement('td');tds.forEach(function(td){if(td.querySelectorAll('input').length){td.classList.add('cifra_con_input');if(lastTd.querySelectorAll('input').length){lastTd.classList.remove('cifra_con_input--fin');}else{td.classList.add('cifra_con_input--inicio');}td.classList.add('cifra_con_input--fin');}lastTd=td;});});// Respuesta multimple con imagen
 var multipleChoiceWorkspaceImages=document.querySelectorAll('.workspace.multiple-choice ul li.opcion img');multipleChoiceWorkspaceImages.forEach(function(img){var ul=null;var elem=img;for(;elem&&elem!==document;elem=elem.parentNode){if(elem.tagName=='UL'){ul=elem;break;}}ul.classList.add('sm-multiple-choice-images-list');});var multipleChoiceWorkspaceLi=document.querySelectorAll('.workspace.multiple-choice ul li.opcion');multipleChoiceWorkspaceLi.forEach(function(li){var texto=li.innerText||li.textContent;var textDiv=document.createElement('div');textDiv.setAttribute('class','sm-multiple-choice-images-list__text');textDiv.innerHTML=texto.trim();li.appendChild(textDiv);});//Multimedia. Change img to div background
