@@ -6160,7 +6160,7 @@ _.forEach(_config2.default.slideTypes,function(type){if(section.type==type.numbe
 // 	subunitObject.activitiesNotInTab.push(section);
 // }
 });if(subunitObject==={}){alert("Error:\nNinguna lección con esta id.");}this.ScreenSubUnit=new _ScreenSubUnit2.default();this.ScreenSubUnit.init(subunitObject,subunitIndex+1,unit,data,isEvaluacion);//Menú
-this.leftMenu=new _0LeftMenu2.default(data,subunitObject.id);}(0,_bookColors.setBookColor)();document.getElementById('mainform').style.opacity=1;document.getElementById('sm-spinner').remove();//Global commands to open menú
+this.leftMenu=new _0LeftMenu2.default(data,subunitObject.id);}(0,_bookColors.setBookColor)();document.getElementById('mainform').style.opacity=1;if(document.getElementById('sm-spinner')){document.getElementById('sm-spinner').remove();}//Global commands to open menú
 window.SantillanaMicrocontenidosMenuToggle=this.leftMenu.toggleMenu;window.SantillanaMicrocontenidosMenuOpen=this.leftMenu.openMenu;window.SantillanaMicrocontenidosMenuClose=this.leftMenu.closeMenu;(0,_debug.cl)("Inicio terminado");}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
 /***/ }),
