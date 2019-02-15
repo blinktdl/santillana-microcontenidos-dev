@@ -6068,27 +6068,7 @@ if(Array.isArray(routeTransitions[fromRoute+'__to__'+toRoute].from)){routeTransi
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var UrlHelper=function(){function UrlHelper(routes,updateRouter){_classCallCheck(this,UrlHelper);this.updateRouter=updateRouter;//Functión para actualizar el router
 this.routes=routes;this.state={route:null,routeData:{}};var _this=this;window.onhashchange=function(){_this.goToState();};this.goToState();}_createClass(UrlHelper,[{key:'updateCurrentState',value:function updateCurrentState(){var _this2=this;var urlState={};var hashName=window.location.hash;var hashParts=hashName.split('_',3);//Para dividir las partes del hash con un máximo de 3 partes
-var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var hashProcessed=route.object.processHash(hashParts);if(hashProcessed.is){routeFound=true;_this2.state.route=route;_this2.state.routeData=hashProcessed.data;}}});if(!routeFound){this.state.route=this.routes[0];this.state.routeData={};}}},{key:'goToState',value:function goToState(){this.updateCurrentState();this.updateRouter(this.state.route,this.state.routeData);}},{key:'updateUrlHash',value:function updateUrlHash(urlHash){// let urlHash = '';
-// switch (urlState.stateName) {
-//     case 'splash':
-//         urlHash = '';
-//         break;
-//     case 'unitmenu':
-//         urlHash = `#unitmenu`;
-//         break;
-//     case 'unit':
-//         urlHash = `#unit_${urlState.unit}`;
-//         break;
-//     case 'pluszone':
-//         urlHash = `#pluszone_${urlState.unit}`;
-//         break;
-//     case 'pluscategory':
-//         urlHash = `#pluscategory_${urlState.unit}_${urlState.category}`;
-//         break;
-//     default:
-//         break;
-// }
-window.location.hash=urlHash;}}]);return UrlHelper;}();exports.default=UrlHelper;
+var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var hashProcessed=route.object.processHash(hashParts);if(hashProcessed.is){routeFound=true;_this2.state.route=route;_this2.state.routeData=hashProcessed.data;}}});if(!routeFound){this.state.route=this.routes[0];this.state.routeData={};}}},{key:'goToState',value:function goToState(){this.updateCurrentState();this.updateRouter(this.state.route,this.state.routeData);}},{key:'updateUrlHash',value:function updateUrlHash(urlHash){window.location.hash=urlHash;}}]);return UrlHelper;}();exports.default=UrlHelper;
 
 /***/ }),
 /* 44 */
@@ -6180,7 +6160,7 @@ _.forEach(_config2.default.slideTypes,function(type){if(section.type==type.numbe
 // 	subunitObject.activitiesNotInTab.push(section);
 // }
 });if(subunitObject==={}){alert("Error:\nNinguna lección con esta id.");}this.ScreenSubUnit=new _ScreenSubUnit2.default();this.ScreenSubUnit.init(subunitObject,subunitIndex+1,unit,data,isEvaluacion);//Menú
-this.leftMenu=new _0LeftMenu2.default(data,subunitObject.id);}(0,_bookColors.setBookColor)();document.getElementById('mainform').style.opacity=1;//Global commands to open menú
+this.leftMenu=new _0LeftMenu2.default(data,subunitObject.id);}(0,_bookColors.setBookColor)();document.getElementById('mainform').style.opacity=1;document.getElementById('sm-spinner').remove();//Global commands to open menú
 window.SantillanaMicrocontenidosMenuToggle=this.leftMenu.toggleMenu;window.SantillanaMicrocontenidosMenuOpen=this.leftMenu.openMenu;window.SantillanaMicrocontenidosMenuClose=this.leftMenu.closeMenu;(0,_debug.cl)("Inicio terminado");}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
 /***/ }),
@@ -6194,7 +6174,12 @@ window.SantillanaMicrocontenidosMenuToggle=this.leftMenu.toggleMenu;window.Santi
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(47);var _app=__webpack_require__(46);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){SantillanaMicrocontenidosApp.init(data);}};
+__webpack_require__(47);var _app=__webpack_require__(46);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){SantillanaMicrocontenidosApp.init(data);}};//Show loading
+// const smLoadingSpinner = document.createElement("div");
+// smLoadingSpinner.className='spinner';
+// smLoadingSpinner.id='sm-spinner';
+// document.body.appendChild(smLoadingSpinner);
+document.write('<div id="sm-spinner" class="spinner"><div class="dot dot1"></div><div class="dot dot2"></div></div>');
 
 /***/ })
 /******/ ]);
