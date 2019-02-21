@@ -11,14 +11,16 @@
         ckEditorStyles: {
 			name: 'santillana-microcontenidos-dev',
 			styles: [
-				{ name: 'Título H2 (bold)', element: 'h2', attributes: { 'class': 'h_bold'} },
-				{ name: 'Título H2', element: 'h2', attributes: {} },
-				{ name: 'Título H3 (bold)', element: 'h3', attributes: { } },
-				{ name: 'Título H4', element: 'h4', attributes: { } },
+				{ name: 'Enunciado actividad', element: 'h2', attributes: { 'class': 'h_bold'} },
+				{ name: 'Párrafos cortos', element: 'h2', attributes: {} },
+				{ name: 'Párrafo título', element: 'h3', attributes: { 'class': 'h_bold'} },
+				{ name: 'Párrafo normal', element: 'h3', attributes: { } },
+				{ name: 'Pie de foto', element: 'h4', attributes: { } },
 				{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
 				{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
 				{ name: 'Icono Sonido', element: 'span', attributes: { 'class': 'sm-icon sm-icon--sonido' } },
 				{ name: 'Icono Vídeo', element: 'span', attributes: { 'class': 'sm-icon sm-icon--video' } },
+				{ name: 'Audio como icono', type: 'widget', widget: 'blink_sound', attributes: { 'class': 'sm-audio-as-icon' } },
 			]
 		},
 		configEditor: function (editor) {
@@ -4064,7 +4066,9 @@ var multimediaSlides=document.querySelectorAll('.class_slide.slide_content_type_
 //File download
 var fileDownloadElements=document.querySelectorAll('a.bck-file-attach');fileDownloadElements.forEach(function(el){var wrapper=document.createElement('div');var fileName=el.innerText.trim();var label=document.createElement('div');wrapper.classList.add('sm__bck-file-attach__container');label.classList.add('sm__bck-file-attach__label');label.innerText=fileName;el.innerText='Descargar archivo';el.parentNode.insertBefore(wrapper,el);wrapper.appendChild(label);wrapper.appendChild(el);});//Memory
 var memoryElements=document.querySelectorAll('.workspace.memory .flip-container .flipper .back p');memoryElements.forEach(function(el){var htmlText='';if(el.childNodes.length>1){el.classList.add('sm-multiple_nodes');el.childNodes.forEach(function(node){if(node.nodeType==3){//#text
-htmlText+='<em>'+node.data+'</em>';}else{htmlText+=node.outerHTML;}});el.innerHTML=htmlText;}});this.update();}_createClass(Activities,[{key:'update',value:function update(){//Activitie header book color small block
+htmlText+='<em>'+node.data+'</em>';}else{htmlText+=node.outerHTML;}});el.innerHTML=htmlText;}});//Audio as icon
+var audioAsIconElements=document.querySelectorAll('.bck-audio-container.sm-audio-as-icon');audioAsIconElements.forEach(function(audioAsIconElement){var audioAsIconButton=document.createElement('div');audioAsIconButton.classList.add('sm-icon');audioAsIconButton.classList.add('sm-icon--sonido');audioAsIconElement.appendChild(audioAsIconButton);audioAsIconButton.addEventListener('click',function(e){var targetElement=e.target||e.srcElement;targetElement.parentElement.classList.add('sm-active');});});//Tabs active
+var tabsBoxes=document.querySelectorAll('.bck-tabs-box');tabsBoxes.forEach(function(tabsBox){var tabsButtons=tabsBox.querySelectorAll('.bck-tabslists .bck-tabtitles');var tabsBottonFirst=tabsButtons[0];tabsBottonFirst.classList.add('sm-active');tabsButtons.forEach(function(tabsButton){tabsButton.addEventListener('click',function(e){tabsButtons.forEach(function(tabsButtonToDisable){tabsButtonToDisable.classList.remove('sm-active');tabsButton.classList.add('sm-active');});});});});this.update();}_createClass(Activities,[{key:'update',value:function update(){//Activitie header book color small block
 var activityHeaderSmallBlockElement=document.createElement('div');activityHeaderSmallBlockElement.classList.add('header_small_block');activityHeaderSmallBlockElement.classList.add('sm-color-background-color');var allTitles=document.querySelectorAll('#actividad .class_slide .header .title');//onsole.log("HEADERS");
 _.forEach(allTitles,function(header){//onsole.log(header);
 if(!header.querySelector('.header_small_block')){header.appendChild(activityHeaderSmallBlockElement.cloneNode(true));}});}}]);return Activities;}();exports.default=Activities;
