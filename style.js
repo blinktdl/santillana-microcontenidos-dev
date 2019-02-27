@@ -27,6 +27,10 @@
 			editor.dtd.$removeEmpty['span'] = false;
 		},
 
+		getEditorStyles: function () {
+			return this.ckEditorStyles;
+		},
+
         init: function () {
             this.parent.init.call(this.parent, this);
             
