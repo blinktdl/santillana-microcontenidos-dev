@@ -18,6 +18,7 @@
 				{ name: 'Pie de foto', element: 'h4', attributes: { } },
 				{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
 				{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
+				{ name: 'Caja Think',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-think'} },
 				{ name: 'Icono Sonido', element: 'span', attributes: { 'class': 'sm-icon sm-icon--sonido' } },
 				{ name: 'Icono Vídeo', element: 'span', attributes: { 'class': 'sm-icon sm-icon--video' } },
 				{ name: 'Audio como icono', type: 'widget', widget: 'blink_sound', attributes: { 'class': 'sm-audio-as-icon' } },
