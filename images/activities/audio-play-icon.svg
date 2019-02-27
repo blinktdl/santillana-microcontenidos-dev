@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="15" height="17" viewBox="0 0 15 17">
+  <defs>
+    <path id="audio-play-icon-a" d="M2.5824,0.526487515 C1.15776,-0.293352485 0,0.376727515 0,2.02152751 L0,14.1540075 C0,15.7994475 1.15776,16.4688875 2.5824,15.6516075 L13.1872,9.56904751 C14.61248,8.75176751 14.61248,7.42440751 13.1872,6.60648751 L2.5824,0.526487515 Z"/>
+  </defs>
+  <g fill="none" fill-rule="evenodd" transform="translate(.5 .6)">
+    <mask id="audio-play-icon-b" fill="#fff">
+      <use xlink:href="#audio-play-icon-a"/>
+    </mask>
+    <use fill="#1D1D1B" xlink:href="#audio-play-icon-a"/>
+    <g fill="#2A495D" mask="url(#audio-play-icon-b)">
+      <rect width="15" height="16"/>
+    </g>
+  </g>
+</svg>
