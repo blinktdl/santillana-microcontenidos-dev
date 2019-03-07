@@ -36,9 +36,13 @@
             this.parent.init.call(this.parent, this);
             
             blink.getCourse(idcurso).done((function(data) {
-				SantillanaMicrocontenidosStyleUI.init(data);
+				this.onCourseDataLoaded(data);
 			}).bind(this));
-        },
+		},
+		
+		onCourseDataLoaded: function(data) {
+			SantillanaMicrocontenidosStyleUI.init(data);
+		},
 
         removeFinalSlide: function () {
             this.parent.removeFinalSlide.call(this.parent, this, true);
