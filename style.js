@@ -22,6 +22,7 @@
 				{ name: 'Icono Sonido', element: 'span', attributes: { 'class': 'sm-icon sm-icon--sonido' } },
 				{ name: 'Icono Vídeo', element: 'span', attributes: { 'class': 'sm-icon sm-icon--video' } },
 				{ name: 'Audio como icono', type: 'widget', widget: 'blink_sound', attributes: { 'class': 'sm-audio-as-icon' } },
+				{ name: 'Versalitas', element: 'span', attributes: { 'class': 'bck-versalitas'} },
 			]
 		},
 		configEditor: function (editor) {
