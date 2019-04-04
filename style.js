@@ -6148,7 +6148,7 @@ unit.subunitsevaluation.push(subunit);unit.subunitsmain[unit.subunitsmain.length
 // 		}
 // 	}
 // });
-asideClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit=resource;unit.resourcesevaluation[unit.resourcesevaluation.length-1].parentSubUnit=unit.resourcesmain[unit.resourcesmain.length-1];added=true;}}});}// if(resource.evalType==2){
+asideClassesName.forEach(function(tagName){if(resource.tags.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit=resource;unit.resourcesevaluation[unit.resourcesevaluation.length-1].parentSubUnit=unit.resourcesmain[unit.resourcesmain.length-1];added=true;}}});}// if(resource.evalType==2){
 // 	unit.resourcesevaluation.push(resource);
 // 	added = true;
 // }
