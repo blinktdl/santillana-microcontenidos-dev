@@ -4336,7 +4336,7 @@ this.onEndShow();this.onStartHide();this.update();}}// jumpTo(nextContentPoint){
 //         );
 //     }
 // }
-},{key:'onSliderIndicatorClick',value:function onSliderIndicatorClick(activeButton){(0,_debug.cl)("onSliderIndicatorClick");document.querySelectorAll('.slider-indicators li').forEach(function(element){if(activeButton!=element){element.classList.remove('active');}else{element.classList.add('active');}});this.state.isStartSlide=false;this.onStartHide();this.onEndHide();this.state.isEndSlide=false;this.update();//Check if active is not visible
+},{key:'onSliderIndicatorClick',value:function onSliderIndicatorClick(activeButton){(0,_debug.cl)("onSliderIndicatorClick");_.forEach(document.querySelectorAll('.slider-indicators li'),function(element){if(activeButton!=element){element.classList.remove('active');}else{element.classList.add('active');}});this.state.isStartSlide=false;this.onStartHide();this.onEndHide();this.state.isEndSlide=false;this.update();//Check if active is not visible
 // if(this.isOutside(activeButton)){
 //     const windowSize = this.responsiveStatus.getSize();
 //     if(windowSize == 'desktop'){
@@ -4398,7 +4398,7 @@ this.onEndShow();this.onStartHide();this.update();}}// jumpTo(nextContentPoint){
 //     nextContentTop = contentHeight + nextContentTop > containerHeight ? nextContentTop : containerHeight - contentHeight;
 //     return nextContentTop;
 // }
-},{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}},{key:'goBlinkSlideWithSection',value:function goBlinkSlideWithSection(section){this.subunit.sections.forEach(function(sectionObj){if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){document.querySelector('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').click();}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
+},{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}},{key:'goBlinkSlideWithSection',value:function goBlinkSlideWithSection(section){_.forEach(this.subunit.sections,function(sectionObj){if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){document.querySelector('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').click();}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
 /* 27 */
