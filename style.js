@@ -54,17 +54,18 @@
 			//BK-15873 Utilizamos this.parent declarada al inicio de la clase
 			this.parent.allocateCanvas.call(this.parent, this, sectionIndex);
 		},
-    	isIndexActivity: function(params, code) {
-		this.getCourseStyleUI();
-		var navigationCode;
-		if(this.esPortada){
-			navigationCode = 2;
-		}else{
-			navigationCode = code;
-		}
-		cambiarVisualizacion(true, params, navigationCode);
-	},
-	    
+		isIndexActivity: function(params, code) {
+			this.getCourseStyleUI();
+			var navigationCode;
+			if(this.esPortada){
+				navigationCode = 2;
+			}else{
+				navigationCode = code;
+			}
+			cambiarVisualizacion(true, params, navigationCode);
+		},
+	
+    
     };
 
     SantillanaMicrocontenidosDevStyle.prototype = _.extend({}, new blink.theme.styles['santillana-microcontenidos'](), SantillanaMicrocontenidosDevStyle.prototype);
