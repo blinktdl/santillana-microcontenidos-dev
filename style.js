@@ -6231,7 +6231,7 @@ unitData.resourcesmain.forEach(function(subunit,index){if(subunit.id==''+idclase
 unitData.resourcesevaluation.forEach(function(subunit,index){if(subunit.id==''+idclase){subunitObject=subunit;subunitIndex=index;unit=unitData;isEvaluacion=true;}});});//Copy slides (sections) of this types to Activities Tab
 // subunitObject.activitiesNotInTab = [];
 subunitObject.activitiesInTab=[];_.forEach(subunitObject.sections,function(section){// let included = false;
-_.forEach(_config2.default.slideTypes,function(type){console.log(section.type+' == '+type.number);console.log(section.type==type.number);if(section.type==type.number){section.typeName=type.name;subunitObject.activitiesInTab.push(section);// included = true;
+_.forEach(_config2.default.slideTypes,function(type){if(section.type==type.number){section.typeName=type.name;subunitObject.activitiesInTab.push(section);// included = true;
 }});// if(!included){
 // 	subunitObject.activitiesNotInTab.push(section);
 // }
