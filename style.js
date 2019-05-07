@@ -295,7 +295,7 @@ velocity:200,velocitySlow:400,velocityTransitions:600,easingTransitionOut:'easeO
 number:17},{name:'Señalar respuesta',number:18},{name:'Test',number:19},{name:'Velocidad de lectura',number:20},{name:'Palabras cruzadas',number:21},{name:'Sopa de letras',number:22},{name:'Crucigrama',//-------
 number:23},{name:'Grabación de sonido',number:25},{name:'Rellenar espacios y Señalar respuesta (mixed)',//-------
 number:26},{name:'Archivo entregable',//-------
-number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar imágenes',number:31},{name:'Marcar palabras',number:32}]};exports.default=config;
+number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar imágenes',number:31},{name:'Marcar palabras',number:32},{name:'Arrastrar imagen sobre imagen',number:34}]};exports.default=config;
 
 /***/ }),
 /* 1 */
@@ -6231,7 +6231,7 @@ unitData.resourcesmain.forEach(function(subunit,index){if(subunit.id==''+idclase
 unitData.resourcesevaluation.forEach(function(subunit,index){if(subunit.id==''+idclase){subunitObject=subunit;subunitIndex=index;unit=unitData;isEvaluacion=true;}});});//Copy slides (sections) of this types to Activities Tab
 // subunitObject.activitiesNotInTab = [];
 subunitObject.activitiesInTab=[];_.forEach(subunitObject.sections,function(section){// let included = false;
-_.forEach(_config2.default.slideTypes,function(type){if(section.type==type.number){section.typeName=type.name;subunitObject.activitiesInTab.push(section);// included = true;
+_.forEach(_config2.default.slideTypes,function(type){console.log(section.type+' == '+type.number);console.log(section.type==type.number);if(section.type==type.number){section.typeName=type.name;subunitObject.activitiesInTab.push(section);// included = true;
 }});// if(!included){
 // 	subunitObject.activitiesNotInTab.push(section);
 // }
