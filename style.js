@@ -34,10 +34,12 @@
 		},
 
         init: function () {
+		var that = this;
             this.parent.init.call(this.parent, this);
             
             blink.getCourse(idcurso).done((function(data) {
 				this.onCourseDataLoaded(data);
+				that.toogleInfo();
 			}).bind(this));
 		},
 		
@@ -48,6 +50,12 @@
         removeFinalSlide: function () {
             this.parent.removeFinalSlide.call(this.parent, this, true);
         },
+        
+		toogleInfo: function() {
+			$('.item-container').scroll(function() {
+				blink.activity.currentStyle.infoToggle();
+			});
+		},
         
         allocateCanvas: function (sectionIndex) {
 			if (sectionIndex !== 0) return;
