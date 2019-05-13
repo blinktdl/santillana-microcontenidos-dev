@@ -34,12 +34,12 @@
 		},
 
         init: function () {
-		var that = this;
+			var _this = this;
             this.parent.init.call(this.parent, this);
             
             blink.getCourse(idcurso).done((function(data) {
 				this.onCourseDataLoaded(data);
-				that.toogleInfo();
+				_thit.toogleInfo();
 			}).bind(this));
 		},
 		
@@ -50,13 +50,11 @@
         removeFinalSlide: function () {
             this.parent.removeFinalSlide.call(this.parent, this, true);
         },
-        
-		toogleInfo: function() {
+        toogleInfo: function() {
 			$('.item-container').scroll(function() {
 				blink.activity.currentStyle.infoToggle();
 			});
 		},
-        
         allocateCanvas: function (sectionIndex) {
 			if (sectionIndex !== 0) return;
 			//BK-15873 Utilizamos this.parent declarada al inicio de la clase
