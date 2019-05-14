@@ -310,7 +310,49 @@ number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});exports.cl=cl;//DEbug function for console logs. 
 window.smDebugTime=new Date();function cl(){var timeDiferrence=new Date()-window.smDebugTime;window.smDebugTime=new Date();console.log('%c SM Debug | Time: '+timeDiferrence+'ms.','background: #29495e; color: white');if(arguments.length==1){console.log(arguments[0]);}else{console.log(arguments);}}//Teclas para cambiar entre editor-profesor-alumno
-document.onkeydown=smkeydown;function smkeydown(evt){var msg='';if(!evt)evt=event;if(evt.altKey){var actualClassName=document.body.classList.contains('sm-es-alumno')?'sm-es-alumno':document.body.classList.contains('sm-es-profesor')?'sm-es-profesor':'sm-es-editor';switch(actualClassName){case'sm-es-alumno':document.body.classList.remove('sm-es-alumno');document.body.classList.add('sm-es-profesor');msg="Cambiado a Profesor";break;case'sm-es-profesor':document.body.classList.remove('sm-es-profesor');document.body.classList.add('sm-es-editor');msg="Cambiado a Editor";break;case'sm-es-editor':document.body.classList.remove('sm-es-editor');document.body.classList.add('sm-es-alumno');msg="Cambiado a Alumno";break;default:break;}var newAlert=document.createElement('DIV');newAlert.style.position='fixed';newAlert.style.padding='20px';newAlert.style.top='67px';newAlert.style.right='20px';newAlert.style.backgroundColor='rgba(255,255,255,0.9)';newAlert.style.fontSize='20px';newAlert.style.color='black';newAlert.innerHTML=msg;document.body.appendChild(newAlert);setTimeout(function(){newAlert.remove();},2000);}}
+// document.onkeydown = smkeydown;
+// function smkeydown(evt) {
+// 	let msg = '';
+// 	if (!evt) evt = event;
+// 	if (evt.altKey) {
+// 		const actualClassName = 
+// 			document.body.classList.contains('sm-es-alumno') ? 'sm-es-alumno' :
+// 			document.body.classList.contains('sm-es-profesor') ? 'sm-es-profesor' :
+// 			'sm-es-editor';
+// 		switch (actualClassName) {
+// 			case 'sm-es-alumno':
+// 				document.body.classList.remove('sm-es-alumno');
+// 				document.body.classList.add('sm-es-profesor');
+// 				msg = "Cambiado a Profesor";
+// 				break;
+// 			case 'sm-es-profesor':
+// 				document.body.classList.remove('sm-es-profesor');
+// 				document.body.classList.add('sm-es-editor');
+// 				msg = "Cambiado a Editor";
+// 				break;
+// 			case 'sm-es-editor':
+// 				document.body.classList.remove('sm-es-editor');
+// 				document.body.classList.add('sm-es-alumno');
+// 				msg = "Cambiado a Alumno";
+// 				break;
+// 			default:
+// 				break;
+// 		}
+// 		const newAlert = document.createElement('DIV');
+// 		newAlert.style.position = 'fixed';
+// 		newAlert.style.padding = '20px';
+// 		newAlert.style.top = '67px';
+// 		newAlert.style.right = '20px';
+// 		newAlert.style.backgroundColor = 'rgba(255,255,255,0.9)';
+// 		newAlert.style.fontSize = '20px';
+// 		newAlert.style.color = 'black';
+// 		newAlert.innerHTML = msg;
+// 		document.body.appendChild(newAlert);
+// 		setTimeout(() => {
+// 			newAlert.remove();
+// 		}, 2000);
+// 	}
+// }
 
 /***/ }),
 /* 2 */
