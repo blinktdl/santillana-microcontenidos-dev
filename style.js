@@ -311,48 +311,7 @@ number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar 
 Object.defineProperty(exports,"__esModule",{value:true});exports.cl=cl;//DEbug function for console logs. 
 window.smDebugTime=new Date();function cl(){var timeDiferrence=new Date()-window.smDebugTime;window.smDebugTime=new Date();console.log('%c SM Debug | Time: '+timeDiferrence+'ms.','background: #29495e; color: white');if(arguments.length==1){console.log(arguments[0]);}else{console.log(arguments);}}//Teclas para cambiar entre editor-profesor-alumno
 // document.onkeydown = smkeydown;
-// function smkeydown(evt) {
-// 	let msg = '';
-// 	if (!evt) evt = event;
-// 	if (evt.altKey) {
-// 		const actualClassName = 
-// 			document.body.classList.contains('sm-es-alumno') ? 'sm-es-alumno' :
-// 			document.body.classList.contains('sm-es-profesor') ? 'sm-es-profesor' :
-// 			'sm-es-editor';
-// 		switch (actualClassName) {
-// 			case 'sm-es-alumno':
-// 				document.body.classList.remove('sm-es-alumno');
-// 				document.body.classList.add('sm-es-profesor');
-// 				msg = "Cambiado a Profesor";
-// 				break;
-// 			case 'sm-es-profesor':
-// 				document.body.classList.remove('sm-es-profesor');
-// 				document.body.classList.add('sm-es-editor');
-// 				msg = "Cambiado a Editor";
-// 				break;
-// 			case 'sm-es-editor':
-// 				document.body.classList.remove('sm-es-editor');
-// 				document.body.classList.add('sm-es-alumno');
-// 				msg = "Cambiado a Alumno";
-// 				break;
-// 			default:
-// 				break;
-// 		}
-// 		const newAlert = document.createElement('DIV');
-// 		newAlert.style.position = 'fixed';
-// 		newAlert.style.padding = '20px';
-// 		newAlert.style.top = '67px';
-// 		newAlert.style.right = '20px';
-// 		newAlert.style.backgroundColor = 'rgba(255,255,255,0.9)';
-// 		newAlert.style.fontSize = '20px';
-// 		newAlert.style.color = 'black';
-// 		newAlert.innerHTML = msg;
-// 		document.body.appendChild(newAlert);
-// 		setTimeout(() => {
-// 			newAlert.remove();
-// 		}, 2000);
-// 	}
-// }
+function smkeydown(evt){var msg='';if(!evt)evt=event;if(evt.altKey){var actualClassName=document.body.classList.contains('sm-es-alumno')?'sm-es-alumno':document.body.classList.contains('sm-es-profesor')?'sm-es-profesor':'sm-es-editor';switch(actualClassName){case'sm-es-alumno':document.body.classList.remove('sm-es-alumno');document.body.classList.add('sm-es-profesor');msg="Cambiado a Profesor";break;case'sm-es-profesor':document.body.classList.remove('sm-es-profesor');document.body.classList.add('sm-es-editor');msg="Cambiado a Editor";break;case'sm-es-editor':document.body.classList.remove('sm-es-editor');document.body.classList.add('sm-es-alumno');msg="Cambiado a Alumno";break;default:break;}var newAlert=document.createElement('DIV');newAlert.style.position='fixed';newAlert.style.padding='20px';newAlert.style.top='67px';newAlert.style.right='20px';newAlert.style.backgroundColor='rgba(255,255,255,0.9)';newAlert.style.fontSize='20px';newAlert.style.color='black';newAlert.innerHTML=msg;document.body.appendChild(newAlert);setTimeout(function(){newAlert.remove();},2000);}}
 
 /***/ }),
 /* 2 */
@@ -5968,7 +5927,7 @@ if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus
 }this.started=true;this.unit=data.unit;var unitElement=document.getElementById('sm-unit');// Background
 document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+this.unit.image+')';// Header
 var headerElement=unitElement.getElementsByClassName('sm-unit__header')[0];if(this.unit.smIsProyect){headerElement.querySelector('.sm-unit__header__content').classList.add('sm-unit__header__content--proyecto');}else{headerElement.querySelector('.sm-unit__header__content').classList.remove('sm-unit__header__content--proyecto');}headerElement.querySelector('.sm-unit__header__number').innerHTML=this.unit.numberformenu;headerElement.querySelector('.sm-unit__header__description').innerHTML=this.unit.description;headerElement.querySelector('.sm-unit__header__title').innerHTML=this.unit.title;var completed=this.unit.completado||0;headerElement.querySelector('.sm-unit__header__progress__title').innerHTML=completed+'% '+replaceStringInTemplates.replace('--Completado--');headerElement.querySelector('.sm-unit__header__progress .sm-color-background-color').style.width=completed+'%';//Resources button
-if(this.unit.resourcesmain.length>0){headerElement.querySelector('.sm-unit__header__resources_button').style.display='block';headerElement.querySelector('.sm-unit__header__resources_button').removeEventListener('click',this.scrollToResources);headerElement.querySelector('.sm-unit__header__resources_button').addEventListener('click',this.scrollToResources);}else{headerElement.querySelector('.sm-unit__header__resources_button').style.display='none';}// Main activities
+if(this.unit.resourcesmain.length>0){headerElement.querySelector('.sm-unit__header__resources_button').style.display='';headerElement.querySelector('.sm-unit__header__resources_button').removeEventListener('click',this.scrollToResources);headerElement.querySelector('.sm-unit__header__resources_button').addEventListener('click',this.scrollToResources);}else{headerElement.querySelector('.sm-unit__header__resources_button').style.display='none';}// Main activities
 var mainActivitiesContainer=unitElement.querySelector('.sm-unit__activities__main');while(mainActivitiesContainer.firstChild){mainActivitiesContainer.removeChild(mainActivitiesContainer.firstChild);}var mainActivityTemplate=document.querySelector('#sm-unit__activity_main--template');var subUnitNumber=0;this.unit.subunitsmain.forEach(function(subunit,index){var activityElement=mainActivityTemplate.cloneNode(true);activityElement.removeAttribute('id');if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'&&blink.isApp){activityElement.getElementsByTagName('a')[0].addEventListener('click',function(e){//eval(subunit.onclickTitle);
 e.preventDefault();blink.goToActivity(idcurso,subunit.id);});activityElement.getElementsByTagName('a')[0].setAttribute('href','#');}else{activityElement.getElementsByTagName('a')[0].setAttribute('href',''+subunit.url);}// cl('onclickTitle');
 // cl(this.unit);
