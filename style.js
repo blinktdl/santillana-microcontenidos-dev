@@ -346,7 +346,7 @@ if(!stringReplacements.hasOwnProperty(key))continue;if(key!=stringReplacements[k
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatus=function(){function responsiveStatus(sizeChangedFunction){_classCallCheck(this,responsiveStatus);this.state={size:null};if(typeof sizeChangedFunction==='function'){this.sizeChanged=sizeChangedFunction;}else{this.sizeChanged=function(){};}window.addEventListener('resize',this.check.bind(this),false);this.check();}_createClass(responsiveStatus,[{key:'check',value:function check(){// if(config.dev)
 //     console.log("responsiveStatus.check");
-var width=window.innerWidth;var size=void 0;if(width<768){size='mobile';}else if(width<1024){size='tablet-portrait';}else if(width<=1168){size='tablet-landscape';}else{size='desktop';}if(size!=this.state.size){this.state.size=size;this.sizeChanged(size);}}},{key:'getSize',value:function getSize(){return this.state.size;}}]);return responsiveStatus;}();exports.default=responsiveStatus;
+var width=window.innerWidth;var size=void 0;if(width<768){size='mobile';}else if(width<1024){size='tablet-portrait';}else if(width<=1168){size='tablet-landscape';}else if(width<=1600){size='desktop';}else{size='desktop-hd';}if(size!=this.state.size){this.state.size=size;this.sizeChanged(size);}}},{key:'getSize',value:function getSize(){return this.state.size;}}]);return responsiveStatus;}();exports.default=responsiveStatus;
 
 /***/ }),
 /* 5 */
@@ -392,6 +392,506 @@ function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.len
 
 /***/ }),
 /* 6 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};exports.esAlumno=esAlumno;exports.esProfesor=esProfesor;exports.esEditorOMas=esEditorOMas;function esAlumno(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esAlumno();}return false;}function esProfesor(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esProfesor();}return false;}function esEditorOMas(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esEditor()||blink.user.esAdmin()||blink.user.esSAdmin();}return false;}
+
+/***/ }),
+/* 7 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target) {
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(38);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(39);
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(7)(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+/* 10 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -446,8 +946,8 @@ function checkStorageValue (value) {
   return ['true', 'false'].indexOf(value) >= 0 ? JSON.parse(value) : value;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/setLocalStorage.js
-function setLocalStorage(storage, key, value, access) {
-  if (access) { storage.setItem(key, value); }
+function setLocalStorage(key, value, access) {
+  if (access) { localStorage.setItem(key, value); }
   return value;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/getSlideId.js
@@ -932,7 +1432,8 @@ function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/tiny-slider.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tns", function() { return tns; });
-// Version: 2.8.1
+// Format: IIFE
+// Version: 2.7.4
 
 // helper functions
 
@@ -982,8 +1483,7 @@ var tns = function(options) {
     gutter: 0,
     edgePadding: 0,
     fixedWidth: false,
-    autoWidth: false,
-    viewportMax: false,
+    fixedWidthViewportWidth: false,
     slideBy: 1,
     controls: true,
     controlsText: ['prev', 'next'],
@@ -1040,51 +1540,65 @@ var tns = function(options) {
       localStorageAccess = options.useLocalStorage;
 
   if (localStorageAccess) {
-    // check browser version and local storage access
+    // check browser version and local storage
+    // if browser upgraded, 
+    // 1. delete browser ralated data from local storage and 
+    // 2. recheck these options and save them to local storage
     var browserInfo = navigator.userAgent;
-    var uid = new Date;
 
     try {
-      tnsStorage = win.localStorage;
-      if (tnsStorage) {
-        tnsStorage.setItem(uid, uid);
-        localStorageAccess = tnsStorage.getItem(uid) == uid;
-        tnsStorage.removeItem(uid);
-      } else {
-        localStorageAccess = false;
-      }
-      if (!localStorageAccess) { tnsStorage = {}; }
-    } catch(e) {
-      localStorageAccess = false;
-    }
-
-    if (localStorageAccess) {
+      tnsStorage = localStorage;
       // remove storage when browser version changes
-      if (tnsStorage['tnsApp'] && tnsStorage['tnsApp'] !== browserInfo) {
+      if (tnsStorage['tnsApp'] !== browserInfo) {
         ['tC', 'tPL', 'tMQ', 'tTf', 't3D', 'tTDu', 'tTDe', 'tADu', 'tADe', 'tTE', 'tAE'].forEach(function(item) { tnsStorage.removeItem(item); });
       }
       // update browserInfo
       localStorage['tnsApp'] = browserInfo;
+    } catch(e) {
+      localStorageAccess = false;
+    }
+
+    // reset tnsStorage when localStorage is null (on some versions of Chrome Mobile #134)
+    // https://stackoverflow.com/questions/8701015/html-localstorage-is-null-on-android-when-using-webview
+    if (localStorageAccess && !localStorage) {
+      tnsStorage = {};
+      localStorageAccess = false;
     }
   }
 
-  function getSetConstant (name, value) {
-    return tnsStorage[name] ? 
-        checkStorageValue(tnsStorage[name]) :
-        setLocalStorage(tnsStorage, name, value, localStorageAccess);
-  }
-
-  var CALC = getSetConstant('tC', calc()),
-      PERCENTAGELAYOUT = getSetConstant('tPL', percentageLayout()),
-      CSSMQ = getSetConstant('tMQ', mediaquerySupport()),
-      TRANSFORM = getSetConstant('tTf', whichProperty('transform')),
-      HAS3D = getSetConstant('t3D', has3D(TRANSFORM)),
-      TRANSITIONDURATION = getSetConstant('tTDu', whichProperty('transitionDuration')),
-      TRANSITIONDELAY = getSetConstant('tTDe', whichProperty('transitionDelay')),
-      ANIMATIONDURATION = getSetConstant('tADu', whichProperty('animationDuration')),
-      ANIMATIONDELAY = getSetConstant('tADe', whichProperty('animationDelay')),
-      TRANSITIONEND = getSetConstant('tTE', getEndProperty(TRANSITIONDURATION, 'Transition')),
-      ANIMATIONEND = getSetConstant('tAE', getEndProperty(ANIMATIONDURATION, 'Animation'));
+  var CALC = tnsStorage['tC'] ? 
+        checkStorageValue(tnsStorage['tC']) :
+        setLocalStorage('tC', calc(), localStorageAccess),
+      PERCENTAGELAYOUT = tnsStorage['tPL'] ? 
+        checkStorageValue(tnsStorage['tPL']) :
+        setLocalStorage('tPL', percentageLayout(), localStorageAccess),
+      CSSMQ = tnsStorage['tMQ'] ? 
+        checkStorageValue(tnsStorage['tMQ']) :
+        setLocalStorage('tMQ', mediaquerySupport(), localStorageAccess),
+      TRANSFORM = tnsStorage['tTf'] ? 
+        checkStorageValue(tnsStorage['tTf']) :
+        setLocalStorage('tTf', whichProperty('transform'), localStorageAccess),
+      HAS3D = tnsStorage['t3D'] ? 
+        checkStorageValue(tnsStorage['t3D']) :
+        setLocalStorage('t3D', has3D(TRANSFORM), localStorageAccess),
+      TRANSITIONDURATION = tnsStorage['tTDu'] ? 
+        checkStorageValue(tnsStorage['tTDu']) :
+        setLocalStorage('tTDu', whichProperty('transitionDuration'), localStorageAccess),
+      TRANSITIONDELAY = tnsStorage['tTDe'] ? 
+        checkStorageValue(tnsStorage['tTDe']) :
+        setLocalStorage('tTDe', whichProperty('transitionDelay'), localStorageAccess),
+      ANIMATIONDURATION = tnsStorage['tADu'] ? 
+        checkStorageValue(tnsStorage['tADu']) :
+        setLocalStorage('tADu', whichProperty('animationDuration'), localStorageAccess),
+      ANIMATIONDELAY = tnsStorage['tADe'] ? 
+        checkStorageValue(tnsStorage['tADe']) :
+        setLocalStorage('tADe', whichProperty('animationDelay'), localStorageAccess),
+      TRANSITIONEND = tnsStorage['tTE'] ? 
+        checkStorageValue(tnsStorage['tTE']) :
+        setLocalStorage('tTE', getEndProperty(TRANSITIONDURATION, 'Transition'), localStorageAccess),
+      ANIMATIONEND = tnsStorage['tAE'] ? 
+        checkStorageValue(tnsStorage['tAE']) :
+        setLocalStorage('tAE', getEndProperty(ANIMATIONDURATION, 'Animation'), localStorageAccess);
 
   // get element nodes from selectors
   var supportConsoleWarn = win.console && typeof win.console.warn === "function",
@@ -1167,7 +1681,7 @@ var tns = function(options) {
       containerParent = container.parentNode,
       slideItems = container.children,
       slideCount = slideItems.length,
-      vpOuter = getViewportWidth(containerParent),
+      vpInner,
       responsive = options.responsive,
       responsiveItems = [],
       breakpoints = false,
@@ -1175,6 +1689,7 @@ var tns = function(options) {
       windowWidth = getWindowWidth(),
       isOn;
 
+  if (options.fixedWidth) { var vpOuter = getViewportWidth(containerParent); }
 
   if (responsive) {
     breakpoints = Object.keys(responsive)
@@ -1194,16 +1709,13 @@ var tns = function(options) {
     setBreakpointZone();
   } 
 
-  // fixedWidth: vpOuter > vpInner > rightBoundary > indexMax
-  var nested = options.nested,
-      autoWidth = options.autoWidth,
-      fixedWidth = getOption('fixedWidth'),
-      edgePadding = getOption('edgePadding'),
-      gutter = getOption('gutter'),
-      vpInner = getViewportWidthInner(),
-      items = !autoWidth ? Math.floor(getOption('items')) : null,
+  var items = getOption('items'),
       slideBy = getOption('slideBy') === 'page' ? items : getOption('slideBy'),
-      viewportMax = options.viewportMax || options.fixedWidthViewportWidth,
+      nested = options.nested,
+      gutter = getOption('gutter'),
+      edgePadding = getOption('edgePadding'),
+      fixedWidth = getOption('fixedWidth'),
+      fixedWidthViewportWidth = options.fixedWidthViewportWidth,
       arrowKeys = getOption('arrowKeys'),
       speed = getOption('speed'),
       rewind = options.rewind,
@@ -1211,13 +1723,12 @@ var tns = function(options) {
       autoHeight = getOption('autoHeight'),
       sheet = createStyleSheet(),
       lazyload = options.lazyload,
-      slidePositions, // collection of slide positions
+      slideOffsetTops, // collection of slide offset tops
       slideItemsOut = [],
       hasEdgePadding = checkOption('edgePadding'),
       cloneCount = loop ? getCloneCountForLoop() : 0,
       slideCountNew = !carousel ? slideCount + cloneCount : slideCount + cloneCount * 2,
-      hasRightDeadZone = (fixedWidth || autoWidth) && !loop ? true : false,
-      rightBoundary = fixedWidth ? getRightBoundary() : null,
+      hasRightDeadZone = fixedWidth && !loop && !edgePadding ? true : false,
       updateIndexBeforeTransform = (!carousel || !loop) ? true : false,
       // transform
       transformAttr = horizontal ? 'left' : 'top',
@@ -1228,7 +1739,7 @@ var tns = function(options) {
       index = startIndex ? updateStartIndex(startIndex) : !carousel ? 0 : cloneCount,
       indexCached = index,
       indexMin = 0,
-      indexMax = !autoWidth ? getIndexMax() : null,
+      indexMax = getIndexMax(),
       // resize
       resizeTimer,
       swipeAngle = options.swipeAngle,
@@ -1242,7 +1753,7 @@ var tns = function(options) {
       slideId = container.id || getSlideId(),
       disable = getOption('disable'),
       freezable = options.freezable,
-      freeze = !autoWidth ? getFreeze() : null,
+      freeze = disable ? true : freezable ? slideCount <= items : false,
       frozen,
       importantStr = nested === 'inner' ? ' !important' : '',
       controlsEvents = {
@@ -1272,7 +1783,7 @@ var tns = function(options) {
       },
       hasControls = checkOption('controls'),
       hasNav = checkOption('nav'),
-      navAsThumbnails = autoWidth ? true : options.navAsThumbnails,
+      navAsThumbnails = options.navAsThumbnails,
       hasAutoplay = checkOption('autoplay'),
       hasTouch = checkOption('touch'),
       hasMouseDrag = checkOption('mouseDrag'),
@@ -1367,25 +1878,9 @@ var tns = function(options) {
 
   }
 
-  sliderInit();
-
   // === COMMON FUNCTIONS === //
   function getIndexMax () {
-    if (!fixedWidth && !autoWidth) {
-      return loop || carousel ? Math.max(0, slideCountNew - Math.ceil(getOption('items'))) : slideCountNew - 1;
-    } else {
-      if (fixedWidth) {
-        return Math.floor(- rightBoundary / (fixedWidth + gutter)) + 1;
-      } else {
-        var i = slideCountNew - 1,
-            result = i;
-        while (slidePositions[i] > - rightBoundary) {
-          i--;
-          result = i;
-        }
-        return result;
-      }
-    }
+    return carousel || loop ? Math.max(0, slideCountNew - items) : slideCountNew - 1;
   }
 
   function updateStartIndex (indexTem) {
@@ -1402,14 +1897,12 @@ var tns = function(options) {
     while (i < min) { i += slideCount; }
     if (carousel) { i -= cloneCount; }
 
-    return i ? Math.floor(i%slideCount) : i;
+    return i ? i%slideCount : i;
   }
 
   function getItemsMax () {
-    // fixedWidth or autoWidth while viewportMax is not available
-    if (autoWidth || (fixedWidth && !viewportMax)) {
+    if (fixedWidth && !fixedWidthViewportWidth) {
       return slideCount - 1;
-    // most cases
     } else {
       var str = fixedWidth ? 'fixedWidth' : 'items',
           arr = [];
@@ -1425,7 +1918,8 @@ var tns = function(options) {
 
       if (!arr.length) { arr.push(0); }
 
-      return Math.ceil(fixedWidth ? viewportMax / Math.min.apply(null, arr) : Math.max.apply(null, arr));
+      return fixedWidth ? Math.ceil(fixedWidthViewportWidth / Math.min.apply(null, arr)) :
+        Math.max.apply(null, arr);
     }
   }
 
@@ -1443,10 +1937,6 @@ var tns = function(options) {
 
   function getViewportWidth (el) {
     return el.clientWidth || getViewportWidth(el.parentNode);
-  }
-
-  function getViewportWidthInner () {
-    return edgePadding ? vpOuter - (edgePadding * 2 - gutter) : vpOuter;
   }
 
   function checkOption (item) {
@@ -1471,8 +1961,8 @@ var tns = function(options) {
     if (!carousel && item in obj) {
       result = obj[item];
     } else {
-      if (item === 'items' && fixedWidth) {
-        result = Math.floor(vpInner / (fixedWidth + gutter));
+      if (item === 'items' && getOption('fixedWidth')) {
+        result = Math.floor(vpOuter / (getOption('fixedWidth') + getOption('gutter')));
       } else if (item === 'autoHeight' && nested === 'outer') {
         result = true;
       } else {
@@ -1489,8 +1979,8 @@ var tns = function(options) {
       }
     }
 
+
     if (item === 'slideBy' && result === 'page') { result = getOption('items'); }
-    if (!carousel && (item === 'slideBy' || item === 'items')) { result = Math.floor(result); }
 
     return result;
   }
@@ -1506,10 +1996,14 @@ var tns = function(options) {
 
     if (edgePaddingTem) {
       var gap = edgePaddingTem;
-      if (gutterTem) { gap -= gutterTem; }
-      str = horizontal ?
-        'margin: 0 ' + gap + 'px 0 ' + edgePaddingTem + 'px;' :
-        'margin: ' + edgePaddingTem + 'px 0 ' + gap + 'px 0;';
+      if (gutterTem) { gap += gutterTem; }
+      if (fixedWidthTem) {
+        str = 'margin: 0px ' + (vpOuter%(fixedWidthTem + gutterTem) + gutterTem) / 2 + 'px;';
+      } else {
+        str = horizontal ?
+          'margin: 0 ' + edgePaddingTem + 'px 0 ' + gap + 'px;' :
+          'padding: ' + gap + 'px 0 ' + edgePaddingTem + 'px 0;';
+      }
     } else if (gutterTem && !fixedWidthTem) {
       var gutterTemUnit = '-' + gutterTem + 'px',
           dir = horizontal ? gutterTemUnit + ' 0 0' : '0 ' + gutterTemUnit + ' 0';
@@ -1537,7 +2031,6 @@ var tns = function(options) {
     if (fixedWidthTem) {
       width = (fixedWidthTem + gutterTem) + 'px';
     } else {
-      if (!carousel) { itemsTem = Math.floor(itemsTem); }
       var dividend = carousel ? slideCountNew : itemsTem;
       width = CALC ? 
         CALC + '(100% / ' + dividend + ')' : 
@@ -1545,6 +2038,10 @@ var tns = function(options) {
     }
 
     return 'width:' + width + importantStr + ';';
+  }
+
+  function getSlideWidthStylePX (itemsTem) {
+    return vpInner / itemsTem + 'px';
   }
 
   function getSlideGutterStyle (gutterTem) {
@@ -1576,10 +2073,30 @@ var tns = function(options) {
     return getCSSPrefix(ANIMATIONDURATION, 17) + 'animation-duration:' + speed / 1000 + 's;';
   }
 
-  function sliderInit () {
+  (function sliderInit () {
+    // First thing first, wrap container with 'outerWrapper > innerWrapper',
+    // to get the correct view width
+    outerWrapper.appendChild(innerWrapper);
+    containerParent.insertBefore(outerWrapper, container);
+    innerWrapper.appendChild(container);
+
     var classOuter = 'tns-outer',
         classInner = 'tns-inner',
         hasGutter = checkOption('gutter');
+
+    if (carousel) {
+      if (horizontal) {
+        if (checkOption('edgePadding') || hasGutter && !options.fixedWidth) {
+          classOuter += ' tns-ovh';
+        } else {
+          classInner += ' tns-ovh';
+        }
+      } else {
+        classInner += ' tns-ovh';
+      }
+    } else if (hasGutter) {
+      classOuter += ' tns-ovh';
+    }
 
     outerWrapper.className = classOuter;
     innerWrapper.className = classInner;
@@ -1588,24 +2105,17 @@ var tns = function(options) {
 
     // set container properties
     if (container.id === '') { container.id = slideId; }
-    classContainer += PERCENTAGELAYOUT || autoWidth ? ' tns-subpixel' : ' tns-no-subpixel';
+    classContainer += PERCENTAGELAYOUT ? ' tns-subpixel' : ' tns-no-subpixel';
     classContainer += CALC ? ' tns-calc' : ' tns-no-calc';
     if (carousel) { classContainer += ' tns-' + options.axis; }
     container.className += classContainer;
 
-    // add constrain layer for carousel
-    if (carousel) {
-      var middleWrapper = doc.createElement('div');
-      middleWrapper.className = 'tns-ovh';
-
-      outerWrapper.appendChild(middleWrapper);
-      middleWrapper.appendChild(innerWrapper);
-    } else {
-      outerWrapper.appendChild(innerWrapper);
-    }
-
-    containerParent.insertBefore(outerWrapper, container);
-    innerWrapper.appendChild(container);
+    // get inner viewport width after classes added
+    // to prevent scrollbar occupies part of viewport
+    vpInner = getViewportWidth(innerWrapper);
+    var epT = getOption('edgePadding'),
+        gT = getOption('gutter');
+    vpInner += epT ? - (epT * 2 + gutter) : gutter;
 
     // add events
     if (carousel && TRANSITIONEND) {
@@ -1613,6 +2123,9 @@ var tns = function(options) {
       eve[TRANSITIONEND] = onTransitionEnd;
       addEvents(container, eve);
     }
+
+    // delete datas after init
+    classOuter = classInner = null;
 
     // add id, class, aria attributes 
     // before clone slides
@@ -1627,10 +2140,8 @@ var tns = function(options) {
       });
     }
 
-    // ## clone slides
-    // carousel: n + slides + n
-    // gallery:      slides + n
-    if (cloneCount) {
+    // clone slides
+    if (loop || edgePadding) {
       var fragmentBefore = doc.createDocumentFragment(), 
           fragmentAfter = doc.createDocumentFragment();
 
@@ -1652,44 +2163,29 @@ var tns = function(options) {
       slideItems = container.children;
     }
 
-    // ## images loaded/failed
-    if (checkOption('autoHeight') || !carousel || autoWidth || !horizontal) {
+    // check images loading
+    if (checkOption('autoHeight') || !carousel || !horizontal) {
       var imgs = container.querySelectorAll('img');
 
-      // add complete class if all images are loaded/failed
+      // check all image complete status
+      // add complete class if true
       forEachNodeList(imgs, function(img) {
-        var src = img.src;
+        addEvents(img, imgEvents);
 
-        if (src.indexOf('data:image') < 0) {
-          addEvents(img, imgEvents);
-          img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-          img.src = src;
-        } else {
-          addClass(img, imgCompleteClass);
-        }
+        var src = img.src;
+        img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
+        img.src = src;
       });
 
+      // set imgsComplete to true 
+      // when all images are compulete (loaded or error)
       raf(function(){ imageLoaded(arrayFromNodeList(imgs), function() {
-        // set imgsComplete to true
         imgsComplete = true;
 
-        // run Fn()s which are rely on image loading
         if (!disable) {
-          if (!horizontal || autoWidth) {
-            getSlidePositions();
-            lazyLoad();
-
-            if (autoWidth) {
-              items = getOption('items');
-              rightBoundary = getRightBoundary();
-              freeze = getFreeze();
-              indexMax = getIndexMax();
-
-              // update slider UI
-              initUI();
-            }
-
-            if (!horizontal) { updateContentWrapperHeight(); }
+          if (!horizontal) {
+            getSlideOffsetTops();
+            updateContentWrapperHeight();
           }
 
           // set container transform property
@@ -1700,13 +2196,8 @@ var tns = function(options) {
       }); });
     }
 
-    if (carousel && horizontal && !autoWidth) { doContainerTransformSilent(); }
+    if (carousel && horizontal) { doContainerTransformSilent(); }
 
-    initSheet();
-    if (!autoWidth) { initUI(); }
-  }
-
-  function initSheet () {
     // activate visible slides
     // add aria attrs
     // set animation classes and left value for gallery slider
@@ -1724,24 +2215,16 @@ var tns = function(options) {
       }
     }
 
-    // #### LAYOUT
-
-    // ## INLINE-BLOCK VS FLOAT
-
-    // ## PercentageLayout:
-    // slides: inline-block
-    // remove blank space between slides by set font-size: 0
-
-    // ## Non PercentageLayout:
-    // slides: float
-    //         margin-right: -100%
-    //         margin-left: ~
-
-    // Resource: https://docs.google.com/spreadsheets/d/147up245wwTXeQYve3BRSAD4oVcvQmuGsFteJOeA5xNQ/edit?usp=sharing
     if (carousel && horizontal) {
-      if (PERCENTAGELAYOUT || autoWidth) {
+      // set font-size rules
+      // for modern browsers
+      if (PERCENTAGELAYOUT) {
+        // set slides font-size first
         addCSSRule(sheet, '#' + slideId + ' > .tns-item', 'font-size:' + win.getComputedStyle(slideItems[0]).fontSize + ';', getCssRulesLength(sheet));
         addCSSRule(sheet, '#' + slideId, 'font-size:0;', getCssRulesLength(sheet));
+
+      // slide left margin
+      // for IE8, MS Edge & webkit browsers (no subpixel)
       } else {
         forEachNodeList(slideItems, function (slide, i) {
           slide.style.marginLeft = getSlideMarginLeft(i);
@@ -1749,8 +2232,7 @@ var tns = function(options) {
       }
     }
 
-
-    // ## BASIC STYLES
+    // all browsers which support CSS transitions support CSS media queries
     if (CSSMQ) {
       // inner wrapper styles
       var str = getInnerWrapperStyles(options.edgePadding, options.gutter, options.fixedWidth, options.speed);
@@ -1758,13 +2240,13 @@ var tns = function(options) {
 
       // container styles
       if (carousel) {
-        str = horizontal && !autoWidth ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
+        str = horizontal ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
         if (TRANSITIONDURATION) { str += getTrsnsitionDurationStyle(speed); }
         addCSSRule(sheet, '#' + slideId, str, getCssRulesLength(sheet));
       }
 
       // slide styles
-      str = horizontal && !autoWidth ? getSlideWidthStyle(options.fixedWidth, options.gutter, options.items) : '';
+      str = horizontal ? getSlideWidthStyle(options.fixedWidth, options.gutter, options.items) : '';
       if (options.gutter) { str += getSlideGutterStyle(options.gutter); }
       // set gallery items transition-duration
       if (!carousel) {
@@ -1782,19 +2264,19 @@ var tns = function(options) {
       innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth);
 
       // container styles
-      if (carousel && horizontal && !autoWidth) {
+      if (carousel && horizontal) {
         container.style.width = getContainerWidth(fixedWidth, gutter, items);
       }
 
       // slide styles
-      var str = horizontal && !autoWidth ? getSlideWidthStyle(fixedWidth, gutter, items) : '';
+      var str = horizontal ? getSlideWidthStyle(fixedWidth, gutter, items) : '';
       if (gutter) { str += getSlideGutterStyle(gutter); }
 
       // append to the last line
       if (str) { addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet)); }
     }
 
-    // ## MEDIAQUERIES
+    // media queries
     if (responsive && CSSMQ) {
       breakpoints.forEach(function(bp) {
         var opts = responsive[bp],
@@ -1802,7 +2284,7 @@ var tns = function(options) {
             innerWrapperStr = '',
             containerStr = '',
             slideStr = '',
-            itemsBP = !autoWidth ? getOption('items', bp) : null,
+            itemsBP = getOption('items', bp),
             fixedWidthBP = getOption('fixedWidth', bp),
             speedBP = getOption('speed', bp),
             edgePaddingBP = getOption('edgePadding', bp),
@@ -1814,7 +2296,7 @@ var tns = function(options) {
         }
 
         // container string
-        if (carousel && horizontal && !autoWidth && ('fixedWidth' in opts || 'items' in opts || (fixedWidth && 'gutter' in opts))) {
+        if (carousel && horizontal && ('fixedWidth' in opts || 'items' in opts || (fixedWidth && 'gutter' in opts))) {
           containerStr = 'width:' + getContainerWidth(fixedWidthBP, gutterBP, itemsBP) + ';';
         }
         if (TRANSITIONDURATION && 'speed' in opts) {
@@ -1846,41 +2328,14 @@ var tns = function(options) {
         }
       });
     }
-  }
 
-  function initUI () {
+
     // == msInit ==
     // for IE10
     if (navigator.msMaxTouchPoints) {
       addClass(container, 'ms-touch');
       addEvents(container, {'scroll': ie10Scroll});
       setSnapInterval();
-    }
-
-    // == autoplayInit ==
-    if (hasAutoplay) {
-      var txt = autoplay ? 'stop' : 'start';
-      if (autoplayButton) {
-        setAttrs(autoplayButton, {'data-action': txt});
-      } else if (options.autoplayButtonOutput) {
-        outerWrapper.insertAdjacentHTML('afterbegin', '<button data-action="' + txt + '" type="button">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
-        autoplayButton = outerWrapper.querySelector('[data-action]');
-      }
-
-      // add event
-      if (autoplayButton) {
-        addEvents(autoplayButton, {'click': toggleAutoplay});
-      }
-
-      if (!autoplay) {
-        if (autoplayButton) {
-          hideElement(autoplayButton);
-        }
-      } else {
-        startAutoplay();
-        if (autoplayHoverPause) { addEvents(container, hoverEvents); }
-        if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
-      }
     }
  
     // == navInit ==
@@ -1942,6 +2397,32 @@ var tns = function(options) {
     }
 
 
+    // == autoplayInit ==
+    if (hasAutoplay) {
+      var txt = autoplay ? 'stop' : 'start';
+      if (autoplayButton) {
+        setAttrs(autoplayButton, {'data-action': txt});
+      } else if (options.autoplayButtonOutput) {
+        innerWrapper.insertAdjacentHTML('beforebegin', '<button data-action="' + txt + '" type="button">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
+        autoplayButton = outerWrapper.querySelector('[data-action]');
+      }
+
+      // add event
+      if (autoplayButton) {
+        addEvents(autoplayButton, {'click': toggleAutoplay});
+      }
+
+      if (!autoplay) {
+        if (autoplayButton) {
+          hideElement(autoplayButton);
+        }
+      } else {
+        startAutoplay();
+        if (autoplayHoverPause) { addEvents(container, hoverEvents); }
+        if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
+      }
+    }
+
 
     // == controlsInit ==
     if (hasControls) {
@@ -1986,8 +2467,12 @@ var tns = function(options) {
     }
 
 
-    if (touch) { addEvents(container, touchEvents); }
-    if (mouseDrag) { addEvents(container, dragEvents); }
+    // if (!navigator.msMaxTouchPoints) {
+    if (carousel) {
+      if (touch) { addEvents(container, touchEvents); }
+      if (mouseDrag) { addEvents(container, dragEvents); }
+    }
+    // }
     if (arrowKeys) { addEvents(doc, docmentKeydownEvent); }
 
 
@@ -2006,8 +2491,9 @@ var tns = function(options) {
       runAutoHeight();
     }
 
-    if (!autoWidth) { lazyLoad(); }
+    lazyLoad();
     toggleSlideDisplayAndEdgePadding();
+    updateFixedWidthInnerWrapperStyle();
 
     events.on('indexChanged', additionalUpdates);
 
@@ -2017,7 +2503,7 @@ var tns = function(options) {
     if (disable) { disableSlider(true); }
 
     isOn = true;
-  }
+  })();
 
 
 
@@ -2030,53 +2516,40 @@ var tns = function(options) {
 
   function resizeTasks (e) {
     if (!isOn) { return; }
-
+    
     windowWidth = getWindowWidth();
     if (nested === 'outer') { events.emit('outerResized', info(e)); }
 
     var breakpointZoneTem = breakpointZone,
-        edgePaddingTem = edgePadding,
-        gutterTem = gutter,
         indexTem = index, 
         itemsTem = items,
         freezeTem = freeze,
         needContainerTransform = false;
 
-    vpOuter = getViewportWidth(outerWrapper);
-    edgePadding = getOption('edgePadding');
-    gutter = getOption('gutter');
-    vpInner = getViewportWidthInner();
+    if (fixedWidth) { vpOuter = getViewportWidth(outerWrapper); }
+    vpInner = getViewportWidth(innerWrapper);
     if (breakpoints) { setBreakpointZone(); }
+
     if (breakpointZoneTem !== breakpointZone) { events.emit('newBreakpointStart', info(e)); }
-    if ((!horizontal || autoWidth) && !disable) {
-      getSlidePositions();
-      if (!horizontal) {
-        updateContentWrapperHeight();
-        needContainerTransform = true;
-      }
-    }
-    if (fixedWidth || autoWidth) {
-      rightBoundary = getRightBoundary();
-      indexMax = getIndexMax();
-    }
 
     // things do when breakpoint zone change
-    if (breakpointZoneTem !== breakpointZone || fixedWidth || autoWidth) {
+    if (breakpointZoneTem !== breakpointZone || fixedWidth) {
       var slideByTem = slideBy,
           arrowKeysTem = arrowKeys,
           autoHeightTem = autoHeight,
           fixedWidthTem = fixedWidth,
+          edgePaddingTem = edgePadding,
+          gutterTem = gutter,
           disableTem = disable;
 
       // update variables
       items = getOption('items');
       slideBy = getOption('slideBy');
       disable = getOption('disable');
-      if (hasRightDeadZone) { needContainerTransform = true; }
-      freeze = getFreeze();
+      freeze = disable ? true : freezable ? slideCount <= items : false;
 
       if (items !== itemsTem) {
-        if (!fixedWidth && !autoWidth) { indexMax = getIndexMax(); }
+        indexMax = getIndexMax();
         // check index before transform in case
         // slider reach the right edge then items become bigger
         updateIndex();
@@ -2087,18 +2560,16 @@ var tns = function(options) {
       }
       
       if (freeze !== freezeTem) {
-        // reset container transforms
-        if (freeze) {
-          doContainerTransform(getContainerTransformValue(!carousel ? 0 : cloneCount));
-        } else {
-          needContainerTransform = true;
-        }
+        // reset index to initial status
+        if (freeze) { index = !carousel ? 0 : cloneCount; }
 
         toggleSlideDisplayAndEdgePadding();
       }
       
       if (breakpointZoneTem !== breakpointZone) {
         speed = getOption('speed');
+        edgePadding = getOption('edgePadding');
+        gutter = getOption('gutter');
 
         fixedWidth = getOption('fixedWidth');
         if (!disable && fixedWidth !== fixedWidthTem) {
@@ -2251,8 +2722,7 @@ var tns = function(options) {
         needContainerTransform = true;
       }
 
-      // items is not updated in autoWidth slider
-      if (items !== itemsTem || autoWidth) { 
+      if (items !== itemsTem) { 
         additionalUpdates();
         updateSlidePosition();
 
@@ -2260,10 +2730,19 @@ var tns = function(options) {
       }
     }
 
+    // ** things always do regardless of breakpoint zone changing **
+    if (!horizontal && !disable) {
+      getSlideOffsetTops();
+      updateContentWrapperHeight();
+      needContainerTransform = true;
+    }
+
     if (needContainerTransform) {
       doContainerTransformSilent();
       indexCached = index;
     }
+
+    updateFixedWidthInnerWrapperStyle(true);
 
     // auto height
     if ((autoHeight || !carousel) && !disable) { runAutoHeight(); }
@@ -2276,28 +2755,19 @@ var tns = function(options) {
 
 
   // === INITIALIZATION FUNCTIONS === //
-  function getFreeze () {
-    if (disable) {
-      return true;
-    } else if (!freezable) {
-      return false;
-    } else if (!fixedWidth && !autoWidth) {
-      return slideCount <= items;
-    } else {
-      if (loop) {
-        var width = fixedWidth ? (fixedWidth + gutter) * slideCount : slidePositions[slideCount];
-        return width - gutter <= vpInner;
-      } else {
-        return !rightBoundary;
-      }
-    }
-  }
-
   function setBreakpointZone () {
     breakpointZone = 0;
     breakpoints.forEach(function(bp, i) {
       if (windowWidth >= bp) { breakpointZone = i + 1; }
     });
+  }
+
+  function loopNumber (num, min, max) {
+    return index >= indexMin && index <= indexMax ? index : index > indexMax ? index - slideCount : index + slideCount;
+  }
+
+  function cutindexber (index, min, indexMax) {
+    return index >= indexMin && index <= indexMax ? index : index > indexMax ? indexMax : indexMin;
   }
 
   // (slideBy, indexMin, indexMax) => index
@@ -2345,37 +2815,52 @@ var tns = function(options) {
   })();
 
   function toggleSlideDisplayAndEdgePadding () {
-    var str = 'tns-transparent';
+    // if (cloneCount) {
+    // if (fixedWidth && cloneCount) {
+      var str = 'tns-transparent';
 
-    if (freeze) {
-      if (!frozen) {
-        // remove edge padding from inner wrapper
-        if (edgePadding) { innerWrapper.style.margin = '0px'; }
+      if (freeze) {
+        if (!frozen) {
+          // remove edge padding from inner wrapper
+          if (edgePadding) { innerWrapper.style.margin = '0px'; }
 
-        // add class tns-transparent to cloned slides
+          // add class tns-transparent to cloned slides
+          if (cloneCount) {
+            for (var i = cloneCount; i--;) {
+              if (carousel) { addClass(slideItems[i], str); }
+              addClass(slideItems[slideCountNew - i - 1], str);
+            }
+          }
+
+          frozen = true;
+        }
+      } else if (frozen) {
+        // restore edge padding for inner wrapper
+        // for mordern browsers
+        if (edgePadding && !fixedWidth && CSSMQ) { innerWrapper.style.margin = ''; }
+
+        // remove class tns-transparent to cloned slides
         if (cloneCount) {
           for (var i = cloneCount; i--;) {
-            if (carousel) { addClass(slideItems[i], str); }
-            addClass(slideItems[slideCountNew - i - 1], str);
+            if (carousel) { removeClass(slideItems[i], str); }
+            removeClass(slideItems[slideCountNew - i - 1], str);
           }
         }
 
-        frozen = true;
+        frozen = false;
       }
-    } else if (frozen) {
-      // restore edge padding for inner wrapper
-      // for mordern browsers
-      if (edgePadding && CSSMQ) { innerWrapper.style.margin = ''; }
+    // }
+  }
 
-      // remove class tns-transparent to cloned slides
-      if (cloneCount) {
-        for (var i = cloneCount; i--;) {
-          if (carousel) { removeClass(slideItems[i], str); }
-          removeClass(slideItems[slideCountNew - i - 1], str);
-        }
+  function updateFixedWidthInnerWrapperStyle (resize) {
+    if (fixedWidth && edgePadding) {
+      // remove edge padding when freeze or viewport narrower than one slide
+      if (freeze || vpOuter <= (fixedWidth + gutter)) {
+        if (innerWrapper.style.margin !== '0px') { innerWrapper.style.margin = '0px'; }
+      // update edge padding on resize
+      } else if (resize) {
+        innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth);
       }
-
-      frozen = false;
     }
   }
 
@@ -2410,13 +2895,7 @@ var tns = function(options) {
       container.className += classContainer;
 
       // vertical slider: get offsetTops before container transform
-      if (!horizontal || autoWidth) {
-        getSlidePositions();
-        if (autoWidth) {
-          rightBoundary = getRightBoundary();
-          indexMax = getIndexMax();
-        }
-      }
+      if (!horizontal) { getSlideOffsetTops(); }
 
       doContainerTransformSilent();
       if (loop) {
@@ -2438,29 +2917,19 @@ var tns = function(options) {
     }
   }
 
+  // lazyload
   function lazyLoad () {
     if (lazyload && !disable) {
-      var i = index, len;
-
-      if (!autoWidth) {
-        len = index + items;
-      } else {
-        var a = index + 1,
-            len = a,
-            edge = slidePositions[index] + vpInner + edgePadding - gutter;
-        while (slidePositions[a] < edge) {
-          a++;
-          len = a;
-        }
-      }
+      var i = index, 
+          len = index + items;
 
       if (edgePadding) {
         i -=1;
-        if (!autoWidth) { len +=1; }
+        len +=1;
       }
 
-      i = Math.floor(Math.max(i, 0));
-      len = Math.ceil(Math.min(len, slideCountNew));
+      i = Math.max(i, 0);
+      len = Math.min(len, slideCountNew);
 
       for(; i < len; i++) {
         forEachNodeList(slideItems[i].querySelectorAll('.tns-lazy-img'), function (img) {
@@ -2554,15 +3023,13 @@ var tns = function(options) {
   }
 
   // get the distance from the top edge of the first slide to each slide
-  // (init) => slidePositions
-  function getSlidePositions () {
-    slidePositions = [0];
-    var attr = horizontal ? 'left' : 'top',
-        first = slideItems[0].getBoundingClientRect()[attr],
-        position;
+  // (init) => slideOffsetTops
+  function getSlideOffsetTops () {
+    slideOffsetTops = [0];
+    var topFirst = slideItems[0].getBoundingClientRect().top, attr;
     for (var i = 1; i < slideCountNew; i++) {
-      position = slideItems[i].getBoundingClientRect()[attr];
-      slidePositions.push(position - first);
+      attr = slideItems[i].getBoundingClientRect().top;
+      slideOffsetTops.push(attr - topFirst);
     }
   }
 
@@ -2653,8 +3120,6 @@ var tns = function(options) {
         });
         removeClass(navPrev, navActiveClass);
         addClass(navCurrent, navActiveClass);
-
-        navCurrentIndexCached = navCurrentIndex;
       }
     }
   }
@@ -2707,33 +3172,18 @@ var tns = function(options) {
     if (TRANSITIONDURATION) { el.style[TRANSITIONDURATION] = str; }
   }
 
-  function getFixedSliderWidth () {
-    return fixedWidth ? (fixedWidth + gutter) * slideCountNew - gutter: slidePositions[slideCountNew - 1] + slideItems[slideCountNew - 1].getBoundingClientRect().width - gutter;
-  }
-
-  function getRightBoundary () {
-    var result = - (getFixedSliderWidth() - vpInner);
-    if (result > 0) { result = 0; }
-    return result;
-  }
-
-  function getContainerTransformValue (num) {
-    if (num == null) { num = index; }
+  function getContainerTransformValue () {
     var val;
-    if (horizontal && !autoWidth) {
+    if (horizontal) {
       if (fixedWidth) {
-        val = - (fixedWidth + gutter) * num;
+        val = - (fixedWidth + gutter) * index + 'px';
       } else {
         var denominator = TRANSFORM ? slideCountNew : items;
-        val = - num * 100 / denominator;
+        val = - index * 100 / denominator + '%';
       }
     } else {
-      val = - slidePositions[num];
+      val = - slideOffsetTops[index] + 'px';
     }
-
-    if (hasRightDeadZone) { val = Math.max(val, rightBoundary); }
-
-    val += (horizontal && !autoWidth && !fixedWidth) ? '%' : 'px';
     return val;
   }
 
@@ -2743,8 +3193,8 @@ var tns = function(options) {
     setTimeout(function() { resetDuration(container, ''); }, 10);
   }
 
-  function doContainerTransform (val) {
-    if (val == null) { val = getContainerTransformValue(); }
+  function doContainerTransform (val, test) {
+    if (!val) { val = getContainerTransformValue(); }
     container.style[transformAttr] = transformPrefix + val + transformPostfix;
   }
 
@@ -2774,7 +3224,13 @@ var tns = function(options) {
   var transformCore = (function () {
     return carousel ?
       function (duration, distance) {
-        if (duration == null) { duration = speed; }
+        if (!distance) { distance = getContainerTransformValue(); }
+        
+        // constrain the distance when non-loop no-edgePadding fixedWidth reaches the right edge
+        if (hasRightDeadZone && index === indexMax) {
+          distance = - ((fixedWidth + gutter) * slideCountNew - vpInner) + 'px';
+        }
+
         if (TRANSITIONDURATION || !duration) {
           // for morden browsers with non-zero duration or 
           // zero duration for all browsers
@@ -2791,7 +3247,6 @@ var tns = function(options) {
         if (!horizontal) { updateContentWrapperHeight(); }
       } :
       function (duration) {
-        if (duration == null) { duration = speed; }
         slideItemsOut = [];
 
         var eve = {};
@@ -2804,13 +3259,23 @@ var tns = function(options) {
 
         // run fallback function manually 
         // when transition or animation not supported / duration is 0
-        if (!TRANSITIONEND || !ANIMATIONEND || !duration || !isVisible(container)) { onTransitionEnd(); }
+        if (!TRANSITIONEND || !ANIMATIONEND || !duration) { onTransitionEnd(); }
       };
   })();
 
+  function doTransform (duration, distance) {
+    // check duration is defined and is a number
+    if (isNaN(duration)) { duration = speed; }
+
+    // if container is hidden, set duration to 0
+    // to fix an issue where browser doesn't fire ontransitionend on hidden element
+    if (animating && !isVisible(container)) { duration = 0; }
+
+    transformCore(duration, distance);
+  }
+
   function render (e, sliderMoved) {
     if (updateIndexBeforeTransform) { updateIndex(); }
-    // if (!carousel) { index = Math.floor(index);}
 
     // render when slider was moved (touch or drag) even though index may not change
     if (index !== indexCached || sliderMoved) {
@@ -2822,7 +3287,7 @@ var tns = function(options) {
       if (animating && e && ['click', 'keydown'].indexOf(e.type) >= 0) { stopAutoplay(); }
 
       running = true;
-      transformCore();
+      doTransform();
     }
   }
 
@@ -2893,6 +3358,7 @@ var tns = function(options) {
 
         if (nested === 'inner') { events.emit('innerLoaded', info()); }
         running = false;
+        navCurrentIndexCached = navCurrentIndex;
         indexCached = index;
       }
     }
@@ -2962,39 +3428,40 @@ var tns = function(options) {
 
   // on controls click
   function onControlsClick (e, dir) {
-    if (running) { onTransitionEnd(); }
+    // if (!running) {
+      if (running) { onTransitionEnd(); }
 
-    var passEventObject;
+      var passEventObject;
 
-    if (!dir) {
-      e = getEvent(e);
-      var target = e.target || e.srcElement;
+      if (!dir) {
+        e = getEvent(e);
+        var target = e.target || e.srcElement;
 
-      while (target !== controlsContainer && [prevButton, nextButton].indexOf(target) < 0) { target = target.parentNode; }
+        while (target !== controlsContainer && [prevButton, nextButton].indexOf(target) < 0) { target = target.parentNode; }
 
-      var targetIn = [prevButton, nextButton].indexOf(target);
-      if (targetIn >= 0) {
-        passEventObject = true;
-        dir = targetIn === 0 ? -1 : 1;
+        var targetIn = [prevButton, nextButton].indexOf(target);
+        if (targetIn >= 0) {
+          passEventObject = true;
+          dir = targetIn === 0 ? -1 : 1;
+        }
       }
-    }
 
-    if (rewind) {
-      if (index === indexMin && dir === -1) {
-        goTo('last', e);
-        return;
-      } else if (index === indexMax && dir === 1) {
-        goTo('first', e);
-        return;
+      if (rewind) {
+        if (index === indexMin && dir === -1) {
+          goTo('last', e);
+          return;
+        } else if (index === indexMax && dir === 1) {
+          goTo('first', e);
+          return;
+        }
       }
-    }
 
-    if (dir) {
-      index += slideBy * dir;
-      if (autoWidth) { index = Math.floor(index); }
-      // pass e when click control buttons or keydown
-      render((passEventObject || (e && e.type === 'keydown')) ? e : null);
-    }
+      if (dir) {
+        index += slideBy * dir;
+        // pass e when click control buttons or keydown
+        render((passEventObject || (e && e.type === 'keydown')) ? e : null);
+      }
+    // }
   }
 
   // on nav click
@@ -3217,10 +3684,8 @@ var tns = function(options) {
     if (running) { onTransitionEnd(); }
     
     panStart = true;
-    if (carousel) {
-      caf(rafIndex);
-      rafIndex = 0;
-    }
+    caf(rafIndex);
+    rafIndex = 0;
 
     var $ = getEvent(e);
     events.emit(isTouchEvent(e) ? 'touchStart' : 'dragStart', info(e));
@@ -3231,10 +3696,9 @@ var tns = function(options) {
 
     lastPosition.x = initPosition.x = parseInt($.clientX);
     lastPosition.y = initPosition.y = parseInt($.clientY);
-    if (carousel) {
-      translateInit = parseFloat(container.style[transformAttr].replace(transformPrefix, '').replace(transformPostfix, ''));
-      resetDuration(container, '0s');
-    }
+    translateInit = parseFloat(container.style[transformAttr].replace(transformPrefix, '').replace(transformPostfix, ''));
+
+    resetDuration(container, '0s');
   }
 
   function onPanMove (e) {
@@ -3243,7 +3707,7 @@ var tns = function(options) {
       lastPosition.x = parseInt($.clientX);
       lastPosition.y = parseInt($.clientY);
     }
-    if (carousel && !rafIndex) { rafIndex = raf(function(){ panUpdate(e); }); }
+    if (!rafIndex) { rafIndex = raf(function(){ panUpdate(e); }); }
   }
 
   function panUpdate (e) {
@@ -3268,7 +3732,7 @@ var tns = function(options) {
 
       var x = translateInit,
           dist = getDist(lastPosition, initPosition);
-      if (!horizontal || fixedWidth || autoWidth) {
+      if (!horizontal || fixedWidth) {
         x += dist;
         x += 'px';
       } else {
@@ -3285,10 +3749,8 @@ var tns = function(options) {
     if (swipeAngle) { moveDirectionExpected = '?'; } // reset
 
     if (panStart) {
-      if (carousel) {
-        caf(rafIndex);
-        resetDuration(container, '');
-      }
+      caf(rafIndex);
+      resetDuration(container, '');
       panStart = false;
 
       var $ = getEvent(e);
@@ -3311,52 +3773,38 @@ var tns = function(options) {
           }}); 
         }
 
-        if (carousel) {
-          rafIndex = raf(function() {
-            if (horizontal && !autoWidth) {
-              var indexMoved = - dist * items / vpInner;
-              indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
-              index += indexMoved;
+        rafIndex = raf(function() {
+          if (horizontal) {
+            var indexMoved = - dist * items / vpInner;
+            indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
+            index += indexMoved;
+          } else {
+            var moved = - (translateInit + dist);
+            if (moved <= 0) {
+              index = indexMin;
+            } else if (moved >= slideOffsetTops[slideOffsetTops.length - 1]) {
+              index = indexMax;
             } else {
-              var moved = - (translateInit + dist);
-              if (moved <= 0) {
-                index = indexMin;
-              } else if (moved >= slidePositions[slidePositions.length - 1]) {
-                index = indexMax;
-              } else {
-                var i = 0;
-                while (i < slideCountNew && moved >= slidePositions[i]) {
-                  index = i;
-                  if (moved > slidePositions[i] && dist < 0) { index += 1; }
-                  i++;
-                }
-              }
+              var i = 0;
+              do {
+                i++;
+                index = dist < 0 ? i + 1 : i;
+              } while (i < slideCountNew && moved >= slideOffsetTops[i + 1]);
             }
-
-            render(e, dist);
-            events.emit(isTouchEvent(e) ? 'touchEnd' : 'dragEnd', info(e));
-          });
-        } else {
-          if (
-            moveDirectionExpected === '?' && 
-            lastPosition.x !== initPosition.x && 
-            lastPosition.y !== initPosition.y) {
-            moveDirectionExpected = getTouchDirection(toDegree(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
           }
 
-          if (moveDirectionExpected) {
-            onControlsClick(e, dist > 0 ? -1 : 1);
-          }
-        }
+          render(e, dist);
+          events.emit(isTouchEvent(e) ? 'touchEnd' : 'dragEnd', info(e));
+        });
       }
 
     }
   }
 
   // === RESIZE FUNCTIONS === //
-  // (slidePositions, index, items) => vertical_conentWrapper.height
+  // (slideOffsetTops, index, items) => vertical_conentWrapper.height
   function updateContentWrapperHeight () {
-    innerWrapper.style.height = slidePositions[index + items] - slidePositions[index] + 'px';
+    innerWrapper.style.height = slideOffsetTops[index + items] - slideOffsetTops[index] + 'px';
   }
 
   /*
@@ -3530,506 +3978,6 @@ var tns = function(options) {
     }
   };
 };
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};exports.esAlumno=esAlumno;exports.esProfesor=esProfesor;exports.esEditorOMas=esEditorOMas;function esAlumno(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esAlumno();}return false;}function esProfesor(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esProfesor();}return false;}function esEditorOMas(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esEditor()||blink.user.esAdmin()||blink.user.esSAdmin();}return false;}
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-
-var stylesInDom = {};
-
-var	memoize = function (fn) {
-	var memo;
-
-	return function () {
-		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
-		return memo;
-	};
-};
-
-var isOldIE = memoize(function () {
-	// Test for IE <= 9 as proposed by Browserhacks
-	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
-	// Tests for existence of standard globals is to allow style-loader
-	// to operate correctly into non-standard environments
-	// @see https://github.com/webpack-contrib/style-loader/issues/177
-	return window && document && document.all && !window.atob;
-});
-
-var getTarget = function (target) {
-  return document.querySelector(target);
-};
-
-var getElement = (function (fn) {
-	var memo = {};
-
-	return function(target) {
-                // If passing function in options, then use it for resolve "head" element.
-                // Useful for Shadow Root style i.e
-                // {
-                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
-                // }
-                if (typeof target === 'function') {
-                        return target();
-                }
-                if (typeof memo[target] === "undefined") {
-			var styleTarget = getTarget.call(this, target);
-			// Special case to return head of iframe instead of iframe itself
-			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
-				try {
-					// This will throw an exception if access to iframe is blocked
-					// due to cross-origin restrictions
-					styleTarget = styleTarget.contentDocument.head;
-				} catch(e) {
-					styleTarget = null;
-				}
-			}
-			memo[target] = styleTarget;
-		}
-		return memo[target]
-	};
-})();
-
-var singleton = null;
-var	singletonCounter = 0;
-var	stylesInsertedAtTop = [];
-
-var	fixUrls = __webpack_require__(38);
-
-module.exports = function(list, options) {
-	if (typeof DEBUG !== "undefined" && DEBUG) {
-		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
-	}
-
-	options = options || {};
-
-	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
-
-	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
-	// tags it will allow on a page
-	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
-
-	// By default, add <style> tags to the <head> element
-        if (!options.insertInto) options.insertInto = "head";
-
-	// By default, add <style> tags to the bottom of the target
-	if (!options.insertAt) options.insertAt = "bottom";
-
-	var styles = listToStyles(list, options);
-
-	addStylesToDom(styles, options);
-
-	return function update (newList) {
-		var mayRemove = [];
-
-		for (var i = 0; i < styles.length; i++) {
-			var item = styles[i];
-			var domStyle = stylesInDom[item.id];
-
-			domStyle.refs--;
-			mayRemove.push(domStyle);
-		}
-
-		if(newList) {
-			var newStyles = listToStyles(newList, options);
-			addStylesToDom(newStyles, options);
-		}
-
-		for (var i = 0; i < mayRemove.length; i++) {
-			var domStyle = mayRemove[i];
-
-			if(domStyle.refs === 0) {
-				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
-
-				delete stylesInDom[domStyle.id];
-			}
-		}
-	};
-};
-
-function addStylesToDom (styles, options) {
-	for (var i = 0; i < styles.length; i++) {
-		var item = styles[i];
-		var domStyle = stylesInDom[item.id];
-
-		if(domStyle) {
-			domStyle.refs++;
-
-			for(var j = 0; j < domStyle.parts.length; j++) {
-				domStyle.parts[j](item.parts[j]);
-			}
-
-			for(; j < item.parts.length; j++) {
-				domStyle.parts.push(addStyle(item.parts[j], options));
-			}
-		} else {
-			var parts = [];
-
-			for(var j = 0; j < item.parts.length; j++) {
-				parts.push(addStyle(item.parts[j], options));
-			}
-
-			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
-		}
-	}
-}
-
-function listToStyles (list, options) {
-	var styles = [];
-	var newStyles = {};
-
-	for (var i = 0; i < list.length; i++) {
-		var item = list[i];
-		var id = options.base ? item[0] + options.base : item[0];
-		var css = item[1];
-		var media = item[2];
-		var sourceMap = item[3];
-		var part = {css: css, media: media, sourceMap: sourceMap};
-
-		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
-		else newStyles[id].parts.push(part);
-	}
-
-	return styles;
-}
-
-function insertStyleElement (options, style) {
-	var target = getElement(options.insertInto)
-
-	if (!target) {
-		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
-	}
-
-	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
-
-	if (options.insertAt === "top") {
-		if (!lastStyleElementInsertedAtTop) {
-			target.insertBefore(style, target.firstChild);
-		} else if (lastStyleElementInsertedAtTop.nextSibling) {
-			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
-		} else {
-			target.appendChild(style);
-		}
-		stylesInsertedAtTop.push(style);
-	} else if (options.insertAt === "bottom") {
-		target.appendChild(style);
-	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
-		var nextSibling = getElement(options.insertInto + " " + options.insertAt.before);
-		target.insertBefore(style, nextSibling);
-	} else {
-		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
-	}
-}
-
-function removeStyleElement (style) {
-	if (style.parentNode === null) return false;
-	style.parentNode.removeChild(style);
-
-	var idx = stylesInsertedAtTop.indexOf(style);
-	if(idx >= 0) {
-		stylesInsertedAtTop.splice(idx, 1);
-	}
-}
-
-function createStyleElement (options) {
-	var style = document.createElement("style");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-
-	addAttrs(style, options.attrs);
-	insertStyleElement(options, style);
-
-	return style;
-}
-
-function createLinkElement (options) {
-	var link = document.createElement("link");
-
-	if(options.attrs.type === undefined) {
-		options.attrs.type = "text/css";
-	}
-	options.attrs.rel = "stylesheet";
-
-	addAttrs(link, options.attrs);
-	insertStyleElement(options, link);
-
-	return link;
-}
-
-function addAttrs (el, attrs) {
-	Object.keys(attrs).forEach(function (key) {
-		el.setAttribute(key, attrs[key]);
-	});
-}
-
-function addStyle (obj, options) {
-	var style, update, remove, result;
-
-	// If a transform function was defined, run it on the css
-	if (options.transform && obj.css) {
-	    result = options.transform(obj.css);
-
-	    if (result) {
-	    	// If transform returns a value, use that instead of the original css.
-	    	// This allows running runtime transformations on the css.
-	    	obj.css = result;
-	    } else {
-	    	// If the transform function returns a falsy value, don't add this css.
-	    	// This allows conditional loading of css
-	    	return function() {
-	    		// noop
-	    	};
-	    }
-	}
-
-	if (options.singleton) {
-		var styleIndex = singletonCounter++;
-
-		style = singleton || (singleton = createStyleElement(options));
-
-		update = applyToSingletonTag.bind(null, style, styleIndex, false);
-		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
-
-	} else if (
-		obj.sourceMap &&
-		typeof URL === "function" &&
-		typeof URL.createObjectURL === "function" &&
-		typeof URL.revokeObjectURL === "function" &&
-		typeof Blob === "function" &&
-		typeof btoa === "function"
-	) {
-		style = createLinkElement(options);
-		update = updateLink.bind(null, style, options);
-		remove = function () {
-			removeStyleElement(style);
-
-			if(style.href) URL.revokeObjectURL(style.href);
-		};
-	} else {
-		style = createStyleElement(options);
-		update = applyToTag.bind(null, style);
-		remove = function () {
-			removeStyleElement(style);
-		};
-	}
-
-	update(obj);
-
-	return function updateStyle (newObj) {
-		if (newObj) {
-			if (
-				newObj.css === obj.css &&
-				newObj.media === obj.media &&
-				newObj.sourceMap === obj.sourceMap
-			) {
-				return;
-			}
-
-			update(obj = newObj);
-		} else {
-			remove();
-		}
-	};
-}
-
-var replaceText = (function () {
-	var textStore = [];
-
-	return function (index, replacement) {
-		textStore[index] = replacement;
-
-		return textStore.filter(Boolean).join('\n');
-	};
-})();
-
-function applyToSingletonTag (style, index, remove, obj) {
-	var css = remove ? "" : obj.css;
-
-	if (style.styleSheet) {
-		style.styleSheet.cssText = replaceText(index, css);
-	} else {
-		var cssNode = document.createTextNode(css);
-		var childNodes = style.childNodes;
-
-		if (childNodes[index]) style.removeChild(childNodes[index]);
-
-		if (childNodes.length) {
-			style.insertBefore(cssNode, childNodes[index]);
-		} else {
-			style.appendChild(cssNode);
-		}
-	}
-}
-
-function applyToTag (style, obj) {
-	var css = obj.css;
-	var media = obj.media;
-
-	if(media) {
-		style.setAttribute("media", media)
-	}
-
-	if(style.styleSheet) {
-		style.styleSheet.cssText = css;
-	} else {
-		while(style.firstChild) {
-			style.removeChild(style.firstChild);
-		}
-
-		style.appendChild(document.createTextNode(css));
-	}
-}
-
-function updateLink (link, options, obj) {
-	var css = obj.css;
-	var sourceMap = obj.sourceMap;
-
-	/*
-		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
-		and there is no publicPath defined then lets turn convertToAbsoluteUrls
-		on by default.  Otherwise default to the convertToAbsoluteUrls option
-		directly
-	*/
-	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
-
-	if (options.convertToAbsoluteUrls || autoFixUrls) {
-		css = fixUrls(css);
-	}
-
-	if (sourceMap) {
-		// http://stackoverflow.com/a/26603875
-		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
-	}
-
-	var blob = new Blob([css], { type: "text/css" });
-
-	var oldSrc = link.href;
-
-	link.href = URL.createObjectURL(blob);
-
-	if(oldSrc) URL.revokeObjectURL(oldSrc);
-}
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports) {
-
-/*
-	MIT License http://www.opensource.org/licenses/mit-license.php
-	Author Tobias Koppers @sokra
-*/
-// css base code, injected by the css-loader
-module.exports = function(useSourceMap) {
-	var list = [];
-
-	// return the list of modules as css string
-	list.toString = function toString() {
-		return this.map(function (item) {
-			var content = cssWithMappingToString(item, useSourceMap);
-			if(item[2]) {
-				return "@media " + item[2] + "{" + content + "}";
-			} else {
-				return content;
-			}
-		}).join("");
-	};
-
-	// import a list of modules into the list
-	list.i = function(modules, mediaQuery) {
-		if(typeof modules === "string")
-			modules = [[null, modules, ""]];
-		var alreadyImportedModules = {};
-		for(var i = 0; i < this.length; i++) {
-			var id = this[i][0];
-			if(typeof id === "number")
-				alreadyImportedModules[id] = true;
-		}
-		for(i = 0; i < modules.length; i++) {
-			var item = modules[i];
-			// skip already imported module
-			// this implementation is not 100% perfect for weird media query combinations
-			//  when a module is imported multiple times with different media queries.
-			//  I hope this will never occur (Hey this way we have smaller bundles)
-			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
-				if(mediaQuery && !item[2]) {
-					item[2] = mediaQuery;
-				} else if(mediaQuery) {
-					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
-				}
-				list.push(item);
-			}
-		}
-	};
-	return list;
-};
-
-function cssWithMappingToString(item, useSourceMap) {
-	var content = item[1] || '';
-	var cssMapping = item[3];
-	if (!cssMapping) {
-		return content;
-	}
-
-	if (useSourceMap && typeof btoa === 'function') {
-		var sourceMapping = toComment(cssMapping);
-		var sourceURLs = cssMapping.sources.map(function (source) {
-			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
-		});
-
-		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
-	}
-
-	return [content].join('\n');
-}
-
-// Adapted from convert-source-map (MIT)
-function toComment(sourceMap) {
-	// eslint-disable-next-line no-undef
-	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
-	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
-
-	return '/*# ' + data + ' */';
-}
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(39);
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(8)(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
 
 /***/ }),
 /* 11 */
@@ -4350,7 +4298,7 @@ this.started=true;}this.update();}// removeActivitiesSlides(){
 // }
 // }
 },{key:'update',value:function update(){(0,_debug.cl)("ScreenSubUnitIndicators.update()");var navBar=document.querySelector('.navbar-bottom');var olList=document.querySelector('.navbar-bottom ol.slider-indicators');var buttons=document.querySelectorAll('.navbar-bottom ol.slider-indicators li');var activeButton=document.querySelector('.navbar-bottom ol.slider-indicators li.active');var activeButtonIndex=parseInt(activeButton.getAttribute('data-go-to'));if(activeButton.classList.contains('sm-start')){activeButtonIndex=-1;}if(activeButton.classList.contains('sm-end')){activeButtonIndex=buttons.length-2;}var windowSize=this.responsiveStatus.getSize();var buttonsInMiddle=1;// mobile
-if(windowSize!='desktop'){if(windowSize=='mobile'){}else if(windowSize=='tablet-portrait'){buttonsInMiddle=5;}else if(windowSize=='tablet-landscape'){buttonsInMiddle=6;}}else{var huecoHeight=document.querySelector('ol.slider-indicators').offsetHeight-80;if(huecoHeight>450){buttonsInMiddle=2;}if(huecoHeight>600){buttonsInMiddle=4;}if(huecoHeight>800){buttonsInMiddle=6;}}for(var index=-1;index<buttons.length-1;index++){var button=buttons[index+1];//If is not start or end
+if(windowSize!='desktop'&&windowSize!='desktop-hd'){if(windowSize=='mobile'){}else if(windowSize=='tablet-portrait'){buttonsInMiddle=5;}else if(windowSize=='tablet-landscape'){buttonsInMiddle=6;}}else{var huecoHeight=document.querySelector('ol.slider-indicators').offsetHeight-80;if(huecoHeight>450){buttonsInMiddle=2;}if(huecoHeight>600){buttonsInMiddle=4;}if(huecoHeight>800){buttonsInMiddle=6;}}for(var index=-1;index<buttons.length-1;index++){var button=buttons[index+1];//If is not start or end
 if(!button.classList.contains('sm-big')){//If active is on 4 first numbers
 if(activeButtonIndex<=1+buttonsInMiddle){if(index<=2*buttonsInMiddle+1){//número 4
 button.style.display='inline-block';}else{button.style.display='none';}}else if(activeButtonIndex<buttons.length-2-(buttonsInMiddle+2)){if(index>=activeButtonIndex-buttonsInMiddle&&index<=activeButtonIndex+buttonsInMiddle){button.style.display='inline-block';}else{button.style.display='none';}}else{if(index>=buttons.length-(5+2*buttonsInMiddle)){//número 4
@@ -4358,8 +4306,8 @@ button.style.display='inline-block';}else{button.style.display='none';}}if(index
 var marginRight=6+8*2;//mobile
 var marginBottom=0;//mobile
 if(windowSize=='tablet-portrait'){marginRight=10+8*3;}else if(windowSize=='tablet-landscape'){marginRight=10+8*3;}else if(windowSize=='desktop'){marginRight=0;marginBottom=48;}for(var _index=0;_index<buttons.length-3;_index++){var _button=buttons[_index];var buttonNext=buttons[_index+1];if(!(_button.classList.contains('sm-start')||_button.classList.contains('sm-end'))){if(_button.style.display=='inline-block'&&buttonNext.style.display=='none'){_button.style.marginRight=marginRight+'px';_button.style.marginBottom=marginBottom+'px';}else{_button.style.marginRight=null;_button.style.marginBottom=null;}}}//Linea
-var startButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-start');var endButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-end');if(windowSize!='desktop'){this.line.style.top=null;this.line.style.bottom=null;this.line.style.left=startButton.offsetLeft+olList.offsetLeft+buttons[0].offsetWidth+'px';this.line.style.right=navBar.offsetWidth-endButton.offsetLeft-olList.offsetLeft+'px';}else{this.line.style.top=startButton.offsetTop+olList.offsetTop+buttons[0].offsetHeight+'px';this.line.style.bottom=navBar.offsetHeight-endButton.offsetTop-olList.offsetTop+'px';this.line.style.left=null;this.line.style.right=null;}//Lineas
-_.forEach(this.lines,function(o,i){if(windowSize!='desktop'){var posLeft=buttons[i].offsetLeft;if(buttons[i].style.display=='inline-block'){o.style.display='block';o.style.left=posLeft+buttons[i].offsetWidth*0.5-1+'px';o.style.top=null;}else{o.style.display='none';}}else{var posTop=buttons[i].offsetTop;if(buttons[i].style.display=='inline-block'){o.style.display='block';o.style.top=posTop+buttons[i].offsetHeight*0.5-1+'px';o.style.left=null;}else{o.style.display='none';}}});//Update activities content
+var startButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-start');var endButton=document.querySelector('.navbar-bottom ol.slider-indicators li.sm-end');if(windowSize!='desktop'&&windowSize!='desktop-hd'){this.line.style.top=null;this.line.style.bottom=null;this.line.style.left=startButton.offsetLeft+olList.offsetLeft+buttons[0].offsetWidth+'px';this.line.style.right=navBar.offsetWidth-endButton.offsetLeft-olList.offsetLeft+'px';}else{this.line.style.top=startButton.offsetTop+olList.offsetTop+buttons[0].offsetHeight+'px';this.line.style.bottom=navBar.offsetHeight-endButton.offsetTop-olList.offsetTop+'px';this.line.style.left=null;this.line.style.right=null;}//Lineas
+_.forEach(this.lines,function(o,i){if(windowSize!='desktop'&&windowSize!='desktop-hd'){var posLeft=buttons[i].offsetLeft;if(buttons[i].style.display=='inline-block'){o.style.display='block';o.style.left=posLeft+buttons[i].offsetWidth*0.5-1+'px';o.style.top=null;}else{o.style.display='none';}}else{var posTop=buttons[i].offsetTop;if(buttons[i].style.display=='inline-block'){o.style.display='block';o.style.top=posTop+buttons[i].offsetHeight*0.5-1+'px';o.style.left=null;}else{o.style.display='none';}}});//Update activities content
 if(typeof this.activitiContentUpdate=='function'){this.activitiContentUpdate();}//Check arrows state
 //Left arrow
 if(this.state.isStartSlide){document.querySelector('.sm-slider-indicator-arrow-left').classList.add('disabled');}else{document.querySelector('.sm-slider-indicator-arrow-left').classList.remove('disabled');}//Right arrow
@@ -4505,7 +4453,7 @@ module.exports = "<div id=sm-left-menu__background></div> <div id=sm-left-menu> 
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(9)(false);
+exports = module.exports = __webpack_require__(8)(false);
 // imports
 
 
@@ -4534,7 +4482,7 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(8)(content, options);
+var update = __webpack_require__(7)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -5922,7 +5870,7 @@ var _this=this;document.addEventListener('click',function(e){var isClickInside=_
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _tinySlider=__webpack_require__(6);__webpack_require__(10);var _debug=__webpack_require__(1);var _dropdown=__webpack_require__(36);var _dropdown2=_interopRequireDefault(_dropdown);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(7);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);__webpack_require__(9);var _debug=__webpack_require__(1);var _dropdown=__webpack_require__(36);var _dropdown2=_interopRequireDefault(_dropdown);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(6);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
 if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus(this.updateSlider.bind(this));
 }this.started=true;this.unit=data.unit;var unitElement=document.getElementById('sm-unit');// Background
 document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+this.unit.image+')';// Header
@@ -6051,12 +5999,12 @@ module.exports = function (css) {
 /* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(9)(false);
+exports = module.exports = __webpack_require__(8)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{display:none !important}.tns-outer [aria-controls],.tns-outer [data-action]{cursor:pointer}.ms-touch{overflow-x:scroll;overflow-y:hidden;-ms-overflow-style:none;-ms-scroll-chaining:none;-ms-scroll-snap-type:mandatory;-ms-scroll-snap-points-x:snapInterval(0%, 100%)}.tns-slider{-webkit-transition:all 0s;-moz-transition:all 0s;transition:all 0s}.tns-slider>div,.tns-slider>li{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tns-horizontal.tns-subpixel{white-space:nowrap}.tns-horizontal.tns-subpixel>div,.tns-horizontal.tns-subpixel>li{display:inline-block;vertical-align:top;white-space:normal}.tns-horizontal.tns-no-subpixel:after{content:'';display:table;clear:both}.tns-horizontal.tns-no-subpixel>div,.tns-horizontal.tns-no-subpixel>li{float:left;margin-right:-100%}.tns-no-calc{position:relative;left:0}.tns-gallery{position:relative;left:0;min-height:1px}.tns-gallery>div,.tns-gallery>li{position:absolute;left:-100%;-webkit-transition:transform 0s, opacity 0s;-moz-transition:transform 0s, opacity 0s;transition:transform 0s, opacity 0s}.tns-gallery>.tns-moving{-webkit-transition:all 0.25s;-moz-transition:all 0.25s;transition:all 0.25s}.tns-lazy-img{-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;transition:opacity 0.6s;opacity:0.6}.tns-lazy-img.loaded{opacity:1}.tns-ah{-webkit-transition:height 0s;-moz-transition:height 0s;transition:height 0s}.tns-ovh{overflow:hidden}.tns-hdx{overflow-x:hidden}.tns-hdy{overflow-y:hidden}.tns-visually-hidden{position:absolute;left:-10000em}.tns-transparent{opacity:0;visibility:hidden}.tns-fadeIn{opacity:1;filter:alpha(opacity=100);z-index:0}.tns-normal,.tns-fadeOut{opacity:0;filter:alpha(opacity=0);z-index:-1}.tns-t-subp2{margin:0 auto;width:310px;position:relative;height:10px;overflow:hidden}.tns-t-ct{width:2333.3333333%;width:-webkit-calc(100% * 70 / 3);width:-moz-calc(100% * 70 / 3);width:calc(100% * 70 / 3);position:absolute;right:0}.tns-t-ct:after{content:'';display:table;clear:both}.tns-t-ct>div{width:1.4285714%;width:-webkit-calc(100% / 70);width:-moz-calc(100% / 70);width:calc(100% / 70);height:10px;float:left}\n", ""]);
+exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{display:none !important}.tns-outer [aria-controls],.tns-outer [data-action]{cursor:pointer}.ms-touch{overflow-x:scroll;overflow-y:hidden;-ms-overflow-style:none;-ms-scroll-chaining:none;-ms-scroll-snap-type:mandatory;-ms-scroll-snap-points-x:snapInterval(0%, 100%)}.tns-slider{-webkit-transition:all 0s;-moz-transition:all 0s;transition:all 0s}.tns-slider>div,.tns-slider>li{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tns-horizontal.tns-subpixel{white-space:nowrap}.tns-horizontal.tns-subpixel>div,.tns-horizontal.tns-subpixel>li{display:inline-block;vertical-align:top;white-space:normal}.tns-horizontal.tns-no-subpixel:after{content:'';display:table;clear:both}.tns-horizontal.tns-no-subpixel>div,.tns-horizontal.tns-no-subpixel>li{float:left;margin-right:-100%}.tns-no-calc{position:relative;left:0}.tns-gallery{position:relative;left:0;min-height:1px}.tns-gallery>div,.tns-gallery>li{position:absolute;left:-100%;-webkit-transition:transform 0s, opacity 0s;-moz-transition:transform 0s, opacity 0s;transition:transform 0s, opacity 0s}.tns-gallery>.tns-moving{-webkit-transition:all 0.25s;-moz-transition:all 0.25s;transition:all 0.25s}.tns-lazy-img{-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;transition:opacity 0.6s;opacity:0.6}.tns-lazy-img.loaded{opacity:1}.tns-ah{-webkit-transition:height 0s;-moz-transition:height 0s;transition:height 0s}.tns-ovh{overflow:hidden}.tns-hdx{overflow-x:hidden}.tns-hdy{overflow-y:hidden}.tns-visually-hidden{position:absolute;left:-10000em}.tns-transparent{opacity:0;visibility:hidden}.tns-fadeIn{opacity:1;filter:alpha(opacity=100);z-index:0}.tns-normal,.tns-fadeOut{opacity:0;filter:alpha(opacity=0);z-index:-1}.tns-t-subp2{margin:0 auto;width:310px;position:relative;height:10px;overflow:hidden}.tns-t-ct{width:2333.3333333%;width:-webkit-calc(100% * $count / $perpage);width:-moz-calc(100% * $count / $perpage);width:calc(100% * $count / $perpage);position:absolute;right:0}.tns-t-ct:after{content:'';display:table;clear:both}.tns-t-ct>div{width:1.4285714%;width:-webkit-calc(100% / $count);width:-moz-calc(100% / $count);width:calc(100% / $count);height:10px;float:left}\n", ""]);
 
 // exports
 
@@ -6083,11 +6031,11 @@ if (!Object.keys) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(6);__webpack_require__(10);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(10);__webpack_require__(9);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
 // // document.querySelector('#sm-home h2').innerHTML = type;
 // document.querySelector('#sm-home').style.backgroundImage = `url(${homeBackgroundImageUrl})`;
 // document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
-this.responsiveStatus=new _responsiveStatus2.default(this.updateSlider.bind(this));//Scroll event for no-touch
+this.responsiveStatus=new _responsiveStatus2.default();window.addEventListener('resize',this.updateSlider.bind(this));this.updateSlider();//Scroll event for no-touch
 var _this=this;document.getElementById("sm-units-menu").addEventListener("wheel",function(e){var windowSize=_this.responsiveStatus.getSize();if(windowSize=='tablet-landscape'||windowSize=='desktop'){if(e.deltaY<0){//Check if we are here
 var hashName=window.location.hash;var hashParts=hashName.split('_',3);if(_this.processHash(hashParts).is){_this.onBackButton();}}}});//Scroll event for touch
 // const containerElement = document.getElementById('sm-units-menu');
@@ -6107,21 +6055,30 @@ var hashName=window.location.hash;var hashParts=hashName.split('_',3);if(_this.p
 // });
 }this.started=true;// this.updateSlider(this.responsiveStatus.getSize());
 //document.querySelector('#sm-units-menu').classList.add('active');
-}},{key:'processHash',value:function processHash(hashParts){return{is:hashParts[0]=='#units'&&hashParts.length==1,data:{}};}},{key:'transformInputData',value:function transformInputData(inputData,data){var screenData={units:data.units};return screenData;}},{key:'updateSlider',value:function updateSlider(size){var _this2=this;if(this.slider!=null){this.slider.destroy();//onsole.log('this.slider.destroy');
+}},{key:'processHash',value:function processHash(hashParts){return{is:hashParts[0]=='#units'&&hashParts.length==1,data:{}};}},{key:'transformInputData',value:function transformInputData(inputData,data){var screenData={units:data.units};return screenData;}},{key:'updateSlider',value:function updateSlider(){var _this2=this;if(this.slider!=null){this.slider.destroy();//onsole.log('this.slider.destroy');
 this.slider=null;//onsole.log(document.querySelector('#sm-units-menu .sm-content'));
 // document.querySelector('#sm-units-menu .sm-content').remove();
 // document.querySelector('#sm-units-menu').appendChild(this.mainDomStructure);
 //onsole.log(document.querySelector('#sm-units-menu .sm-content'));
 }//Vacía el slide
-var sliderElement=document.querySelector('#sm-units-menu .sm-units-menu-slider');while(sliderElement.firstChild){sliderElement.removeChild(sliderElement.firstChild);}var unitTemplate=document.querySelector('#sm-units-menu__unit--template');this.units.forEach(function(unit){var unitElement=unitTemplate.cloneNode(true);unitElement.removeAttribute('id');if(_this2.units.length<5){unitElement.classList.add('sm-units-menu__unit--contains'+_this2.units.length);}if(unit.smIsProyect){unitElement.classList.add('sm-units-menu__unit--proyecto');}unitElement.getElementsByTagName('a')[0].setAttribute('href','#unit_'+unit.id);unitElement.querySelector('.sm-units-menu__unit__image__image').style.backgroundImage='url('+unit.image+')';unitElement.querySelector('.sm-units-menu__unit__number').innerHTML=unit.numberformenu;unitElement.querySelector('.sm-units-menu__unit__proyect_description').innerHTML=unit.description;unitElement.querySelector('.sm-units-menu__unit__title').innerHTML=unit.title;var completed=unit.completado||0;unitElement.querySelector('.sm-units-menu__unit__progress__title').innerHTML=completed+'% '+replaceStringInTemplates.replace('--Completado--');unitElement.querySelector('.sm-color-background-color').style.width=completed+'%';// unitElement.querySelector('.sm-left-menu--title').innerHTML = `<span>${('0' + unit.numberformenu).slice(-2)}</span> ${unit.title}`;
+var sliderElement=document.querySelector('#sm-units-menu .sm-units-menu-slider');while(sliderElement.firstChild){sliderElement.removeChild(sliderElement.firstChild);}var unitTemplate=document.querySelector('#sm-units-menu__unit--template');this.units.forEach(function(unit){var unitElement=unitTemplate.cloneNode(true);unitElement.removeAttribute('id');if(_this2.getUnitsLengh()<5){unitElement.classList.add('sm-units-menu__unit--contains'+_this2.getUnitsLengh());}if(unit.smIsProyect){unitElement.classList.add('sm-units-menu__unit--proyecto');}unitElement.getElementsByTagName('a')[0].setAttribute('href','#unit_'+unit.id);unitElement.querySelector('.sm-units-menu__unit__image__image').style.backgroundImage='url('+unit.image+')';unitElement.querySelector('.sm-units-menu__unit__number').innerHTML=unit.numberformenu;unitElement.querySelector('.sm-units-menu__unit__proyect_description').innerHTML=unit.description;unitElement.querySelector('.sm-units-menu__unit__title').innerHTML=unit.title;var completed=unit.completado||0;unitElement.querySelector('.sm-units-menu__unit__progress__title').innerHTML=completed+'% '+replaceStringInTemplates.replace('--Completado--');unitElement.querySelector('.sm-color-background-color').style.width=completed+'%';// unitElement.querySelector('.sm-left-menu--title').innerHTML = `<span>${('0' + unit.numberformenu).slice(-2)}</span> ${unit.title}`;
 // unitElement.addEventListener('click', this.toggleUnit);
 // document.querySelector('#sm-units-menu .sm-button-back-screen').addEventListener('click', this.onBackButton.bind(this));
 sliderElement.appendChild(unitElement);});//onsole.log(document.querySelector('.sm-units-menu-slider'));
-if(size=='mobile'||size=='tablet-portrait'){}else{this.slider=(0,_tinySlider.tns)({container:'#sm-units-menu .sm-units-menu-slider',fixedWidth:352,loop:false,slideBy:'page',mouseDrag:true,controlsContainer:'#sm-units-menu-slider__controls',nav:false,swipeAngle:90});var _this=this;//Hide slider control if there are less han 4 items
-if(this.units.length<4){document.querySelector('#sm-units-menu-slider__controls').style.display='none';}//two functions to detech touch down, to return main screen
-this.slider.events.on('touchStart',function(e){_this.onTouchStart({x:e.event.touches[0].pageX,y:e.event.touches[0].pageY});});this.slider.events.on('touchEnd',function(e){_this.onTouchEnd({x:e.event.changedTouches[0].pageX,y:e.event.changedTouches[0].pageY});});}}//two functions to detech touch down, to return main screen
+var size=this.responsiveStatus.getSize();var sizes={tabletLandscape:null,mediaDesktopHd:null// if(size == 'tablet-portrait' || size == 'desktop'){
+// 	sizes.tabletLandscape = Math.floor(window.innerWidth / 3.5);
+// 	sizes.mediaDesktopHd = Math.floor(window.innerWidth / 3.5);
+// } else { //desktop-hd
+// 	sizes.tabletLandscape = Math.floor(window.innerWidth / 3.5);
+// 	sizes.mediaDesktopHd = Math.floor(window.innerWidth / 3.5);
+// }
+};var needToActivateSlider=false;if(size!='mobile'&&size!='tablet-portrait'){if(this.getUnitsLengh()>=5){sizes.tabletLandscape=Math.floor(window.innerWidth/3.5);sizes.mediaDesktopHd=Math.floor(window.innerWidth/4.5);needToActivateSlider=true;}else if(this.getUnitsLengh()==4){sizes.tabletLandscape=Math.floor(window.innerWidth/3.5);sizes.mediaDesktopHd=Math.floor(window.innerWidth/3.5);needToActivateSlider=true;}else if(this.getUnitsLengh()==3){sizes.tabletLandscape=Math.floor(window.innerWidth/3);sizes.mediaDesktopHd=Math.floor(window.innerWidth/3);}else if(this.getUnitsLengh()<=2){sizes.tabletLandscape=Math.floor(window.innerWidth/2);sizes.mediaDesktopHd=Math.floor(window.innerWidth/2);}}if(needToActivateSlider){this.slider=(0,_tinySlider.tns)({container:'#sm-units-menu .sm-units-menu-slider',fixedWidth:sizes.tabletLandscape,// autoWidth: true,
+loop:false,slideBy:'page',mouseDrag:true,controlsContainer:'#sm-units-menu-slider__controls',nav:false,swipeAngle:90,responsive:{1600:{fixedWidth:sizes.mediaDesktopHd}}});var _this=this;//Hide slider control if there are less han 4 items
+//two functions to detech touch down, to return main screen
+this.slider.events.on('touchStart',function(e){_this.onTouchStart({x:e.event.touches[0].pageX,y:e.event.touches[0].pageY});});this.slider.events.on('touchEnd',function(e){_this.onTouchEnd({x:e.event.changedTouches[0].pageX,y:e.event.changedTouches[0].pageY});});document.querySelector('#sm-units-menu-slider__controls').style.display='';}else{document.querySelector('#sm-units-menu-slider__controls').style.display='none';}}//two functions to detech touch down, to return main screen
 },{key:'onTouchStart',value:function onTouchStart(position){this.state.touchPositionStart=position;}},{key:'onTouchEnd',value:function onTouchEnd(position){var p1=this.state.touchPositionStart;var p2=position;var direction=Math.atan2(p2.y-p1.y,p2.x-p1.x)*180/Math.PI;if(direction>45&&direction<135){this.onBackButton();}this.state.touchPositionStart=null;}},{key:'onBackButton',value:function onBackButton(){this.disable();this.goTo('#');}},{key:'disable',value:function disable(){//document.querySelector('#sm-units-menu').classList.remove('active');
-}}]);return ScreenUnitsMenu;}();exports.default=ScreenUnitsMenu;
+}},{key:'getUnitsLengh',value:function getUnitsLengh(){// this.units.length returns more than expected, so we need this function
+var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return counter;}}]);return ScreenUnitsMenu;}();exports.default=ScreenUnitsMenu;
 
 /***/ }),
 /* 42 */
@@ -6194,7 +6151,7 @@ module.exports = g;
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatusTool=new _responsiveStatus2.default(function(){return null;});// config.velocityTransitions = 2000;
-var routeTransitions={'null__to__home':{to:{targets:'#sm-home',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}}},'null__to__units-menu':{to:{targets:'#sm-units-menu',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-units-menu').style.display='block';}}},'null__to__unit':{to:{targets:'#sm-unit',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-unit').style.display='block';}}},'home__to__units-menu':{from:[{targets:'#sm-home .sm-content',translateY:['0%','-100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-home').style.display='none';}},{targets:'#sm-home .sm-button-next-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-units-menu',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__home':{from:[{targets:'#sm-units-menu',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-home .sm-content',translateY:['-100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}},{targets:'#sm-home .sm-button-next-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__unit':{from:[],to:[{targets:'#sm-unit .sm-content--scrolled',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-unit').style.display='block';if(typeof document.querySelector('#sm-unit .sm-content--scrolled').scrollTo==="function"){document.querySelector('#sm-unit .sm-content--scrolled').scrollTo(0,0);}}},{targets:'#sm-unit .sm-unit__header_background',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[window.innerHeight+'px',backgroundHeight];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(){document.querySelector('#sm-unit .sm-unit__header_background__content').style.removeProperty('height');}}]},'unit__to__units-menu':{from:[{targets:'#sm-unit .sm-content--scrolled',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-unit').style.display='none';}},{targets:'#sm-unit .sm-unit__header_background',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[backgroundHeight,window.innerHeight+'px'];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut}],to:{targets:'#sm-units-menu',duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}}}};var Transitions=function(){function Transitions(){_classCallCheck(this,Transitions);}_createClass(Transitions,[{key:'start',value:function start(toRoute,fromRoute){//onsole.log(`de ${fromRoute} a ${toRoute}`);
+var routeTransitions={'null__to__home':{to:{targets:'#sm-home',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}}},'null__to__units-menu':{to:{targets:'#sm-units-menu',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-units-menu').style.display='block';}}},'null__to__unit':{to:{targets:'#sm-unit',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-unit').style.display='block';}}},'home__to__units-menu':{from:[{targets:'#sm-home .sm-content',translateY:['0%','-100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-home').style.display='none';}},{targets:'#sm-home .sm-button-next-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-units-menu',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__home':{from:[{targets:'#sm-units-menu',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-home .sm-content',translateY:['-100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}},{targets:'#sm-home .sm-button-next-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__unit':{from:[],to:[{targets:'#sm-unit .sm-content--scrolled',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-unit').style.display='block';if(typeof document.querySelector('#sm-unit .sm-content--scrolled').scrollTo==="function"){document.querySelector('#sm-unit .sm-content--scrolled').scrollTo(0,0);}}},{targets:'#sm-unit .sm-unit__header_background',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;case'desktop-hd':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[window.innerHeight+'px',backgroundHeight];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(){document.querySelector('#sm-unit .sm-unit__header_background__content').style.removeProperty('height');}}]},'unit__to__units-menu':{from:[{targets:'#sm-unit .sm-content--scrolled',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-unit').style.display='none';}},{targets:'#sm-unit .sm-unit__header_background',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;case'desktop-hd':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[backgroundHeight,window.innerHeight+'px'];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut}],to:{targets:'#sm-units-menu',duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}}}};var Transitions=function(){function Transitions(){_classCallCheck(this,Transitions);}_createClass(Transitions,[{key:'start',value:function start(toRoute,fromRoute){//onsole.log(`de ${fromRoute} a ${toRoute}`);
 if(routeTransitions[fromRoute+'__to__'+toRoute]){// document.getElementById('sm-home').style.display = 'block';
 // if(routeTransitions[`${fromRoute}__to__${toRoute}`].from){
 //     if(typeof routeTransitions[`${fromRoute}__to__${toRoute}`].from === 'object'){
@@ -6253,7 +6210,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Templates
 // import { equal } from 'assert';
 //Polyfils
-__webpack_require__(49);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(48);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(35);var _ImagesPreload=__webpack_require__(34);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(7);var _0LeftMenu=__webpack_require__(33);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(28);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(13);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(12);__webpack_require__(11);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var data=JSON.parse(JSON.stringify(dataraw));(0,_debug.cl)("app.init()");(0,_debug.cl)(data);if(!this.state.isLaunched){this.state.isLaunched=true;(0,_debug.cl)('Iniciando estilos Santillana ');(0,_debug.cl)('Unidades: '+data.units.length+' ');var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
+__webpack_require__(49);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(48);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(35);var _ImagesPreload=__webpack_require__(34);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(6);var _0LeftMenu=__webpack_require__(33);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(28);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(13);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(12);__webpack_require__(11);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var data=JSON.parse(JSON.stringify(dataraw));(0,_debug.cl)("app.init()");(0,_debug.cl)(data);if(!this.state.isLaunched){this.state.isLaunched=true;(0,_debug.cl)('Iniciando estilos Santillana ');(0,_debug.cl)('Unidades: '+data.units.length+' ');var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){this.initAfertLoadsActivities(data,window.actividades);}.bind(this));}else{this.initAfertLoadsActivities(data,[]);}//Add body class if theres is no navbar (app)
 if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){if(blink.isApp&&!blink.isOfflinePC){document.body.classList.add('sm-no-navbar');}}//Redefine blink function for resizing window
 window.setPanelResultsHeight=function(){$('.search-side-panel-results').css('height',$(window).height()-$('.search-side-panel-results').offset().top);};window.setPanelStyle=function(){$('.side-panel').css({'top':$('.navbar').height(),'height':$(window).height()-$('.navbar').height()});};//añadir etiquetas de tipo de usuario
