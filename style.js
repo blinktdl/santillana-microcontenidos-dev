@@ -6245,14 +6245,14 @@ if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.reso
 // });
 //Regenerate units number with new property
 var unitCounter=0;data.units.forEach(function(unit,index){//chech if is projects
-if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
+if(unit.tag&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
 //TODO QUEDA POR ENTENDER COMO SE GESTIONA EVALUACION, PERO POR AHORA LO SEPARO
 var asideClassesName=['flipped',// 'refuerzo',
 'microproyecto',// 'ampliacion',
 // 'teacher',
 // 'discover',
 // 'laboratorio',
-'basica'];var evaluationClassesName=['evaluacion'];data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;if(subunit.tag){asideClassesName.forEach(function(tagName){if(subunit.tags.indexOf(tagName)>=0){subunit.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){//Search if parent SubUnit exists
+'basica'];var evaluationClassesName=['evaluacion'];data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;if(subunit.tag){asideClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){subunit.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){//Search if parent SubUnit exists
 unit.subunitsevaluation.push(subunit);unit.subunitsmain[unit.subunitsmain.length-1].evaluationSubUnit=subunit;unit.subunitsevaluation[unit.subunitsevaluation.length-1].parentSubUnit=unit.subunitsmain[unit.subunitsmain.length-1];added=true;}}});}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;if(resource.tag){// asideClassesName.forEach(tagName => {
 // 	if(resource.tag.indexOf(tagName)>=0){
 // 		if(!added){
@@ -6262,7 +6262,7 @@ unit.subunitsevaluation.push(subunit);unit.subunitsmain[unit.subunitsmain.length
 // 		}
 // 	}
 // });
-asideClassesName.forEach(function(tagName){if(resource.tags.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit=resource;unit.resourcesevaluation[unit.resourcesevaluation.length-1].parentSubUnit=unit.resourcesmain[unit.resourcesmain.length-1];added=true;}}});}// if(resource.evalType==2){
+asideClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit=resource;unit.resourcesevaluation[unit.resourcesevaluation.length-1].parentSubUnit=unit.resourcesmain[unit.resourcesmain.length-1];added=true;}}});}// if(resource.evalType==2){
 // 	unit.resourcesevaluation.push(resource);
 // 	added = true;
 // }
