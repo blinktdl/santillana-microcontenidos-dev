@@ -6267,7 +6267,7 @@ if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.reso
 // });
 //Regenerate units number with new property
 var unitCounter=0;data.units.forEach(function(unit,index){//chech if is projects
-if(unit.tag&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
+if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
 //TODO QUEDA POR ENTENDER COMO SE GESTIONA EVALUACION, PERO POR AHORA LO SEPARO
 var asideClassesName=['flipped',// 'refuerzo',
 'microproyecto',// 'ampliacion',
