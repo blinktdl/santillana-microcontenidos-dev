@@ -311,7 +311,48 @@ number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar 
 Object.defineProperty(exports,"__esModule",{value:true});exports.cl=cl;//DEbug function for console logs. 
 window.smDebugTime=new Date();function cl(){var timeDiferrence=new Date()-window.smDebugTime;window.smDebugTime=new Date();console.log('%c SM Debug | Time: '+timeDiferrence+'ms.','background: #29495e; color: white');if(arguments.length==1){console.log(arguments[0]);}else{console.log(arguments);}}//Teclas para cambiar entre editor-profesor-alumno
 // document.onkeydown = smkeydown;
-function smkeydown(evt){var msg='';if(!evt)evt=event;if(evt.altKey){var actualClassName=document.body.classList.contains('sm-es-alumno')?'sm-es-alumno':document.body.classList.contains('sm-es-profesor')?'sm-es-profesor':'sm-es-editor';switch(actualClassName){case'sm-es-alumno':document.body.classList.remove('sm-es-alumno');document.body.classList.add('sm-es-profesor');msg="Cambiado a Profesor";break;case'sm-es-profesor':document.body.classList.remove('sm-es-profesor');document.body.classList.add('sm-es-editor');msg="Cambiado a Editor";break;case'sm-es-editor':document.body.classList.remove('sm-es-editor');document.body.classList.add('sm-es-alumno');msg="Cambiado a Alumno";break;default:break;}var newAlert=document.createElement('DIV');newAlert.style.position='fixed';newAlert.style.padding='20px';newAlert.style.top='67px';newAlert.style.right='20px';newAlert.style.backgroundColor='rgba(255,255,255,0.9)';newAlert.style.fontSize='20px';newAlert.style.color='black';newAlert.innerHTML=msg;document.body.appendChild(newAlert);setTimeout(function(){newAlert.remove();},2000);}}
+// function smkeydown(evt) {
+// 	let msg = '';
+// 	if (!evt) evt = event;
+// 	if (evt.altKey) {
+// 		const actualClassName = 
+// 			document.body.classList.contains('sm-es-alumno') ? 'sm-es-alumno' :
+// 			document.body.classList.contains('sm-es-profesor') ? 'sm-es-profesor' :
+// 			'sm-es-editor';
+// 		switch (actualClassName) {
+// 			case 'sm-es-alumno':
+// 				document.body.classList.remove('sm-es-alumno');
+// 				document.body.classList.add('sm-es-profesor');
+// 				msg = "Cambiado a Profesor";
+// 				break;
+// 			case 'sm-es-profesor':
+// 				document.body.classList.remove('sm-es-profesor');
+// 				document.body.classList.add('sm-es-editor');
+// 				msg = "Cambiado a Editor";
+// 				break;
+// 			case 'sm-es-editor':
+// 				document.body.classList.remove('sm-es-editor');
+// 				document.body.classList.add('sm-es-alumno');
+// 				msg = "Cambiado a Alumno";
+// 				break;
+// 			default:
+// 				break;
+// 		}
+// 		const newAlert = document.createElement('DIV');
+// 		newAlert.style.position = 'fixed';
+// 		newAlert.style.padding = '20px';
+// 		newAlert.style.top = '67px';
+// 		newAlert.style.right = '20px';
+// 		newAlert.style.backgroundColor = 'rgba(255,255,255,0.9)';
+// 		newAlert.style.fontSize = '20px';
+// 		newAlert.style.color = 'black';
+// 		newAlert.innerHTML = msg;
+// 		document.body.appendChild(newAlert);
+// 		setTimeout(() => {
+// 			newAlert.remove();
+// 		}, 2000);
+// 	}
+// }
 
 /***/ }),
 /* 2 */
@@ -6260,9 +6301,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 // import { equal } from 'assert';
 //Polyfils
 __webpack_require__(51);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(50);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(36);var _ImagesPreload=__webpack_require__(35);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(6);var _0LeftMenu=__webpack_require__(34);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(29);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(14);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(13);__webpack_require__(12);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
-//l(JSON.parse(JSON.stringify(dataraw)));
-//l(data);
-if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
+(0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 //l('Unidades: '+data.units.length+' ');
 var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){this.initAfertLoadsActivities(data,window.actividades);}.bind(this));}else{this.initAfertLoadsActivities(data,[]);}//Add body class if theres is no navbar (app)
