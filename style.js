@@ -364,24 +364,6 @@ if(!stringReplacements.hasOwnProperty(key))continue;if(key!=stringReplacements[k
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports) {
-
-// ChildNode.remove
-(function () {
-  "use strict";
-
-  if(!("remove" in Element.prototype)){
-    Element.prototype.remove = function(){
-      if(this.parentNode) {
-        this.parentNode.removeChild(this);
-      }
-    };
-  }
-})();
-
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -390,7 +372,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 var width=window.innerWidth;var size=void 0;if(width<768){size='mobile';}else if(width<1024){size='tablet-portrait';}else if(width<=1168){size='tablet-landscape';}else if(width<=1600){size='desktop';}else{size='desktop-hd';}if(size!=this.state.size){this.state.size=size;this.sizeChanged(size);}}},{key:'getSize',value:function getSize(){return this.state.size;}}]);return responsiveStatus;}();exports.default=responsiveStatus;
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*
@@ -432,14 +414,14 @@ function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.len
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(47)))
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};exports.esAlumno=esAlumno;exports.esProfesor=esProfesor;exports.esEditorOMas=esEditorOMas;function esAlumno(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esAlumno()||blink.user.esPadre();}return false;}function esProfesor(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esProfesor();}return false;}function esEditorOMas(){if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){return blink.user.esEditor()||blink.user.esAdmin()||blink.user.esSAdmin()||blink.user.esEditorial();}return false;}
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*
@@ -505,7 +487,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(40);
+var	fixUrls = __webpack_require__(39);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -825,7 +807,7 @@ function updateLink (link, options, obj) {
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports) {
 
 /*
@@ -907,11 +889,11 @@ function toComment(sourceMap) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(41);
+var content = __webpack_require__(40);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -925,24 +907,24 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(7)(content, options);
+var update = __webpack_require__(6)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/keys.js
-var keys = __webpack_require__(42);
+// EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/Object.keys.js
+var Object_keys = __webpack_require__(42);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/childNode.remove.js
-var childNode_remove = __webpack_require__(3);
+var childNode_remove = __webpack_require__(41);
 
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/raf.js
 var raf_win = window;
@@ -987,8 +969,10 @@ function checkStorageValue (value) {
   return ['true', 'false'].indexOf(value) >= 0 ? JSON.parse(value) : value;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/setLocalStorage.js
-function setLocalStorage(key, value, access) {
-  if (access) { localStorage.setItem(key, value); }
+function setLocalStorage(storage, key, value, access) {
+  if (access) {
+    try { storage.setItem(key, value); } catch (e) {}
+  }
   return value;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/getSlideId.js
@@ -1031,7 +1015,6 @@ function setFakeBody (body) {
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/resetFakeBody.js
 
 
-
 function resetFakeBody (body, docOverflow) {
   if (body.fake) {
     body.remove();
@@ -1045,7 +1028,6 @@ function resetFakeBody (body, docOverflow) {
 // get css-calc 
 // @return - false | calc | -webkit-calc | -moz-calc
 // @usage - var calc = getCalc(); 
-
 
 
 
@@ -1083,7 +1065,6 @@ function calc() {
 
 
 
-
 function percentageLayout() {
   // check subpixel layout supporting
   var doc = document,
@@ -1114,7 +1095,6 @@ function percentageLayout() {
   return supported;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/mediaquerySupport.js
-
 
 
 
@@ -1208,9 +1188,9 @@ function getTouchDirection(angle, range) {
 
   return direction;
 }
-// CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/forEachNodeList.js
+// CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/forEach.js
 // https://toddmotto.com/ditch-the-array-foreach-call-nodelist-hack/
-function forEachNodeList (arr, callback, scope) {
+function forEach (arr, callback, scope) {
   for (var i = 0, l = arr.length; i < l; i++) {
     callback.call(scope, arr[i], i);
   }
@@ -1287,10 +1267,6 @@ function removeAttrs(els, attrs) {
     }
   }
 }
-// CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/removeElementStyles.js
-function removeElementStyles(el) {
-  el.style.cssText = '';
-}
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/arrayFromNodeList.js
 function arrayFromNodeList (nl) {
   var arr = [];
@@ -1300,26 +1276,16 @@ function arrayFromNodeList (nl) {
   return arr;
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/hideElement.js
-
-
-
-function hideElement(el) {
-  if (!hasAttr(el, 'hidden')) {
-    setAttrs(el, {'hidden': ''});
-  }
+function hideElement(el, forceHide) {
+  if (el.style.display !== 'none') { el.style.display = 'none'; }
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/showElement.js
-
-
-
-function showElement(el) {
-  if (hasAttr(el, 'hidden')) {
-    removeAttrs(el, 'hidden');
-  }
+function showElement(el, forceHide) {
+  if (el.style.display === 'none') { el.style.display = ''; }
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/isVisible.js
 function isVisible(el) {
-  return el.offsetWidth > 0 && el.offsetHeight > 0;
+  return window.getComputedStyle(el).display !== 'none';
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/whichProperty.js
 function whichProperty(props){
@@ -1347,13 +1313,12 @@ function whichProperty(props){
   return false; // explicit for ie9-
 }
 
-// CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/has3D.js
+// CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/has3DTransforms.js
 
 
 
 
-
-function has3D(tf){
+function has3DTransforms(tf){
   if (!tf) { return false; }
   if (!window.getComputedStyle) { return false; }
   
@@ -1397,20 +1362,20 @@ function getEndProperty(propIn, propOut) {
 // Test via a getter in the options object to see if the passive property is accessed
 var supportsPassive = false;
 try {
-  var opts = Object.defineProperty({}, 'passive', {
+  var passiveOption_opts = Object.defineProperty({}, 'passive', {
     get: function() {
       supportsPassive = true;
     }
   });
-  window.addEventListener("test", null, opts);
+  window.addEventListener("test", null, passiveOption_opts);
 } catch (e) {}
 var passiveOption = supportsPassive ? { passive: true } : false;
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/addEvents.js
 
 
-function addEvents(el, obj) {
+function addEvents(el, obj, preventScrolling) {
   for (var prop in obj) {
-    var option = (prop === 'touchstart' || prop === 'touchmove') ? passiveOption : false;
+    var option = ['touchstart', 'touchmove'].indexOf(prop) >= 0 && !preventScrolling ? passiveOption : false;
     el.addEventListener(prop, obj[prop], option);
   }
 }
@@ -1442,9 +1407,10 @@ function Events() {
       }
     },
     emit: function (eventName, data) {
+      data.type = eventName;
       if (this.topics[eventName]) {
         this.topics[eventName].forEach(function(fn) {
-          fn(data);
+          fn(data, eventName);
         });
       }
     }
@@ -1473,11 +1439,6 @@ function jsTransform(element, attr, prefix, postfix, to, duration, callback) {
 }
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/tiny-slider.js
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "tns", function() { return tns; });
-// Format: IIFE
-// Version: 2.7.4
-
-// helper functions
-
 
 
 
@@ -1524,19 +1485,24 @@ var tns = function(options) {
     gutter: 0,
     edgePadding: 0,
     fixedWidth: false,
-    fixedWidthViewportWidth: false,
+    autoWidth: false,
+    viewportMax: false,
     slideBy: 1,
+    center: false,
     controls: true,
+    controlsPosition: 'top',
     controlsText: ['prev', 'next'],
     controlsContainer: false,
     prevButton: false,
     nextButton: false,
     nav: true,
+    navPosition: 'top',
     navContainer: false,
     navAsThumbnails: false,
     arrowKeys: false,
     speed: 300,
     autoplay: false,
+    autoplayPosition: 'top',
     autoplayTimeout: 5000,
     autoplayDirection: 'forward',
     autoplayText: ['start', 'stop'],
@@ -1544,21 +1510,23 @@ var tns = function(options) {
     autoplayButton: false,
     autoplayButtonOutput: true,
     autoplayResetOnVisibility: true,
-    // animateIn: 'tns-fadeIn',
-    // animateOut: 'tns-fadeOut',
-    // animateNormal: 'tns-normal',
-    // animateDelay: false,
+    animateIn: 'tns-fadeIn',
+    animateOut: 'tns-fadeOut',
+    animateNormal: 'tns-normal',
+    animateDelay: false,
     loop: true,
     rewind: false,
     autoHeight: false,
     responsive: false,
     lazyload: false,
+    lazyloadSelector: '.tns-lazy-img',
     touch: true,
     mouseDrag: false,
     swipeAngle: 15,
     nested: false,
+    preventActionWhenRunning: false,
+    preventScrollOnTouch: false,
     freezable: true,
-    // startIndex: 0,
     onInit: false,
     useLocalStorage: true
   }, options || {});
@@ -1568,86 +1536,63 @@ var tns = function(options) {
       KEYS = {
         ENTER: 13,
         SPACE: 32,
-        PAGEUP: 33,
-        PAGEDOWN: 34,
-        END: 35,
-        HOME: 36,
         LEFT: 37,
-        UP: 38,
-        RIGHT: 39,
-        DOWN: 40
+        RIGHT: 39
       },
       tnsStorage = {},
       localStorageAccess = options.useLocalStorage;
 
   if (localStorageAccess) {
-    // check browser version and local storage
-    // if browser upgraded, 
-    // 1. delete browser ralated data from local storage and 
-    // 2. recheck these options and save them to local storage
+    // check browser version and local storage access
     var browserInfo = navigator.userAgent;
+    var uid = new Date;
 
     try {
-      tnsStorage = localStorage;
-      // remove storage when browser version changes
-      if (tnsStorage['tnsApp'] !== browserInfo) {
-        ['tC', 'tPL', 'tMQ', 'tTf', 't3D', 'tTDu', 'tTDe', 'tADu', 'tADe', 'tTE', 'tAE'].forEach(function(item) { tnsStorage.removeItem(item); });
+      tnsStorage = win.localStorage;
+      if (tnsStorage) {
+        tnsStorage.setItem(uid, uid);
+        localStorageAccess = tnsStorage.getItem(uid) == uid;
+        tnsStorage.removeItem(uid);
+      } else {
+        localStorageAccess = false;
       }
-      // update browserInfo
-      localStorage['tnsApp'] = browserInfo;
+      if (!localStorageAccess) { tnsStorage = {}; }
     } catch(e) {
       localStorageAccess = false;
     }
 
-    // reset tnsStorage when localStorage is null (on some versions of Chrome Mobile #134)
-    // https://stackoverflow.com/questions/8701015/html-localstorage-is-null-on-android-when-using-webview
-    if (localStorageAccess && !localStorage) {
-      tnsStorage = {};
-      localStorageAccess = false;
+    if (localStorageAccess) {
+      // remove storage when browser version changes
+      if (tnsStorage['tnsApp'] && tnsStorage['tnsApp'] !== browserInfo) {
+        ['tC', 'tPL', 'tMQ', 'tTf', 't3D', 'tTDu', 'tTDe', 'tADu', 'tADe', 'tTE', 'tAE'].forEach(function(item) { tnsStorage.removeItem(item); });
+      }
+      // update browserInfo
+      localStorage['tnsApp'] = browserInfo;
     }
   }
 
-  var CALC = tnsStorage['tC'] ? 
-        checkStorageValue(tnsStorage['tC']) :
-        setLocalStorage('tC', calc(), localStorageAccess),
-      PERCENTAGELAYOUT = tnsStorage['tPL'] ? 
-        checkStorageValue(tnsStorage['tPL']) :
-        setLocalStorage('tPL', percentageLayout(), localStorageAccess),
-      CSSMQ = tnsStorage['tMQ'] ? 
-        checkStorageValue(tnsStorage['tMQ']) :
-        setLocalStorage('tMQ', mediaquerySupport(), localStorageAccess),
-      TRANSFORM = tnsStorage['tTf'] ? 
-        checkStorageValue(tnsStorage['tTf']) :
-        setLocalStorage('tTf', whichProperty('transform'), localStorageAccess),
-      HAS3D = tnsStorage['t3D'] ? 
-        checkStorageValue(tnsStorage['t3D']) :
-        setLocalStorage('t3D', has3D(TRANSFORM), localStorageAccess),
-      TRANSITIONDURATION = tnsStorage['tTDu'] ? 
-        checkStorageValue(tnsStorage['tTDu']) :
-        setLocalStorage('tTDu', whichProperty('transitionDuration'), localStorageAccess),
-      TRANSITIONDELAY = tnsStorage['tTDe'] ? 
-        checkStorageValue(tnsStorage['tTDe']) :
-        setLocalStorage('tTDe', whichProperty('transitionDelay'), localStorageAccess),
-      ANIMATIONDURATION = tnsStorage['tADu'] ? 
-        checkStorageValue(tnsStorage['tADu']) :
-        setLocalStorage('tADu', whichProperty('animationDuration'), localStorageAccess),
-      ANIMATIONDELAY = tnsStorage['tADe'] ? 
-        checkStorageValue(tnsStorage['tADe']) :
-        setLocalStorage('tADe', whichProperty('animationDelay'), localStorageAccess),
-      TRANSITIONEND = tnsStorage['tTE'] ? 
-        checkStorageValue(tnsStorage['tTE']) :
-        setLocalStorage('tTE', getEndProperty(TRANSITIONDURATION, 'Transition'), localStorageAccess),
-      ANIMATIONEND = tnsStorage['tAE'] ? 
-        checkStorageValue(tnsStorage['tAE']) :
-        setLocalStorage('tAE', getEndProperty(ANIMATIONDURATION, 'Animation'), localStorageAccess);
+  var CALC = tnsStorage['tC'] ? checkStorageValue(tnsStorage['tC']) : setLocalStorage(tnsStorage, 'tC', calc(), localStorageAccess),
+      PERCENTAGELAYOUT = tnsStorage['tPL'] ? checkStorageValue(tnsStorage['tPL']) : setLocalStorage(tnsStorage, 'tPL', percentageLayout(), localStorageAccess),
+      CSSMQ = tnsStorage['tMQ'] ? checkStorageValue(tnsStorage['tMQ']) : setLocalStorage(tnsStorage, 'tMQ', mediaquerySupport(), localStorageAccess),
+      TRANSFORM = tnsStorage['tTf'] ? checkStorageValue(tnsStorage['tTf']) : setLocalStorage(tnsStorage, 'tTf', whichProperty('transform'), localStorageAccess),
+      HAS3DTRANSFORMS = tnsStorage['t3D'] ? checkStorageValue(tnsStorage['t3D']) : setLocalStorage(tnsStorage, 't3D', has3DTransforms(TRANSFORM), localStorageAccess),
+      TRANSITIONDURATION = tnsStorage['tTDu'] ? checkStorageValue(tnsStorage['tTDu']) : setLocalStorage(tnsStorage, 'tTDu', whichProperty('transitionDuration'), localStorageAccess),
+      TRANSITIONDELAY = tnsStorage['tTDe'] ? checkStorageValue(tnsStorage['tTDe']) : setLocalStorage(tnsStorage, 'tTDe', whichProperty('transitionDelay'), localStorageAccess),
+      ANIMATIONDURATION = tnsStorage['tADu'] ? checkStorageValue(tnsStorage['tADu']) : setLocalStorage(tnsStorage, 'tADu', whichProperty('animationDuration'), localStorageAccess),
+      ANIMATIONDELAY = tnsStorage['tADe'] ? checkStorageValue(tnsStorage['tADe']) : setLocalStorage(tnsStorage, 'tADe', whichProperty('animationDelay'), localStorageAccess),
+      TRANSITIONEND = tnsStorage['tTE'] ? checkStorageValue(tnsStorage['tTE']) : setLocalStorage(tnsStorage, 'tTE', getEndProperty(TRANSITIONDURATION, 'Transition'), localStorageAccess),
+      ANIMATIONEND = tnsStorage['tAE'] ? checkStorageValue(tnsStorage['tAE']) : setLocalStorage(tnsStorage, 'tAE', getEndProperty(ANIMATIONDURATION, 'Animation'), localStorageAccess);
 
   // get element nodes from selectors
   var supportConsoleWarn = win.console && typeof win.console.warn === "function",
-      list = ['container', 'controlsContainer', 'prevButton', 'nextButton', 'navContainer', 'autoplayButton'];
-  for (var i = list.length; i--;) {
-    var item = list[i];
+      tnsList = ['container', 'controlsContainer', 'prevButton', 'nextButton', 'navContainer', 'autoplayButton'], 
+      optionsElements = {};
+      
+  tnsList.forEach(function(item) {
     if (typeof options[item] === 'string') {
-      var el = doc.querySelector(options[item]);
+      var str = options[item],
+          el = doc.querySelector(str);
+      optionsElements[item] = str;
 
       if (el && el.nodeName) {
         options[item] = el;
@@ -1656,7 +1601,7 @@ var tns = function(options) {
         return;
       }
     }
-  }
+  });
 
   // make sure at least 1 slide
   if (options.container.children.length < 1) {
@@ -1664,139 +1609,157 @@ var tns = function(options) {
     return;
    }
 
-  // update responsive
-  // from: { 
-  //    300: 2, 
-  //    800: {
-  //      loop: false
-  //    }
-  // }
-  // to: {
-  //    300: { 
-  //      items: 2 
-  //    }, 
-  //    800: {
-  //      loop: false
-  //    }
-  // }
-  if (options.responsive) {
-    var resTem = {}, res = options.responsive;
-    for(var key in res) {
-      var val = res[key];
-      resTem[key] = typeof val === 'number' ? {items: val} :  val;
-    }
+  // update options
+  var responsive = options.responsive,
+      nested = options.nested,
+      carousel = options.mode === 'carousel' ? true : false;
 
-    options.responsive = resTem;
-    resTem = null;
-
+  if (responsive) {
     // apply responsive[0] to options and remove it
-    if (0 in options.responsive) {
-      options = extend(options, options.responsive[0]);
-      delete options.responsive[0];
+    if (0 in responsive) {
+      options = extend(options, responsive[0]);
+      delete responsive[0];
     }
+
+    var responsiveTem = {};
+    for (var key in responsive) {
+      var val = responsive[key];
+      // update responsive
+      // from: 300: 2
+      // to: 
+      //   300: { 
+      //     items: 2 
+      //   } 
+      val = typeof val === 'number' ? {items: val} : val;
+      responsiveTem[key] = val;
+    }
+    responsive = responsiveTem;
+    responsiveTem = null;
   }
 
-  // === define and set variables ===
-  var carousel = options.mode === 'carousel' ? true : false;
+  // update options
+  function updateOptions (obj) {
+    for (var key in obj) {
+      if (!carousel) {
+        if (key === 'slideBy') { obj[key] = 'page'; }
+        if (key === 'edgePadding') { obj[key] = false; }
+        if (key === 'autoHeight') { obj[key] = false; }
+      }
 
+      // update responsive options
+      if (key === 'responsive') { updateOptions(obj[key]); }
+    }
+  }
+  if (!carousel) { updateOptions(options); }
+
+
+  // === define and set variables ===
   if (!carousel) {
     options.axis = 'horizontal';
+    options.slideBy = 'page';
     options.edgePadding = false;
 
-    var animateIn = 'tns-fadeIn',
-        animateOut = 'tns-fadeOut',
-        animateDelay = false,
-        animateNormal = options.animateNormal || 'tns-normal';
-
-    if (TRANSITIONEND && ANIMATIONEND) {
-      animateIn = options.animateIn || animateIn;
-      animateOut = options.animateOut || animateOut;
-      animateDelay = options.animateDelay || animateDelay;
-    }
+    var animateIn = options.animateIn,
+        animateOut = options.animateOut,
+        animateDelay = options.animateDelay,
+        animateNormal = options.animateNormal;
   }
 
   var horizontal = options.axis === 'horizontal' ? true : false,
       outerWrapper = doc.createElement('div'),
       innerWrapper = doc.createElement('div'),
+      middleWrapper,
       container = options.container,
       containerParent = container.parentNode,
+      containerHTML = container.outerHTML,
       slideItems = container.children,
       slideCount = slideItems.length,
-      vpInner,
-      responsive = options.responsive,
-      responsiveItems = [],
-      breakpoints = false,
-      breakpointZone = 0,
+      breakpointZone,
       windowWidth = getWindowWidth(),
-      isOn;
+      isOn = false;
+  if (responsive) { setBreakpointZone(); }
+  if (carousel) { container.className += ' tns-vpfix'; }
 
-  if (options.fixedWidth) { var vpOuter = getViewportWidth(containerParent); }
-
-  if (responsive) {
-    breakpoints = Object.keys(responsive)
-      .map(function (x) { return parseInt(x); })
-      .sort(function (a, b) { return a - b; });
-
-    // get all responsive items
-    breakpoints.forEach(function(bp) {
-      responsiveItems = responsiveItems.concat(Object.keys(responsive[bp]));
-    });
-
-    // remove duplicated items
-    var arr = [];
-    responsiveItems.forEach(function (item) { if (arr.indexOf(item) < 0) { arr.push(item); } });
-    responsiveItems = arr;
-
-    setBreakpointZone();
-  } 
-
-  var items = getOption('items'),
-      slideBy = getOption('slideBy') === 'page' ? items : getOption('slideBy'),
-      nested = options.nested,
-      gutter = getOption('gutter'),
-      edgePadding = getOption('edgePadding'),
+  // fixedWidth: viewport > rightBoundary > indexMax
+  var autoWidth = options.autoWidth,
       fixedWidth = getOption('fixedWidth'),
-      fixedWidthViewportWidth = options.fixedWidthViewportWidth,
+      edgePadding = getOption('edgePadding'),
+      gutter = getOption('gutter'),
+      viewport = getViewportWidth(),
+      center = getOption('center'),
+      items = !autoWidth ? Math.floor(getOption('items')) : 1,
+      slideBy = getOption('slideBy'),
+      viewportMax = options.viewportMax || options.fixedWidthViewportWidth,
       arrowKeys = getOption('arrowKeys'),
       speed = getOption('speed'),
       rewind = options.rewind,
       loop = rewind ? false : options.loop,
       autoHeight = getOption('autoHeight'),
+      controls = getOption('controls'),
+      controlsText = getOption('controlsText'),
+      nav = getOption('nav'),
+      touch = getOption('touch'),
+      mouseDrag = getOption('mouseDrag'),
+      autoplay = getOption('autoplay'),
+      autoplayTimeout = getOption('autoplayTimeout'),
+      autoplayText = getOption('autoplayText'),
+      autoplayHoverPause = getOption('autoplayHoverPause'),
+      autoplayResetOnVisibility = getOption('autoplayResetOnVisibility'),
       sheet = createStyleSheet(),
       lazyload = options.lazyload,
-      slideOffsetTops, // collection of slide offset tops
+      lazyloadSelector = options.lazyloadSelector,
+      slidePositions, // collection of slide positions
       slideItemsOut = [],
-      hasEdgePadding = checkOption('edgePadding'),
       cloneCount = loop ? getCloneCountForLoop() : 0,
       slideCountNew = !carousel ? slideCount + cloneCount : slideCount + cloneCount * 2,
-      hasRightDeadZone = fixedWidth && !loop && !edgePadding ? true : false,
+      hasRightDeadZone = (fixedWidth || autoWidth) && !loop ? true : false,
+      rightBoundary = fixedWidth ? getRightBoundary() : null,
       updateIndexBeforeTransform = (!carousel || !loop) ? true : false,
       // transform
       transformAttr = horizontal ? 'left' : 'top',
       transformPrefix = '',
       transformPostfix = '',
       // index
-      startIndex = getOption('startIndex'),
-      index = startIndex ? updateStartIndex(startIndex) : !carousel ? 0 : cloneCount,
+      getIndexMax = (function () {
+        if (fixedWidth) {
+          return function() { return center && !loop ? slideCount - 1 : Math.ceil(- rightBoundary / (fixedWidth + gutter)); };
+        } else if (autoWidth) {
+          return function() {
+            for (var i = slideCountNew; i--;) {
+              if (slidePositions[i] >= - rightBoundary) { return i; }
+            }
+          };
+        } else {
+          return function() {
+            if (center && carousel && !loop) {
+              return slideCount - 1;
+            } else {
+              return loop || carousel ? Math.max(0, slideCountNew - Math.ceil(items)) : slideCountNew - 1;
+            }
+          };
+        }
+      })(),
+      index = getStartIndex(getOption('startIndex')),
       indexCached = index,
+      displayIndex = getCurrentSlide(),
       indexMin = 0,
-      indexMax = getIndexMax(),
+      indexMax = !autoWidth ? getIndexMax() : null,
       // resize
       resizeTimer,
+      preventActionWhenRunning = options.preventActionWhenRunning,
       swipeAngle = options.swipeAngle,
       moveDirectionExpected = swipeAngle ? '?' : true,
       running = false,
       onInit = options.onInit,
       events = new Events(),
       // id, class
-      containerIdCached = container.id,
-      classContainer = ' tns-slider tns-' + options.mode,
+      newContainerClasses = ' tns-slider tns-' + options.mode,
       slideId = container.id || getSlideId(),
       disable = getOption('disable'),
+      disabled = false,
       freezable = options.freezable,
-      freeze = disable ? true : freezable ? slideCount <= items : false,
-      frozen,
-      importantStr = nested === 'inner' ? ' !important' : '',
+      freeze = freezable && !autoWidth ? getFreeze() : false,
+      frozen = false,
       controlsEvents = {
         'click': onControlsClick,
         'keydown': onControlsKeydown
@@ -1822,53 +1785,54 @@ var tns = function(options) {
         'mouseup': onPanEnd,
         'mouseleave': onPanEnd
       },
-      hasControls = checkOption('controls'),
-      hasNav = checkOption('nav'),
-      navAsThumbnails = options.navAsThumbnails,
-      hasAutoplay = checkOption('autoplay'),
-      hasTouch = checkOption('touch'),
-      hasMouseDrag = checkOption('mouseDrag'),
+      hasControls = hasOption('controls'),
+      hasNav = hasOption('nav'),
+      navAsThumbnails = autoWidth ? true : options.navAsThumbnails,
+      hasAutoplay = hasOption('autoplay'),
+      hasTouch = hasOption('touch'),
+      hasMouseDrag = hasOption('mouseDrag'),
       slideActiveClass = 'tns-slide-active',
       imgCompleteClass = 'tns-complete',
       imgEvents = {
-        'load': imgLoadedOrError,
-        'error': imgLoadedOrError
+        'load': onImgLoaded,
+        'error': onImgFailed
       },
-      imgsComplete;
+      imgsComplete,
+      liveregionCurrent,
+      preventScroll = options.preventScrollOnTouch === 'force' ? true : false;
 
   // controls
   if (hasControls) {
-    var controls = getOption('controls'),
-        controlsText = getOption('controlsText'),
-        controlsContainer = options.controlsContainer,
+    var controlsContainer = options.controlsContainer,
+        controlsContainerHTML = options.controlsContainer ? options.controlsContainer.outerHTML : '',
         prevButton = options.prevButton,
         nextButton = options.nextButton,
+        prevButtonHTML = options.prevButton ? options.prevButton.outerHTML : '',
+        nextButtonHTML = options.nextButton ? options.nextButton.outerHTML : '',
         prevIsButton,
         nextIsButton;
   }
 
   // nav
   if (hasNav) {
-    var nav = getOption('nav'),
-        navContainer = options.navContainer,
+    var navContainer = options.navContainer,
+        navContainerHTML = options.navContainer ? options.navContainer.outerHTML : '',
         navItems,
-        visibleNavIndexes = [],
-        visibleNavIndexesCached = visibleNavIndexes,
+        pages = autoWidth ? slideCount : getPages(),
+        pagesCached = 0,
         navClicked = -1,
-        navCurrentIndex = getAbsIndex(),
+        navCurrentIndex = getCurrentNavIndex(),
         navCurrentIndexCached = navCurrentIndex,
-        navActiveClass = 'tns-nav-active';
+        navActiveClass = 'tns-nav-active',
+        navStr = 'Carousel Page ',
+        navStrCurrent = ' (Current Slide)';
   }
 
   // autoplay
   if (hasAutoplay) {
-    var autoplay = getOption('autoplay'),
-        autoplayTimeout = getOption('autoplayTimeout'),
-        autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
-        autoplayText = getOption('autoplayText'),
-        autoplayHoverPause = getOption('autoplayHoverPause'),
+    var autoplayDirection = options.autoplayDirection === 'forward' ? 1 : -1,
         autoplayButton = options.autoplayButton,
-        autoplayResetOnVisibility = getOption('autoplayResetOnVisibility'),
+        autoplayButtonHTML = options.autoplayButton ? options.autoplayButton.outerHTML : '',
         autoplayHtmlStrings = ['<span class=\'tns-visually-hidden\'>', ' animation</span>'],
         autoplayTimer,
         animating,
@@ -1884,32 +1848,20 @@ var tns = function(options) {
         disX,
         disY,
         panStart = false,
-        rafIndex = 0,
+        rafIndex,
         getDist = horizontal ? 
           function(a, b) { return a.x - b.x; } :
           function(a, b) { return a.y - b.y; };
   }
   
-  // touch
-  if (hasTouch) {
-    var touch = getOption('touch');
-  }
-
-  // mouse drag
-  if (hasMouseDrag) {
-    var mouseDrag = getOption('mouseDrag');
-  }
-
   // disable slider when slidecount <= items
-  if (freeze) {
-    controls = nav = touch = mouseDrag = arrowKeys = autoplay = autoplayHoverPause = autoplayResetOnVisibility = false;
-  }
+  if (!autoWidth) { resetVariblesWhenDisable(disable || freeze); }
 
   if (TRANSFORM) {
     transformAttr = TRANSFORM;
     transformPrefix = 'translate';
 
-    if (HAS3D) {
+    if (HAS3DTRANSFORMS) {
       transformPrefix += horizontal ? '3d(' : '3d(0px, ';
       transformPostfix = horizontal ? ', 0px, 0px)' : ', 0px)';
     } else {
@@ -1919,48 +1871,73 @@ var tns = function(options) {
 
   }
 
+  if (carousel) { container.className = container.className.replace('tns-vpfix', ''); }
+  initStructure();
+  initSheet();
+  initSliderTransform();
+
   // === COMMON FUNCTIONS === //
-  function getIndexMax () {
-    return carousel || loop ? Math.max(0, slideCountNew - items) : slideCountNew - 1;
+  function resetVariblesWhenDisable (condition) {
+    if (condition) {
+      controls = nav = touch = mouseDrag = arrowKeys = autoplay = autoplayHoverPause = autoplayResetOnVisibility = false;
+    }
   }
 
-  function updateStartIndex (indexTem) {
-    indexTem = indexTem%slideCount;
-    if (indexTem < 0) { indexTem += slideCount; }
-    indexTem = Math.min(indexTem, slideCountNew - items);
-    return indexTem;
+  function getCurrentSlide () {
+    var tem = carousel ? index - cloneCount : index;
+    while (tem < 0) { tem += slideCount; }
+    return tem%slideCount + 1;
+  }
+
+  function getStartIndex (ind) {
+    ind = ind ? Math.max(0, Math.min(loop ? slideCount - 1 : slideCount - items, ind)) : 0;
+    return carousel ? ind + cloneCount : ind;
   }
 
   function getAbsIndex (i) {
-    if (i === undefined) { i = index; }
+    if (i == null) { i = index; }
 
-    var min = carousel ? cloneCount : 0;
-    while (i < min) { i += slideCount; }
     if (carousel) { i -= cloneCount; }
+    while (i < 0) { i += slideCount; }
 
-    return i ? i%slideCount : i;
+    return Math.floor(i%slideCount);
+  }
+
+  function getCurrentNavIndex () {
+    var absIndex = getAbsIndex(),
+        result;
+
+    result = navAsThumbnails ? absIndex : 
+      fixedWidth || autoWidth ? Math.ceil((absIndex + 1) * pages / slideCount - 1) : 
+          Math.floor(absIndex / items);
+
+    // set active nav to the last one when reaches the right edge
+    if (!loop && carousel && index === indexMax) { result = pages - 1; }
+
+    return result;
   }
 
   function getItemsMax () {
-    if (fixedWidth && !fixedWidthViewportWidth) {
+    // fixedWidth or autoWidth while viewportMax is not available
+    if (autoWidth || (fixedWidth && !viewportMax)) {
       return slideCount - 1;
+    // most cases
     } else {
       var str = fixedWidth ? 'fixedWidth' : 'items',
           arr = [];
 
       if (fixedWidth || options[str] < slideCount) { arr.push(options[str]); }
 
-      if (breakpoints && responsiveItems.indexOf(str) >= 0) {
-        breakpoints.forEach(function(bp) {
+      if (responsive) {
+        for (var bp in responsive) {
           var tem = responsive[bp][str];
           if (tem && (fixedWidth || tem < slideCount)) { arr.push(tem); }
-        });
+        }
       }
 
       if (!arr.length) { arr.push(0); }
 
-      return fixedWidth ? Math.ceil(fixedWidthViewportWidth / Math.min.apply(null, arr)) :
-        Math.max.apply(null, arr);
+      return Math.ceil(fixedWidth ? viewportMax / Math.min.apply(null, arr) : Math.max.apply(null, arr));
     }
   }
 
@@ -1969,61 +1946,71 @@ var tns = function(options) {
         result = carousel ? Math.ceil((itemsMax * 5 - slideCount)/2) : (itemsMax * 4 - slideCount);
     result = Math.max(itemsMax, result);
 
-    return hasEdgePadding ? result + 1 : result;
+    return hasOption('edgePadding') ? result + 1 : result;
   }
 
   function getWindowWidth () {
     return win.innerWidth || doc.documentElement.clientWidth || doc.body.clientWidth;
   }
 
-  function getViewportWidth (el) {
-    return el.clientWidth || getViewportWidth(el.parentNode);
+  function getInsertPosition (pos) {
+    return pos === 'top' ? 'afterbegin' : 'beforeend';
   }
 
-  function checkOption (item) {
-    var result = options[item];
-    if (!result && breakpoints && responsiveItems.indexOf(item) >= 0) {
-      breakpoints.forEach(function (bp) {
-        if (responsive[bp][item]) { result = true; }
-      });
-    }
-    return result;
+  function getClientWidth (el) {
+    var div = doc.createElement('div'), rect, width;
+    el.appendChild(div);
+    rect = div.getBoundingClientRect();
+    width = rect.right - rect.left;
+    div.remove();
+    return width || getClientWidth(el.parentNode);
   }
 
-  function getOption (item, viewport) {
-    viewport = viewport ? viewport : windowWidth;
-    
-    var obj = {
-          slideBy: 'page',
-          edgePadding: false
-        },
-        result;
+  function getViewportWidth () {
+    var gap = edgePadding ? edgePadding * 2 - gutter : 0;
+    return getClientWidth(containerParent) - gap;
+  }
 
-    if (!carousel && item in obj) {
-      result = obj[item];
+  function hasOption (item) {
+    if (options[item]) {
+      return true;
     } else {
-      if (item === 'items' && getOption('fixedWidth')) {
-        result = Math.floor(vpOuter / (getOption('fixedWidth') + getOption('gutter')));
-      } else if (item === 'autoHeight' && nested === 'outer') {
-        result = true;
-      } else {
-        result = options[item];
+      if (responsive) {
+        for (var bp in responsive) {
+          if (responsive[bp][item]) { return true; }
+        }
+      }
+      return false;
+    }
+  }
 
-        if (breakpoints && responsiveItems.indexOf(item) >= 0) {
-          for (var i = 0, len = breakpoints.length; i < len; i++) {
-            var bp = breakpoints[i];
-            if (viewport >= bp) {
-              if (item in responsive[bp]) { result = responsive[bp][item]; }
-            } else { break; }
+  // get option:
+  // fixed width: viewport, fixedWidth, gutter => items
+  // others: window width => all variables
+  // all: items => slideBy
+  function getOption (item, ww) {
+    if (ww == null) { ww = windowWidth; }
+
+    if (item === 'items' && fixedWidth) {
+      return Math.floor((viewport + gutter) / (fixedWidth + gutter)) || 1;
+
+    } else {
+      var result = options[item];
+
+      if (responsive) {
+        for (var bp in responsive) {
+          // bp: convert string to number
+          if (ww >= parseInt(bp)) {
+            if (item in responsive[bp]) { result = responsive[bp][item]; }
           }
         }
       }
+
+      if (item === 'slideBy' && result === 'page') { result = getOption('items'); }
+      if (!carousel && (item === 'slideBy' || item === 'items')) { result = Math.floor(result); }
+
+      return result;
     }
-
-
-    if (item === 'slideBy' && result === 'page') { result = getOption('items'); }
-
-    return result;
   }
 
   function getSlideMarginLeft (i) {
@@ -2032,27 +2019,22 @@ var tns = function(options) {
       i * 100 / slideCountNew + '%';
   }
 
-  function getInnerWrapperStyles (edgePaddingTem, gutterTem, fixedWidthTem, speedTem) {
+  function getInnerWrapperStyles (edgePaddingTem, gutterTem, fixedWidthTem, speedTem, autoHeightBP) {
     var str = '';
 
-    if (edgePaddingTem) {
+    if (edgePaddingTem !== undefined) {
       var gap = edgePaddingTem;
-      if (gutterTem) { gap += gutterTem; }
-      if (fixedWidthTem) {
-        str = 'margin: 0px ' + (vpOuter%(fixedWidthTem + gutterTem) + gutterTem) / 2 + 'px;';
-      } else {
-        str = horizontal ?
-          'margin: 0 ' + edgePaddingTem + 'px 0 ' + gap + 'px;' :
-          'padding: ' + gap + 'px 0 ' + edgePaddingTem + 'px 0;';
-      }
+      if (gutterTem) { gap -= gutterTem; }
+      str = horizontal ?
+        'margin: 0 ' + gap + 'px 0 ' + edgePaddingTem + 'px;' :
+        'margin: ' + edgePaddingTem + 'px 0 ' + gap + 'px 0;';
     } else if (gutterTem && !fixedWidthTem) {
       var gutterTemUnit = '-' + gutterTem + 'px',
           dir = horizontal ? gutterTemUnit + ' 0 0' : '0 ' + gutterTemUnit + ' 0';
       str = 'margin: 0 ' + dir + ';'
     }
 
-    if (TRANSITIONDURATION && speedTem) { str += getTrsnsitionDurationStyle(speedTem); }
-    
+    if (!carousel && autoHeightBP && TRANSITIONDURATION && speedTem) { str += getTransitionDurationStyle(speedTem); }
     return str;
   }
 
@@ -2072,17 +2054,17 @@ var tns = function(options) {
     if (fixedWidthTem) {
       width = (fixedWidthTem + gutterTem) + 'px';
     } else {
+      if (!carousel) { itemsTem = Math.floor(itemsTem); }
       var dividend = carousel ? slideCountNew : itemsTem;
       width = CALC ? 
         CALC + '(100% / ' + dividend + ')' : 
         100 / dividend + '%';
     }
 
-    return 'width:' + width + importantStr + ';';
-  }
+    width = 'width:' + width;
 
-  function getSlideWidthStylePX (itemsTem) {
-    return vpInner / itemsTem + 'px';
+    // inner slider: overwrite outer slider styles
+    return nested !== 'inner' ? width + ';' : width + ' !important;';
   }
 
   function getSlideGutterStyle (gutterTem) {
@@ -2106,7 +2088,7 @@ var tns = function(options) {
     return prefix;
   }
 
-  function getTrsnsitionDurationStyle (speed) {
+  function getTransitionDurationStyle (speed) {
     return getCSSPrefix(TRANSITIONDURATION, 18) + 'transition-duration:' + speed / 1000 + 's;';
   }
 
@@ -2114,75 +2096,60 @@ var tns = function(options) {
     return getCSSPrefix(ANIMATIONDURATION, 17) + 'animation-duration:' + speed / 1000 + 's;';
   }
 
-  (function sliderInit () {
-    // First thing first, wrap container with 'outerWrapper > innerWrapper',
-    // to get the correct view width
-    outerWrapper.appendChild(innerWrapper);
-    containerParent.insertBefore(outerWrapper, container);
-    innerWrapper.appendChild(container);
-
+  function initStructure () {
     var classOuter = 'tns-outer',
         classInner = 'tns-inner',
-        hasGutter = checkOption('gutter');
-
-    if (carousel) {
-      if (horizontal) {
-        if (checkOption('edgePadding') || hasGutter && !options.fixedWidth) {
-          classOuter += ' tns-ovh';
-        } else {
-          classInner += ' tns-ovh';
-        }
-      } else {
-        classInner += ' tns-ovh';
-      }
-    } else if (hasGutter) {
-      classOuter += ' tns-ovh';
-    }
+        hasGutter = hasOption('gutter');
 
     outerWrapper.className = classOuter;
     innerWrapper.className = classInner;
+    outerWrapper.id = slideId + '-ow';
     innerWrapper.id = slideId + '-iw';
-    if (autoHeight) { innerWrapper.className += ' tns-ah'; }
 
     // set container properties
     if (container.id === '') { container.id = slideId; }
-    classContainer += PERCENTAGELAYOUT ? ' tns-subpixel' : ' tns-no-subpixel';
-    classContainer += CALC ? ' tns-calc' : ' tns-no-calc';
-    if (carousel) { classContainer += ' tns-' + options.axis; }
-    container.className += classContainer;
+    newContainerClasses += PERCENTAGELAYOUT || autoWidth ? ' tns-subpixel' : ' tns-no-subpixel';
+    newContainerClasses += CALC ? ' tns-calc' : ' tns-no-calc';
+    if (autoWidth) { newContainerClasses += ' tns-autowidth'; }
+    newContainerClasses += ' tns-' + options.axis;
+    container.className += newContainerClasses;
 
-    // get inner viewport width after classes added
-    // to prevent scrollbar occupies part of viewport
-    vpInner = getViewportWidth(innerWrapper);
-    var epT = getOption('edgePadding'),
-        gT = getOption('gutter');
-    vpInner += epT ? - (epT * 2 + gutter) : gutter;
+    // add constrain layer for carousel
+    if (carousel) {
+      middleWrapper = doc.createElement('div');
+      middleWrapper.id = slideId + '-mw';
+      middleWrapper.className = 'tns-ovh';
 
-    // add events
-    if (carousel && TRANSITIONEND) {
-      var eve = {};
-      eve[TRANSITIONEND] = onTransitionEnd;
-      addEvents(container, eve);
+      outerWrapper.appendChild(middleWrapper);
+      middleWrapper.appendChild(innerWrapper);
+    } else {
+      outerWrapper.appendChild(innerWrapper);
     }
 
-    // delete datas after init
-    classOuter = classInner = null;
+    if (autoHeight) {
+      var wp = middleWrapper ? middleWrapper : innerWrapper;
+      wp.className += ' tns-ah';
+    }
+
+    containerParent.insertBefore(outerWrapper, container);
+    innerWrapper.appendChild(container);
 
     // add id, class, aria attributes 
     // before clone slides
-    for (var x = 0; x < slideCount; x++) {
-      var item = slideItems[x];
-      if (!item.id) { item.id = slideId + '-item' + x; }
+    forEach(slideItems, function(item, i) {
       addClass(item, 'tns-item');
+      if (!item.id) { item.id = slideId + '-item' + i; }
       if (!carousel && animateNormal) { addClass(item, animateNormal); }
       setAttrs(item, {
         'aria-hidden': 'true',
         'tabindex': '-1'
       });
-    }
+    });
 
-    // clone slides
-    if (loop || edgePadding) {
+    // ## clone slides
+    // carousel: n + slides + n
+    // gallery:      slides + n
+    if (cloneCount) {
       var fragmentBefore = doc.createDocumentFragment(), 
           fragmentAfter = doc.createDocumentFragment();
 
@@ -2204,94 +2171,146 @@ var tns = function(options) {
       slideItems = container.children;
     }
 
-    // check images loading
-    if (checkOption('autoHeight') || !carousel || !horizontal) {
+  }
+
+  function initSliderTransform () {
+    // ## images loaded/failed
+    if (hasOption('autoHeight') || autoWidth || !horizontal) {
       var imgs = container.querySelectorAll('img');
 
-      // check all image complete status
-      // add complete class if true
-      forEachNodeList(imgs, function(img) {
-        addEvents(img, imgEvents);
-
+      // add complete class if all images are loaded/failed
+      forEach(imgs, function(img) {
         var src = img.src;
-        img.src = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==";
-        img.src = src;
+        
+        if (src && src.indexOf('data:image') < 0) {
+          addEvents(img, imgEvents);
+          img.src = '';
+          img.src = src;
+          addClass(img, 'loading');
+        } else if (!lazyload) {
+          imgLoaded(img);
+        }
       });
 
-      // set imgsComplete to true 
-      // when all images are compulete (loaded or error)
-      raf(function(){ imageLoaded(arrayFromNodeList(imgs), function() {
-        imgsComplete = true;
+      // All imgs are completed
+      raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), function() { imgsComplete = true; }); });
 
-        if (!disable) {
-          if (!horizontal) {
-            getSlideOffsetTops();
-            updateContentWrapperHeight();
-          }
+      // Check imgs in window only for auto height
+      if (!autoWidth && horizontal) { imgs = getImageArray(index, Math.min(index + items - 1, slideCountNew - 1)); }
 
-          // set container transform property
-          if (carousel) {
-            doContainerTransformSilent();
-          }
-        }
-      }); });
+      lazyload ? initSliderTransformStyleCheck() : raf(function(){ imgsLoadedCheck(arrayFromNodeList(imgs), initSliderTransformStyleCheck); });
+
+    } else {
+      // set container transform property
+      if (carousel) { doContainerTransformSilent(); }
+
+      // update slider tools and events
+      initTools();
+      initEvents();
+    }
+  }
+
+  function initSliderTransformStyleCheck () {
+    if (autoWidth) {
+      // check styles application
+      var num = loop ? index : slideCount - 1;
+      (function stylesApplicationCheck() {
+        slideItems[num - 1].getBoundingClientRect().right.toFixed(2) === slideItems[num].getBoundingClientRect().left.toFixed(2) ?
+        initSliderTransformCore() :
+        setTimeout(function(){ stylesApplicationCheck() }, 16);
+      })();
+    } else {
+      initSliderTransformCore();
+    }
+  }
+
+
+  function initSliderTransformCore () {
+    // run Fn()s which are rely on image loading
+    if (!horizontal || autoWidth) {
+      setSlidePositions();
+
+      if (autoWidth) {
+        rightBoundary = getRightBoundary();
+        if (freezable) { freeze = getFreeze(); }
+        indexMax = getIndexMax(); // <= slidePositions, rightBoundary <=
+        resetVariblesWhenDisable(disable || freeze);
+      } else {
+        updateContentWrapperHeight();
+      }
     }
 
-    if (carousel && horizontal) { doContainerTransformSilent(); }
+    // set container transform property
+    if (carousel) { doContainerTransformSilent(); }
 
-    // activate visible slides
-    // add aria attrs
+    // update slider tools and events
+    initTools();
+    initEvents();
+  }
+
+  function initSheet () {
+    // gallery:
     // set animation classes and left value for gallery slider
-    // use slide count when slides are fewer than items
-    for (var i = index, l = index + Math.min(slideCount, items); i < l; i++) {
-      var item = slideItems[i];
-      setAttrs(item, {'aria-hidden': 'false'});
-      removeAttrs(item, ['tabindex']);
-      addClass(item, slideActiveClass);
-
-      if (!carousel) { 
+    if (!carousel) { 
+      for (var i = index, l = index + Math.min(slideCount, items); i < l; i++) {
+        var item = slideItems[i];
         item.style.left = (i - index) * 100 / items + '%';
         addClass(item, animateIn);
         removeClass(item, animateNormal);
       }
     }
 
-    if (carousel && horizontal) {
-      // set font-size rules
-      // for modern browsers
-      if (PERCENTAGELAYOUT) {
-        // set slides font-size first
+    // #### LAYOUT
+
+    // ## INLINE-BLOCK VS FLOAT
+
+    // ## PercentageLayout:
+    // slides: inline-block
+    // remove blank space between slides by set font-size: 0
+
+    // ## Non PercentageLayout:
+    // slides: float
+    //         margin-right: -100%
+    //         margin-left: ~
+
+    // Resource: https://docs.google.com/spreadsheets/d/147up245wwTXeQYve3BRSAD4oVcvQmuGsFteJOeA5xNQ/edit?usp=sharing
+    if (horizontal) {
+      if (PERCENTAGELAYOUT || autoWidth) {
         addCSSRule(sheet, '#' + slideId + ' > .tns-item', 'font-size:' + win.getComputedStyle(slideItems[0]).fontSize + ';', getCssRulesLength(sheet));
         addCSSRule(sheet, '#' + slideId, 'font-size:0;', getCssRulesLength(sheet));
-
-      // slide left margin
-      // for IE8, MS Edge & webkit browsers (no subpixel)
-      } else {
-        forEachNodeList(slideItems, function (slide, i) {
+      } else if (carousel) {
+        forEach(slideItems, function (slide, i) {
           slide.style.marginLeft = getSlideMarginLeft(i);
         });
       }
     }
 
-    // all browsers which support CSS transitions support CSS media queries
+
+    // ## BASIC STYLES
     if (CSSMQ) {
+      // middle wrapper style
+      if (TRANSITIONDURATION) {
+        var str = middleWrapper && options.autoHeight ? getTransitionDurationStyle(options.speed) : '';
+        addCSSRule(sheet, '#' + slideId + '-mw', str, getCssRulesLength(sheet));
+      }
+
       // inner wrapper styles
-      var str = getInnerWrapperStyles(options.edgePadding, options.gutter, options.fixedWidth, options.speed);
+      str = getInnerWrapperStyles(options.edgePadding, options.gutter, options.fixedWidth, options.speed, options.autoHeight);
       addCSSRule(sheet, '#' + slideId + '-iw', str, getCssRulesLength(sheet));
 
       // container styles
       if (carousel) {
-        str = horizontal ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
-        if (TRANSITIONDURATION) { str += getTrsnsitionDurationStyle(speed); }
+        str = horizontal && !autoWidth ? 'width:' + getContainerWidth(options.fixedWidth, options.gutter, options.items) + ';' : '';
+        if (TRANSITIONDURATION) { str += getTransitionDurationStyle(speed); }
         addCSSRule(sheet, '#' + slideId, str, getCssRulesLength(sheet));
       }
 
       // slide styles
-      str = horizontal ? getSlideWidthStyle(options.fixedWidth, options.gutter, options.items) : '';
+      str = horizontal && !autoWidth ? getSlideWidthStyle(options.fixedWidth, options.gutter, options.items) : '';
       if (options.gutter) { str += getSlideGutterStyle(options.gutter); }
       // set gallery items transition-duration
       if (!carousel) {
-        if (TRANSITIONDURATION) { str += getTrsnsitionDurationStyle(speed); }
+        if (TRANSITIONDURATION) { str += getTransitionDurationStyle(speed); }
         if (ANIMATIONDURATION) { str += getAnimationDurationStyle(speed); }
       }
       if (str) { addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet)); }
@@ -2301,47 +2320,60 @@ var tns = function(options) {
     // set inline styles for inner wrapper & container
     // insert stylesheet (one line) for slides only (since slides are many)
     } else {
+      // middle wrapper styles
+      update_carousel_transition_duration();
+
       // inner wrapper styles
-      innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth);
+      innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth, autoHeight);
 
       // container styles
-      if (carousel && horizontal) {
+      if (carousel && horizontal && !autoWidth) {
         container.style.width = getContainerWidth(fixedWidth, gutter, items);
       }
 
       // slide styles
-      var str = horizontal ? getSlideWidthStyle(fixedWidth, gutter, items) : '';
+      var str = horizontal && !autoWidth ? getSlideWidthStyle(fixedWidth, gutter, items) : '';
       if (gutter) { str += getSlideGutterStyle(gutter); }
 
       // append to the last line
       if (str) { addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet)); }
     }
 
-    // media queries
+    // ## MEDIAQUERIES
     if (responsive && CSSMQ) {
-      breakpoints.forEach(function(bp) {
+      for (var bp in responsive) {
+        // bp: convert string to number
+        bp = parseInt(bp);
+
         var opts = responsive[bp],
             str = '',
+            middleWrapperStr = '',
             innerWrapperStr = '',
             containerStr = '',
             slideStr = '',
-            itemsBP = getOption('items', bp),
+            itemsBP = !autoWidth ? getOption('items', bp) : null,
             fixedWidthBP = getOption('fixedWidth', bp),
             speedBP = getOption('speed', bp),
             edgePaddingBP = getOption('edgePadding', bp),
+            autoHeightBP = getOption('autoHeight', bp),
             gutterBP = getOption('gutter', bp);
+
+        // middle wrapper string
+        if (TRANSITIONDURATION && middleWrapper && getOption('autoHeight', bp) && 'speed' in opts) {
+          middleWrapperStr = '#' + slideId + '-mw{' + getTransitionDurationStyle(speedBP) + '}';
+        }
 
         // inner wrapper string
         if ('edgePadding' in opts || 'gutter' in opts) {
-          innerWrapperStr = '#' + slideId + '-iw{' + getInnerWrapperStyles(edgePaddingBP, gutterBP, fixedWidthBP, speedBP) + '}';
+          innerWrapperStr = '#' + slideId + '-iw{' + getInnerWrapperStyles(edgePaddingBP, gutterBP, fixedWidthBP, speedBP, autoHeightBP) + '}';
         }
 
         // container string
-        if (carousel && horizontal && ('fixedWidth' in opts || 'items' in opts || (fixedWidth && 'gutter' in opts))) {
+        if (carousel && horizontal && !autoWidth && ('fixedWidth' in opts || 'items' in opts || (fixedWidth && 'gutter' in opts))) {
           containerStr = 'width:' + getContainerWidth(fixedWidthBP, gutterBP, itemsBP) + ';';
         }
         if (TRANSITIONDURATION && 'speed' in opts) {
-          containerStr += getTrsnsitionDurationStyle(speedBP);
+          containerStr += getTransitionDurationStyle(speedBP);
         }
         if (containerStr) {
           containerStr = '#' + slideId + '{' + containerStr + '}';
@@ -2356,27 +2388,49 @@ var tns = function(options) {
         }
         // set gallery items transition-duration
         if (!carousel && 'speed' in opts) {
-          if (TRANSITIONDURATION) { slideStr += getTrsnsitionDurationStyle(speedBP); }
+          if (TRANSITIONDURATION) { slideStr += getTransitionDurationStyle(speedBP); }
           if (ANIMATIONDURATION) { slideStr += getAnimationDurationStyle(speedBP); }
         }
         if (slideStr) { slideStr = '#' + slideId + ' > .tns-item{' + slideStr + '}'; }
 
         // add up
-        str = innerWrapperStr + containerStr + slideStr;
+        str = middleWrapperStr + innerWrapperStr + containerStr + slideStr;
 
         if (str) {
           sheet.insertRule('@media (min-width: ' + bp / 16 + 'em) {' + str + '}', sheet.cssRules.length);
         }
-      });
+      }
     }
+  }
 
+  function initTools () {
+    // == slides ==
+    updateSlideStatus();
 
-    // == msInit ==
-    // for IE10
-    if (navigator.msMaxTouchPoints) {
-      addClass(container, 'ms-touch');
-      addEvents(container, {'scroll': ie10Scroll});
-      setSnapInterval();
+    // == live region ==
+    outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-liveregion tns-visually-hidden" aria-live="polite" aria-atomic="true">slide <span class="current">' + getLiveRegionStr() + '</span>  of ' + slideCount + '</div>');
+    liveregionCurrent = outerWrapper.querySelector('.tns-liveregion .current');
+
+    // == autoplayInit ==
+    if (hasAutoplay) {
+      var txt = autoplay ? 'stop' : 'start';
+      if (autoplayButton) {
+        setAttrs(autoplayButton, {'data-action': txt});
+      } else if (options.autoplayButtonOutput) {
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.autoplayPosition), '<button data-action="' + txt + '">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
+        autoplayButton = outerWrapper.querySelector('[data-action]');
+      }
+
+      // add event
+      if (autoplayButton) {
+        addEvents(autoplayButton, {'click': toggleAutoplay});
+      }
+
+      if (autoplay) {
+        startAutoplay();
+        if (autoplayHoverPause) { addEvents(container, hoverEvents); }
+        if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
+      }
     }
  
     // == navInit ==
@@ -2387,28 +2441,25 @@ var tns = function(options) {
       if (navContainer) {
         setAttrs(navContainer, {'aria-label': 'Carousel Pagination'});
         navItems = navContainer.children;
-        for (var i = 0; i < slideCount; i++) {
-          var item = navItems[i];
-          if (item) {
-            setAttrs(item, {
-              'data-nav': i,
-              'tabindex': '-1',
-              'aria-selected': 'false',
-              'aria-controls': slideItems[initIndex + i].id,
-            });
-          }
-        }
+        forEach(navItems, function(item, i) {
+          setAttrs(item, {
+            'data-nav': i,
+            'tabindex': '-1',
+            'aria-label': navStr + (i + 1),
+            'aria-controls': slideId,
+          });
+        });
 
       // generated nav 
       } else {
         var navHtml = '',
-            hiddenStr = navAsThumbnails ? '' : 'hidden';
+            hiddenStr = navAsThumbnails ? '' : 'style="display:none"';
         for (var i = 0; i < slideCount; i++) {
           // hide nav items by default
-          navHtml += '<button data-nav="' + i +'" tabindex="-1" aria-selected="false" aria-controls="' + slideItems[initIndex + i].id + '" ' + hiddenStr + ' type="button"></button>';
+          navHtml += '<button data-nav="' + i +'" tabindex="-1" aria-controls="' + slideId + '" ' + hiddenStr + ' aria-label="' + navStr + (i + 1) +'"></button>';
         }
         navHtml = '<div class="tns-nav" aria-label="Carousel Pagination">' + navHtml + '</div>';
-        outerWrapper.insertAdjacentHTML('afterbegin', navHtml);
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.navPosition), navHtml);
 
         navContainer = outerWrapper.querySelector('.tns-nav');
         navItems = navContainer.children;
@@ -2428,67 +2479,46 @@ var tns = function(options) {
         addCSSRule(sheet, '[aria-controls^=' + slideId + '-item]', str, getCssRulesLength(sheet));
       }
 
-      setAttrs(navItems[navCurrentIndex], {'tabindex': '0', 'aria-selected': 'true'});
+      setAttrs(navItems[navCurrentIndex], {'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent});
+      removeAttrs(navItems[navCurrentIndex], 'tabindex');
       addClass(navItems[navCurrentIndex], navActiveClass);
 
       // add events
       addEvents(navContainer, navEvents);
-
-      if (!nav) { hideElement(navContainer); }
     }
 
-
-    // == autoplayInit ==
-    if (hasAutoplay) {
-      var txt = autoplay ? 'stop' : 'start';
-      if (autoplayButton) {
-        setAttrs(autoplayButton, {'data-action': txt});
-      } else if (options.autoplayButtonOutput) {
-        innerWrapper.insertAdjacentHTML('beforebegin', '<button data-action="' + txt + '" type="button">' + autoplayHtmlStrings[0] + txt + autoplayHtmlStrings[1] + autoplayText[0] + '</button>');
-        autoplayButton = outerWrapper.querySelector('[data-action]');
-      }
-
-      // add event
-      if (autoplayButton) {
-        addEvents(autoplayButton, {'click': toggleAutoplay});
-      }
-
-      if (!autoplay) {
-        if (autoplayButton) {
-          hideElement(autoplayButton);
-        }
-      } else {
-        startAutoplay();
-        if (autoplayHoverPause) { addEvents(container, hoverEvents); }
-        if (autoplayResetOnVisibility) { addEvents(container, visibilityEvent); }
-      }
-    }
 
 
     // == controlsInit ==
     if (hasControls) {
-      if (controlsContainer || (prevButton && nextButton)) {
-        if (controlsContainer) {
-          prevButton = controlsContainer.children[0];
-          nextButton = controlsContainer.children[1];
-          setAttrs(controlsContainer, {
-            'aria-label': 'Carousel Navigation',
-            'tabindex': '0'
-          });
-          setAttrs(controlsContainer.children, {
-            'aria-controls': slideId,
-            'tabindex': '-1',
-          });
-        }
-        
-        setAttrs(prevButton, {'data-controls' : 'prev'});
-        setAttrs(nextButton, {'data-controls' : 'next'});
-      } else {
-        outerWrapper.insertAdjacentHTML('afterbegin', '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button data-controls="prev" tabindex="-1" aria-controls="' + slideId +'" type="button">' + controlsText[0] + '</button><button data-controls="next" tabindex="-1" aria-controls="' + slideId +'" type="button">' + controlsText[1] + '</button></div>');
+      if (!controlsContainer && (!prevButton || !nextButton)) {
+        outerWrapper.insertAdjacentHTML(getInsertPosition(options.controlsPosition), '<div class="tns-controls" aria-label="Carousel Navigation" tabindex="0"><button data-controls="prev" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[0] + '</button><button data-controls="next" tabindex="-1" aria-controls="' + slideId +'">' + controlsText[1] + '</button></div>');
 
         controlsContainer = outerWrapper.querySelector('.tns-controls');
+      }
+
+      if (!prevButton || !nextButton) {
         prevButton = controlsContainer.children[0];
         nextButton = controlsContainer.children[1];
+      }
+
+      if (options.controlsContainer) {
+        setAttrs(controlsContainer, {
+          'aria-label': 'Carousel Navigation',
+          'tabindex': '0'
+        });
+      }
+
+      if (options.controlsContainer || (options.prevButton && options.nextButton)) {
+        setAttrs([prevButton, nextButton], {
+          'aria-controls': slideId,
+          'tabindex': '-1',
+        });
+      }
+      
+      if (options.controlsContainer || (options.prevButton && options.nextButton)) {
+        setAttrs(prevButton, {'data-controls' : 'prev'});
+        setAttrs(nextButton, {'data-controls' : 'next'});
       }
 
       prevIsButton = isButton(prevButton);
@@ -2503,246 +2533,356 @@ var tns = function(options) {
         addEvents(prevButton, controlsEvents);
         addEvents(nextButton, controlsEvents);
       }
-
-      if (!controls) { hideElement(controlsContainer); }
     }
 
+    // hide tools if needed
+    disableUI();
+  }
 
-    // if (!navigator.msMaxTouchPoints) {
-    if (carousel) {
-      if (touch) { addEvents(container, touchEvents); }
-      if (mouseDrag) { addEvents(container, dragEvents); }
+  function initEvents () {
+    // add events
+    if (carousel && TRANSITIONEND) {
+      var eve = {};
+      eve[TRANSITIONEND] = onTransitionEnd;
+      addEvents(container, eve);
     }
-    // }
+
+    if (touch) { addEvents(container, touchEvents, options.preventScrollOnTouch); }
+    if (mouseDrag) { addEvents(container, dragEvents); }
     if (arrowKeys) { addEvents(doc, docmentKeydownEvent); }
-
 
     if (nested === 'inner') {
       events.on('outerResized', function () {
         resizeTasks();
         events.emit('innerLoaded', info());
       });
-    } else {
+    } else if (responsive || fixedWidth || autoWidth || autoHeight || !horizontal) {
       addEvents(win, {'resize': onResize});
     }
 
-    if (nested === 'outer') {
-      events.on('innerLoaded', runAutoHeight);
-    } else if ((autoHeight || !carousel) && !disable) {
-      runAutoHeight();
+    if (autoHeight) {
+      if (nested === 'outer') {
+        events.on('innerLoaded', doAutoHeight);
+      } else if (!disable) { doAutoHeight(); }
     }
 
-    lazyLoad();
-    toggleSlideDisplayAndEdgePadding();
-    updateFixedWidthInnerWrapperStyle();
+    doLazyLoad();
+    if (disable) { disableSlider(); } else if (freeze) { freezeSlider(); }
 
     events.on('indexChanged', additionalUpdates);
-
-    if (typeof onInit === 'function') { onInit(info()); }
     if (nested === 'inner') { events.emit('innerLoaded', info()); }
-
-    if (disable) { disableSlider(true); }
-
+    if (typeof onInit === 'function') { onInit(info()); }
     isOn = true;
-  })();
+  }
+
+  function destroy () {
+    // sheet
+    sheet.disabled = true;
+    if (sheet.ownerNode) { sheet.ownerNode.remove(); }
+
+    // remove win event listeners
+    removeEvents(win, {'resize': onResize});
+
+    // arrowKeys, controls, nav
+    if (arrowKeys) { removeEvents(doc, docmentKeydownEvent); }
+    if (controlsContainer) { removeEvents(controlsContainer, controlsEvents); }
+    if (navContainer) { removeEvents(navContainer, navEvents); }
+
+    // autoplay
+    removeEvents(container, hoverEvents);
+    removeEvents(container, visibilityEvent);
+    if (autoplayButton) { removeEvents(autoplayButton, {'click': toggleAutoplay}); }
+    if (autoplay) { clearInterval(autoplayTimer); }
+
+    // container
+    if (carousel && TRANSITIONEND) {
+      var eve = {};
+      eve[TRANSITIONEND] = onTransitionEnd;
+      removeEvents(container, eve);
+    }
+    if (touch) { removeEvents(container, touchEvents); }
+    if (mouseDrag) { removeEvents(container, dragEvents); }
+
+    // cache Object values in options && reset HTML
+    var htmlList = [containerHTML, controlsContainerHTML, prevButtonHTML, nextButtonHTML, navContainerHTML, autoplayButtonHTML];
+
+    tnsList.forEach(function(item, i) {
+      var el = item === 'container' ? outerWrapper : options[item];
+
+      if (typeof el === 'object') {
+        var prevEl = el.previousElementSibling ? el.previousElementSibling : false,
+            parentEl = el.parentNode;
+        el.outerHTML = htmlList[i];
+        options[item] = prevEl ? prevEl.nextElementSibling : parentEl.firstElementChild;
+      }
+    });
 
 
+    // reset variables
+    tnsList = animateIn = animateOut = animateDelay = animateNormal = horizontal = outerWrapper = innerWrapper = container = containerParent = containerHTML = slideItems = slideCount = breakpointZone = windowWidth = autoWidth = fixedWidth = edgePadding = gutter = viewport = items = slideBy = viewportMax = arrowKeys = speed = rewind = loop = autoHeight = sheet = lazyload = slidePositions = slideItemsOut = cloneCount = slideCountNew = hasRightDeadZone = rightBoundary = updateIndexBeforeTransform = transformAttr = transformPrefix = transformPostfix = getIndexMax = index = indexCached = indexMin = indexMax = resizeTimer = swipeAngle = moveDirectionExpected = running = onInit = events = newContainerClasses = slideId = disable = disabled = freezable = freeze = frozen = controlsEvents = navEvents = hoverEvents = visibilityEvent = docmentKeydownEvent = touchEvents = dragEvents = hasControls = hasNav = navAsThumbnails = hasAutoplay = hasTouch = hasMouseDrag = slideActiveClass = imgCompleteClass = imgEvents = imgsComplete = controls = controlsText = controlsContainer = controlsContainerHTML = prevButton = nextButton = prevIsButton = nextIsButton = nav = navContainer = navContainerHTML = navItems = pages = pagesCached = navClicked = navCurrentIndex = navCurrentIndexCached = navActiveClass = navStr = navStrCurrent = autoplay = autoplayTimeout = autoplayDirection = autoplayText = autoplayHoverPause = autoplayButton = autoplayButtonHTML = autoplayResetOnVisibility = autoplayHtmlStrings = autoplayTimer = animating = autoplayHoverPaused = autoplayUserPaused = autoplayVisibilityPaused = initPosition = lastPosition = translateInit = disX = disY = panStart = rafIndex = getDist = touch = mouseDrag = null;
+    // check variables
+    // [animateIn, animateOut, animateDelay, animateNormal, horizontal, outerWrapper, innerWrapper, container, containerParent, containerHTML, slideItems, slideCount, breakpointZone, windowWidth, autoWidth, fixedWidth, edgePadding, gutter, viewport, items, slideBy, viewportMax, arrowKeys, speed, rewind, loop, autoHeight, sheet, lazyload, slidePositions, slideItemsOut, cloneCount, slideCountNew, hasRightDeadZone, rightBoundary, updateIndexBeforeTransform, transformAttr, transformPrefix, transformPostfix, getIndexMax, index, indexCached, indexMin, indexMax, resizeTimer, swipeAngle, moveDirectionExpected, running, onInit, events, newContainerClasses, slideId, disable, disabled, freezable, freeze, frozen, controlsEvents, navEvents, hoverEvents, visibilityEvent, docmentKeydownEvent, touchEvents, dragEvents, hasControls, hasNav, navAsThumbnails, hasAutoplay, hasTouch, hasMouseDrag, slideActiveClass, imgCompleteClass, imgEvents, imgsComplete, controls, controlsText, controlsContainer, controlsContainerHTML, prevButton, nextButton, prevIsButton, nextIsButton, nav, navContainer, navContainerHTML, navItems, pages, pagesCached, navClicked, navCurrentIndex, navCurrentIndexCached, navActiveClass, navStr, navStrCurrent, autoplay, autoplayTimeout, autoplayDirection, autoplayText, autoplayHoverPause, autoplayButton, autoplayButtonHTML, autoplayResetOnVisibility, autoplayHtmlStrings, autoplayTimer, animating, autoplayHoverPaused, autoplayUserPaused, autoplayVisibilityPaused, initPosition, lastPosition, translateInit, disX, disY, panStart, rafIndex, getDist, touch, mouseDrag ].forEach(function(item) { if (item !== null) { console.log(item); } });
 
-
+    for (var a in this) {
+      if (a !== 'rebuild') { this[a] = null; }
+    }
+    isOn = false;
+  }
 
 // === ON RESIZE ===
+  // responsive || fixedWidth || autoWidth || !horizontal
   function onResize (e) {
     raf(function(){ resizeTasks(getEvent(e)); });
   }
 
   function resizeTasks (e) {
     if (!isOn) { return; }
-    
-    windowWidth = getWindowWidth();
     if (nested === 'outer') { events.emit('outerResized', info(e)); }
-
-    var breakpointZoneTem = breakpointZone,
-        indexTem = index, 
-        itemsTem = items,
-        freezeTem = freeze,
+    windowWidth = getWindowWidth();
+    var bpChanged,
+        breakpointZoneTem = breakpointZone,
         needContainerTransform = false;
 
-    if (fixedWidth) { vpOuter = getViewportWidth(outerWrapper); }
-    vpInner = getViewportWidth(innerWrapper);
-    if (breakpoints) { setBreakpointZone(); }
+    if (responsive) {
+      setBreakpointZone();
+      bpChanged = breakpointZoneTem !== breakpointZone;
+      // if (hasRightDeadZone) { needContainerTransform = true; } // *?
+      if (bpChanged) { events.emit('newBreakpointStart', info(e)); }
+    }
 
-    if (breakpointZoneTem !== breakpointZone) { events.emit('newBreakpointStart', info(e)); }
+    var indChanged,
+        itemsChanged,
+        itemsTem = items,
+        disableTem = disable,
+        freezeTem = freeze,
+        arrowKeysTem = arrowKeys,
+        controlsTem = controls,
+        navTem = nav,
+        touchTem = touch,
+        mouseDragTem = mouseDrag,
+        autoplayTem = autoplay,
+        autoplayHoverPauseTem = autoplayHoverPause,
+        autoplayResetOnVisibilityTem = autoplayResetOnVisibility,
+        indexTem = index;
 
-    // things do when breakpoint zone change
-    if (breakpointZoneTem !== breakpointZone || fixedWidth) {
-      var slideByTem = slideBy,
-          arrowKeysTem = arrowKeys,
+    if (bpChanged) {
+      var fixedWidthTem = fixedWidth,
           autoHeightTem = autoHeight,
-          fixedWidthTem = fixedWidth,
-          edgePaddingTem = edgePadding,
-          gutterTem = gutter,
-          disableTem = disable;
+          controlsTextTem = controlsText,
+          centerTem = center,
+          autoplayTextTem = autoplayText;
 
-      // update variables
+      if (!CSSMQ) {
+        var gutterTem = gutter,
+            edgePaddingTem = edgePadding;
+      }
+    }
+
+    // get option:
+    // fixed width: viewport, fixedWidth, gutter => items
+    // others: window width => all variables
+    // all: items => slideBy
+    arrowKeys = getOption('arrowKeys');
+    controls = getOption('controls');
+    nav = getOption('nav');
+    touch = getOption('touch');
+    center = getOption('center');
+    mouseDrag = getOption('mouseDrag');
+    autoplay = getOption('autoplay');
+    autoplayHoverPause = getOption('autoplayHoverPause');
+    autoplayResetOnVisibility = getOption('autoplayResetOnVisibility');
+
+    if (bpChanged) {
+      disable = getOption('disable');
+      fixedWidth = getOption('fixedWidth');
+      speed = getOption('speed');
+      autoHeight = getOption('autoHeight');
+      controlsText = getOption('controlsText');
+      autoplayText = getOption('autoplayText');
+      autoplayTimeout = getOption('autoplayTimeout');
+
+      if (!CSSMQ) {
+        edgePadding = getOption('edgePadding');
+        gutter = getOption('gutter');
+      }
+    }
+    // update options
+    resetVariblesWhenDisable(disable);
+
+    viewport = getViewportWidth(); // <= edgePadding, gutter
+    if ((!horizontal || autoWidth) && !disable) {
+      setSlidePositions();
+      if (!horizontal) {
+        updateContentWrapperHeight(); // <= setSlidePositions
+        needContainerTransform = true;
+      }
+    }
+    if (fixedWidth || autoWidth) {
+      rightBoundary = getRightBoundary(); // autoWidth: <= viewport, slidePositions, gutter
+                                          // fixedWidth: <= viewport, fixedWidth, gutter
+      indexMax = getIndexMax(); // autoWidth: <= rightBoundary, slidePositions
+                                // fixedWidth: <= rightBoundary, fixedWidth, gutter
+    }
+
+    if (bpChanged || fixedWidth) {
       items = getOption('items');
       slideBy = getOption('slideBy');
-      disable = getOption('disable');
-      freeze = disable ? true : freezable ? slideCount <= items : false;
+      itemsChanged = items !== itemsTem;
 
-      if (items !== itemsTem) {
-        indexMax = getIndexMax();
+      if (itemsChanged) {
+        if (!fixedWidth && !autoWidth) { indexMax = getIndexMax(); } // <= items
         // check index before transform in case
         // slider reach the right edge then items become bigger
         updateIndex();
       }
-
+    }
+    
+    if (bpChanged) {
       if (disable !== disableTem) {
-        disableSlider(disable);
+        if (disable) {
+          disableSlider();
+        } else {
+          enableSlider(); // <= slidePositions, rightBoundary, indexMax
+        }
       }
-      
+    }
+
+    if (freezable && (bpChanged || fixedWidth || autoWidth)) {
+      freeze = getFreeze(); // <= autoWidth: slidePositions, gutter, viewport, rightBoundary
+                            // <= fixedWidth: fixedWidth, gutter, rightBoundary
+                            // <= others: items
+
       if (freeze !== freezeTem) {
-        // reset index to initial status
-        if (freeze) { index = !carousel ? 0 : cloneCount; }
-
-        toggleSlideDisplayAndEdgePadding();
-      }
-      
-      if (breakpointZoneTem !== breakpointZone) {
-        speed = getOption('speed');
-        edgePadding = getOption('edgePadding');
-        gutter = getOption('gutter');
-
-        fixedWidth = getOption('fixedWidth');
-        if (!disable && fixedWidth !== fixedWidthTem) {
+        if (freeze) {
+          doContainerTransform(getContainerTransformValue(getStartIndex(0)));
+          freezeSlider();
+        } else {
+          unfreezeSlider();
           needContainerTransform = true;
         }
-
-        autoHeight = getOption('autoHeight');
-        if (autoHeight !== autoHeightTem) {
-          if (!autoHeight) { innerWrapper.style.height = ''; }
-        }
       }
+    }
 
-      arrowKeys = freeze ? false : getOption('arrowKeys');
-      if (arrowKeys !== arrowKeysTem) {
-        arrowKeys ?
-          addEvents(doc, docmentKeydownEvent) :
-          removeEvents(doc, docmentKeydownEvent);
-      }
+    resetVariblesWhenDisable(disable || freeze); // controls, nav, touch, mouseDrag, arrowKeys, autoplay, autoplayHoverPause, autoplayResetOnVisibility
+    if (!autoplay) { autoplayHoverPause = autoplayResetOnVisibility = false; }
 
-      if (hasControls) {
-        var controlsTem = controls,
-            controlsTextTem = controlsText;
-        controls = freeze ? false : getOption('controls');
-        controlsText = getOption('controlsText');
-
-        if (controls !== controlsTem) {
-          controls ?
-            showElement(controlsContainer) :
-            hideElement(controlsContainer); 
-        }
-        if (controlsText !== controlsTextTem) {
-          prevButton.innerHTML = controlsText[0];
-          nextButton.innerHTML = controlsText[1];
-        }
-      }
-      if (hasNav) {
-        var navTem = nav;
-        nav = freeze ? false : getOption('nav');
-
-        if (nav !== navTem) {
-          if (nav) {
-            showElement(navContainer);
-            updateNavVisibility();
-          } else {
-            hideElement(navContainer);
-          }
-        }
-      }
-      if (hasTouch) {
-        var touchTem = touch;
-        touch = freeze ? false : getOption('touch');
-
-        if (touch !== touchTem && carousel) {
-          touch ?
-            addEvents(container, touchEvents) :
-            removeEvents(container, touchEvents);
-        }
-      }
-      if (hasMouseDrag) {
-        var mouseDragTem = mouseDrag;
-        mouseDrag = freeze ? false : getOption('mouseDrag');
-
-        if (mouseDrag !== mouseDragTem && carousel) {
-          mouseDrag ?
-            addEvents(container, dragEvents) :
-            removeEvents(container, dragEvents);
-        }
-      }
-      if (hasAutoplay) {
-        var autoplayTem = autoplay,
-            autoplayHoverPauseTem = autoplayHoverPause,
-            autoplayResetOnVisibilityTem = autoplayResetOnVisibility,
-            autoplayTextTem = autoplayText;
-
-        if (freeze) {
-          autoplay = autoplayHoverPause = autoplayResetOnVisibility = false;
+    if (arrowKeys !== arrowKeysTem) {
+      arrowKeys ?
+        addEvents(doc, docmentKeydownEvent) :
+        removeEvents(doc, docmentKeydownEvent);
+    }
+    if (controls !== controlsTem) {
+      if (controls) {
+        if (controlsContainer) {
+          showElement(controlsContainer);
         } else {
-          autoplay = getOption('autoplay');
-          
-          if (autoplay) {
-            autoplayHoverPause = getOption('autoplayHoverPause');
-            autoplayResetOnVisibility = getOption('autoplayResetOnVisibility');
-          } else {
-            autoplayHoverPause = autoplayResetOnVisibility = false;
-          }
+          if (prevButton) { showElement(prevButton); }
+          if (nextButton) { showElement(nextButton); }
         }
-        autoplayText = getOption('autoplayText');
-        autoplayTimeout = getOption('autoplayTimeout');
-
-        if (autoplay !== autoplayTem) {
-          if (autoplay) {
-            if (autoplayButton) { showElement(autoplayButton); }
-            if (!animating && !autoplayUserPaused) { startAutoplay(); }
-          } else {
-            if (autoplayButton) { hideElement(autoplayButton); }
-            if (animating) { stopAutoplay(); }
-          }
-        }
-        if (autoplayHoverPause !== autoplayHoverPauseTem) {
-          autoplayHoverPause ?
-            addEvents(container, hoverEvents) :
-            removeEvents(container, hoverEvents);
-        }
-        if (autoplayResetOnVisibility !== autoplayResetOnVisibilityTem) {
-          autoplayResetOnVisibility ?
-            addEvents(doc, visibilityEvent) :
-            removeEvents(doc, visibilityEvent);
-        }
-        if (autoplayButton && autoplayText !== autoplayTextTem) {
-          var i = autoplay ? 1 : 0,
-              html = autoplayButton.innerHTML,
-              len = html.length - autoplayTextTem[i].length;
-          if (html.substring(len) === autoplayTextTem[i]) {
-            autoplayButton.innerHTML = html.substring(0, len) + autoplayText[i];
-          }
+      } else {
+        if (controlsContainer) {
+          hideElement(controlsContainer);
+        } else {
+          if (prevButton) { hideElement(prevButton); }
+          if (nextButton) { hideElement(nextButton); }
         }
       }
+    }
+    if (nav !== navTem) {
+      nav ?
+        showElement(navContainer) :
+        hideElement(navContainer);
+    }
+    if (touch !== touchTem) {
+      touch ?
+        addEvents(container, touchEvents, options.preventScrollOnTouch) :
+        removeEvents(container, touchEvents);
+    }
+    if (mouseDrag !== mouseDragTem) {
+      mouseDrag ?
+        addEvents(container, dragEvents) :
+        removeEvents(container, dragEvents);
+    }
+    if (autoplay !== autoplayTem) {
+      if (autoplay) {
+        if (autoplayButton) { showElement(autoplayButton); }
+        if (!animating && !autoplayUserPaused) { startAutoplay(); }
+      } else {
+        if (autoplayButton) { hideElement(autoplayButton); }
+        if (animating) { stopAutoplay(); }
+      }
+    }
+    if (autoplayHoverPause !== autoplayHoverPauseTem) {
+      autoplayHoverPause ?
+        addEvents(container, hoverEvents) :
+        removeEvents(container, hoverEvents);
+    }
+    if (autoplayResetOnVisibility !== autoplayResetOnVisibilityTem) {
+      autoplayResetOnVisibility ?
+        addEvents(doc, visibilityEvent) :
+        removeEvents(doc, visibilityEvent);
+    }
 
+    if (bpChanged) {
+      if (fixedWidth !== fixedWidthTem || center !== centerTem) { needContainerTransform = true; }
+
+      if (autoHeight !== autoHeightTem) {
+        if (!autoHeight) { innerWrapper.style.height = ''; }
+      }
+
+      if (controls && controlsText !== controlsTextTem) {
+        prevButton.innerHTML = controlsText[0];
+        nextButton.innerHTML = controlsText[1];
+      }
+
+      if (autoplayButton && autoplayText !== autoplayTextTem) {
+        var i = autoplay ? 1 : 0,
+            html = autoplayButton.innerHTML,
+            len = html.length - autoplayTextTem[i].length;
+        if (html.substring(len) === autoplayTextTem[i]) {
+          autoplayButton.innerHTML = html.substring(0, len) + autoplayText[i];
+        }
+      }
+    } else {
+      if (center && (fixedWidth || autoWidth)) { needContainerTransform = true; }
+    }
+
+    if (itemsChanged || fixedWidth && !autoWidth) {
+      pages = getPages();
+      updateNavVisibility();
+    }
+
+    indChanged = index !== indexTem;
+    if (indChanged) { 
+      events.emit('indexChanged', info());
+      needContainerTransform = true;
+    } else if (itemsChanged) {
+      if (!indChanged) { additionalUpdates(); }
+    } else if (fixedWidth || autoWidth) {
+      doLazyLoad(); 
+      updateSlideStatus();
+      updateLiveRegion();
+    }
+
+    if (itemsChanged && !carousel) { updateGallerySlidePositions(); }
+
+    if (!disable && !freeze) {
       // non-meduaqueries: IE8
-      // ## update inner wrapper, container, slides if needed
-      // set inline styles for inner wrapper & container
-      // insert stylesheet (one line) for slides only (since slides are many)
-      if (!CSSMQ) {
-        // inner wrapper styles
-        if (!freeze && (edgePadding !== edgePaddingTem || gutter !== gutterTem)) {
-          innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth);
+      if (bpChanged && !CSSMQ) {
+        // middle wrapper styles
+        if (autoHeight !== autoheightTem || speed !== speedTem) {
+          update_carousel_transition_duration();
         }
 
-        if (horizontal && !fixedWidth) {
+        // inner wrapper styles
+        if (edgePadding !== edgePaddingTem || gutter !== gutterTem) {
+          innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth, speed, autoHeight);
+        }
+
+        if (horizontal) {
           // container styles
           if (carousel) {
-            container.style.width = getContainerWidth(false, null, items);
+            container.style.width = getContainerWidth(fixedWidth, gutter, items);
           }
 
           // slide styles
@@ -2754,41 +2894,18 @@ var tns = function(options) {
           removeCSSRule(sheet, getCssRulesLength(sheet) - 1);
           addCSSRule(sheet, '#' + slideId + ' > .tns-item', str, getCssRulesLength(sheet));
         }
-
-        if (!fixedWidth) { needContainerTransform = true; }
       }
 
-      if (index !== indexTem) { 
-        events.emit('indexChanged', info());
-        needContainerTransform = true;
-      }
+      // auto height
+      if (autoHeight) { doAutoHeight(); }
 
-      if (items !== itemsTem) { 
-        additionalUpdates();
-        updateSlidePosition();
-
-        if (navigator.msMaxTouchPoints) { setSnapInterval(); }
+      if (needContainerTransform) {
+        doContainerTransformSilent();
+        indexCached = index;
       }
     }
 
-    // ** things always do regardless of breakpoint zone changing **
-    if (!horizontal && !disable) {
-      getSlideOffsetTops();
-      updateContentWrapperHeight();
-      needContainerTransform = true;
-    }
-
-    if (needContainerTransform) {
-      doContainerTransformSilent();
-      indexCached = index;
-    }
-
-    updateFixedWidthInnerWrapperStyle(true);
-
-    // auto height
-    if ((autoHeight || !carousel) && !disable) { runAutoHeight(); }
-
-    if (breakpointZoneTem !== breakpointZone) { events.emit('newBreakpointEnd', info(e)); }
+    if (bpChanged) { events.emit('newBreakpointEnd', info(e)); }
   }
 
 
@@ -2796,19 +2913,28 @@ var tns = function(options) {
 
 
   // === INITIALIZATION FUNCTIONS === //
+  function getFreeze () {
+    if (!fixedWidth && !autoWidth) {
+      var a = center ? items - (items - 1) / 2 : items;
+      return  slideCount <= a;
+    }
+
+    var width = fixedWidth ? (fixedWidth + gutter) * slideCount : slidePositions[slideCount],
+        vp = edgePadding ? viewport + edgePadding * 2 : viewport + gutter;
+
+    if (center) {
+      vp -= fixedWidth ? (viewport - fixedWidth) / 2 : (viewport - (slidePositions[index + 1] - slidePositions[index] - gutter)) / 2;
+    }
+
+    return width <= vp;
+  }
+
   function setBreakpointZone () {
     breakpointZone = 0;
-    breakpoints.forEach(function(bp, i) {
-      if (windowWidth >= bp) { breakpointZone = i + 1; }
-    });
-  }
-
-  function loopNumber (num, min, max) {
-    return index >= indexMin && index <= indexMax ? index : index > indexMax ? index - slideCount : index + slideCount;
-  }
-
-  function cutindexber (index, min, indexMax) {
-    return index >= indexMin && index <= indexMax ? index : index > indexMax ? indexMax : indexMin;
+    for (var bp in responsive) {
+      bp = parseInt(bp); // convert string to number
+      if (windowWidth >= bp) { breakpointZone = bp; }
+    }
   }
 
   // (slideBy, indexMin, indexMax) => index
@@ -2823,14 +2949,13 @@ var tns = function(options) {
           leftEdge += slideBy;
           rightEdge -= slideBy;
 
-          // adjust edges when edge padding is true
+          // adjust edges when has edge paddings
           // or fixed-width slider with extra space on the right side
           if (edgePadding) {
             leftEdge += 1;
             rightEdge -= 1;
           } else if (fixedWidth) {
-            var gt = gutter ? gutter : 0;
-            if (vpOuter%(fixedWidth + gt) > gt) { rightEdge -= 1; }
+            if ((viewport + gutter)%(fixedWidth + gutter)) { rightEdge -= 1; }
           }
 
           if (cloneCount) {
@@ -2855,152 +2980,271 @@ var tns = function(options) {
       };
   })();
 
-  function toggleSlideDisplayAndEdgePadding () {
-    // if (cloneCount) {
-    // if (fixedWidth && cloneCount) {
-      var str = 'tns-transparent';
-
-      if (freeze) {
-        if (!frozen) {
-          // remove edge padding from inner wrapper
-          if (edgePadding) { innerWrapper.style.margin = '0px'; }
-
-          // add class tns-transparent to cloned slides
-          if (cloneCount) {
-            for (var i = cloneCount; i--;) {
-              if (carousel) { addClass(slideItems[i], str); }
-              addClass(slideItems[slideCountNew - i - 1], str);
-            }
-          }
-
-          frozen = true;
-        }
-      } else if (frozen) {
-        // restore edge padding for inner wrapper
-        // for mordern browsers
-        if (edgePadding && !fixedWidth && CSSMQ) { innerWrapper.style.margin = ''; }
-
-        // remove class tns-transparent to cloned slides
-        if (cloneCount) {
-          for (var i = cloneCount; i--;) {
-            if (carousel) { removeClass(slideItems[i], str); }
-            removeClass(slideItems[slideCountNew - i - 1], str);
-          }
-        }
-
-        frozen = false;
-      }
-    // }
-  }
-
-  function updateFixedWidthInnerWrapperStyle (resize) {
-    if (fixedWidth && edgePadding) {
-      // remove edge padding when freeze or viewport narrower than one slide
-      if (freeze || vpOuter <= (fixedWidth + gutter)) {
-        if (innerWrapper.style.margin !== '0px') { innerWrapper.style.margin = '0px'; }
-      // update edge padding on resize
-      } else if (resize) {
-        innerWrapper.style.cssText = getInnerWrapperStyles(edgePadding, gutter, fixedWidth);
+  function disableUI () {
+    if (!autoplay && autoplayButton) { hideElement(autoplayButton); }
+    if (!nav && navContainer) { hideElement(navContainer); }
+    if (!controls) {
+      if (controlsContainer) {
+        hideElement(controlsContainer);
+      } else {
+        if (prevButton) { hideElement(prevButton); }
+        if (nextButton) { hideElement(nextButton); }
       }
     }
   }
 
-  function disableSlider (disable) {
-    var len = slideItems.length;
-    
-    if (disable) {
-      sheet.disabled = true;
-      container.className = container.className.replace(classContainer.substring(1), '');
-      removeElementStyles(container);
-      if (loop) {
-        for (var j = cloneCount; j--;) {
-          if (carousel) { hideElement(slideItems[j]); }
-          hideElement(slideItems[len - j - 1]);
-        }
+  function enableUI () {
+    if (autoplay && autoplayButton) { showElement(autoplayButton); }
+    if (nav && navContainer) { showElement(navContainer); }
+    if (controls) {
+      if (controlsContainer) {
+        showElement(controlsContainer);
+      } else {
+        if (prevButton) { showElement(prevButton); }
+        if (nextButton) { showElement(nextButton); }
       }
+    }
+  }
 
-      // vertical slider
-      if (!horizontal || !carousel) { removeElementStyles(innerWrapper); }
+  function freezeSlider () {
+    if (frozen) { return; }
 
-      // gallery
-      if (!carousel) { 
-        for (var i = index, l = index + slideCount; i < l; i++) {
-          var item = slideItems[i];
-          removeElementStyles(item);
-          removeClass(item, animateIn);
-          removeClass(item, animateNormal);
-        }
+    // remove edge padding from inner wrapper
+    if (edgePadding) { innerWrapper.style.margin = '0px'; }
+
+    // add class tns-transparent to cloned slides
+    if (cloneCount) {
+      var str = 'tns-transparent';
+      for (var i = cloneCount; i--;) {
+        if (carousel) { addClass(slideItems[i], str); }
+        addClass(slideItems[slideCountNew - i - 1], str);
+      }
+    }
+
+    // update tools
+    disableUI();
+
+    frozen = true;
+  }
+
+  function unfreezeSlider () {
+    if (!frozen) { return; }
+
+    // restore edge padding for inner wrapper
+    // for mordern browsers
+    if (edgePadding && CSSMQ) { innerWrapper.style.margin = ''; }
+
+    // remove class tns-transparent to cloned slides
+    if (cloneCount) {
+      var str = 'tns-transparent';
+      for (var i = cloneCount; i--;) {
+        if (carousel) { removeClass(slideItems[i], str); }
+        removeClass(slideItems[slideCountNew - i - 1], str);
+      }
+    }
+
+    // update tools
+    enableUI();
+
+    frozen = false;
+  }
+
+  function disableSlider () {
+    if (disabled) { return; }
+
+    sheet.disabled = true;
+    container.className = container.className.replace(newContainerClasses.substring(1), '');
+    removeAttrs(container, ['style']);
+    if (loop) {
+      for (var j = cloneCount; j--;) {
+        if (carousel) { hideElement(slideItems[j]); }
+        hideElement(slideItems[slideCountNew - j - 1]);
+      }
+    }
+
+    // vertical slider
+    if (!horizontal || !carousel) { removeAttrs(innerWrapper, ['style']); }
+
+    // gallery
+    if (!carousel) { 
+      for (var i = index, l = index + slideCount; i < l; i++) {
+        var item = slideItems[i];
+        removeAttrs(item, ['style']);
+        removeClass(item, animateIn);
+        removeClass(item, animateNormal);
+      }
+    }
+
+    // update tools
+    disableUI();
+
+    disabled = true;
+  }
+
+  function enableSlider () {
+    if (!disabled) { return; }
+
+    sheet.disabled = false;
+    container.className += newContainerClasses;
+    doContainerTransformSilent();
+
+    if (loop) {
+      for (var j = cloneCount; j--;) {
+        if (carousel) { showElement(slideItems[j]); }
+        showElement(slideItems[slideCountNew - j - 1]);
+      }
+    }
+
+    // gallery
+    if (!carousel) { 
+      for (var i = index, l = index + slideCount; i < l; i++) {
+        var item = slideItems[i],
+            classN = i < index + items ? animateIn : animateNormal;
+        item.style.left = (i - index) * 100 / items + '%';
+        addClass(item, classN);
+      }
+    }
+
+    // update tools
+    enableUI();
+
+    disabled = false;
+  }
+
+  function updateLiveRegion () {
+    var str = getLiveRegionStr();
+    if (liveregionCurrent.innerHTML !== str) { liveregionCurrent.innerHTML = str; }
+  }
+
+  function getLiveRegionStr () {
+    var arr = getVisibleSlideRange(),
+        start = arr[0] + 1,
+        end = arr[1] + 1;
+    return start === end ? start + '' : start + ' to ' + end; 
+  }
+
+  function getVisibleSlideRange (val) {
+    if (val == null) { val = getContainerTransformValue(); }
+    var start = index, end, rangestart, rangeend;
+
+    // get range start, range end for autoWidth and fixedWidth
+    if (center || edgePadding) {
+      if (autoWidth || fixedWidth) {
+        rangestart = - (parseFloat(val) + edgePadding);
+        rangeend = rangestart + viewport + edgePadding * 2;
       }
     } else {
-      sheet.disabled = false;
-      container.className += classContainer;
-
-      // vertical slider: get offsetTops before container transform
-      if (!horizontal) { getSlideOffsetTops(); }
-
-      doContainerTransformSilent();
-      if (loop) {
-        for (var j = cloneCount; j--;) {
-          if (carousel) { showElement(slideItems[j]); }
-          showElement(slideItems[len - j - 1]);
-        }
-      }
-
-      // gallery
-      if (!carousel) { 
-        for (var i = index, l = index + slideCount; i < l; i++) {
-          var item = slideItems[i],
-              classN = i < index + items ? animateIn : animateNormal;
-          item.style.left = (i - index) * 100 / items + '%';
-          addClass(item, classN);
-        }
+      if (autoWidth) {
+        rangestart = slidePositions[index];
+        rangeend = rangestart + viewport;
       }
     }
-  }
 
-  // lazyload
-  function lazyLoad () {
-    if (lazyload && !disable) {
-      var i = index, 
-          len = index + items;
+    // get start, end
+    // - check auto width
+    if (autoWidth) {
+      slidePositions.forEach(function(point, i) {
+        if (i < slideCountNew) {
+          if ((center || edgePadding) && point <= rangestart + 0.5) { start = i; }
+          if (rangeend - point >= 0.5) { end = i; }
+        }
+      });
 
-      if (edgePadding) {
-        i -=1;
-        len +=1;
+    // - check percentage width, fixed width
+    } else {
+
+      if (fixedWidth) {
+        var cell = fixedWidth + gutter;
+        if (center || edgePadding) {
+          start = Math.floor(rangestart/cell);
+          end = Math.ceil(rangeend/cell - 1);
+        } else {
+          end = start + Math.ceil(viewport/cell) - 1;
+        }
+
+      } else {
+        if (center || edgePadding) {
+          var a = items - 1;
+          if (center) {
+            start -= a / 2;
+            end = index + a / 2;
+          } else {
+            end = index + a;
+          }
+
+          if (edgePadding) {
+            var b = edgePadding * items / viewport;
+            start -= b;
+            end += b;
+          }
+
+          start = Math.floor(start);
+          end = Math.ceil(end);
+        } else {
+          end = start + items - 1;
+        }
       }
 
-      i = Math.max(i, 0);
-      len = Math.min(len, slideCountNew);
+      start = Math.max(start, 0);
+      end = Math.min(end, slideCountNew - 1);
+    }
 
-      for(; i < len; i++) {
-        forEachNodeList(slideItems[i].querySelectorAll('.tns-lazy-img'), function (img) {
-          // stop propagationl transitionend event to container
+    return [start, end];
+  }
+
+  function doLazyLoad () {
+    if (lazyload && !disable) {
+      getImageArray.apply(null, getVisibleSlideRange()).forEach(function (img) {
+        if (!hasClass(img, imgCompleteClass)) {
+          // stop propagation transitionend event to container
           var eve = {};
           eve[TRANSITIONEND] = function (e) { e.stopPropagation(); };
           addEvents(img, eve);
 
-          if (!hasClass(img, 'loaded')) {
-            img.src = getAttr(img, 'data-src');
-            addClass(img, 'loaded');
-          }
-        });
-      }
+          addEvents(img, imgEvents);
+
+          // update src
+          img.src = getAttr(img, 'data-src');
+
+          // update srcset
+          var srcset = getAttr(img, 'data-srcset');
+          if (srcset) { img.srcset = srcset; }
+
+          addClass(img, 'loading');
+        }
+      });
     }
   }
 
+  function onImgLoaded (e) {
+    imgLoaded(getTarget(e));
+  }
 
-  function imgLoadedOrError (e) {
-    var img = getTarget(e);
-    addClass(img, imgCompleteClass);
+  function onImgFailed (e) {
+    imgFailed(getTarget(e));
+  }
+
+  function imgLoaded (img) {
+    addClass(img, 'loaded');
+    imgCompleted(img);
+  }
+
+  function imgFailed (img) {
+    addClass(img, 'failed');
+    imgCompleted(img);
+  }
+
+  function imgCompleted (img) {
+    addClass(img, 'tns-complete');
+    removeClass(img, 'loading');
     removeEvents(img, imgEvents);
   }
 
-  function getImageArray (slideStart, slideRange) {
+  function getImageArray (start, end) {
     var imgs = [];
-    for (var i = slideStart, l = Math.min(slideStart + slideRange, slideCountNew); i < l; i++) {
-      forEachNodeList(slideItems[i].querySelectorAll('img'), function (img) {
-        imgs.push(img);
-      });
+    while (start <= end) {
+      forEach(slideItems[start].querySelectorAll('img'), function (img) { imgs.push(img); });
+      start++;
     }
 
     return imgs;
@@ -3008,15 +3252,12 @@ var tns = function(options) {
 
   // check if all visible images are loaded
   // and update container height if it's done
-  function runAutoHeight () {
-    var imgs = autoHeight ?
-        getImageArray(index, items) :
-        getImageArray(cloneCount, slideCount);
-
-    raf(function(){ imageLoaded(imgs, updateInnerWrapperHeight); });
+  function doAutoHeight () {
+    var imgs = getImageArray.apply(null, getVisibleSlideRange());
+    raf(function(){ imgsLoadedCheck(imgs, updateInnerWrapperHeight); });
   }
 
-  function imageLoaded (imgs, cb) {
+  function imgsLoadedCheck (imgs, cb) {
     // directly execute callback function if all images are complete
     if (imgsComplete) { return cb(); }
 
@@ -3029,17 +3270,23 @@ var tns = function(options) {
     if (!imgs.length) { return cb(); }
 
     // otherwise execute this functiona again
-    raf(function(){ imageLoaded(imgs, cb); });
+    raf(function(){ imgsLoadedCheck(imgs, cb); });
   } 
 
   function additionalUpdates () {
-    lazyLoad(); 
+    doLazyLoad(); 
     updateSlideStatus();
+    updateLiveRegion();
     updateControlsStatus();
-    updateNavVisibility();
     updateNavStatus();
   }
 
+
+  function update_carousel_transition_duration () {
+    if (carousel && autoHeight) {
+      middleWrapper.style[TRANSITIONDURATION] = speed / 1000 + 's';
+    }
+  }
 
   function getMaxSlideHeight (slideStart, slideRange) {
     var heights = [];
@@ -3056,95 +3303,90 @@ var tns = function(options) {
   // 3. update inner wrapper height to max-height
   // 4. set transitionDuration to 0s after transition done
   function updateInnerWrapperHeight () {
-    var maxHeight = autoHeight ? 
-        getMaxSlideHeight(index, items) :
-        getMaxSlideHeight(cloneCount, slideCount);
+    var maxHeight = autoHeight ? getMaxSlideHeight(index, items) : getMaxSlideHeight(cloneCount, slideCount),
+        wp = middleWrapper ? middleWrapper : innerWrapper;
 
-    if (innerWrapper.style.height !== maxHeight) { innerWrapper.style.height = maxHeight + 'px'; }
+    if (wp.style.height !== maxHeight) { wp.style.height = maxHeight + 'px'; }
   }
 
   // get the distance from the top edge of the first slide to each slide
-  // (init) => slideOffsetTops
-  function getSlideOffsetTops () {
-    slideOffsetTops = [0];
-    var topFirst = slideItems[0].getBoundingClientRect().top, attr;
-    for (var i = 1; i < slideCountNew; i++) {
-      attr = slideItems[i].getBoundingClientRect().top;
-      slideOffsetTops.push(attr - topFirst);
-    }
-  }
+  // (init) => slidePositions
+  function setSlidePositions () {
+    slidePositions = [0];
+    var attr = horizontal ? 'left' : 'top',
+        attr2 = horizontal ? 'right' : 'bottom',
+        base = slideItems[0].getBoundingClientRect()[attr];
 
-  // set snapInterval (for IE10)
-  function setSnapInterval () {
-    outerWrapper.style.msScrollSnapPointsX = 'snapInterval(0%, ' + (100 / items) + '%)';
+    forEach(slideItems, function(item, i) {
+      // skip the first slide
+      if (i) { slidePositions.push(item.getBoundingClientRect()[attr] - base); }
+      // add the end edge
+      if (i === slideCountNew - 1) { slidePositions.push(item.getBoundingClientRect()[attr2] - base); }
+    });
   }
 
   // update slide
   function updateSlideStatus () {
-    var l = index + Math.min(slideCount, items);
-    for (var i = slideCountNew; i--;) {
-      var item = slideItems[i];
-      
-      // visible slides
-      if (i >= index && i < l) {
-        if (hasAttr(item, 'tabindex')) {
-          setAttrs(item, {'aria-hidden': 'false'});
-          removeAttrs(item, ['tabindex']);
+    var range = getVisibleSlideRange(),
+        start = range[0],
+        end = range[1];
+
+    forEach(slideItems, function(item, i) {
+      // show slides
+      if (i >= start && i <= end) {
+        if (hasAttr(item, 'aria-hidden')) {
+          removeAttrs(item, ['aria-hidden', 'tabindex']);
           addClass(item, slideActiveClass);
         }
-      // hidden slides
+      // hide slides
       } else {
-        if (!hasAttr(item, 'tabindex')) {
+        if (!hasAttr(item, 'aria-hidden')) {
           setAttrs(item, {
             'aria-hidden': 'true',
             'tabindex': '-1'
           });
-        }
-        if (hasClass(item, slideActiveClass)) {
           removeClass(item, slideActiveClass);
         }
       }
-    }
+    });
   }
 
   // gallery: update slide position
-  function updateSlidePosition () {
-    if (!carousel) { 
-      var l = index + Math.min(slideCount, items);
-      for (var i = slideCountNew; i--;) {
-        var item = slideItems[i];
+  function updateGallerySlidePositions () {
+    var l = index + Math.min(slideCount, items);
+    for (var i = slideCountNew; i--;) {
+      var item = slideItems[i];
 
-        if (i >= index && i < l) {
-          // add transitions to visible slides when adjusting their positions
-          addClass(item, 'tns-moving');
+      if (i >= index && i < l) {
+        // add transitions to visible slides when adjusting their positions
+        addClass(item, 'tns-moving');
 
-          item.style.left = (i - index) * 100 / items + '%';
-          addClass(item, animateIn);
-          removeClass(item, animateNormal);
-        } else if (item.style.left) {
-          item.style.left = '';
-          addClass(item, animateNormal);
-          removeClass(item, animateIn);
-        }
-
-        // remove outlet animation
-        removeClass(item, animateOut);
+        item.style.left = (i - index) * 100 / items + '%';
+        addClass(item, animateIn);
+        removeClass(item, animateNormal);
+      } else if (item.style.left) {
+        item.style.left = '';
+        addClass(item, animateNormal);
+        removeClass(item, animateIn);
       }
 
-      // removing '.tns-moving'
-      setTimeout(function() {
-        forEachNodeList(slideItems, function(el) {
-          removeClass(el, 'tns-moving');
-        });
-      }, 300);
+      // remove outlet animation
+      removeClass(item, animateOut);
     }
+
+    // removing '.tns-moving'
+    setTimeout(function() {
+      forEach(slideItems, function(el) {
+        removeClass(el, 'tns-moving');
+      });
+    }, 300);
   }
 
-  // set tabindex & aria-selected on Nav
+  // set tabindex on Nav
   function updateNavStatus () {
     // get current nav
     if (nav) {
-      navCurrentIndex = navClicked !== -1 ? navClicked : getAbsIndex();
+      navCurrentIndex = navClicked >= 0 ? navClicked : getCurrentNavIndex();
       navClicked = -1;
 
       if (navCurrentIndex !== navCurrentIndexCached) {
@@ -3153,14 +3395,15 @@ var tns = function(options) {
 
         setAttrs(navPrev, {
           'tabindex': '-1',
-          'aria-selected': 'false'
-        });
-        setAttrs(navCurrent, {
-          'tabindex': '0',
-          'aria-selected': 'true'
+          'aria-label': navStr + (navCurrentIndexCached + 1)
         });
         removeClass(navPrev, navActiveClass);
+        
+        setAttrs(navCurrent, {'aria-label': navStr + (navCurrentIndex + 1) + navStrCurrent});
+        removeAttrs(navCurrent, 'tabindex');
         addClass(navCurrent, navActiveClass);
+
+        navCurrentIndexCached = navCurrentIndex;
       }
     }
   }
@@ -3191,8 +3434,8 @@ var tns = function(options) {
 
     var prevDisabled = (prevIsButton) ? prevButton.disabled : isAriaDisabled(prevButton),
         nextDisabled = (nextIsButton) ? nextButton.disabled : isAriaDisabled(nextButton),
-        disablePrev = (index === indexMin) ? true : false,
-        disableNext = (!rewind && index === indexMax) ? true : false;
+        disablePrev = (index <= indexMin) ? true : false,
+        disableNext = (!rewind && index >= indexMax) ? true : false;
 
     if (disablePrev && !prevDisabled) {
       disEnableElement(prevIsButton, prevButton, true);
@@ -3213,29 +3456,66 @@ var tns = function(options) {
     if (TRANSITIONDURATION) { el.style[TRANSITIONDURATION] = str; }
   }
 
-  function getContainerTransformValue () {
+  function getSliderWidth () {
+    return fixedWidth ? (fixedWidth + gutter) * slideCountNew : slidePositions[slideCountNew];
+  }
+
+  function getCenterGap (num) {
+    if (num == null) { num = index; }
+
+    var gap = edgePadding ? gutter : 0;
+    return autoWidth ? ((viewport - gap) - (slidePositions[num + 1] - slidePositions[num] - gutter))/2 :
+      fixedWidth ? (viewport - fixedWidth) / 2 :
+        (items - 1) / 2;
+  }
+
+  function getRightBoundary () {
+    var gap = edgePadding ? gutter : 0,
+        result = (viewport + gap) - getSliderWidth();
+
+    if (center && !loop) {
+      result = fixedWidth ? - (fixedWidth + gutter) * (slideCountNew - 1) - getCenterGap() :
+        getCenterGap(slideCountNew - 1) - slidePositions[slideCountNew - 1];
+    }
+    if (result > 0) { result = 0; }
+
+    return result;
+  }
+
+  function getContainerTransformValue (num) {
+    if (num == null) { num = index; }
+
     var val;
-    if (horizontal) {
+    if (horizontal && !autoWidth) {
       if (fixedWidth) {
-        val = - (fixedWidth + gutter) * index + 'px';
+        val = - (fixedWidth + gutter) * num;
+        if (center) { val += getCenterGap(); }
       } else {
         var denominator = TRANSFORM ? slideCountNew : items;
-        val = - index * 100 / denominator + '%';
+        if (center) { num -= getCenterGap(); }
+        val = - num * 100 / denominator;
       }
     } else {
-      val = - slideOffsetTops[index] + 'px';
+      val = - slidePositions[num];
+      if (center && autoWidth) {
+        val += getCenterGap();
+      }
     }
+
+    if (hasRightDeadZone) { val = Math.max(val, rightBoundary); }
+
+    val += (horizontal && !autoWidth && !fixedWidth) ? '%' : 'px';
+
     return val;
   }
 
   function doContainerTransformSilent (val) {
     resetDuration(container, '0s');
     doContainerTransform(val);
-    setTimeout(function() { resetDuration(container, ''); }, 10);
   }
 
-  function doContainerTransform (val, test) {
-    if (!val) { val = getContainerTransformValue(); }
+  function doContainerTransform (val) {
+    if (val == null) { val = getContainerTransformValue(); }
     container.style[transformAttr] = transformPrefix + val + transformPostfix;
   }
 
@@ -3264,30 +3544,24 @@ var tns = function(options) {
   // 2. change 'left' property for legacy browsers
   var transformCore = (function () {
     return carousel ?
-      function (duration, distance) {
-        if (!distance) { distance = getContainerTransformValue(); }
-        
-        // constrain the distance when non-loop no-edgePadding fixedWidth reaches the right edge
-        if (hasRightDeadZone && index === indexMax) {
-          distance = - ((fixedWidth + gutter) * slideCountNew - vpInner) + 'px';
-        }
-
-        if (TRANSITIONDURATION || !duration) {
+      function () {
+        resetDuration(container, '');
+        if (TRANSITIONDURATION || !speed) {
           // for morden browsers with non-zero duration or 
           // zero duration for all browsers
-          doContainerTransform(distance);
+          doContainerTransform();
           // run fallback function manually 
           // when duration is 0 / container is hidden
-          if (!duration || !isVisible(container)) { onTransitionEnd(); }
+          if (!speed || !isVisible(container)) { onTransitionEnd(); }
 
         } else {
           // for old browser with non-zero duration
-          jsTransform(container, transformAttr, transformPrefix, transformPostfix, distance, speed, onTransitionEnd);
+          jsTransform(container, transformAttr, transformPrefix, transformPostfix, getContainerTransformValue(), speed, onTransitionEnd);
         }
 
         if (!horizontal) { updateContentWrapperHeight(); }
       } :
-      function (duration) {
+      function () {
         slideItemsOut = [];
 
         var eve = {};
@@ -3300,20 +3574,9 @@ var tns = function(options) {
 
         // run fallback function manually 
         // when transition or animation not supported / duration is 0
-        if (!TRANSITIONEND || !ANIMATIONEND || !duration) { onTransitionEnd(); }
+        if (!TRANSITIONEND || !ANIMATIONEND || !speed || !isVisible(container)) { onTransitionEnd(); }
       };
   })();
-
-  function doTransform (duration, distance) {
-    // check duration is defined and is a number
-    if (isNaN(duration)) { duration = speed; }
-
-    // if container is hidden, set duration to 0
-    // to fix an issue where browser doesn't fire ontransitionend on hidden element
-    if (animating && !isVisible(container)) { duration = 0; }
-
-    transformCore(duration, distance);
-  }
 
   function render (e, sliderMoved) {
     if (updateIndexBeforeTransform) { updateIndex(); }
@@ -3323,12 +3586,13 @@ var tns = function(options) {
       // events
       events.emit('indexChanged', info());
       events.emit('transitionStart', info());
+      if (autoHeight) { doAutoHeight(); }
 
       // pause autoplay when click or keydown from user
       if (animating && e && ['click', 'keydown'].indexOf(e.type) >= 0) { stopAutoplay(); }
 
       running = true;
-      doTransform();
+      transformCore();
     }
   }
 
@@ -3395,11 +3659,8 @@ var tns = function(options) {
           }
         } 
 
-        if (autoHeight) { runAutoHeight(); }
-
         if (nested === 'inner') { events.emit('innerLoaded', info()); }
         running = false;
-        navCurrentIndexCached = navCurrentIndex;
         indexCached = index;
       }
     }
@@ -3420,11 +3681,12 @@ var tns = function(options) {
 
     // go to exact slide
     } else {
-      if (running) { onTransitionEnd(); }
+      if (running) {
+        if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
+      }
 
       var absIndex = getAbsIndex(), 
           indexGap = 0;
-      if (absIndex < 0) { absIndex += slideCount; }
 
       if (targetIndex === 'first') {
         indexGap = - absIndex;
@@ -3434,14 +3696,10 @@ var tns = function(options) {
         if (typeof targetIndex !== 'number') { targetIndex = parseInt(targetIndex); }
 
         if (!isNaN(targetIndex)) {
-          if (!e) {
-            targetIndex -= 1; // switch from natual index to JS index
-            if (carousel && cloneCount) { targetIndex += cloneCount; }
-          }
+          // from directly called goTo function
+          if (!e) { targetIndex = Math.max(0, Math.min(slideCount - 1, targetIndex)); }
 
-          var absTargetIndex = getAbsIndex(targetIndex);
-          if (absTargetIndex < 0) { absTargetIndex += slideCount; }
-          indexGap = absTargetIndex - absIndex;
+          indexGap = targetIndex - absIndex;
         }
       }
 
@@ -3469,58 +3727,64 @@ var tns = function(options) {
 
   // on controls click
   function onControlsClick (e, dir) {
-    // if (!running) {
-      if (running) { onTransitionEnd(); }
+    if (running) {
+      if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
+    }
+    var passEventObject;
 
-      var passEventObject;
+    if (!dir) {
+      e = getEvent(e);
+      var target = getTarget(e);
 
-      if (!dir) {
-        e = getEvent(e);
-        var target = e.target || e.srcElement;
+      while (target !== controlsContainer && [prevButton, nextButton].indexOf(target) < 0) { target = target.parentNode; }
 
-        while (target !== controlsContainer && [prevButton, nextButton].indexOf(target) < 0) { target = target.parentNode; }
-
-        var targetIn = [prevButton, nextButton].indexOf(target);
-        if (targetIn >= 0) {
-          passEventObject = true;
-          dir = targetIn === 0 ? -1 : 1;
-        }
+      var targetIn = [prevButton, nextButton].indexOf(target);
+      if (targetIn >= 0) {
+        passEventObject = true;
+        dir = targetIn === 0 ? -1 : 1;
       }
+    }
 
-      if (rewind) {
-        if (index === indexMin && dir === -1) {
-          goTo('last', e);
-          return;
-        } else if (index === indexMax && dir === 1) {
-          goTo('first', e);
-          return;
-        }
+    if (rewind) {
+      if (index === indexMin && dir === -1) {
+        goTo('last', e);
+        return;
+      } else if (index === indexMax && dir === 1) {
+        goTo('first', e);
+        return;
       }
+    }
 
-      if (dir) {
-        index += slideBy * dir;
-        // pass e when click control buttons or keydown
-        render((passEventObject || (e && e.type === 'keydown')) ? e : null);
-      }
-    // }
+    if (dir) {
+      index += slideBy * dir;
+      if (autoWidth) { index = Math.floor(index); }
+      // pass e when click control buttons or keydown
+      render((passEventObject || (e && e.type === 'keydown')) ? e : null);
+    }
   }
 
   // on nav click
   function onNavClick (e) {
-    // if (!running) {
-    if (running) { onTransitionEnd(); }
+    if (running) {
+      if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
+    }
     
     e = getEvent(e);
-    var target = e.target || e.srcElement,
-        navIndex;
+    var target = getTarget(e), navIndex;
 
     // find the clicked nav item
     while (target !== navContainer && !hasAttr(target, 'data-nav')) { target = target.parentNode; }
     if (hasAttr(target, 'data-nav')) {
-      navIndex = navClicked = [].indexOf.call(navItems, target);
-      goTo(carousel ? navIndex + cloneCount : navIndex, e);
+      var navIndex = navClicked = Number(getAttr(target, 'data-nav')),
+          targetIndexBase = fixedWidth || autoWidth ? navIndex * slideCount / pages : navIndex * items,
+          targetIndex = navAsThumbnails ? navIndex : Math.min(Math.ceil(targetIndexBase), slideCount - 1);
+      goTo(targetIndex, e);
+
+      if (navCurrentIndex === navIndex) {
+        if (animating) { stopAutoplay(); }
+        navClicked = -1; // reset navClicked
+      }
     }
-    // }
   }
 
   // autoplay functions
@@ -3605,104 +3869,52 @@ var tns = function(options) {
   // keydown events on document 
   function onDocumentKeydown (e) {
     e = getEvent(e);
-    switch(e.keyCode) {
-      case KEYS.LEFT:
-        onControlsClick(e, -1);
-        break;
-      case KEYS.RIGHT:
-        onControlsClick(e, 1);
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT].indexOf(e.keyCode);
+
+    if (keyIndex >= 0) {
+      onControlsClick(e, keyIndex === 0 ? -1 : 1);
     }
   }
 
   // on key control
   function onControlsKeydown (e) {
     e = getEvent(e);
-    var code = e.keyCode;
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT].indexOf(e.keyCode);
 
-    switch (code) {
-      case KEYS.LEFT:
-      case KEYS.UP:
-      case KEYS.PAGEUP:
-          if (!prevButton.disabled) {
-            onControlsClick(e, -1);
-          }
-          break;
-      case KEYS.RIGHT:
-      case KEYS.DOWN:
-      case KEYS.PAGEDOWN:
-          if (!nextButton.disabled) {
-            onControlsClick(e, 1);
-          }
-          break;
-      case KEYS.HOME:
-        goTo('first', e);
-        break;
-      case KEYS.END:
-        goTo(slideCount - 1, e);
-        break;
+    if (keyIndex >= 0) {
+      if (keyIndex === 0) {
+        if (!prevButton.disabled) { onControlsClick(e, -1); }
+      } else if (!nextButton.disabled) {
+        onControlsClick(e, 1);
+      }
     }
   }
 
   // set focus
-  function setFocus (focus) {
-    focus.focus();
+  function setFocus (el) {
+    el.focus();
   }
 
   // on key nav
   function onNavKeydown (e) {
+    e = getEvent(e);
     var curElement = doc.activeElement;
     if (!hasAttr(curElement, 'data-nav')) { return; }
 
-    e = getEvent(e);
-    var code = e.keyCode,
-        navIndex = [].indexOf.call(navItems, curElement),
-        len = visibleNavIndexes.length,
-        current = visibleNavIndexes.indexOf(navIndex);
+    // var code = e.keyCode,
+    var keyIndex = [KEYS.LEFT, KEYS.RIGHT, KEYS.ENTER, KEYS.SPACE].indexOf(e.keyCode),
+        navIndex = Number(getAttr(curElement, 'data-nav'));
 
-    if (options.navContainer) {
-      len = slideCount;
-      current = navIndex;
-    }
-
-    function getNavIndex (num) {
-      return options.navContainer ? num : visibleNavIndexes[num];
-    }
-
-    switch(code) {
-      case KEYS.LEFT:
-      case KEYS.PAGEUP:
-        if (current > 0) { setFocus(navItems[getNavIndex(current - 1)]); }
-        break;
-
-      case KEYS.UP:
-      case KEYS.HOME:
-        if (current > 0) { setFocus(navItems[getNavIndex(0)]); }
-        break;
-
-      case KEYS.RIGHT:
-      case KEYS.PAGEDOWN:
-        if (current < len - 1) { setFocus(navItems[getNavIndex(current + 1)]); }
-        break;
-
-      case KEYS.DOWN:
-      case KEYS.END:
-        if (current < len - 1) { setFocus(navItems[getNavIndex(len - 1)]); }
-        break;
-
-      // Can't use onNavClick here,
-      // Because onNavClick require event.target as nav items
-      case KEYS.ENTER:
-      case KEYS.SPACE:
+    if (keyIndex >= 0) {
+      if (keyIndex === 0) {
+        if (navIndex > 0) { setFocus(navItems[navIndex - 1]); }
+      } else if (keyIndex === 1) {
+        if (navIndex < pages - 1) { setFocus(navItems[navIndex + 1]); }
+      } else {
         navClicked = navIndex;
-        goTo(navIndex + cloneCount, e);
-        break;
+        goTo(navIndex, e);
+      }
     }
-  }
-
-  // IE10 scroll function
-  function ie10Scroll () {
-    transformCore(0, container.scrollLeft);
-    indexCached = index;
   }
 
   function getEvent (e) {
@@ -3721,12 +3933,22 @@ var tns = function(options) {
     e.preventDefault ? e.preventDefault() : e.returnValue = false;
   }
 
+  function getMoveDirectionExpected () {
+    return getTouchDirection(toDegree(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
+  }
+
   function onPanStart (e) {
-    if (running) { onTransitionEnd(); }
+    if (running) {
+      if (preventActionWhenRunning) { return; } else { onTransitionEnd(); }
+    }
+
+    if (autoplay && animating) { stopAutoplayTimer(); }
     
     panStart = true;
-    caf(rafIndex);
-    rafIndex = 0;
+    if (rafIndex) {
+      caf(rafIndex);
+      rafIndex = null;
+    }
 
     var $ = getEvent(e);
     events.emit(isTouchEvent(e) ? 'touchStart' : 'dragStart', info(e));
@@ -3735,20 +3957,29 @@ var tns = function(options) {
       preventDefaultBehavior(e);
     }
 
-    lastPosition.x = initPosition.x = parseInt($.clientX);
-    lastPosition.y = initPosition.y = parseInt($.clientY);
-    translateInit = parseFloat(container.style[transformAttr].replace(transformPrefix, '').replace(transformPostfix, ''));
-
-    resetDuration(container, '0s');
+    lastPosition.x = initPosition.x = $.clientX;
+    lastPosition.y = initPosition.y = $.clientY;
+    if (carousel) {
+      translateInit = parseFloat(container.style[transformAttr].replace(transformPrefix, ''));
+      resetDuration(container, '0s');
+    }
   }
 
   function onPanMove (e) {
     if (panStart) {
       var $ = getEvent(e);
-      lastPosition.x = parseInt($.clientX);
-      lastPosition.y = parseInt($.clientY);
+      lastPosition.x = $.clientX;
+      lastPosition.y = $.clientY;
+
+      if (carousel) {
+        if (!rafIndex) { rafIndex = raf(function(){ panUpdate(e); }); }
+      } else {
+        if (moveDirectionExpected === '?') { moveDirectionExpected = getMoveDirectionExpected(); }
+        if (moveDirectionExpected) { preventScroll = true; }
+      }
+
+      if (preventScroll) { e.preventDefault(); }
     }
-    if (!rafIndex) { rafIndex = raf(function(){ panUpdate(e); }); }
   }
 
   function panUpdate (e) {
@@ -3759,25 +3990,21 @@ var tns = function(options) {
     caf(rafIndex);
     if (panStart) { rafIndex = raf(function(){ panUpdate(e); }); }
 
-    if (
-      moveDirectionExpected === '?' && 
-      lastPosition.x !== initPosition.x && 
-      lastPosition.y !== initPosition.y) {
-      moveDirectionExpected = getTouchDirection(toDegree(lastPosition.y - initPosition.y, lastPosition.x - initPosition.x), swipeAngle) === options.axis;
-    }
-
+    if (moveDirectionExpected === '?') { moveDirectionExpected = getMoveDirectionExpected(); }
     if (moveDirectionExpected) {
+      if (!preventScroll && isTouchEvent(e)) { preventScroll = true; }
+
       try {
         if (e.type) { events.emit(isTouchEvent(e) ? 'touchMove' : 'dragMove', info(e)); }
       } catch(err) {}
 
       var x = translateInit,
           dist = getDist(lastPosition, initPosition);
-      if (!horizontal || fixedWidth) {
+      if (!horizontal || fixedWidth || autoWidth) {
         x += dist;
         x += 'px';
       } else {
-        var percentageX = TRANSFORM ? dist * items * 100 / (vpInner * slideCountNew): dist * 100 / vpInner;
+        var percentageX = TRANSFORM ? dist * items * 100 / ((viewport + gutter) * slideCountNew): dist * 100 / (viewport + gutter);
         x += percentageX;
         x += '%';
       }
@@ -3787,25 +4014,22 @@ var tns = function(options) {
   }
 
   function onPanEnd (e) {
-    if (swipeAngle) { moveDirectionExpected = '?'; } // reset
-
     if (panStart) {
-      caf(rafIndex);
-      resetDuration(container, '');
+      if (rafIndex) {
+        caf(rafIndex);
+        rafIndex = null;
+      }
+      if (carousel) { resetDuration(container, ''); }
       panStart = false;
 
       var $ = getEvent(e);
-      lastPosition.x = parseInt($.clientX);
-      lastPosition.y = parseInt($.clientY);
+      lastPosition.x = $.clientX;
+      lastPosition.y = $.clientY;
       var dist = getDist(lastPosition, initPosition);
 
-      // initPosition = {x:0, y:0}; // reset positions
-      // lastPosition = {x:0, y:0}; // reset positions
-      
-      if (Math.abs(dist) >= 5) {
+      if (Math.abs(dist)) {
         // drag vs click
-        if (!isTouchEvent(e)) { 
-
+        if (!isTouchEvent(e)) {
           // prevent "click"
           var target = getTarget(e);
           addEvents(target, {'click': function preventClick (e) {
@@ -3814,64 +4038,57 @@ var tns = function(options) {
           }}); 
         }
 
-        rafIndex = raf(function() {
-          if (horizontal) {
-            var indexMoved = - dist * items / vpInner;
-            indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
-            index += indexMoved;
-          } else {
-            var moved = - (translateInit + dist);
-            if (moved <= 0) {
-              index = indexMin;
-            } else if (moved >= slideOffsetTops[slideOffsetTops.length - 1]) {
-              index = indexMax;
+        if (carousel) {
+          rafIndex = raf(function() {
+            if (horizontal && !autoWidth) {
+              var indexMoved = - dist * items / (viewport + gutter);
+              indexMoved = dist > 0 ? Math.floor(indexMoved) : Math.ceil(indexMoved);
+              index += indexMoved;
             } else {
-              var i = 0;
-              do {
-                i++;
-                index = dist < 0 ? i + 1 : i;
-              } while (i < slideCountNew && moved >= slideOffsetTops[i + 1]);
+              var moved = - (translateInit + dist);
+              if (moved <= 0) {
+                index = indexMin;
+              } else if (moved >= slidePositions[slideCountNew - 1]) {
+                index = indexMax;
+              } else {
+                var i = 0;
+                while (i < slideCountNew && moved >= slidePositions[i]) {
+                  index = i;
+                  if (moved > slidePositions[i] && dist < 0) { index += 1; }
+                  i++;
+                }
+              }
             }
+
+            render(e, dist);
+            events.emit(isTouchEvent(e) ? 'touchEnd' : 'dragEnd', info(e));
+          });
+        } else {
+          if (moveDirectionExpected) {
+            onControlsClick(e, dist > 0 ? -1 : 1);
           }
-
-          render(e, dist);
-          events.emit(isTouchEvent(e) ? 'touchEnd' : 'dragEnd', info(e));
-        });
+        }
       }
-
     }
+
+    // reset
+    if (options.preventScrollOnTouch === 'auto') { preventScroll = false; }
+    if (swipeAngle) { moveDirectionExpected = '?'; } 
+    if (autoplay && !animating) { setAutoplayTimer(); }
   }
 
   // === RESIZE FUNCTIONS === //
-  // (slideOffsetTops, index, items) => vertical_conentWrapper.height
+  // (slidePositions, index, items) => vertical_conentWrapper.height
   function updateContentWrapperHeight () {
-    innerWrapper.style.height = slideOffsetTops[index + items] - slideOffsetTops[index] + 'px';
+    var wp = middleWrapper ? middleWrapper : innerWrapper;
+    wp.style.height = slidePositions[index + items] - slidePositions[index] + 'px';
   }
 
-  /*
-   * get nav item indexes per items
-   * add 1 more if the nav items cann't cover all slides
-   * [0, 1, 2, 3, 4] / 3 => [0, 3]
-   */
-  function getVisibleNavIndex () {
-    // reset visibleNavIndexes
-    visibleNavIndexes = [];
-
-    var absIndexMin = getAbsIndex()%items;
-    while (absIndexMin < slideCount) {
-      if (carousel && !loop && absIndexMin + items > slideCount) { absIndexMin = slideCount - items; }
-      visibleNavIndexes.push(absIndexMin);
-      absIndexMin += items;
-    }
-
-    // nav count * items < slide count means
-    // some slides can not be displayed only by nav clicking
-    if (loop && visibleNavIndexes.length * items < slideCount ||
-        !loop && visibleNavIndexes[0] > 0) {
-      visibleNavIndexes.unshift(0);
-    }
+  function getPages () {
+    var rough = fixedWidth ? (fixedWidth + gutter) * slideCount / viewport : slideCount / items;
+    return Math.min(Math.ceil(rough), slideCount);
   }
-  
+
   /*
    * 1. update visible nav items list
    * 2. add "hidden" attributes to previous visible nav items
@@ -3879,19 +4096,25 @@ var tns = function(options) {
    */
   function updateNavVisibility () {
     if (!nav || navAsThumbnails) { return; }
-    getVisibleNavIndex();
 
-    if (visibleNavIndexes !== visibleNavIndexesCached) {
-      forEachNodeList(navItems, function(el, i) {
-        if (visibleNavIndexes.indexOf(i) < 0) {
-          hideElement(el);
-        } else {
-          showElement(el);
-        }
-      });
+    if (pages !== pagesCached) {
+      var min = pagesCached,
+          max = pages,
+          fn = showElement;
 
-      // cache visible nav indexes
-      visibleNavIndexesCached = visibleNavIndexes;
+      if (pagesCached > pages) {
+        min = pages;
+        max = pagesCached;
+        fn = hideElement;
+      }
+
+      while (min < max) {
+        fn(navItems[min]);
+        min++;
+      }
+
+      // cache pages
+      pagesCached = pages;
     }
   }
 
@@ -3912,16 +4135,19 @@ var tns = function(options) {
       slideCountNew: slideCountNew,
       index: index,
       indexCached: indexCached,
+      displayIndex: getCurrentSlide(),
       navCurrentIndex: navCurrentIndex,
       navCurrentIndexCached: navCurrentIndexCached,
-      visibleNavIndexes: visibleNavIndexes,
-      visibleNavIndexesCached: visibleNavIndexesCached,
+      pages: pages,
+      pagesCached: pagesCached,
       sheet: sheet,
+      isOn: isOn,
       event: e || {},
     };
   }
 
   return {
+    version: '2.9.2',
     getInfo: info,
     events: events,
     goTo: goTo,
@@ -3929,107 +4155,25 @@ var tns = function(options) {
     pause: pause,
     isOn: isOn,
     updateSliderHeight: updateInnerWrapperHeight,
+    refresh: initSliderTransform,
+    destroy: destroy,
     rebuild: function() {
-      return tns(options);
-    },
-
-    destroy: function () {
-      // remove win event listeners
-      removeEvents(win, {'resize': onResize});
-
-      // remove arrowKeys eventlistener
-      removeEvents(doc, docmentKeydownEvent);
-
-      // sheet
-      sheet.disabled = true;
-
-      // cloned items
-      if (loop) {
-        for (var j = cloneCount; j--;) {
-          if (carousel) { slideItems[0].remove(); }
-          slideItems[slideItems.length - 1].remove();
-        }
-      }
-
-      // Slide Items
-      var slideClasses = ['tns-item', slideActiveClass];
-      if (!carousel) { slideClasses = slideClasses.concat('tns-normal', animateIn); }
-
-      for (var i = slideCount; i--;) {
-        var slide = slideItems[i];
-        if (slide.id.indexOf(slideId + '-item') >= 0) { slide.id = ''; }
-
-        slideClasses.forEach(function(cl) { removeClass(slide, cl); })
-      }
-      removeAttrs(slideItems, ['style', 'aria-hidden', 'tabindex']);
-      slideItems = slideId = slideCount = slideCountNew = cloneCount = null;
-
-      // controls
-      if (controls) {
-        removeEvents(controlsContainer, controlsEvents);
-        if (options.controlsContainer) {
-          removeAttrs(controlsContainer, ['aria-label', 'tabindex']);
-          removeAttrs(controlsContainer.children, ['aria-controls', 'aria-disabled', 'tabindex']);
-        }
-        controlsContainer = prevButton = nextButton = null;
-      }
-
-      // nav
-      if (nav) {
-        removeEvents(navContainer, navEvents);
-        if (options.navContainer) {
-          removeAttrs(navContainer, ['aria-label']);
-          removeAttrs(navItems, ['aria-selected', 'aria-controls', 'tabindex']);
-        }
-        navContainer = navItems = null;
-      }
-
-      // auto
-      if (autoplay) {
-        clearInterval(autoplayTimer);
-        if (autoplayButton) {
-          removeEvents(autoplayButton, {'click': toggleAutoplay});
-        }
-        removeEvents(container, hoverEvents);
-        removeEvents(container, visibilityEvent);
-        if (options.autoplayButton) {
-          removeAttrs(autoplayButton, ['data-action'])
-        }
-      }
-
-      // container
-      container.id = containerIdCached || '';
-      container.className = container.className.replace(classContainer, '');
-      removeElementStyles(container);
-      if (carousel && TRANSITIONEND) {
-        var eve = {};
-        eve[TRANSITIONEND] = onTransitionEnd;
-        removeEvents(container, eve);
-      }
-      removeEvents(container, touchEvents);
-      removeEvents(container, dragEvents);
-
-      // outerWrapper
-      containerParent.insertBefore(container, outerWrapper);
-      outerWrapper.remove();
-      outerWrapper = innerWrapper = container =
-      index = indexCached = items = slideBy = navCurrentIndex = navCurrentIndexCached = hasControls = visibleNavIndexes = visibleNavIndexesCached = 
-      this.getInfo = this.events = this.goTo = this.play = this.pause = this.destroy = null;
-      this.isOn = isOn = false;
+      return tns(extend(options, optionsElements));
     }
   };
 };
 
+
 /***/ }),
-/* 11 */,
-/* 12 */
+/* 10 */,
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 if(!Array.prototype.forEach){Array.prototype.forEach=function(fn,scope){'use strict';var i,len;for(i=0,len=this.length;i<len;++i){if(i in this){fn.call(scope,this[i],i,this);}}};}
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4057,19 +4201,19 @@ if(!testElement.classList.contains("c2")){var createMethod=function createMethod
 if(testElement.classList.contains("c3")){var _toggle=DOMTokenList.prototype.toggle;DOMTokenList.prototype.toggle=function(token,force){if(1 in arguments&&!this.contains(token)===!force){return force;}else{return _toggle.call(this,token);}};}testElement=null;})();}
 
 /***/ }),
-/* 14 */
+/* 13 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=santillana_microcontenidos_menu class=sm-base> <div id=sm-home> <div class=sm-content> <div class=sm-content--content> <h2><strong class=sm-color-color>3º</strong><span>ESO</span></h2> <h1></h1> <svg xmlns=http://www.w3.org/2000/svg width=134 height=31 viewBox=\"0 0 134 31\"> <g fill=none fill-rule=evenodd> <path fill=#2A495D d=\"M96.3812058 27.7092308L91.9857635 27.6955192 91.9857635 24.1716538 91.9857635 18.7102885C91.9857635 17.0315192 88.9113981 17.5996538 88.9113981 17.5996538L88.9113981 28.7065962C88.9113981 29.8935385 89.9230712 30.6482692 92.9956481 30.3191923 96.7061096 29.9245385 96.5344173 28.7065962 96.3812058 27.7092308M28.1075808 29.4703288C28.1075808 29.4703288 28.3317346 27.1363865 30.4331769 27.4910981 32.7647346 27.8839635 35.5237346 28.2273481 35.4366962 26.6952327 35.3448885 25.0862135 28.6864462 25.2102135 28.6453115 20.9375788 28.5922538 15.3569827 38.2469654 18.101675 38.2469654 18.101675 38.2469654 18.101675 38.3101577 20.4439635 36.2677346 20.3092327 34.7052154 20.2049058 31.7912154 19.7232135 31.7172923 20.8845212 31.6225038 22.3570212 38.6946769 22.5644827 38.5080808 26.6242904 38.2129846 33.0609635 28.1075808 29.4703288 28.1075808 29.4703288M59.5552923 17.6008462L59.5552923 25.3234231 55.4567346 18.7126731C55.0447923 18.0479615 54.3699462 17.7361731 53.7046385 17.6008462 53.4017923 17.5305 53.0727154 17.5078462 52.7692731 17.5090385 52.1552346 17.5054615 51.6950038 17.6008462 51.6950038 17.6008462L51.6950038 29.1680192C51.6950038 30.8479808 54.7675808 30.2804423 54.7675808 30.2804423L54.7675808 30.2798462 54.7675808 22.5566731 58.8661385 29.1680192C59.2780808 29.8333269 59.9529269 30.1451154 60.6182346 30.2804423 60.9204846 30.3507885 61.2495615 30.3740385 61.5536 30.37225 62.1676385 30.3764231 62.6278692 30.2804423 62.6278692 30.2804423L62.6278692 30.2798462 62.6278692 18.7126731C62.6278692 17.0339038 59.5552923 17.6008462 59.5552923 17.6008462M117.406062 17.6008462L117.406062 25.3234231 113.3081 18.7126731C112.896158 18.0479615 112.220715 17.7361731 111.555408 17.6008462 111.253158 17.5305 110.924081 17.5078462 110.620638 17.5090385 110.0066 17.5054615 109.545773 17.6008462 109.545773 17.6008462L109.545773 29.1680192C109.545773 30.8479808 112.61835 30.2804423 112.61835 30.2804423L112.61835 30.2798462 112.61835 22.5566731 116.717504 29.1680192C117.12885 29.8333269 117.803696 30.1451154 118.469004 30.2804423 118.771254 30.3507885 119.100927 30.3740385 119.404965 30.37225 120.019004 30.3764231 120.478042 30.2804423 120.478042 30.2804423L120.478042 30.2798462 120.478042 18.7126731C120.478042 17.0339038 117.406062 17.6008462 117.406062 17.6008462M46.4713846 18.3134288C45.8680769 16.8045635 43.3004423 17.601025 43.3004423 17.601025L38.6391154 29.1926404C38.0364038 30.8261019 41.48575 30.280025 41.48575 30.280025L42.4324423 27.7517365 46.9310192 27.7517365 47.4311923 29.171775C48.1084231 30.9447365 51.1237692 30.280025 51.1237692 30.280025L46.4713846 18.3134288zM43.4625962 24.9986981L44.7473077 21.5642558 45.9592885 24.9986981 43.4625962 24.9986981zM129.046204 18.3134288C128.4423 16.8045635 125.875262 17.601025 125.875262 17.601025L121.213935 29.1926404C120.611223 30.8261019 124.059973 30.280025 124.059973 30.280025L125.006665 27.7517365 129.505838 27.7517365 130.005415 29.171775C130.682646 30.9447365 133.699185 30.280025 133.699185 30.280025L129.046204 18.3134288zM126.037415 24.9986981L127.321531 21.5642558 128.533512 24.9986981 126.037415 24.9986981z\"/> <path fill=#2A495D d=\"M104.47465 18.3134288C103.871342 16.8045635 101.304304 17.601025 101.304304 17.601025L96.6423808 29.1926404C96.0402654 30.8261019 99.4890154 30.280025 99.4890154 30.280025L100.435708 27.7517365 104.934285 27.7517365 105.433862 29.171775C106.112285 30.9447365 109.127035 30.280025 109.127035 30.280025L104.47465 18.3134288zM101.466458 24.9986981L102.751169 21.5642558 103.96315 24.9986981 101.466458 24.9986981zM73.4030519 17.5606654L65.137975 17.5606654C63.2189558 17.5606654 63.7179365 20.3256269 63.7179365 20.3256269L63.7185327 20.3256269 67.0218212 20.3256269 67.0218212 29.1683769C67.0218212 30.8477423 70.1051288 30.2802038 70.1051288 30.2802038L70.1051288 30.2796077 70.1051288 20.3256269 71.9830135 20.3256269C74.0170904 20.3256269 73.4030519 17.5606654 73.4030519 17.5606654M74.6868096 17.6008462L74.6868096 29.1680192C74.6868096 30.8479808 77.7593865 30.2804423 77.7593865 30.2804423L77.7593865 30.2798462 77.7593865 18.7126731C77.7593865 17.0339038 74.6868096 17.6008462 74.6868096 17.6008462M88.104325 27.7033885L82.9148058 27.7033885 82.9148058 18.7121962C82.9148058 17.0328308 79.842825 17.5997731 79.842825 17.5997731L79.842825 28.7067154C79.842825 30.1470231 81.3010173 30.6835615 84.7199596 30.3187154 88.4286327 29.9240615 88.2581327 28.7025423 88.104325 27.7033885M10.5327269 28.7857058C7.69741923 27.6619558 3.8874 26.2335712 1.99580385 23.4537058 1.68103462 22.9893019 1.69057308 23.163975 1.92843846 23.7118404L1.93499615 23.7136288 1.93618846 23.7195904C3.71391923 27.6786481 6.7859 30.6141096 10.1100538 30.6141096 11.0036885 30.6141096 12.1471115 30.3058981 12.1471115 29.8879942 12.1471115 29.5601096 11.5455923 29.1648596 10.5327269 28.7857058\"/> <path fill=#2A495D d=\"M14.5931308,25.4264981 C10.4307846,24.5972481 2.59732308,22.3318635 0.6169,17.7229981 C0.494688462,17.432075 0.418976923,17.4392288 0.472630769,17.7355173 L0.472630769,17.742075 C0.871457692,19.8846519 1.10634231,20.4343058 1.3299,21.1139212 C2.36243846,24.0839596 5.63711154,25.8980558 8.22322692,27.0021327 L8.22084231,26.9967673 L8.22322692,27.0021327 C9.35353462,27.3955942 10.5100731,27.6108058 11.5819577,27.6108058 C13.1414962,27.6108058 14.5251692,27.1529596 15.39615,26.1460558 C15.4641115,26.0697481 15.48915,25.9964212 15.48915,25.9344212 C15.48915,25.6017673 14.7195154,25.4509404 14.5931308,25.4264981\"/> <path fill=#2A495D d=\"M35.9091481,10.3398712 C35.8954365,8.44589038 31.0004173,7.04850577 22.4712442,6.50540962 C22.2238404,6.40764038 21.9561673,6.30689038 21.660475,6.20435192 C20.3990135,5.77154423 17.6447827,5.13544808 14.5203404,4.83617885 C19.3229558,4.02600577 24.8969942,4.03435192 30.7184365,4.04687115 L31.9471096,4.04806346 C32.3197058,4.04806346 32.417475,3.82987115 32.4425135,3.73746731 C32.4490712,3.70885192 32.4532442,3.674275 32.4532442,3.643275 C32.4532442,3.31121731 32.006725,3.06142885 31.8970327,3.00658269 C28.2271096,1.04583269 22.0414173,-0.157205769 16.4936096,0.0168711538 C9.68255192,0.226717308 4.61405192,2.403275 2.17935962,6.14533269 C0.292532692,8.57048654 -0.627332692,12.1587365 0.474359615,14.9052173 C1.47053269,16.9357173 4.52582115,18.7384865 7.21864808,19.3316596 C7.82732115,19.5039481 8.83243654,19.8687942 9.84232115,20.2467558 C6.58732115,20.127525 3.42055192,19.0001981 1.42403269,17.1962365 C1.03057115,16.8385442 0.990628846,16.973275 1.21001346,17.446025 C3.362725,22.0578712 11.9628404,24.1229481 14.700975,24.6714096 C14.8678981,24.7047942 15.0151481,24.7435442 15.1528596,24.7858712 C16.6331096,24.3786981 19.3652827,24.8091212 19.7426481,22.9038135 L19.7426481,22.8024673 C19.7426481,21.7872173 18.6403596,21.7538327 18.1008404,21.7371404 C17.7228788,21.7216404 16.537725,21.5642558 14.9507635,21.1666212 C16.3231096,20.6187558 18.2021865,20.2133712 20.4103404,19.9993519 C24.5595712,19.6011212 25.403725,18.9680058 25.6976288,18.3390635 C25.8579942,18.004025 25.8603788,17.5908904 25.535475,17.1574865 C24.5726865,15.8560827 22.086725,15.0131212 19.8398212,14.5528904 C21.4703019,14.2357365 23.2373019,14.005025 25.1348596,13.8649288 C31.8898788,13.3665442 35.9180904,12.0484481 35.9091481,10.3398712 M3.09266731,8.75887115 C2.44762885,6.72121731 4.09182115,4.85764038 5.05162885,4.03435192 C8.51051346,1.36656346 13.4633596,0.764448077 16.5138788,0.670851923 C21.7659942,0.505121154 27.5862442,1.597275 31.1953596,3.39348654 L30.7184365,3.39348654 C22.8098596,3.37440962 15.3346865,3.36248654 9.56510962,5.40490962 C6.80551346,6.38200577 4.63610962,7.50814038 3.09266731,8.75887115 M3.35855192,9.38960192 C4.85430192,8.13767885 7.01357115,7.00558269 9.79939808,6.01835192 C10.5213404,5.76319808 11.2653404,5.54142885 12.0409365,5.35006346 C16.0363596,5.46512115 19.939975,6.30689038 21.4255904,6.82137115 C23.7809942,7.63333269 23.8197442,8.07985192 23.8197442,8.09058269 C23.8197442,8.09356346 23.6879942,8.41846731 22.0956673,8.64142885 L21.9949173,8.65215962 C19.6091096,8.87154423 11.5550712,9.76219808 6.40310962,11.9071596 C5.21020577,11.2811981 3.88912885,10.3225827 3.35855192,9.38960192 M24.9822442,17.5360442 C25.1551288,17.7685442 25.1491673,17.9312942 25.0764365,18.0701981 C24.8111481,18.6407173 23.2170327,19.0705442 20.3388019,19.3483519 C17.6602827,19.6070827 15.421725,20.1561404 13.9438596,20.8995442 L13.8812635,20.8816596 C12.8672058,20.5829865 11.2575904,19.9510635 10.2685712,19.569525 C11.8662635,19.4133327 13.4287827,18.9036212 14.7695327,17.9736212 L14.7731096,17.9694481 L14.7808596,17.9616981 C15.3633019,17.5563135 16.0584173,16.8689481 16.0584173,16.4820442 C16.0530519,16.0939481 15.7358981,15.7279096 15.1111288,15.407775 C14.8005327,15.2521788 14.4118404,15.1031404 13.9498212,14.9684096 C14.7921865,14.8456019 15.5969942,14.7782365 16.3231096,14.7782365 C18.3035327,14.7782365 23.6385135,15.717775 24.9822442,17.5360442 M18.1008404,14.2583904 C17.382475,14.1701596 16.7630712,14.1230635 16.3243019,14.1230635 C15.2226096,14.1230635 13.9617442,14.2661404 12.6746481,14.5338135 C12.6353019,14.5409673 12.5971481,14.5528904 12.5560135,14.5677942 C11.1389558,14.1171019 9.06135962,13.3343519 7.13995577,12.3167173 C12.2084558,10.3434481 19.7706673,9.51419808 22.0622827,9.30375577 L22.1928404,9.28885192 C23.7052827,9.07840962 24.434975,8.719525 24.4945904,8.15794808 C24.5261865,7.85271731 24.3521096,7.56358269 23.9568596,7.27087115 C32.8079558,7.98029423 35.2205904,9.56546731 35.2283404,10.3434481 L35.2283404,10.3476212 C35.2283404,11.1965442 32.5289558,12.6630827 25.0835904,13.214525 C22.5159558,13.4011212 20.1855904,13.7552365 18.1008404,14.2583904\"/> </g> </svg> <a href=#units class=\"sm-button-next-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Unidades--</span> </a> </div> <div class=sm-home-touchable-area></div> </div> </div> <div id=sm-units-menu> <div id=sm-units-menu__unit--template class=\"sm-units-menu__unit sm-color-background-color_after\"> <div class=sm-units-menu__unit__image> <div class=sm-units-menu__unit__image__image> <div class=sm-units-menu__unit__image__image--proyecto></div> </div> </div> <a> <div class=sm-units-menu__unit__number></div> <div class=\"sm-units-menu__unit__proyect_description sm-color-color\"></div> <div class=sm-units-menu__unit__title></div> <div class=sm-units-menu__unit__progress> <div class=sm-units-menu__unit__progress__title></div> <div class=sm-units-menu__unit__progress__bar> <div class=sm-color-background-color></div> </div> </div> </a> </div> <div class=sm-content> <div id=sm-units-menu-slider__controls> <div class=\"sm-units-menu-slider__controls__prev sm-button-slide-left\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div> <div class=\"sm-units-menu-slider__controls__next sm-button-slide-right\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div> </div> <div class=sm-units-menu-slider></div> <a href=# class=\"sm-button-back-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Portada--</span> </a> </div> </div> <div id=sm-unit> <div id=sm-unit__activity_main--template class=sm-unit__activity_main> <a class=sm-unit__activity_main__link> <div class=sm-unit__activity_main__number></div> <div class=sm-unit__activity_main__texts> <div class=\"sm-unit__activity_main__checkbox sm-color-border-color sm-color-background-color\"></div> <div class=sm-unit__activity_main__indent> <svg class=sm-color-svg-stroke xmlns=http://www.w3.org/2000/svg width=22 height=49 viewBox=\"0 0 22 49\"> <g fill=none fill-rule=evenodd stroke=#FF1D25 transform=translate(.727)> <polyline stroke-linejoin=round points=\"0 0 0 40 20 40 12 30\"/> <path d=\"M12,49 L20,40\"/> </g> </svg> </div> <div class=sm-unit__activity_main__texts__content> <div class=\"sm-unit__activity_main__description--sin-tag sm-color-color\"></div> <div class=sm-unit__activity_main__title--sin-tag></div> <div class=sm-unit__activity_main__title--con-tag></div> <div class=\"sm-unit__activity_main__type--con-tag sm-color-color\"></div> <div class=sm-unit__activity_main__description--con-tag></div> </div> </div> <div class=sm-unit__activity_main__progress> <div class=sm-unit__activity_main__progress__title></div> <div class=sm-unit__activity_main__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-unit__activity_main__image></div> </a> <div class=sm-unit__activity_main__actions> <div class=sm-unit__activity_main__actions__pages></div> <div class=sm-unit__activity_main__actions__send_link> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=14 viewBox=\"0 0 16 14\"> <path fill=red id=folder-action-a d=\"M13.4122915,1.13076588 C14.6339038,1.13076588 15.6316299,2.07195626 15.7090789,3.24796695 C15.1233298,2.65359791 14.2004495,2.26159435 13.4122915,2.26159435 L5.55414155,2.26159435 L2.31364722,2.26159435 C1.52418756,2.26159435 0.602608935,2.65423428 0.0155581432,3.24796695 C0.0103514843,3.25305791 0.00514482538,3.25751249 -6.18335273e-05,3.26260345 L-6.18335273e-05,0.565033469 C-6.18335273e-05,0.254485191 0.260271112,-6.25777779e-05 0.578528137,-6.25777779e-05 L4.05006796,-6.25777779e-05 C4.36767415,-6.25777779e-05 4.72498112,0.236666847 4.84278178,0.524942195 L5.09074891,1.13076588 L13.4122915,1.13076588 Z M13.4121613,3.3929319 C14.6845386,3.3929319 15.7245687,4.41048661 15.7245687,5.65458883 L15.7245687,9.4759872 L15.7245687,10.607452 L15.7245687,11.7382805 C15.7245687,12.9823827 14.6845386,13.9999374 13.4121613,13.9999374 L2.31351705,13.9999374 C1.04113978,13.9999374 -0.000192,12.9823827 -0.000192,11.7382805 L-0.000192,10.607452 L-0.000192,9.4759872 L-0.000192,5.65458883 C-0.000192,5.52540584 0.0180313062,5.4013138 0.0395087741,5.2784945 C0.224995998,4.21257572 1.17325875,3.3929319 2.31351705,3.3929319 L6.0167532,3.3929319 L13.4121613,3.3929319 Z M9.26831168,12.3116493 L9.98162395,11.7376441 L12.3467488,9.83299045 C12.4730102,9.70635294 12.4678036,9.51926033 12.3395896,9.39580466 L9.20583177,7.00687385 C9.06980781,6.87705449 8.73853414,6.91587302 8.73462914,7.17805722 C8.73332748,7.403332 8.72681915,8.56534256 8.72681915,8.56534256 C6.7066355,8.56534256 4.68449935,7.50387837 4.26861747,5.65586157 C4.25560082,5.59795195 4.23802835,5.5406787 4.22891669,5.48085998 C4.19247008,5.26258526 4.10721104,4.97303718 3.78960485,4.96858259 C3.35484883,4.96158253 3.29236892,5.31222208 3.28976559,5.54513329 C3.28846393,5.58267908 3.29236892,5.61831577 3.29236892,5.65586157 C3.2656848,8.52016033 5.7915652,10.7907264 8.73723247,10.7907264 C8.73723247,10.7907264 8.73462914,11.2578216 8.73853414,11.7376441 C8.7398358,11.8967365 8.74048663,12.0577379 8.74308996,12.2028302 C8.74569329,12.3791045 9.01904289,12.5420151 9.26831168,12.3116493 Z\"/> </svg> </div> <div class=sm-unit__activity_main__actions__candado> <svg xmlns=http://www.w3.org/2000/svg width=17 height=16 viewBox=\"0 0 17 16\"> <path fill=#234054 fill-rule=evenodd d=\"M688.91131,587.192276 L688.91131,585.034483 C688.91131,584.240414 688.630345,583.562345 688.068552,583.000552 C687.506759,582.438621 686.828828,582.157793 686.034621,582.157793 C685.240414,582.157793 684.562483,582.438621 684.000552,583.000552 C683.438621,583.562345 683.157655,584.240414 683.157655,585.034483 L683.157655,587.192276 L687.487151,587.192276 C687.537204,587.22806 687.585117,587.268842 687.630897,587.314621 C687.840828,587.524414 687.945931,587.779172 687.945793,588.078759 L687.945793,594.551862 C687.945793,594.851448 687.840828,595.106207 687.631172,595.316 C687.421379,595.525793 687.166759,595.630621 686.866897,595.630621 L676.078759,595.630621 C675.779172,595.630621 675.524414,595.525655 675.314621,595.316 C675.104828,595.106207 675,594.851448 675,594.551862 L675,588.078897 C675,587.779034 675.104828,587.524276 675.314621,587.314621 C675.524414,587.104828 675.779172,587 676.078759,587 L676.438345,587 L681,587 L681,585.034483 C681,583.656 681.494345,582.472414 682.48331,581.483448 C683.472138,580.494483 684.655862,580 686.034483,580 C687.413103,580 688.59669,580.494483 689.585655,581.483448 C690.574483,582.472414 691.068966,583.656 691.068966,585.034483 L691.068966,587.192276 L688.91131,587.192276 Z\" transform=\"translate(-675 -580)\"/> </svg> <svg xmlns=http://www.w3.org/2000/svg width=14 height=16 viewBox=\"0 0 14 16\"> <path fill=#234054 fill-rule=evenodd d=\"M698.098962,587 L698.098962,585.034483 C698.098962,583.656 698.593307,582.472414 699.582273,581.483448 C700.5711,580.494483 701.754824,580 703.133445,580 C704.512066,580 705.695652,580.494483 706.684617,581.483448 C707.673445,582.472414 708.167928,583.656 708.167928,585.034483 L708.167928,587 L708.527169,587 C708.827031,587 709.081652,587.104828 709.291445,587.314621 C709.501376,587.524414 709.606479,587.779172 709.606342,588.078759 L709.606342,594.551862 C709.606342,594.851448 709.501376,595.106207 709.291721,595.316 C709.081928,595.525793 708.827307,595.630621 708.527445,595.630621 L697.739307,595.630621 C697.439721,595.630621 697.184962,595.525655 696.975169,595.316 C696.765376,595.106207 696.660548,594.851448 696.660548,594.551862 L696.660548,588.078897 C696.660548,587.779034 696.765376,587.524276 696.975169,587.314621 C697.184962,587.104828 697.439721,587 697.739307,587 L698.098893,587 Z M706.010273,587.192276 L706.010273,585.034483 C706.010273,584.240414 705.729307,583.562345 705.167514,583.000552 C704.605721,582.438621 703.92779,582.157793 703.133583,582.157793 C702.339376,582.157793 701.661445,582.438621 701.099514,583.000552 C700.537583,583.562345 700.256617,584.240414 700.256617,585.034483 L700.256617,587.192276 L706.010273,587.192276 Z\" transform=\"translate(-696 -580)\"/> </svg> </div> <div class=sm-unit__activity_main__actions__nota>0</div> </div> </div> <div id=sm-unit__activity_aside--template class=sm-unit__activity_aside> <a> <div class=sm-unit__activity_aside__header> <div class=sm-unit__activity_aside__header__texts> <div class=\"sm-unit__activity_aside__type--con-tag sm-color-color\"></div> <div class=\"sm-unit__activity_aside__description--sin-tag sm-color-color\"></div> </div> <div class=sm-unit__activity_aside__image></div> </div> <div class=sm-unit__activity_aside__content> <div class=sm-unit__activity_aside__title--con-tag></div> <div class=sm-unit__activity_aside__title--sin-tag></div> </div> <div class=sm-unit__activity_aside__progress> <div class=sm-unit__activity_aside__progress__title></div> <div class=sm-unit__activity_aside__progress__bar> <div class=sm-color-background-color></div> </div> </div> </a> </div> <div class=sm-content> <div class=sm-unit__header_background> <div class=sm-unit__header_background__content> </div> </div> <a href=#units class=\"sm-button-back-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Unidades--</span> </a> <div class=sm-content--scrolled> <div class=sm-unit__header> <div class=sm-unit__header__content> <div class=sm-unit__header__part1> <div class=sm-unit__header__number></div> <div class=sm-unit__header__resources_button>--Contenidos complementarios--</div> <div class=sm-unit__header__proyecto_imagen></div> <div class=\"sm-unit__header__description sm-color-background-color\"></div> <div class=sm-unit__header__title></div> </div> <div class=sm-unit__header__progress> <div class=sm-unit__header__progress__title></div> <div class=sm-unit__header__progress__bar> <div class=sm-color-background-color></div> </div> </div> </div> </div> <div class=sm-unit__activities_container> <div class=sm-unit__activities_container__content> <div class=sm-unit__activities__main_container> <div class=sm-unit__activities__main> </div> </div> <div class=sm-unit__activities__aside_container> <h4>--Contenidos complementarios--</h4> <div class=sm-unit__activities__aside__dropdown__container> <div class=sm-unit__activities__aside__dropdown> <div> <span>--Todos los contenidos--</span> <svg xmlns=http://www.w3.org/2000/svg width=8 height=5 viewBox=\"0 0 8 5\"> <path fill=#2A495D fill-rule=evenodd d=\"M634.619385,490.476172 C634.863488,490.229578 635.261277,490.227559 635.507871,490.471662 L635.512379,490.47617 L638,492.989153 L640.487621,490.47617 C640.731725,490.229577 641.129514,490.22756 641.376107,490.471664 L641.380615,490.476172 C641.627938,490.726019 641.627938,491.128431 641.380615,491.378277 L638,494.793388 L634.619385,491.378277 C634.372062,491.128431 634.372062,490.726019 634.619385,490.476172 Z\" transform=\"translate(-634 -490)\"/> </svg> </div> <ul> <li data-name=all>--Todos los contenidos--</li> <li data-name=elementos_basicos>--Elementos básicos--</li> <li data-name=elementos_avanzados>--Elementos avanzados--</li> <li data-name=recursos_profesor>--Recursos del profesor--</li> </ul> </div> </div> <div class=sm-unit__activities__aside> </div> </div> </div> </div> </div> </div> </div> </div>";
 
 /***/ }),
-/* 15 */
+/* 14 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-backbutton sm-color-background-color--hover sm-color-border-color--hover\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Volver--</span> </div>";
 
 /***/ }),
-/* 16 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4077,11 +4221,11 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getTextOfNode=g
 var text='';if(node.nodeType==Node.TEXT_NODE){text=node.nodeValue.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}else{text=node.innerText.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}return text;}
 
 /***/ }),
-/* 17 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(16);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(15);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
 this.state={//isVisible: true,
 };document.querySelector('.content-wrapper.actividad').classList.add('sm-actividades');//Remain attemps
 var remainBoxes=document.querySelectorAll('.attemps>*');_.forEach(remainBoxes,function(remainBox){var htmlText='';_.forEach(remainBox.childNodes,function(node){if(node.nodeType==3){//#text
@@ -4137,40 +4281,40 @@ if(!header.querySelector('.header_small_block')){header.appendChild(activityHead
 }}]);return Activities;}();exports.default=Activities;
 
 /***/ }),
-/* 18 */
+/* 17 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-end sm-base\"> <div class=sm-subunit-end_completed> <div class=sm-subunit-end_completed__content> <div class=sm-subunit-end__title>--Fin de la lección--</div> <div class=sm-subunit-end__progress> <div class=sm-subunit-end__progress__title></div> <div class=sm-subunit-end__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-end__start_button_container> <div class=\"sm-subunit-end__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> <span>--Volver a inicio--</span> </div> </div> </div> </div> </div>";
 
 /***/ }),
-/* 19 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(18);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));document.querySelector('.sm-subunit-end').style.backgroundImage='url('+this.subUnitObject.image+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(17);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));document.querySelector('.sm-subunit-end').style.backgroundImage='url('+this.subUnitObject.image+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 if(_config2.default.dev)console.log("updateCompleted()");var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){if(window.actividades[this.subUnitObject.id]){if(window.actividades[this.subUnitObject.id].hasOwnProperty('avance')){this.subUnitObject.completado=parseInt(window.actividades[this.subUnitObject.id].avance);}}this.updateCompletedFillData();}.bind(this));}else{this.updateCompletedFillData();}this.updateCompletedFillData();}},{key:'updateCompletedFillData',value:function updateCompletedFillData(){var completedSecuencia=this.subUnitObject.completado||0;document.querySelector('.sm-subunit-end_completed .sm-subunit-end__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-end_completed .sm-subunit-end__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';}}]);return ScreenSubUnitEnd;}();exports.default=ScreenSubUnitEnd;
 
 /***/ }),
-/* 20 */
+/* 19 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-subunit-start__actividades__item> <div class=sm-subunit-start__actividades__item__icon></div> <div class=sm-subunit-start__actividades__item__type>Tipo de recurso</div> <div class=sm-subunit-start__actividades__item__title>Nombre de la actividad</div> </div>";
 
 /***/ }),
-/* 21 */
+/* 20 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-start sm-base\"> <div class=sm-subunit-start__secuencia> <div class=sm-subunit-start__secuencia__content> <div class=\"sm-subunit-start__number sm-color-color\"></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__type> <div class=sm-subunit-start__type__content> <span class=sm-color-color></span> </div> </div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--Comienza secuencia didáctica--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> <div class=sm-subunit-start__start_button_content--flipped> <div class=\"sm-subunit-start__start_button--flipped-casa sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--Tareas de casa--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> <div class=\"sm-subunit-start__start_button--flipped-clase sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>Tareas de clase</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__actividades style=display:none> <div class=sm-subunit-start__actividades__container> <div class=sm-subunit-start__actividades__content> <div class=sm-subunit-start__actividades__header> <div class=sm-subunit-start__title__actividades>Actividades</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=\"sm-subunit-start__number sm-color-color\"></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> </div> <div class=sm-subunit-start__actividades__list__container> <div class=sm-subunit-start__actividades__list> </div> </div> </div> </div> </div> <div class=sm-subunit-start__evaluacion> <div class=sm-subunit-start__evaluacion__background></div> <div class=sm-subunit-start__evaluacion__content> <div class=sm-subunit-start__title__evaluacion>--Evaluación final--</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=sm-subunit-start__image></div> <div class=\"sm-subunit-start__number sm-color-color\"></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-child-color--hover sm-color-child-color--pressed sm-color-background-color sm-color-border-color sm-color-border-color--hover sm-color-border-color--pressed sm-color-svg-fill--hover sm-color-svg-fill--pressed\"> <span>--Comienza evaluación final--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__nav> <div class=sm-subunit-start__nav__actions> <div id=subunit-boton-actividades class=sm-button-subunitnav><span>--Actividades--</span></div> <div id=subunit-boton-evaluacion-final class=sm-button-subunitnav><span>--Evaluación final--</span></div> </div> </div> </div>";
 
 /***/ }),
-/* 22 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _debug=__webpack_require__(1);var _subUnitStart=__webpack_require__(21);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(20);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _debug=__webpack_require__(1);var _subUnitStart=__webpack_require__(20);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(19);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
 };this.number={};this.subUnitObject={};this.isEvaluacion=false;}_createClass(ScreenSubUnitStart,[{key:'init',value:function init(subUnitObject,number,isEvaluacion){var _this=this;//l("ScreenSubUnitStart.Init");
 //l(subUnitObject, number, isEvaluacion);  
 this.number=number;this.subUnitObject=subUnitObject;this.isEvaluacion=isEvaluacion;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitStart2.default));var numberString=this.number.toString();while(numberString.length<2){numberString='0'+numberString;}if(!this.isEvaluacion){if(this.subUnitObject.hasOwnProperty('video')&&this.subUnitObject.video.length>3){//l("Tiene video");
@@ -4244,31 +4388,31 @@ document.querySelector('.sm-subunit-start__actividades .sm-subunit-start__progre
 document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';}},{key:'checkForEvaluation',value:function checkForEvaluation(){var url='../coursePlayer/librodigital_json.php?type=json&xdevice=ipadapp&idclase='+idclase+'&idcurso='+idcurso;loadScript(url,true,function(data){console.log(JSON.parse(data.responseText));}.bind(this));}}]);return ScreenSubUnitStart;}();exports.default=ScreenSubUnitStart;
 
 /***/ }),
-/* 23 */
+/* 22 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-end\">--Fin--</li>";
 
 /***/ }),
-/* 24 */
+/* 23 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-start\">--Inicio--</li>";
 
 /***/ }),
-/* 25 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-right> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 26 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-left> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 27 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4276,12 +4420,12 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getCoords=getCo
 var box=elem.getBoundingClientRect();var body=document.body;var docEl=document.documentElement;var scrollTop=window.pageYOffset||docEl.scrollTop||body.scrollTop;var scrollLeft=window.pageXOffset||docEl.scrollLeft||body.scrollLeft;var clientTop=docEl.clientTop||body.clientTop||0;var clientLeft=docEl.clientLeft||body.clientLeft||0;var top=box.top+scrollTop-clientTop;var left=box.left+scrollLeft-clientLeft;return{top:Math.round(top),left:Math.round(left)};}
 
 /***/ }),
-/* 28 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(27);var _sliderIndicatorArrowLeft=__webpack_require__(26);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(25);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(24);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(23);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(4);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(3);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(26);var _sliderIndicatorArrowLeft=__webpack_require__(25);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(24);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(23);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(22);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
 contentTop:0,//desktop
 isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};this.line=null;this.lines=null;}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){var _this2=this;//l("ScreenSubUnitIndicators.Init");
 if(!this.started){var _this=this;this.responsiveStatus=new _responsiveStatus2.default();this.subunit=subunit;//Apply book colors with class
@@ -4490,11 +4634,11 @@ _.forEach(document.querySelectorAll('.slider-indicators li'),function(element){i
 },{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}},{key:'goBlinkSlideWithSection',value:function goBlinkSlideWithSection(section){_.forEach(this.subunit.sections,function(sectionObj){if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){document.querySelector('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').click();}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
-/* 29 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(28);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(22);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(19);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(17);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(15);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(27);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(21);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(18);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(16);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(14);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
 ////l(subUnitObject, number, unit, book, isEvaluacion);  
 ////l("¿Es evaluación? " + (isEvaluacion ? "Sí" : "No"));
 if(!this.started){this.number=number;this.subUnitObject=subUnitObject;this.unit=unit;this.book=book;this.isEvaluacion=isEvaluacion;this.screenSubUnitStart=new _ScreenSubUnitStart2.default();this.screenSubUnitEnd=new _ScreenSubUnitEnd2.default();this.screenSubUnitIndicators=new _ScreenSubUnitSliderIndicators2.default();//StartPage
@@ -4514,16 +4658,16 @@ this.subUnitObject.sections.forEach(function(sectionObj){//l(section);
 if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){result=true;}});return result;}}]);return ScreenSubUnit;}();exports.default=ScreenSubUnit;
 
 /***/ }),
-/* 30 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-left-menu__background></div> <div id=sm-left-menu> <a class=sm-left-menu--book-image><strong></strong></a> <div class=\"sm-left-menu--level1 sm-color-background-color_before\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </div> <a class=\"sm-left-menu--level2 sm-color-background-color_before sm-color-child-color--hover sm-color-child-color--active\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </a> </div>";
 
 /***/ }),
-/* 31 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)(false);
+exports = module.exports = __webpack_require__(7)(false);
 // imports
 
 
@@ -4534,11 +4678,11 @@ exports.push([module.i, "/*\n * Container style\n */\n.ps {\n  overflow: hidden 
 
 
 /***/ }),
-/* 32 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(31);
+var content = __webpack_require__(30);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -4552,14 +4696,14 @@ var options = {"hmr":true}
 options.transform = transform
 options.insertInto = undefined;
 
-var update = __webpack_require__(7)(content, options);
+var update = __webpack_require__(6)(content, options);
 
 if(content.locals) module.exports = content.locals;
 
 if(false) {}
 
 /***/ }),
-/* 33 */
+/* 32 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -5883,13 +6027,13 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 
 /***/ }),
-/* 34 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Scroll for left menu
 //Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(33);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(32);var _leftMenu=__webpack_require__(30);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(4);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(32);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(31);var _leftMenu=__webpack_require__(29);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
 document.querySelector('.libro-left-button a').addEventListener('click',function(e){e.preventDefault();});}_createClass(LeftMenu,[{key:'fillData',value:function fillData(){var _this=this;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',_leftMenu2.default);var bookImageDomElement=document.querySelector('#sm-left-menu .sm-left-menu--book-image');var level1DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level1');var level2DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level2');document.querySelector('#sm-left-menu .sm-left-menu--level1').remove();document.querySelector('#sm-left-menu .sm-left-menu--level2').remove();var ulLevel1DomElement=document.createElement('ul');//Image an title
 bookImageDomElement.style.backgroundImage='url('+this.data.image+')';bookImageDomElement.querySelector('strong').innerText=this.data.title;bookImageDomElement.setAttribute('href',this.data.url);//Units
 this.data.units.forEach(function(unit){var unitElement=level1DomElement.cloneNode(true);if(unit.smIsProyect){unitElement.classList.add('sm-left-menu--level1--proyecto');}unitElement.querySelector('.sm-left-menu--image').style.backgroundImage='url('+unit.image+')';var numberformenu=unit.numberformenu==''?'':('0'+unit.numberformenu).slice(-2);unitElement.querySelector('.sm-left-menu--title').innerHTML='<div class="sm-left-menu--proyect_description sm-color-color">'+unit.description+'</div><span>'+numberformenu+'</span> '+unit.title;unitElement.addEventListener('click',_this.toggleUnit.bind(_this));var liElement=document.createElement('li');liElement.appendChild(unitElement);//Subunits
@@ -5900,14 +6044,14 @@ minScrollbarLength:20});}},{key:'toggleUnit',value:function toggleUnit(e){var _t
 var target=e.currentTarget;if(target.classList.contains('active')){target.classList.remove('active');var ulElement=target.parentNode.getElementsByTagName('ul')[0];ulElement.style.height='0px';}else{target.classList.add('active');var _ulElement=target.parentNode.getElementsByTagName('ul')[0];var ulChildrenNumber=_ulElement.children.length;var heightMax=ulChildrenNumber*80;_ulElement.style.height=heightMax+'px';}setTimeout(function(){_this2.perfectScrollbar.update();},200);}},{key:'openMenu',value:function openMenu(){document.querySelector('#sm-left-menu').classList.add('active');(0,_animejs2.default)({targets:'#sm-left-menu__background',opacity:[0,1],duration:200,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-left-menu__background').style.display='block';}});}},{key:'closeMenu',value:function closeMenu(){document.querySelector('#sm-left-menu').classList.remove('active');(0,_animejs2.default)({targets:'#sm-left-menu__background',opacity:[1,0],duration:200,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-left-menu__background').style.display='none';}});}},{key:'toggleMenu',value:function toggleMenu(){var active=document.querySelector('#sm-left-menu').classList.contains('active');if(active){document.querySelector('#sm-left-menu').classList.remove('active');(0,_animejs2.default)({targets:'#sm-left-menu__background',opacity:[1,0],duration:200,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-left-menu__background').style.display='none';}});}else{document.querySelector('#sm-left-menu').classList.add('active');(0,_animejs2.default)({targets:'#sm-left-menu__background',opacity:[0,1],duration:200,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-left-menu__background').style.display='block';}});}return!active;}}]);return LeftMenu;}();exports.default=LeftMenu;
 
 /***/ }),
-/* 35 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ImagesPreload=function(){function ImagesPreload(){_classCallCheck(this,ImagesPreload);this.image=[];}_createClass(ImagesPreload,[{key:'add',value:function add(imagesToLoad){if(typeof imagesToLoad=='string'){imagesToLoad=[imagesToLoad];}imagesToLoad.forEach(function(imageToLoad){var newImage=new Image();newImage.src=imageToLoad;});}}]);return ImagesPreload;}();exports.default=ImagesPreload;
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5926,13 +6070,13 @@ var divElement=document.createElement("div");divElement.className='bookcolor';di
 // };
 
 /***/ }),
-/* 37 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--student-no--access class=sm-modal> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__content> <div class=sm-modal__content__icon> <svg width=64px height=64px viewBox=\"0 0 64 64\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=MODO-VER stroke=none stroke-width=1 fill=none fill-rule=evenodd> <g id=3_alumno-alerta transform=\"translate(-628.000000, -99.000000)\"> <rect fill=#FFFFFF x=0 y=0 width=1600 height=900></rect> <g id=Group-4 transform=\"translate(582.000000, 53.000000)\"> <g id=i-/-candado transform=\"translate(46.000000, 46.000000)\"> <g id=Group-20> <g id=Group-19> <path d=\"M24.3810786,0 C12.9080572,0 3.55555556,9.27100006 3.55555556,20.6443193 L3.55555556,32.1550239 C3.55555556,33.2061835 4.38849065,34.031746 5.4487505,34.031746 L13.0216565,34.031746 C14.0820426,34.031746 14.9148514,33.2060583 14.9148514,32.1550239 L14.9148514,20.6443193 C14.9148514,15.464471 19.1556384,11.2605833 24.3809524,11.2605833 C29.6062664,11.2605833 33.8470533,15.464471 33.8470533,20.6443193 L33.8470533,24.3977637 C33.8470533,25.4489233 34.6799884,26.2744859 35.7402483,26.2744859 L43.3131543,26.2744859 C44.3735403,26.2744859 45.2063492,25.4487982 45.2063492,24.3977637 L45.2063492,20.6443193 C45.2066016,9.27100006 35.8541,0 24.3810786,0\" id=Fill-1 fill=#C8C6CD></path> <path d=\"M43.1353821,29.968254 L5.62639767,29.968254 C2.51298592,29.968254 0,32.5017243 0,35.6402326 L0,58.3280213 C0,61.4666557 2.51298592,64 5.62639767,64 L43.1355071,64 C46.2489188,64 48.7619048,61.4666557 48.7619048,58.3280213 L48.7619048,35.6402326 C48.7617797,32.5017243 46.2487938,29.968254 43.1353821,29.968254\" id=Fill-3 fill=#FEA832></path> <path d=\"M45.2063492,20.7529153 L45.2063492,24.5261041 C45.2063492,25.5827931 44.3734141,26.4126984 43.3131543,26.4126984 L35.7402483,26.4126984 C34.6798622,26.4126984 33.8470533,25.5826673 33.8470533,24.5261041 L33.8470533,20.7529153 C33.8470533,15.5458193 29.6062664,11.3198177 24.3809524,11.3198177 L24.3809524,0 C35.8538475,0 45.2063492,9.3197686 45.2063492,20.7529153\" id=Fill-5 fill=#AEADB3></path> <path d=\"M53.8583417,19.247522 L61.3031294,15.4614141 C63.5117362,14.3425447 65.1568683,17.7349973 62.9679913,18.8483134 L55.5232036,22.6344213 C53.3123633,23.7512714 51.668472,20.361343 53.8583417,19.247522\" id=Fill-7 fill=#159CE4></path> <path d=\"M61.3038134,41.4250067 L53.8587881,37.6402663 C51.6681039,36.5266324 53.31242,33.1372844 55.5237031,34.2547032 L62.9687284,38.0393174 C65.143405,39.1450031 63.5375568,42.5528969 61.3038134,41.4250067\" id=Fill-9 fill=#159CE4></path> <path d=\"M62.1491797,29.968254 L54.6762172,29.968254 C52.2135038,29.968254 52.2034148,26.4126984 54.6762172,26.4126984 L62.1491797,26.4126984 C64.611893,26.4125799 64.621982,29.968254 62.1491797,29.968254\" id=Fill-11 fill=#159CE4></path> <path d=\"M48.7619048,35.6402326 L48.7619048,58.3280213 C48.7619048,61.4666557 46.2489124,64 43.1354927,64 L24.3809524,64 L24.3809524,29.968254 L43.1354927,29.968254 C46.2489124,29.968254 48.7619048,32.5017243 48.7619048,35.6402326\" id=Fill-13 fill=#FE8821></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 C23.4497975,56.3809524 22.5185185,55.7420637 22.5185185,54.5016249 L22.5185185,48.5250903 C20.3579512,47.7358455 18.7936508,45.668698 18.7936508,43.2254094 C18.7936508,40.1055177 21.2892302,37.5873016 24.3810766,37.5873016 C27.4729229,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-15 fill=#787780></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 L24.3809524,37.5873016 C27.4726745,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-17 fill=#57555C></path> </g> </g> </g> </g> </g> </g> </svg> </div> <div class=sm-modal__content__text> <p>--Tu profesor no ha dado permisos de acceso a este contenido--</p> </div> </div> <div class=sm-modal__actions> <div class=sm-modal__button>--Aceptar--</div> </div> </div> </div>";
 
 /***/ }),
-/* 38 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5942,11 +6086,11 @@ var Dropdown=function(){function Dropdown(){_classCallCheck(this,Dropdown);this.
 var _this=this;document.addEventListener('click',function(e){var isClickInside=_this.domElement.contains(e.target);if(!isClickInside){_this.onClose();}});this.domElement.classList.add('js-dropdown-enabled');}}}},{key:'onButtonClick',value:function onButtonClick(){if(this.domElement.classList.contains('active')){this.onClose();}else{this.onOpen();}}},{key:'onClose',value:function onClose(){this.domElement.classList.remove('active');}},{key:'onOpen',value:function onOpen(){this.domElement.classList.add('active');}}]);return Dropdown;}();exports.default=Dropdown;
 
 /***/ }),
-/* 39 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);__webpack_require__(9);var _debug=__webpack_require__(1);var _dropdown=__webpack_require__(38);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(37);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(6);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(3);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(4);var _animejs2=_interopRequireDefault(_animejs);__webpack_require__(8);var _debug=__webpack_require__(1);var _dropdown=__webpack_require__(37);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(36);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(5);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
 if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus(this.updateSlider.bind(this));
 }this.started=true;this.unit=data.unit;var unitElement=document.getElementById('sm-unit');// Background
 document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+this.unit.image+')';document.querySelector('.sm-unit__header__proyecto_imagen').style.backgroundImage='url('+this.unit.image+')';// Header
@@ -5990,7 +6134,7 @@ document.querySelector('#sm-modal--student-no--access .sm-modal__button').addEve
 setTimeout(function(){document.querySelector('#sm-modal--student-no--access').classList.add('active');},1);}},{key:'hideStudentNoAccessModal',value:function hideStudentNoAccessModal(){document.querySelector('#sm-modal--student-no--access').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--student-no--access').remove();},400);}}]);return ScreenUnit;}();exports.default=ScreenUnit;
 
 /***/ }),
-/* 40 */
+/* 39 */
 /***/ (function(module, exports) {
 
 
@@ -6085,34 +6229,47 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 41 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
-exports = module.exports = __webpack_require__(8)(false);
+exports = module.exports = __webpack_require__(7)(false);
 // imports
 
 
 // module
-exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{display:none !important}.tns-outer [aria-controls],.tns-outer [data-action]{cursor:pointer}.ms-touch{overflow-x:scroll;overflow-y:hidden;-ms-overflow-style:none;-ms-scroll-chaining:none;-ms-scroll-snap-type:mandatory;-ms-scroll-snap-points-x:snapInterval(0%, 100%)}.tns-slider{-webkit-transition:all 0s;-moz-transition:all 0s;transition:all 0s}.tns-slider>div,.tns-slider>li{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tns-horizontal.tns-subpixel{white-space:nowrap}.tns-horizontal.tns-subpixel>div,.tns-horizontal.tns-subpixel>li{display:inline-block;vertical-align:top;white-space:normal}.tns-horizontal.tns-no-subpixel:after{content:'';display:table;clear:both}.tns-horizontal.tns-no-subpixel>div,.tns-horizontal.tns-no-subpixel>li{float:left;margin-right:-100%}.tns-no-calc{position:relative;left:0}.tns-gallery{position:relative;left:0;min-height:1px}.tns-gallery>div,.tns-gallery>li{position:absolute;left:-100%;-webkit-transition:transform 0s, opacity 0s;-moz-transition:transform 0s, opacity 0s;transition:transform 0s, opacity 0s}.tns-gallery>.tns-moving{-webkit-transition:all 0.25s;-moz-transition:all 0.25s;transition:all 0.25s}.tns-lazy-img{-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;transition:opacity 0.6s;opacity:0.6}.tns-lazy-img.loaded{opacity:1}.tns-ah{-webkit-transition:height 0s;-moz-transition:height 0s;transition:height 0s}.tns-ovh{overflow:hidden}.tns-hdx{overflow-x:hidden}.tns-hdy{overflow-y:hidden}.tns-visually-hidden{position:absolute;left:-10000em}.tns-transparent{opacity:0;visibility:hidden}.tns-fadeIn{opacity:1;filter:alpha(opacity=100);z-index:0}.tns-normal,.tns-fadeOut{opacity:0;filter:alpha(opacity=0);z-index:-1}.tns-t-subp2{margin:0 auto;width:310px;position:relative;height:10px;overflow:hidden}.tns-t-ct{width:2333.3333333%;width:-webkit-calc(100% * $count / $perpage);width:-moz-calc(100% * $count / $perpage);width:calc(100% * $count / $perpage);position:absolute;right:0}.tns-t-ct:after{content:'';display:table;clear:both}.tns-t-ct>div{width:1.4285714%;width:-webkit-calc(100% / $count);width:-moz-calc(100% / $count);width:calc(100% / $count);height:10px;float:left}\n", ""]);
+exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{display:none !important}.tns-outer [aria-controls],.tns-outer [data-action]{cursor:pointer}.tns-slider{-webkit-transition:all 0s;-moz-transition:all 0s;transition:all 0s}.tns-slider>.tns-item{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box}.tns-horizontal.tns-subpixel{white-space:nowrap}.tns-horizontal.tns-subpixel>.tns-item{display:inline-block;vertical-align:top;white-space:normal}.tns-horizontal.tns-no-subpixel:after{content:'';display:table;clear:both}.tns-horizontal.tns-no-subpixel>.tns-item{float:left}.tns-horizontal.tns-carousel.tns-no-subpixel>.tns-item{margin-right:-100%}.tns-no-calc{position:relative;left:0}.tns-gallery{position:relative;left:0;min-height:1px}.tns-gallery>.tns-item{position:absolute;left:-100%;-webkit-transition:transform 0s, opacity 0s;-moz-transition:transform 0s, opacity 0s;transition:transform 0s, opacity 0s}.tns-gallery>.tns-slide-active{position:relative;left:auto !important}.tns-gallery>.tns-moving{-webkit-transition:all 0.25s;-moz-transition:all 0.25s;transition:all 0.25s}.tns-autowidth{display:inline-block}.tns-lazy-img{-webkit-transition:opacity 0.6s;-moz-transition:opacity 0.6s;transition:opacity 0.6s;opacity:0.6}.tns-lazy-img.tns-complete{opacity:1}.tns-ah{-webkit-transition:height 0s;-moz-transition:height 0s;transition:height 0s}.tns-ovh{overflow:hidden}.tns-visually-hidden{position:absolute;left:-10000em}.tns-transparent{opacity:0;visibility:hidden}.tns-fadeIn{opacity:1;filter:alpha(opacity=100);z-index:0}.tns-normal,.tns-fadeOut{opacity:0;filter:alpha(opacity=0);z-index:-1}.tns-vpfix{white-space:nowrap}.tns-vpfix>div,.tns-vpfix>li{display:inline-block}.tns-t-subp2{margin:0 auto;width:310px;position:relative;height:10px;overflow:hidden}.tns-t-ct{width:2333.3333333%;width:-webkit-calc(100% * 70 / 3);width:-moz-calc(100% * 70 / 3);width:calc(100% * 70 / 3);position:absolute;right:0}.tns-t-ct:after{content:'';display:table;clear:both}.tns-t-ct>div{width:1.4285714%;width:-webkit-calc(100% / 70);width:-moz-calc(100% / 70);width:calc(100% / 70);height:10px;float:left}\n", ""]);
 
 // exports
 
 
 /***/ }),
+/* 41 */
+/***/ (function(module, exports) {
+
+// ChildNode.remove
+if(!("remove" in Element.prototype)){
+  Element.prototype.remove = function(){
+    if(this.parentNode) {
+      this.parentNode.removeChild(this);
+    }
+  };
+}
+
+/***/ }),
 /* 42 */
 /***/ (function(module, exports) {
 
-// keys
+// Object.keys
 if (!Object.keys) {
-    Object.keys = function (object) {
-        var keys = [];
-        for (var name in object) {
-            if (Object.prototype.hasOwnProperty.call(object, name)) {
-                keys.push(name);
-            }
-        }
-        return keys;
-    };
+  Object.keys = function(object) {
+    var keys = [];
+    for (var name in object) {
+      if (Object.prototype.hasOwnProperty.call(object, name)) {
+        keys.push(name);
+      }
+    }
+    return keys;
+  };
 }
 
 /***/ }),
@@ -6120,7 +6277,7 @@ if (!Object.keys) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(10);__webpack_require__(9);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(3);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(9);__webpack_require__(8);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
 // // document.querySelector('#sm-home h2').innerHTML = type;
 // document.querySelector('#sm-home').style.backgroundImage = `url(${homeBackgroundImageUrl})`;
 // document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
@@ -6239,7 +6396,7 @@ module.exports = g;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatusTool=new _responsiveStatus2.default(function(){return null;});// config.velocityTransitions = 2000;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _animejs=__webpack_require__(4);var _animejs2=_interopRequireDefault(_animejs);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(3);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var responsiveStatusTool=new _responsiveStatus2.default(function(){return null;});// config.velocityTransitions = 2000;
 var routeTransitions={'null__to__home':{to:{targets:'#sm-home',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}}},'null__to__units-menu':{to:{targets:'#sm-units-menu',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-units-menu').style.display='block';}}},'null__to__unit':{to:{targets:'#sm-unit',scale:[1.1,1],opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-unit').style.display='block';}}},'home__to__units-menu':{from:[{targets:'#sm-home .sm-content',translateY:['0%','-100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-home').style.display='none';}},{targets:'#sm-home .sm-button-next-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-units-menu',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__home':{from:[{targets:'#sm-units-menu',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-units-menu .sm-button-back-screen',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}],to:[{targets:'#sm-home .sm-content',translateY:['-100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,update:function update(anim){document.getElementById('sm-home').style.display='block';}},{targets:'#sm-home .sm-button-next-screen',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionLinear}]},'units-menu__to__unit':{from:[],to:[{targets:'#sm-unit .sm-content--scrolled',translateY:['100%','0%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-unit').style.display='block';if(typeof document.querySelector('#sm-unit .sm-content--scrolled').scrollTo==="function"){document.querySelector('#sm-unit .sm-content--scrolled').scrollTo(0,0);}}},{targets:'#sm-unit .sm-unit__header_background',opacity:[0,1],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;case'desktop-hd':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[window.innerHeight+'px',backgroundHeight];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(){document.querySelector('#sm-unit .sm-unit__header_background__content').style.removeProperty('height');}}]},'unit__to__units-menu':{from:[{targets:'#sm-unit .sm-content--scrolled',translateY:['0%','100%'],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,complete:function complete(anim){document.getElementById('sm-unit').style.display='none';}},{targets:'#sm-unit .sm-unit__header_background',opacity:[1,0],duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut},{targets:'#sm-unit .sm-unit__header_background__content',height:function height(){var backgroundHeight=0;switch(responsiveStatusTool.getSize()){case'tablet-portrait':backgroundHeight=8*73+'px';break;case'tablet-landscape':backgroundHeight=8*67+'px';break;case'desktop':backgroundHeight=8*67+'px';break;case'desktop-hd':backgroundHeight=8*67+'px';break;default:backgroundHeight='362px';break;}return[backgroundHeight,window.innerHeight+'px'];},duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut}],to:{targets:'#sm-units-menu',duration:_config2.default.velocityTransitions,easing:_config2.default.easingTransitionOut,begin:function begin(anim){document.getElementById('sm-units-menu').style.display='block';}}}};var Transitions=function(){function Transitions(){_classCallCheck(this,Transitions);}_createClass(Transitions,[{key:'start',value:function start(toRoute,fromRoute){//onsole.log(`de ${fromRoute} a ${toRoute}`);
 if(routeTransitions[fromRoute+'__to__'+toRoute]){// document.getElementById('sm-home').style.display = 'block';
 // if(routeTransitions[`${fromRoute}__to__${toRoute}`].from){
@@ -6269,7 +6426,7 @@ var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var has
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Screens
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(49);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(48);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(1);var _1ScreenHome=__webpack_require__(46);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(43);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(39);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(49);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(48);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(1);var _1ScreenHome=__webpack_require__(46);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(43);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(38);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
 // "#" o "#" => Home
 // "#units" => Menú de unidades
 // "#unit_X" => Unidad X
@@ -6302,7 +6459,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Templates
 // import { equal } from 'assert';
 //Polyfils
-__webpack_require__(51);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(50);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(36);var _ImagesPreload=__webpack_require__(35);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(6);var _0LeftMenu=__webpack_require__(34);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(29);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(14);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(13);__webpack_require__(12);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
+__webpack_require__(51);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(50);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(35);var _ImagesPreload=__webpack_require__(34);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(5);var _0LeftMenu=__webpack_require__(33);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(28);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(13);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(12);__webpack_require__(11);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 //l('Unidades: '+data.units.length+' ');
 var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
