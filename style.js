@@ -4340,10 +4340,10 @@ document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__title').
 // }
 // Flipped buttons
 if(subUnitObject.smtype=='flipped'){document.querySelector('.sm-subunit-start__secuencia__content').classList.add('flipped');document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-casa').addEventListener('click',function(){return _this.goFirstBlinkSlide();});//Check if has clase section
-if(this.hasBlinkSlideWithSection('clase')){document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').addEventListener('click',function(){return _this.goBlinkSlideWithSection('clase');});}else{document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').remove();}}if(subUnitObject.smtype){var tipoTexto='';switch(subUnitObject.smtype){case'flipped':tipoTexto='--santillana_microcontenidos_microproyecto--';break;// case 'refuerzo':
+if(this.hasBlinkSlideWithSection('clase')){document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').addEventListener('click',function(){return _this.goBlinkSlideWithSection('clase');});}else{document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').remove();}}if(subUnitObject.smtype){var tipoTexto='';switch(subUnitObject.smtype){case'flipped':tipoTexto='--santillana_microcontenidos_flipped--';break;// case 'refuerzo':
 // 	tipoTexto = 'Refuerzo';
 // 	break;
-case'microproyecto':tipoTexto='--santillana_microcontenidos_flipped--';break;// case 'ampliacion':
+case'microproyecto':tipoTexto='--santillana_microcontenidos_microproyecto--';break;// case 'ampliacion':
 // 	tipoTexto = 'Ampliación';
 // 	break;
 // case 'teacher':
@@ -4355,7 +4355,7 @@ case'microproyecto':tipoTexto='--santillana_microcontenidos_flipped--';break;// 
 // case 'laboratorio':
 // 	tipoTexto = 'Laboratorio';
 // 	break;
-case'basica':tipoTexto='Básica';break;default:break;}tipoTexto=replaceStringInTemplates.replace(tipoTexto);document.querySelector('.sm-subunit-start__secuencia__content span').innerHTML=''+tipoTexto;}else{document.querySelector('.sm-subunit-start__secuencia__content span').innerHTML=subUnitObject.description;}// if(document.querySelector(`.sm-subunit-start__secuencia__content svg.${subUnitObject.smtype}-icon`)){
+case'basica':tipoTexto='--santillana_microcontenidos_basica--';break;default:break;}tipoTexto=replaceStringInTemplates.replace(tipoTexto);document.querySelector('.sm-subunit-start__secuencia__content span').innerHTML=''+tipoTexto;}else{document.querySelector('.sm-subunit-start__secuencia__content span').innerHTML=subUnitObject.description;}// if(document.querySelector(`.sm-subunit-start__secuencia__content svg.${subUnitObject.smtype}-icon`)){
 //     document.querySelector(`.sm-subunit-start__secuencia__content svg.${subUnitObject.smtype}-icon`).style.display = 'inline-block';
 // }
 //Actividades
@@ -6479,13 +6479,13 @@ if((0,_blinkFunctions.esAlumno)()){this.data.units.forEach(function(unit){var i=
 var unitCounter=0;this.data.units.forEach(function(unit,index){//chech if is projects
 if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
 //TODO QUEDA POR ENTENDER COMO SE GESTIONA EVALUACION, PERO POR AHORA LO SEPARO
-var asideClassesName=['flipped',// 'refuerzo',
-'microproyecto',// 'ampliacion',
+var asideClassesName=['activitytag_flipped',// 'refuerzo',
+'activitytag_microproyecto',// 'ampliacion',
 // 'teacher',
 // 'discover',
 // 'laboratorio',
-'basica'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;if(subunit.tag){asideClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){subunit.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(subunit.tag.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;if(resource.tag){// asideClassesName.forEach(tagName => {
-// 	if(resource.tag.indexOf(tagName)>=0){
+'activitytag_basica'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;if(tags){asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){subunit.smtype=tagName.replace('activitytag_','');}});evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;var tags=resource.tag+' '+resource.tags;if(tags){// asideClassesName.forEach(tagName => {
+// 	if(tags.indexOf(tagName)>=0){
 // 		if(!added){
 // 			resource.smtype=tagName;
 // 			unit.resourcesmain.push(resource);
@@ -6493,7 +6493,7 @@ var asideClassesName=['flipped',// 'refuerzo',
 // 		}
 // 	}
 // });
-asideClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(resource.tag.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);// unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit = resource;
+asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){resource.smtype=tagName;}});evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.resourcesevaluation.push(resource);// unit.resourcesmain[unit.resourcesmain.length-1].evaluationSubUnit = resource;
 // unit.resourcesevaluation[unit.resourcesevaluation.length-1].parentSubUnit = unit.resourcesmain[unit.resourcesmain.length-1];
 added=true;}}});}// if(resource.evalType==2){
 // 	unit.resourcesevaluation.push(resource);
