@@ -1,65 +1,204 @@
 (function (blink) {
-    'use strict';
- 
-    var SantillanaMicrocontenidosDevStyle = function () {
-        blink.theme.styles['santillana-microcontenidos'].apply(this, arguments);
-    };
+	'use strict';
 
-    SantillanaMicrocontenidosDevStyle.prototype = {
-        parent: blink.theme.styles['santillana-microcontenidos'].prototype,
-        bodyClassName: 'content_type_clase_santillana_microcontenidos_dev',
-        ckEditorStyles: {
-			name: 'santillana-microcontenidos-dev',
-			styles: [
-				{ name: 'Enunciado actividad', element: 'h2', attributes: { 'class': 'h_bold'} },
-				{ name: 'Párrafos cortos', element: 'h2', attributes: {} },
-				{ name: 'Párrafo título', element: 'h3', attributes: { 'class': 'h_bold'} },
-				{ name: 'Párrafo normal', element: 'h3', attributes: { } },
-				{ name: 'Pie de foto', element: 'h4', attributes: { } },
-				{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
-				{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
-				{ name: 'Caja Think',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-think'} },
-				{ name: 'Icono Sonido', element: 'span', attributes: { 'class': 'sm-icon sm-icon--sonido' } },
-				{ name: 'Icono Vídeo', element: 'span', attributes: { 'class': 'sm-icon sm-icon--video' } },
-				{ name: 'Audio como icono', type: 'widget', widget: 'blink_sound', attributes: { 'class': 'sm-audio-as-icon' } },
-				{ name: 'Versalitas', element: 'span', attributes: { 'class': 'bck-versalitas'} },
-			]
+	var SantillanaMicrocontenidosStyle = function () {
+		blink.theme.styles.basic.apply(this, arguments);
+	};
+
+	SantillanaMicrocontenidosStyle.prototype = {
+		parent: blink.theme.styles.basic.prototype,
+		esPortada: false, //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+		bodyClassName: 'content_type_clase_santillana_microcontenidos',
+		defaultBackground: '/themes/responsive/assets/styles/santillana-microcontenidos/images/cover.png',
+		ckEditorStyles: {
+			name: 'santillana-microcontenidos',
+			styles: [{
+                name: 'Enunciado actividad',
+                element: 'h2',
+                attributes: {
+                    'class': 'h_bold'
+                }
+            },
+            {
+                name: 'Párrafos cortos',
+                element: 'h2',
+                attributes: {}
+            },
+            {
+                name: 'Párrafo título',
+                element: 'h3',
+                attributes: {
+                    'class': 'h_bold'
+                }
+            },
+            {
+                name: 'Párrafo normal',
+                element: 'h3',
+                attributes: {}
+            },
+            {
+                name: 'Pie de foto',
+                element: 'h4',
+                attributes: {}
+            },
+            {
+                name: 'Caja enlace',
+                type: 'widget',
+                widget: 'blink_box',
+                attributes: {
+                    'class': 'sm__caja-enlace'
+                }
+            },
+            {
+                name: 'Caja destacada',
+                type: 'widget',
+                widget: 'blink_box',
+                attributes: {
+                    'class': 'sm__caja-destacada'
+                }
+            },
+            {
+                name: 'Caja Think',
+                type: 'widget',
+                widget: 'blink_box',
+                attributes: {
+                    'class': 'sm__caja-think'
+                }
+            },
+            {
+                name: 'Icono Sonido',
+                element: 'span',
+                attributes: {
+                    'class': 'sm-icon sm-icon--sonido'
+                }
+            },
+            {
+                name: 'Icono Vídeo',
+                element: 'span',
+                attributes: {
+                    'class': 'sm-icon sm-icon--video'
+                }
+            },
+            {
+                name: 'Audio como icono',
+                type: 'widget',
+                widget: 'blink_sound',
+                attributes: {
+                    'class': 'sm-audio-as-icon'
+                }
+			},
+			{
+				name: 'Versalitas',
+				element: 'span',
+				attributes: {
+					'class': 'bck-versalitas'
+				}
+			},
+        ]
 		},
-		configEditor: function (editor) {
+        configEditor: function (editor) {
 			editor.dtd.$removeEmpty['span'] = false;
 		},
 
 		getEditorStyles: function () {
 			return this.ckEditorStyles;
-		},
-
-        init: function () {
-			var _this = this;
-            this.parent.init.call(this.parent, this);
-            
-            blink.getCourse(idcurso).done((function(data) {
-				this.onCourseDataLoaded(data);
-				_this.toogleInfo();
-			}).bind(this));
-		},
-		
-		onCourseDataLoaded: function(data) {
-			SantillanaMicrocontenidosStyleUI.init(data);
-		},
-
-        removeFinalSlide: function () {
-            this.parent.removeFinalSlide.call(this.parent, this, true);
         },
-        toogleInfo: function() {
+        
+		init: function (scope) {
+			var that = scope || this;
+			this.parent.init.call(that);
+			this.addActivityTitle();
+			this.getCourseStyleUI();
+			// this.overrideLateralToc();
+            this.preventTouchCarousel();
+            blink.getCourse(idcurso).done((function (data) {
+				// this.onCourseDataLoaded(data);
+				that.toogleInfo();
+			}).bind(this));
+        },
+        
+		toogleInfo: function() {
 			$('.item-container').scroll(function() {
 				blink.activity.currentStyle.infoToggle();
 			});
 		},
-        allocateCanvas: function (sectionIndex) {
-			if (sectionIndex !== 0) return;
-			//BK-15873 Utilizamos this.parent declarada al inicio de la clase
-			this.parent.allocateCanvas.call(this.parent, this, sectionIndex);
+		
+		addActivityTitle: function () {
+			if (!blink.courseInfo || !blink.courseInfo.unit) return;
+			$('.libro-left').find('.title').html(function () {
+				if (blink.courseInfo.unit === "Portada") {
+					return blink.courseInfo.book;
+				}
+				return '<span class="ellipsis">' + blink.courseInfo.unit + '</span>&nbsp;>&nbsp;<span class="ellipsis">' + $(this).html() + '<span>';
+			})
 		},
+
+		onCourseDataLoaded: function (data) {
+			console.log("CARGANDO");
+			SantillanaMicrocontenidosStyleUI.init(data);
+		},
+
+		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+		getCourseStyleUI: function () {
+			blink.getCourse(idcurso).done((function (data) {
+				this.configInit(data);
+				SantillanaMicrocontenidosStyleUI.init(data);
+			}).bind(this));
+		},
+
+		configInit: function (data) {
+			if (blink.activity.id != data.indexId) {
+				this.removeCloseButton();
+			}else{ //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+				this.esPortada = true;
+				this.defaultBackground = SantillanaMicrocontenidosStyle.prototype.defaultBackground;
+			}
+		},
+
+		// overrideLateralToc: function () {
+		// 	blink.lateralToc.toggle = function () {
+		// 		window.SantillanaMicrocontenidosMenuToggle();
+		// 	}
+		// },
+
+		isEmbeddedAudio: function () {
+			return true;
+		},
+
+		removeFinalSlide: function () {
+			if (!checkModoCorreccion() && !checkModoRevision()) {
+				(typeof this.Slider !== 'undefined' && this.Slider.removeLastItem) && this.Slider.removeLastItem();
+			}
+		},
+
+		allocateCanvas: function (scope, sectionIndex) {
+			var that = scope || this;
+			if (sectionIndex !== 0) return;
+			this.parent.allocateCanvas.call(that, sectionIndex);
+		},
+
+		showBookIndexInClass: function () {
+			return true;
+		},
+
+		showPluginsByStyleUser: function (editorMode) {
+			return editorMode == 'admin' && blink.user.esEditorial();
+		},
+
+		removeCloseButton: function () {
+			$('.close-back-wrapper').remove();
+		},
+
+		preventTouchCarousel: function () {
+			$('#swipeview-slider')
+				.on('touchstart', function (event) {
+					event.stopPropagation();
+					event.stopImmediatePropagation();
+					return;
+				});
+		},
+
+		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 		isIndexActivity: function(params, code) {
 			this.getCourseStyleUI();
 			var navigationCode;
@@ -69,17 +208,14 @@
 				navigationCode = code;
 			}
 			cambiarVisualizacion(true, params, navigationCode);
-		},
-	
-    
-    };
+		}
+	};
 
-    SantillanaMicrocontenidosDevStyle.prototype = _.extend({}, new blink.theme.styles['santillana-microcontenidos'](), SantillanaMicrocontenidosDevStyle.prototype);
+	SantillanaMicrocontenidosStyle.prototype = _.extend({}, new blink.theme.styles.basic(), SantillanaMicrocontenidosStyle.prototype);
 
-    blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDevStyle;
- 
-})( blink );
+	blink.theme.styles['santillana-microcontenidos'] = SantillanaMicrocontenidosStyle;
 
+})(blink);
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("lodash"));
