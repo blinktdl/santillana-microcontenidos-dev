@@ -146,10 +146,7 @@
 
 	blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDevStyle;
 
-})( blink );
-
-
-(function webpackUniversalModuleDefinition(root, factory) {
+})( blink );(function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("lodash"));
 	else if(typeof define === 'function' && define.amd)
