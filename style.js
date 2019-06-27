@@ -7,8 +7,10 @@
 
 	SantillanaMicrocontenidosDevStyle.prototype = {
 			parent: blink.theme.styles['santillana-microcontenidos'].prototype,
+      esPortada: false, //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 			bodyClassName: 'content_type_clase_santillana_microcontenidos_dev',
-			ckEditorStyles: {
+      defaultBackground: '/themes/responsive/assets/styles/santillana-microcontenidos/images/cover.png',
+      ckEditorStyles: {
 		name: 'santillana-microcontenidos-dev',
 		styles: [
 			{ name: 'Enunciado actividad', element: 'h2', attributes: { 'class': 'h_bold'} },
@@ -33,48 +35,110 @@
 		return this.ckEditorStyles;
 	},
 
-			init: function () {
+  init: function (scope) {
 		var _this = this;
-					this.parent.init.call(this.parent, this);
-					
-					blink.getCourse(idcurso).done((function(data) {
-			this.onCourseDataLoaded(data);
-			_this.toogleInfo();
-		}).bind(this));
-	},
-	
-	onCourseDataLoaded: function(data) {
-		SantillanaMicrocontenidosStyleUI.init(data);
-	},
+    this.parent.init.call(this.parent, this);
+    this.addActivityTitle();
+    this.getCourseStyleUI();
+    this.overrideLateralToc();
+    this.preventTouchCarousel();
+    blink.getCourse(idcurso).done((function (data) {
+      _this.onCourseDataLoaded(data);
+      _this.toogleInfo();
+    }).bind(this));
+  },
+        
+		toogleInfo: function() {
+			$('.item-container').scroll(function() {
+				blink.activity.currentStyle.infoToggle();
+			});
+		},
+		
+		addActivityTitle: function () {
+			if (!blink.courseInfo || !blink.courseInfo.unit) return;
+			$('.libro-left').find('.title').html(function () {
+				if (blink.courseInfo.unit === "Portada") {
+					return blink.courseInfo.book;
+				}
+				return '<span class="ellipsis">' + blink.courseInfo.unit + '</span>&nbsp;>&nbsp;<span class="ellipsis">' + $(this).html() + '<span>';
+			})
+		},
 
-			removeFinalSlide: function () {
-					this.parent.removeFinalSlide.call(this.parent, this, true);
-			},
-			toogleInfo: function() {
-		$('.item-container').scroll(function() {
-			blink.activity.currentStyle.infoToggle();
-		});
-	},
-			allocateCanvas: function (sectionIndex) {
-		if (sectionIndex !== 0) return;
-		//BK-15873 Utilizamos this.parent declarada al inicio de la clase
-		this.parent.allocateCanvas.call(this.parent, this, sectionIndex);
-	},
-	isIndexActivity: function(params, code) {
-		this.getCourseStyleUI();
-		var navigationCode;
-		if(this.esPortada){
-			navigationCode = 2;
-		}else{
-			navigationCode = code;
-		}
-		cambiarVisualizacion(true, params, navigationCode);
-	},
-			overrideLateralToc: function () {
+    onCourseDataLoaded: function (data) {
+      SantillanaMicrocontenidosStyleUI.init(data);
+    },
+
+		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+		getCourseStyleUI: function () {
+			blink.getCourse(idcurso).done((function (data) {
+				this.configInit(data);
+				// SantillanaMicrocontenidosStyleUI.init(data);
+			}).bind(this));
+		},
+
+		configInit: function (data) {
+			if (blink.activity.id != data.indexId) {
+				this.removeCloseButton();
+			}else{ //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+				this.esPortada = true;
+				this.defaultBackground = SantillanaMicrocontenidosStyle.prototype.defaultBackground;
+			}
+		},
+
+		overrideLateralToc: function () {
 			blink.lateralToc.toggle = function () {
 				window.SantillanaMicrocontenidosMenuToggle();
 			}
 		},
+
+		isEmbeddedAudio: function () {
+			return true;
+		},
+
+		removeFinalSlide: function () {
+			if (!checkModoCorreccion() && !checkModoRevision()) {
+				(typeof this.Slider !== 'undefined' && this.Slider.removeLastItem) && this.Slider.removeLastItem();
+			}
+		},
+
+		allocateCanvas: function (scope, sectionIndex) {
+			var that = scope || this;
+			if (sectionIndex !== 0) return;
+			this.parent.allocateCanvas.call(that, sectionIndex);
+		},
+
+		showBookIndexInClass: function () {
+			return true;
+		},
+
+		showPluginsByStyleUser: function (editorMode) {
+			return editorMode == 'admin' && blink.user.esEditorial();
+		},
+
+		removeCloseButton: function () {
+			$('.close-back-wrapper').remove();
+		},
+
+		preventTouchCarousel: function () {
+			$('#swipeview-slider')
+				.on('touchstart', function (event) {
+					event.stopPropagation();
+					event.stopImmediatePropagation();
+					return;
+				});
+		},
+
+		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
+		isIndexActivity: function(params, code) {
+			this.getCourseStyleUI();
+			var navigationCode;
+			if(this.esPortada){
+				navigationCode = 2;
+			}else{
+				navigationCode = code;
+			}
+			cambiarVisualizacion(true, params, navigationCode);
+		}
 	
 	};
 
@@ -83,6 +147,7 @@
 	blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDevStyle;
 
 })( blink );
+
 
 (function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
