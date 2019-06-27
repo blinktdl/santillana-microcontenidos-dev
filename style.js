@@ -81,7 +81,7 @@
 				this.removeCloseButton();
 			}else{ //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 				this.esPortada = true;
-				this.defaultBackground = SantillanaMicrocontenidosStyle.prototype.defaultBackground;
+				this.defaultBackground = SantillanaMicrocontenidosDevStyle.prototype.defaultBackground;
 			}
 		},
 
