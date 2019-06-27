@@ -7,10 +7,8 @@
 
 	SantillanaMicrocontenidosDevStyle.prototype = {
 			parent: blink.theme.styles['santillana-microcontenidos'].prototype,
-      esPortada: false, //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 			bodyClassName: 'content_type_clase_santillana_microcontenidos_dev',
-      defaultBackground: '/themes/responsive/assets/styles/santillana-microcontenidos/images/cover.png',
-      ckEditorStyles: {
+			ckEditorStyles: {
 		name: 'santillana-microcontenidos-dev',
 		styles: [
 			{ name: 'Enunciado actividad', element: 'h2', attributes: { 'class': 'h_bold'} },
@@ -35,110 +33,48 @@
 		return this.ckEditorStyles;
 	},
 
-  init: function (scope) {
-    var that = scope || this;
-    this.parent.init.call(that);
-    this.addActivityTitle();
-    this.getCourseStyleUI();
-    this.overrideLateralToc();
-    this.preventTouchCarousel();
-    blink.getCourse(idcurso).done((function (data) {
-      this.onCourseDataLoaded(data);
-      that.toogleInfo();
-    }).bind(this));
-  },
-        
-		toogleInfo: function() {
-			$('.item-container').scroll(function() {
-				blink.activity.currentStyle.infoToggle();
-			});
-		},
-		
-		addActivityTitle: function () {
-			if (!blink.courseInfo || !blink.courseInfo.unit) return;
-			$('.libro-left').find('.title').html(function () {
-				if (blink.courseInfo.unit === "Portada") {
-					return blink.courseInfo.book;
-				}
-				return '<span class="ellipsis">' + blink.courseInfo.unit + '</span>&nbsp;>&nbsp;<span class="ellipsis">' + $(this).html() + '<span>';
-			})
-		},
+			init: function () {
+		var _this = this;
+					this.parent.init.call(this.parent, this);
+					
+					blink.getCourse(idcurso).done((function(data) {
+			this.onCourseDataLoaded(data);
+			_this.toogleInfo();
+		}).bind(this));
+	},
+	
+	onCourseDataLoaded: function(data) {
+		SantillanaMicrocontenidosStyleUI.init(data);
+	},
 
-    onCourseDataLoaded: function (data) {
-      SantillanaMicrocontenidosStyleUI.init(data);
-    },
-
-		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
-		getCourseStyleUI: function () {
-			blink.getCourse(idcurso).done((function (data) {
-				this.configInit(data);
-				// SantillanaMicrocontenidosStyleUI.init(data);
-			}).bind(this));
-		},
-
-		configInit: function (data) {
-			if (blink.activity.id != data.indexId) {
-				this.removeCloseButton();
-			}else{ //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
-				this.esPortada = true;
-				this.defaultBackground = SantillanaMicrocontenidosStyle.prototype.defaultBackground;
-			}
-		},
-
-		overrideLateralToc: function () {
+			removeFinalSlide: function () {
+					this.parent.removeFinalSlide.call(this.parent, this, true);
+			},
+			toogleInfo: function() {
+		$('.item-container').scroll(function() {
+			blink.activity.currentStyle.infoToggle();
+		});
+	},
+			allocateCanvas: function (sectionIndex) {
+		if (sectionIndex !== 0) return;
+		//BK-15873 Utilizamos this.parent declarada al inicio de la clase
+		this.parent.allocateCanvas.call(this.parent, this, sectionIndex);
+	},
+	isIndexActivity: function(params, code) {
+		this.getCourseStyleUI();
+		var navigationCode;
+		if(this.esPortada){
+			navigationCode = 2;
+		}else{
+			navigationCode = code;
+		}
+		cambiarVisualizacion(true, params, navigationCode);
+	},
+			overrideLateralToc: function () {
 			blink.lateralToc.toggle = function () {
 				window.SantillanaMicrocontenidosMenuToggle();
 			}
 		},
-
-		isEmbeddedAudio: function () {
-			return true;
-		},
-
-		removeFinalSlide: function () {
-			if (!checkModoCorreccion() && !checkModoRevision()) {
-				(typeof this.Slider !== 'undefined' && this.Slider.removeLastItem) && this.Slider.removeLastItem();
-			}
-		},
-
-		allocateCanvas: function (scope, sectionIndex) {
-			var that = scope || this;
-			if (sectionIndex !== 0) return;
-			this.parent.allocateCanvas.call(that, sectionIndex);
-		},
-
-		showBookIndexInClass: function () {
-			return true;
-		},
-
-		showPluginsByStyleUser: function (editorMode) {
-			return editorMode == 'admin' && blink.user.esEditorial();
-		},
-
-		removeCloseButton: function () {
-			$('.close-back-wrapper').remove();
-		},
-
-		preventTouchCarousel: function () {
-			$('#swipeview-slider')
-				.on('touchstart', function (event) {
-					event.stopPropagation();
-					event.stopImmediatePropagation();
-					return;
-				});
-		},
-
-		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
-		isIndexActivity: function(params, code) {
-			this.getCourseStyleUI();
-			var navigationCode;
-			if(this.esPortada){
-				navigationCode = 2;
-			}else{
-				navigationCode = code;
-			}
-			cambiarVisualizacion(true, params, navigationCode);
-		}
 	
 	};
 
@@ -146,7 +82,9 @@
 
 	blink.theme.styles['santillana-microcontenidos-dev'] = SantillanaMicrocontenidosDevStyle;
 
-})( blink );(function webpackUniversalModuleDefinition(root, factory) {
+})( blink );
+
+(function webpackUniversalModuleDefinition(root, factory) {
 	if(typeof exports === 'object' && typeof module === 'object')
 		module.exports = factory(require("lodash"));
 	else if(typeof define === 'function' && define.amd)
@@ -6133,7 +6071,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});exports.setBookColor=setBookColor;function setBookColor(){// document.write('<div id="getbookcolor" class="bookcolor" style="display: none"></div>');
-var divElement=document.createElement("div");divElement.className='bookcolor';divElement.id='getbookcolor';document.body.appendChild(divElement);var bookColor=window.getComputedStyle(divElement,null).getPropertyValue('color');var style=document.createElement('style');style.type='text/css';style.innerHTML='\n        .sm-color-color,\n        .sm-color-color--pressed:active,\n        .sm-color-color--focus:focus,\n        .sm-color-color--hover:hover{\n            color: '+bookColor+'!important;\n        }\n        .sm-color-background-color,\n        .sm-color-background-color--active.active,\n        .sm-color-background-color--hover:hover,\n        .sm-color-background-color_before:before,\n        .sm-color-background-color_after:after{\n            background-color: '+bookColor+'!important;\n        }\n        .sm-color-border-color,\n        .sm-color-border-color--pressed:active,\n        .sm-color-border-color--hover:hover,\n        .sm-color-border-color--active.active{\n            border-color: '+bookColor+'!important;\n        }\n        \n        .sm-color-svg-fill svg,\n        .sm-color-svg-fill--hover:hover svg,\n        .sm-color-svg-fill--pressed:active > svg{\n            fill: '+bookColor+'!important;\n        }\n        .sm-color-svg-stroke svg,\n        .sm-color-svg-stroke--hover:hover svg,\n        .sm-color-svg-stroke--pressed:active > svg{\n            stroke: '+bookColor+'!important;\n        }\n\n        .sm-color-child-color > *,\n        .sm-color-child-color--hover:hover > *,\n        .sm-color-child-color--active.active > *,\n        .sm-color-child-color--pressed:active > *{\n            color: '+bookColor+'!important;\n        }\n\n        .info-template .info-icon{\n            background-color: '+bookColor+'!important;\n        }\n        .info-template .info-title{\n            color: '+bookColor+'!important;\n        }\n        body.view-mode #actividad .texto_curso .info-button,\n        .cke_contents .info-button{\n            background-color: '+bookColor+'!important;\n        }\n        \n        .sm-nota-budget-background svg path#background,\n        .sm-nota-budget-background--title svg path{\n            fill: '+bookColor+'!important;\n        }\n        .libro-right ul li a.edit-mode{\n            background-color: '+bookColor+'!important;\n        }\n        .libro-right ul li a.edit-mode,\n        .libro-right ul li a.edit-mode:hover,\n        .libro-right ul li a.edit-mode:active{\n            background-color: '+bookColor+'!important;\n        }\n    ';document.getElementsByTagName('head')[0].appendChild(style);}// function getStyleRuleValue(style, selector) {
+var divElement=document.createElement("div");divElement.className='bookcolor';divElement.id='getbookcolor';document.body.appendChild(divElement);var bookColor=window.getComputedStyle(divElement,null).getPropertyValue('color');var style=document.createElement('style');style.type='text/css';style.innerHTML='\n        .sm-color-color,\n        .sm-color-color--pressed:active,\n        .sm-color-color--focus:focus,\n        .sm-color-color--hover:hover{\n            color: '+bookColor+'!important;\n        }\n        .sm-color-background-color,\n        .sm-color-background-color--active.active,\n        .sm-color-background-color--hover:hover,\n        .sm-color-background-color_before:before,\n        .sm-color-background-color_after:after{\n            background-color: '+bookColor+'!important;\n        }\n        .sm-color-border-color,\n        .sm-color-border-color--pressed:active,\n        .sm-color-border-color--hover:hover,\n        .sm-color-border-color--active.active{\n            border-color: '+bookColor+'!important;\n        }\n        \n        .sm-color-svg-fill svg,\n        .sm-color-svg-fill--hover:hover svg,\n        .sm-color-svg-fill--pressed:active > svg{\n            fill: '+bookColor+'!important;\n        }\n        .sm-color-svg-stroke svg,\n        .sm-color-svg-stroke--hover:hover svg,\n        .sm-color-svg-stroke--pressed:active > svg{\n            stroke: '+bookColor+'!important;\n        }\n\n        .sm-color-child-color > *,\n        .sm-color-child-color--hover:hover > *,\n        .sm-color-child-color--active.active > *,\n        .sm-color-child-color--pressed:active > *{\n            color: '+bookColor+'!important;\n        }\n\n        .info-template .info-icon{\n            background-color: '+bookColor+'!important;\n        }\n        .info-template .info-title{\n            color: '+bookColor+'!important;\n        }\n        body.view-mode #actividad .texto_curso .info-button,\n        .cke_contents .info-button{\n            background-color: '+bookColor+'!important;\n        }\n        \n        .sm-nota-budget-background svg path#background,\n        .sm-nota-budget-background--title svg path{\n            fill: '+bookColor+'!important;\n        }\n        .libro-right ul li a.edit-mode{\n            background-color: '+bookColor+'!important;\n        }\n        .libro-right ul li a.edit-mode,\n        .libro-right ul li a.edit-mode:hover,\n        .libro-right ul li a.edit-mode:active{\n            background-color: '+bookColor+'!important;\n        }\n        body.view-mode #actividad .texto_curso ul[style*="list-style-type: disc;"]>li:before,\n        .cke_contents ul[style*="list-style-type: disc;"]>li:before,\n        body.view-mode #actividad .texto_curso ul[style*="list-style-type: square;"]>li:before,\n        .cke_contents ul[style*="list-style-type: square;"]>li:before{\n            background-color: '+bookColor+'!important;\n        }\n    ';document.getElementsByTagName('head')[0].appendChild(style);}// function getStyleRuleValue(style, selector) {
 //     console.log(document.styleSheets);
 //     for (var i = 0; i < document.styleSheets.length; i++) {
 //         var mysheet = document.styleSheets[i];
