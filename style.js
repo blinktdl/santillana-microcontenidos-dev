@@ -9,6 +9,7 @@
 			parent: blink.theme.styles['santillana-microcontenidos'].prototype,
       esPortada: false, //BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 			bodyClassName: 'content_type_clase_santillana_microcontenidos_dev',
+		extraPlugins: ['blink_nextbutton'],
       defaultBackground: '/themes/responsive/assets/styles/santillana-microcontenidos/images/cover.png',
       ckEditorStyles: {
 		name: 'santillana-microcontenidos-dev',
@@ -32,7 +33,7 @@
 	},
 
 	getEditorStyles: function () {
-		return this.ckEditorStyles;
+		return this.parent.ckEditorStyles;
 	},
 
   init: function (scope) {
