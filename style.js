@@ -35,6 +35,12 @@
 	getEditorStyles: function () {
 		return this.parent.ckEditorStyles;
 	},
+		getPluginsByEditorMode: function (editorMode) {
+			var editorPlugins = {
+				'standard': ['blink_nextbutton']
+			}
+			return editorPlugins[editorMode] ? editorPlugins[editorMode] : false;
+        },
 
   init: function (scope) {
 		var _this = this;
