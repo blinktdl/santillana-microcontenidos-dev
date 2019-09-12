@@ -34,13 +34,12 @@
 	getEditorStyles: function () {
 		return this.parent.ckEditorStyles;
 	},
-		getPluginsByEditorMode: function (editorMode) {
-			var editorPlugins = {
-				'standard': ['blink_nextbutton']
-			}
-			return editorPlugins[editorMode] ? editorPlugins[editorMode] : false;
-        },
-
+	getPluginsByEditorMode: function (editorMode) {
+		var editorPlugins = {
+			'standard': ['blink_nextbutton']
+		}
+		return editorPlugins[editorMode] ? editorPlugins[editorMode] : false;
+	},
   init: function (scope) {
 		var _this = this;
     this.parent.init.call(this.parent, this);
@@ -4376,7 +4375,8 @@ Object.defineProperty(exports,"__esModule",{value:true});var _createClass=functi
 var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(18);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// console.log(this.creditsHtml);
 // console.log(this.subUnitObject);
 document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));var subunitImage=this.subUnitObject.image.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:this.subUnitObject.image.length<3?window.smDefaultBackgroundImage:this.subUnitObject.image;document.querySelector('.sm-subunit-end').style.backgroundImage='url('+subunitImage+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
-if(_config2.default.dev)console.log("updateCompleted()");var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
+if(_config2.default.dev)console.log("updateCompleted()");//get idalumno from url
+var currentUrl=new URL(window.location.href);var idAlumno=currentUrl.searchParams.get('idalumno');var idAlumnoUrlParamString=idAlumno?'&idalumno='+idAlumno:'';var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso+idAlumnoUrlParamString;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){if(window.actividades[this.subUnitObject.id]){if(window.actividades[this.subUnitObject.id].hasOwnProperty('avance')){this.subUnitObject.completado=parseInt(window.actividades[this.subUnitObject.id].avance);}}this.updateCompletedFillData();}.bind(this));}else{this.updateCompletedFillData();}this.updateCompletedFillData();}},{key:'updateCompletedFillData',value:function updateCompletedFillData(){var completedSecuencia=this.subUnitObject.completado||0;document.querySelector('.sm-subunit-end_completed .sm-subunit-end__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-end_completed .sm-subunit-end__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';}}]);return ScreenSubUnitEnd;}();exports.default=ScreenSubUnitEnd;
 
 /***/ }),
@@ -4464,7 +4464,8 @@ document.querySelector('.sm-subunit-start__nav__actions').style.display='none';t
 },{key:'showEvaluacion',value:function showEvaluacion(){//l("Mostrando evaluación");
 document.querySelector('.sm-subunit-start__secuencia').style.display='none';document.querySelector('.sm-subunit-start__evaluacion').style.display='block';document.querySelector('.sm-subunit-start__nav__actions').style.display='none';this.state.tab='evaluacion';}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 //l("updateCompleted()");
-var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
+//get idalumno from url
+var currentUrl=new URL(window.location.href);var idAlumno=currentUrl.searchParams.get('idalumno');var idAlumnoUrlParamString=idAlumno?'&idalumno='+idAlumno:'';var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso+idAlumnoUrlParamString;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){if(window.actividades[this.subUnitObject.id]){if(window.actividades[this.subUnitObject.id].hasOwnProperty('avance')){this.subUnitObject.completado=parseInt(window.actividades[this.subUnitObject.id].avance);}}this.updateCompletedFillData();}.bind(this));}else{this.updateCompletedFillData();}this.updateCompletedFillData();}},{key:'updateCompletedFillData',value:function updateCompletedFillData(){//Secuencia
 var completedSecuencia=this.subUnitObject.completado||0;document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';//ACtividades
 document.querySelector('.sm-subunit-start__actividades .sm-subunit-start__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-start__actividades .sm-subunit-start__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';//Evaluacion
@@ -6552,7 +6553,8 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 __webpack_require__(52);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(51);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(36);var _ImagesPreload=__webpack_require__(35);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(5);var _0LeftMenu=__webpack_require__(34);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(29);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(14);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(13);__webpack_require__(12);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(this.data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 window.smDefaultBackgroundImage=this.getDefaultBackgroundUrl();if(dataraw.units.length&&dataraw.units[0].subunits.length&&dataraw.units[0].subunits[0].image.length>3){window.smBookBackgroundImage=dataraw.units[0].subunits[0].image;}else{window.smBookBackgroundImage=window.smDefaultBackgroundImage;}//Credits
-_.forEach(dataraw.units[0].subunits,function(subunit){if(subunit.tags.search('creditos')>-1&&subunit.sections.length>0){_this.data.creditsHtml=subunit.sections[0].texto;}});var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso;if(typeof loadScript==='function'){//If is blink enviroment
+_.forEach(dataraw.units[0].subunits,function(subunit){if(subunit.tags.search('creditos')>-1&&subunit.sections.length>0){_this.data.creditsHtml=subunit.sections[0].texto;}});//get idalumno from url
+var currentUrl=new URL(window.location.href);var idAlumno=currentUrl.searchParams.get('idalumno');var idAlumnoUrlParamString=idAlumno?'&idalumno='+idAlumno:'';var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso+idAlumnoUrlParamString;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){this.initAfertLoadsActivities(window.actividades);}.bind(this));}else{this.initAfertLoadsActivities([]);}//Add body class if theres is no navbar (app)
 if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){if(blink.isApp&&!blink.isOfflinePC){document.body.classList.add('sm-no-navbar');}}//Redefine blink function for resizing window
 window.setPanelResultsHeight=function(){$('.search-side-panel-results').css('height',$(window).height()-$('.search-side-panel-results').offset().top);};window.setPanelStyle=function(){$('.side-panel').css({'top':$('.navbar').height(),'height':$(window).height()-$('.navbar').height()});};//añadir etiquetas de tipo de usuario
