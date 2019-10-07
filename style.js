@@ -4347,7 +4347,9 @@ if(trueFalseLiNextSibling){if(trueFalseLiNextSibling.classList.contains('fb_righ
 // `;
 // el.appendChild(smNotaNudgetBackgroundTitle);
 });//move .revision-budget to parent
-_.forEach(document.querySelectorAll('.revision-budget'),function(el){el.parentElement.parentElement.insertBefore(el,el.parentElement.parentElement.firstChild);});this.update();}_createClass(Activities,[{key:'update',value:function update(){////l('Activities.update()');
+_.forEach(document.querySelectorAll('.revision-budget'),function(el){el.parentElement.parentElement.insertBefore(el,el.parentElement.parentElement.firstChild);});//flipbox
+//Este fix es porque el script de blink no calcula bien el tamaño si el height está al 100%, por lo que se añade el atributo después.
+setTimeout(function(){_.forEach(document.querySelectorAll('.bck-flipbox .bck-flipbox-face .bck-flipbox-section'),function(el){el.classList.add('sm-height-fix');});},500);this.update();}_createClass(Activities,[{key:'update',value:function update(){////l('Activities.update()');
 //Activitie header book color small block
 var activityHeaderSmallBlockElement=document.createElement('div');activityHeaderSmallBlockElement.classList.add('header_small_block');activityHeaderSmallBlockElement.classList.add('sm-color-background-color');var allTitles=document.querySelectorAll('#actividad .class_slide .header .title');//onsole.log("HEADERS");
 _.forEach(allTitles,function(header){//onsole.log(header);
