@@ -4303,7 +4303,7 @@ this.state={//isVisible: true,
 var remainBoxes=document.querySelectorAll('.attemps>*');_.forEach(remainBoxes,function(remainBox){var htmlText='';_.forEach(remainBox.childNodes,function(node){if(node.nodeType==3){//#text
 htmlText+='<em>'+node.data+'</em>';}else{htmlText+=node.outerHTML;}});remainBox.innerHTML=htmlText;});//JS fixes for styling
 //Fillblankimages elementos dragabls
-var fbiDragableZones=document.querySelectorAll('.fillblankimages-draggable-wrapper .ui-draggable p');_.forEach(fbiDragableZones,function(pElement){var imgElement=pElement.querySelector('img');var imageUrl=imgElement.getAttribute('src');pElement.style.backgroundImage='url('+encodeURI(imageUrl)+')';});//Fillblankimages huecos
+var fbiDragableZones=document.querySelectorAll('.fillblankimages-draggable-wrapper .ui-draggable p');_.forEach(fbiDragableZones,function(pElement){var imgElement=pElement.querySelector('img');if(imgElement){var imageUrl=imgElement.getAttribute('src');pElement.style.backgroundImage='url('+encodeURI(imageUrl)+')';}});//Fillblankimages huecos
 var fillBlankImagesWorkspaces=document.querySelectorAll('.workspace.fillblankimages-draggable');_.forEach(fillBlankImagesWorkspaces,function(fillBlankImagesWorkspace){var fbiDroppableZones=fillBlankImagesWorkspace.querySelectorAll('.droppable-container');var fbiDroppableDivsElement=document.createElement('div');fbiDroppableDivsElement.className="sm-draggable-images";_.forEach(fbiDroppableZones,function(elemento){//find text
 var text='';if(elemento.nextSibling){// console.log("elemento.nextSibling");
 // console.log(elemento.nextSibling);
