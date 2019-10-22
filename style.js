@@ -160,7 +160,7 @@
 		exports["SantillanaMicrocontenidosStyleUI"] = factory(require("lodash"));
 	else
 		root["SantillanaMicrocontenidosStyleUI"] = factory(root["_"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__56__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__57__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -244,22 +244,22 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 57);
+/******/ 	return __webpack_require__(__webpack_require__.s = 58);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 56:
+/***/ 57:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__56__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__57__;
 
 /***/ }),
 
-/***/ 57:
+/***/ 58:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(56);
+module.exports = __webpack_require__(57);
 
 
 /***/ })
@@ -358,7 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 55);
+/******/ 	return __webpack_require__(__webpack_require__.s = 56);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -376,6 +376,14 @@ number:27},{name:'Memory',number:28},{name:'Dibujo',number:29},{name:'Arrastrar 
 
 /***/ }),
 /* 1 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=function(){function replaceStringInTemplates(){_classCallCheck(this,replaceStringInTemplates);}_createClass(replaceStringInTemplates,[{key:'replace',value:function replace(string){var stringReplacements={};stringReplacements['--Unidades--']=textweb('santillana_microcontenidos_unidades');stringReplacements['--Portada--']=textweb('santillana_microcontenidos_portada');stringReplacements['--Completado--']=textweb('santillana_microcontenidos_completado');stringReplacements['--Contenidos complementarios--']=textweb('santillana_microcontenidos_contenido_complementario');stringReplacements['--Microcontenido--']=textweb('santillana_microcontenidos_microcontenido');stringReplacements['--Ampliación--']=textweb('santillana_microcontenidos_ampliacion');stringReplacements['--Microproyecto--']=textweb('santillana_microcontenidos_microproyecto');stringReplacements['--Refuerzo--']=textweb('santillana_microcontenidos_refuerzo');stringReplacements['--Flipped Classroom--']=textweb('santillana_microcontenidos_flipped');stringReplacements['--Comienza secuencia didáctica--']=textweb('santillana_microcontenidos_comienza_secuencia');stringReplacements['--Actividades--']=textweb('santillana_microcontenidos_actividades');stringReplacements['--Evaluación final--']=textweb('santillana_microcontenidos_evaluacion');stringReplacements['--Fin de la lección--']=textweb('santillana_microcontenidos_fin_leccion');stringReplacements['--Volver a inicio--']=textweb('santillana_microcontenidos_volver_inicio');stringReplacements['--Volver--']=textweb('santillana_microcontenidos_volver');stringReplacements['--Comienza evaluación final--']=textweb('santillana_microcontenidos_comienza_evaluacion');stringReplacements['--Inicio--']=textweb('santillana_microcontenidos_inicio');stringReplacements['--Fin--']=textweb('santillana_microcontenidos_fin');stringReplacements['--pag--']=textweb('course_abrev_pag');stringReplacements['--santillana_microcontenidos_flipped--']=textweb('santillana_microcontenidos_flipped');stringReplacements['--santillana_microcontenidos_microproyecto--']=textweb('santillana_microcontenidos_microproyecto');for(var key in stringReplacements){// skip loop if the property is from prototype
+if(!stringReplacements.hasOwnProperty(key))continue;if(key!=stringReplacements[key]){while(string.search(key)>-1){string=string.replace(key,stringReplacements[key]);}}}return string;}}]);return replaceStringInTemplates;}();exports.default=replaceStringInTemplates;
+
+/***/ }),
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -424,14 +432,6 @@ window.smDebugTime=new Date();function cl(){var timeDiferrence=new Date()-window
 // 		}, 2000);
 // 	}
 // }
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=function(){function replaceStringInTemplates(){_classCallCheck(this,replaceStringInTemplates);}_createClass(replaceStringInTemplates,[{key:'replace',value:function replace(string){var stringReplacements={};stringReplacements['--Unidades--']=textweb('santillana_microcontenidos_unidades');stringReplacements['--Portada--']=textweb('santillana_microcontenidos_portada');stringReplacements['--Completado--']=textweb('santillana_microcontenidos_completado');stringReplacements['--Contenidos complementarios--']=textweb('santillana_microcontenidos_contenido_complementario');stringReplacements['--Microcontenido--']=textweb('santillana_microcontenidos_microcontenido');stringReplacements['--Ampliación--']=textweb('santillana_microcontenidos_ampliacion');stringReplacements['--Microproyecto--']=textweb('santillana_microcontenidos_microproyecto');stringReplacements['--Refuerzo--']=textweb('santillana_microcontenidos_refuerzo');stringReplacements['--Flipped Classroom--']=textweb('santillana_microcontenidos_flipped');stringReplacements['--Comienza secuencia didáctica--']=textweb('santillana_microcontenidos_comienza_secuencia');stringReplacements['--Actividades--']=textweb('santillana_microcontenidos_actividades');stringReplacements['--Evaluación final--']=textweb('santillana_microcontenidos_evaluacion');stringReplacements['--Fin de la lección--']=textweb('santillana_microcontenidos_fin_leccion');stringReplacements['--Volver a inicio--']=textweb('santillana_microcontenidos_volver_inicio');stringReplacements['--Volver--']=textweb('santillana_microcontenidos_volver');stringReplacements['--Comienza evaluación final--']=textweb('santillana_microcontenidos_comienza_evaluacion');stringReplacements['--Inicio--']=textweb('santillana_microcontenidos_inicio');stringReplacements['--Fin--']=textweb('santillana_microcontenidos_fin');stringReplacements['--pag--']=textweb('course_abrev_pag');stringReplacements['--santillana_microcontenidos_flipped--']=textweb('santillana_microcontenidos_flipped');stringReplacements['--santillana_microcontenidos_microproyecto--']=textweb('santillana_microcontenidos_microproyecto');for(var key in stringReplacements){// skip loop if the property is from prototype
-if(!stringReplacements.hasOwnProperty(key))continue;if(key!=stringReplacements[key]){while(string.search(key)>-1){string=string.replace(key,stringReplacements[key]);}}}return string;}}]);return replaceStringInTemplates;}();exports.default=replaceStringInTemplates;
 
 /***/ }),
 /* 3 */
@@ -489,7 +489,7 @@ n)k=l;else{var l=h,h=h+.1,g=0;do m=l+(h-l)/2,n=a(m,c,b)-k,0<n?h=m:l=m;while(1e-7
 d:A.apply($jscomp$this,d)}}(f)),f={type:f.type};return b}(),ha={css:function(a,c,d){return a.style[c]=d},attribute:function(a,c,d){return a.setAttribute(c,d)},object:function(a,c,d){return a[c]=d},transform:function(a,c,d,b,f){b[f]||(b[f]=[]);b[f].push(c+"("+d+")")}},v=[],B=0,ia=function(){function a(){B=requestAnimationFrame(c)}function c(c){var b=v.length;if(b){for(var d=0;d<b;)v[d]&&v[d].tick(c),d++;a()}else cancelAnimationFrame(B),B=0}return a}();q.version="2.2.0";q.speed=1;q.running=v;q.remove=
 function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.length;f--;)u(a,b[f].animatable.target)&&(b.splice(f,1),b.length||d.pause())};q.getValue=K;q.path=function(a,c){var d=h.str(a)?e(a)[0]:a,b=c||100;return function(a){return{el:d,property:a,totalLength:N(d)*(b/100)}}};q.setDashoffset=function(a){var c=N(a);a.setAttribute("stroke-dasharray",c);return c};q.bezier=A;q.easings=Q;q.timeline=function(a){var c=q(a);c.pause();c.duration=0;c.add=function(d){c.children.forEach(function(a){a.began=
 !0;a.completed=!0});m(d).forEach(function(b){var d=z(b,D(S,a||{}));d.targets=d.targets||a.targets;b=c.duration;var e=d.offset;d.autoplay=!1;d.direction=c.direction;d.offset=h.und(e)?b:L(e,b);c.began=!0;c.completed=!0;c.seek(d.offset);d=q(d);d.began=!0;d.completed=!0;d.duration>b&&(c.duration=d.duration);c.children.push(d)});c.seek(0);c.reset();c.autoplay&&c.restart();return c};return c};q.random=function(a,c){return Math.floor(Math.random()*(c-a+1))+a};return q});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(48)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(49)))
 
 /***/ }),
 /* 6 */
@@ -558,7 +558,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(40);
+var	fixUrls = __webpack_require__(41);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -964,7 +964,7 @@ function toComment(sourceMap) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(41);
+var content = __webpack_require__(42);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -992,10 +992,10 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/Object.keys.js
-var Object_keys = __webpack_require__(43);
+var Object_keys = __webpack_require__(44);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/childNode.remove.js
-var childNode_remove = __webpack_require__(42);
+var childNode_remove = __webpack_require__(43);
 
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/raf.js
 var raf_win = window;
@@ -4297,7 +4297,7 @@ var text='';if(node.nodeType==Node.TEXT_NODE){text=node.nodeValue.trim().replace
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(16);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(16);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
 this.state={//isVisible: true,
 };document.querySelector('.content-wrapper.actividad').classList.add('sm-actividades');//Remain attemps
 var remainBoxes=document.querySelectorAll('.attemps>*');_.forEach(remainBoxes,function(remainBox){var htmlText='';_.forEach(remainBox.childNodes,function(node){if(node.nodeType==3){//#text
@@ -4374,7 +4374,7 @@ module.exports = "<div class=\"sm-subunit-end sm-base\"> <div class=sm-subunit-e
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(18);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// console.log(this.creditsHtml);
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(18);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// console.log(this.creditsHtml);
 // console.log(this.subUnitObject);
 document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;document.querySelector('.sm-subunit-end').style.backgroundImage='url('+subunitImage+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 if(_config2.default.dev)console.log("updateCompleted()");//get idalumno from url
@@ -4398,8 +4398,17 @@ module.exports = "<div class=\"sm-subunit-start sm-base\"> <div class=sm-subunit
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _debug=__webpack_require__(1);var _subUnitStart=__webpack_require__(21);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(20);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
+Object.defineProperty(exports,"__esModule",{value:true});exports.removeParam=removeParam;function removeParam(key,sourceURL){var rtn=sourceURL.split("?")[0],param,params_arr=[],queryString=sourceURL.indexOf("?")!==-1?sourceURL.split("?")[1]:"";if(queryString!==""){params_arr=queryString.split("&");for(var i=params_arr.length-1;i>=0;i-=1){param=params_arr[i].split("=")[0];if(param===key){params_arr.splice(i,1);}}rtn=rtn+"?"+params_arr.join("&");}return rtn;}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
+// import { cl } from './helpers/debug';
+//Templates
+var _removeParam=__webpack_require__(22);var _subUnitStart=__webpack_require__(21);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(20);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
 };this.number={};this.subUnitObject={};this.isEvaluacion=false;}_createClass(ScreenSubUnitStart,[{key:'init',value:function init(subUnitObject,number,isEvaluacion){var _this=this;//l("ScreenSubUnitStart.Init");
 //l(subUnitObject, number, isEvaluacion);  
 this.number=number;this.subUnitObject=subUnitObject;this.isEvaluacion=isEvaluacion;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitStart2.default));var numberString=this.number.toString();while(numberString.length<2){numberString='0'+numberString;}if(!this.isEvaluacion){var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;if(this.subUnitObject.hasOwnProperty('video')&&this.subUnitObject.video.length>3){//l("Tiene video");
@@ -4462,7 +4471,7 @@ this.state.tab='secuencia';}},{key:'goTabActividades',value:function goTabActivi
 this.updateCompleted();// console.log('goTabSecuenciaDidactica');
 document.querySelector('.sm-subunit-start__secuencia').style.display='none';document.querySelector('.sm-subunit-start__actividades').style.display='block';document.querySelector('.navbar-bottom').style.display='none';//Tabs
 // document.getElementById('subunit-boton-secuencia-didactica').classList.remove('active');
-document.querySelector('.sm-subunit-start__nav__actions').style.display='none';this.state.tab='actividades';}},{key:'goTabEvaluacionFinal',value:function goTabEvaluacionFinal(){var urlRaw=this.subUnitObject.evaluationSubUnit.url;var parentUrl=encodeURIComponent(document.location.href);var urlWithEvalCode=this.subUnitObject.evaluationSubUnit.url.search('.php?')?urlRaw+'&smparenturl='+parentUrl:urlRaw+'?smparenturl='+parentUrl;document.location.href=urlWithEvalCode;}//FROM EVALUACION
+document.querySelector('.sm-subunit-start__nav__actions').style.display='none';this.state.tab='actividades';}},{key:'goTabEvaluacionFinal',value:function goTabEvaluacionFinal(){var urlRaw=this.subUnitObject.evaluationSubUnit.url;var parentUrl=document.location.href;var parentUrlWithNoNumSec=(0,_removeParam.removeParam)('numSec',parentUrl);var parentUrlEncoded=encodeURIComponent(parentUrlWithNoNumSec);var urlWithEvalCode=this.subUnitObject.evaluationSubUnit.url.search('.php?')?urlRaw+'&smparenturl='+parentUrlEncoded:urlRaw+'?smparenturl='+parentUrlEncoded;document.location.href=urlWithEvalCode;}//FROM EVALUACION
 },{key:'showEvaluacion',value:function showEvaluacion(){//l("Mostrando evaluación");
 document.querySelector('.sm-subunit-start__secuencia').style.display='none';document.querySelector('.sm-subunit-start__evaluacion').style.display='block';document.querySelector('.sm-subunit-start__nav__actions').style.display='none';this.state.tab='evaluacion';}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 //l("updateCompleted()");
@@ -4474,31 +4483,31 @@ document.querySelector('.sm-subunit-start__actividades .sm-subunit-start__progre
 document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progress__title').innerHTML=completedSecuencia+'% '+replaceStringInTemplates.replace('--Completado--');document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progress__bar .sm-color-background-color').style.width=completedSecuencia+'%';}},{key:'checkForEvaluation',value:function checkForEvaluation(){var url='../coursePlayer/librodigital_json.php?type=json&xdevice=ipadapp&idclase='+idclase+'&idcurso='+idcurso;loadScript(url,true,function(data){console.log(JSON.parse(data.responseText));}.bind(this));}}]);return ScreenSubUnitStart;}();exports.default=ScreenSubUnitStart;
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-end\">--Fin--</li>";
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-start\">--Inicio--</li>";
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-right> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-left> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4506,12 +4515,12 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getCoords=getCo
 var box=elem.getBoundingClientRect();var body=document.body;var docEl=document.documentElement;var scrollTop=window.pageYOffset||docEl.scrollTop||body.scrollTop;var scrollLeft=window.pageXOffset||docEl.scrollLeft||body.scrollLeft;var clientTop=docEl.clientTop||body.clientTop||0;var clientLeft=docEl.clientLeft||body.clientLeft||0;var top=box.top+scrollTop-clientTop;var left=box.left+scrollLeft-clientLeft;return{top:Math.round(top),left:Math.round(left)};}
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(27);var _sliderIndicatorArrowLeft=__webpack_require__(26);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(25);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(24);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(23);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(28);var _sliderIndicatorArrowLeft=__webpack_require__(27);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(26);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(25);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(24);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
 contentTop:0,//desktop
 isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};this.line=null;this.lines=null;}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){var _this2=this;//l("ScreenSubUnitIndicators.Init");
 if(!this.started){var _this=this;this.responsiveStatus=new _responsiveStatus2.default();this.subunit=subunit;//Apply book colors with class
@@ -4720,11 +4729,11 @@ _.forEach(document.querySelectorAll('.slider-indicators li'),function(element){i
 },{key:'goFirstBlinkSlide',value:function goFirstBlinkSlide(){document.querySelector('.slider-indicators li[data-go-to="0"]').click();this.onSliderIndicatorClick(document.querySelector('.slider-indicators li[data-go-to="0"]'));}},{key:'goBlinkSlideWithSection',value:function goBlinkSlideWithSection(section){_.forEach(this.subunit.sections,function(sectionObj){if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){document.querySelector('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').click();}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(28);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(22);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(19);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(17);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(15);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(29);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(23);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(19);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(17);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(15);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
 ////l(subUnitObject, number, unit, book, isEvaluacion);  
 ////l("¿Es evaluación? " + (isEvaluacion ? "Sí" : "No"));
 if(!this.started){this.number=number;this.subUnitObject=subUnitObject;this.unit=unit;this.book=book;this.isEvaluacion=isEvaluacion;this.screenSubUnitStart=new _ScreenSubUnitStart2.default();this.screenSubUnitEnd=new _ScreenSubUnitEnd2.default();this.screenSubUnitIndicators=new _ScreenSubUnitSliderIndicators2.default();//StartPage
@@ -4745,13 +4754,13 @@ this.subUnitObject.sections.forEach(function(sectionObj){//l(section);
 if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){result=true;}});return result;}}]);return ScreenSubUnit;}();exports.default=ScreenSubUnit;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-left-menu__background></div> <div id=sm-left-menu> <a class=sm-left-menu--book-image><strong></strong></a> <div class=\"sm-left-menu--level1 sm-color-background-color_before\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </div> <a class=\"sm-left-menu--level2 sm-color-background-color_before sm-color-child-color--hover sm-color-child-color--active\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </a> </div>";
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(false);
@@ -4765,11 +4774,11 @@ exports.push([module.i, "/*\n * Container style\n */\n.ps {\n  overflow: hidden 
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(31);
+var content = __webpack_require__(32);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -4790,7 +4799,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6114,13 +6123,13 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Scroll for left menu
 //Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(33);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(32);var _leftMenu=__webpack_require__(30);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(34);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(33);var _leftMenu=__webpack_require__(31);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
 document.querySelector('.libro-left-button a').addEventListener('click',function(e){e.preventDefault();});}_createClass(LeftMenu,[{key:'fillData',value:function fillData(){var _this=this;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',_leftMenu2.default);var bookImageDomElement=document.querySelector('#sm-left-menu .sm-left-menu--book-image');var level1DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level1');var level2DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level2');document.querySelector('#sm-left-menu .sm-left-menu--level1').remove();document.querySelector('#sm-left-menu .sm-left-menu--level2').remove();var ulLevel1DomElement=document.createElement('ul');console.log(window.smBookBackgroundImage);//Image an title
 bookImageDomElement.style.backgroundImage='url('+window.smBookBackgroundImage+')';bookImageDomElement.querySelector('strong').innerText=this.data.title;bookImageDomElement.setAttribute('href',this.data.url);//Units
 this.data.units.forEach(function(unit){var unitElement=level1DomElement.cloneNode(true);if(unit.smIsProyect){unitElement.classList.add('sm-left-menu--level1--proyecto');}var unitImage=unit.image.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:unit.image;unitElement.querySelector('.sm-left-menu--image').style.backgroundImage='url('+unitImage+')';var numberformenu=unit.numberformenu==''?'':('0'+unit.numberformenu).slice(-2);unitElement.querySelector('.sm-left-menu--title').innerHTML='<div class="sm-left-menu--proyect_description sm-color-color">'+unit.description+'</div><span>'+numberformenu+'</span> '+unit.title;unitElement.addEventListener('click',_this.toggleUnit.bind(_this));var liElement=document.createElement('li');liElement.appendChild(unitElement);//Subunits
@@ -6133,14 +6142,14 @@ var target=e.currentTarget;if(target.classList.contains('active')){target.classL
 this.data.units.forEach(function(unit){unit.subunitsmain.forEach(function(subunit){var subUnitElement=document.getElementById('leftmenu-subunit-'+subunit.id);var number=subunit.numberformenu==''?'':('0'+subunit.numberformenu).slice(-2);subUnitElement.querySelector('.sm-left-menu--title').innerHTML='<span>'+number+'</span> '+subunit.title;if(subunit.ocultar){subUnitElement.classList.add('sm-ocultar');}else{subUnitElement.classList.remove('sm-ocultar');}});});}}]);return LeftMenu;}();exports.default=LeftMenu;
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ImagesPreload=function(){function ImagesPreload(){_classCallCheck(this,ImagesPreload);this.image=[];}_createClass(ImagesPreload,[{key:'add',value:function add(imagesToLoad){if(typeof imagesToLoad=='string'){imagesToLoad=[imagesToLoad];}imagesToLoad.forEach(function(imageToLoad){var newImage=new Image();newImage.src=imageToLoad;});}}]);return ImagesPreload;}();exports.default=ImagesPreload;
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6159,13 +6168,13 @@ var divElement=document.createElement("div");divElement.className='bookcolor';di
 // };
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--student-no--access class=sm-modal> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__content> <div class=sm-modal__content__icon> <svg width=64px height=64px viewBox=\"0 0 64 64\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=MODO-VER stroke=none stroke-width=1 fill=none fill-rule=evenodd> <g id=3_alumno-alerta transform=\"translate(-628.000000, -99.000000)\"> <rect fill=#FFFFFF x=0 y=0 width=1600 height=900></rect> <g id=Group-4 transform=\"translate(582.000000, 53.000000)\"> <g id=i-/-candado transform=\"translate(46.000000, 46.000000)\"> <g id=Group-20> <g id=Group-19> <path d=\"M24.3810786,0 C12.9080572,0 3.55555556,9.27100006 3.55555556,20.6443193 L3.55555556,32.1550239 C3.55555556,33.2061835 4.38849065,34.031746 5.4487505,34.031746 L13.0216565,34.031746 C14.0820426,34.031746 14.9148514,33.2060583 14.9148514,32.1550239 L14.9148514,20.6443193 C14.9148514,15.464471 19.1556384,11.2605833 24.3809524,11.2605833 C29.6062664,11.2605833 33.8470533,15.464471 33.8470533,20.6443193 L33.8470533,24.3977637 C33.8470533,25.4489233 34.6799884,26.2744859 35.7402483,26.2744859 L43.3131543,26.2744859 C44.3735403,26.2744859 45.2063492,25.4487982 45.2063492,24.3977637 L45.2063492,20.6443193 C45.2066016,9.27100006 35.8541,0 24.3810786,0\" id=Fill-1 fill=#C8C6CD></path> <path d=\"M43.1353821,29.968254 L5.62639767,29.968254 C2.51298592,29.968254 0,32.5017243 0,35.6402326 L0,58.3280213 C0,61.4666557 2.51298592,64 5.62639767,64 L43.1355071,64 C46.2489188,64 48.7619048,61.4666557 48.7619048,58.3280213 L48.7619048,35.6402326 C48.7617797,32.5017243 46.2487938,29.968254 43.1353821,29.968254\" id=Fill-3 fill=#FEA832></path> <path d=\"M45.2063492,20.7529153 L45.2063492,24.5261041 C45.2063492,25.5827931 44.3734141,26.4126984 43.3131543,26.4126984 L35.7402483,26.4126984 C34.6798622,26.4126984 33.8470533,25.5826673 33.8470533,24.5261041 L33.8470533,20.7529153 C33.8470533,15.5458193 29.6062664,11.3198177 24.3809524,11.3198177 L24.3809524,0 C35.8538475,0 45.2063492,9.3197686 45.2063492,20.7529153\" id=Fill-5 fill=#AEADB3></path> <path d=\"M53.8583417,19.247522 L61.3031294,15.4614141 C63.5117362,14.3425447 65.1568683,17.7349973 62.9679913,18.8483134 L55.5232036,22.6344213 C53.3123633,23.7512714 51.668472,20.361343 53.8583417,19.247522\" id=Fill-7 fill=#159CE4></path> <path d=\"M61.3038134,41.4250067 L53.8587881,37.6402663 C51.6681039,36.5266324 53.31242,33.1372844 55.5237031,34.2547032 L62.9687284,38.0393174 C65.143405,39.1450031 63.5375568,42.5528969 61.3038134,41.4250067\" id=Fill-9 fill=#159CE4></path> <path d=\"M62.1491797,29.968254 L54.6762172,29.968254 C52.2135038,29.968254 52.2034148,26.4126984 54.6762172,26.4126984 L62.1491797,26.4126984 C64.611893,26.4125799 64.621982,29.968254 62.1491797,29.968254\" id=Fill-11 fill=#159CE4></path> <path d=\"M48.7619048,35.6402326 L48.7619048,58.3280213 C48.7619048,61.4666557 46.2489124,64 43.1354927,64 L24.3809524,64 L24.3809524,29.968254 L43.1354927,29.968254 C46.2489124,29.968254 48.7619048,32.5017243 48.7619048,35.6402326\" id=Fill-13 fill=#FE8821></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 C23.4497975,56.3809524 22.5185185,55.7420637 22.5185185,54.5016249 L22.5185185,48.5250903 C20.3579512,47.7358455 18.7936508,45.668698 18.7936508,43.2254094 C18.7936508,40.1055177 21.2892302,37.5873016 24.3810766,37.5873016 C27.4729229,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-15 fill=#787780></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 L24.3809524,37.5873016 C27.4726745,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-17 fill=#57555C></path> </g> </g> </g> </g> </g> </g> </svg> </div> <div class=sm-modal__content__text> <p>--Tu profesor no ha dado permisos de acceso a este contenido--</p> </div> </div> <div class=sm-modal__actions> <div class=sm-modal__button>--Aceptar--</div> </div> </div> </div>";
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6175,11 +6184,11 @@ var Dropdown=function(){function Dropdown(){_classCallCheck(this,Dropdown);this.
 var _this=this;document.addEventListener('click',function(e){var isClickInside=_this.domElement.contains(e.target);if(!isClickInside){_this.onClose();}});this.domElement.classList.add('js-dropdown-enabled');}}}},{key:'onButtonClick',value:function onButtonClick(){if(this.domElement.classList.contains('active')){this.onClose();}else{this.onOpen();}}},{key:'onClose',value:function onClose(){this.domElement.classList.remove('active');}},{key:'onOpen',value:function onOpen(){this.domElement.classList.add('active');}}]);return Dropdown;}();exports.default=Dropdown;
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);__webpack_require__(8);var _debug=__webpack_require__(1);var _dropdown=__webpack_require__(38);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(37);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(5);var _animejs2=_interopRequireDefault(_animejs);__webpack_require__(8);var _debug=__webpack_require__(2);var _dropdown=__webpack_require__(39);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(38);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
 if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus(this.updateSlider.bind(this));
 }this.started=true;this.unit=data.unit;this.actionUpdateSubunitOcultar=data.actionUpdateSubunitOcultar;var unitElement=document.getElementById('sm-unit');// Background
 var unitImage=this.unit.image.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:this.unit.image;document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+unitImage+')';document.querySelector('.sm-unit__header__proyecto_imagen').style.backgroundImage='url('+unitImage+')';// Header
@@ -6224,7 +6233,7 @@ document.querySelector('#sm-modal--student-no--access .sm-modal__button').addEve
 setTimeout(function(){document.querySelector('#sm-modal--student-no--access').classList.add('active');},1);}},{key:'hideStudentNoAccessModal',value:function hideStudentNoAccessModal(){document.querySelector('#sm-modal--student-no--access').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--student-no--access').remove();},400);}}]);return ScreenUnit;}();exports.default=ScreenUnit;
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 
@@ -6319,7 +6328,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(7)(false);
@@ -6333,7 +6342,7 @@ exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{dis
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 // ChildNode.remove
@@ -6346,7 +6355,7 @@ if(!("remove" in Element.prototype)){
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // Object.keys
@@ -6363,11 +6372,11 @@ if (!Object.keys) {
 }
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(9);__webpack_require__(8);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(4);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(9);__webpack_require__(8);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
 // // document.querySelector('#sm-home h2').innerHTML = type;
 // document.querySelector('#sm-home').style.backgroundImage = `url(${homeBackgroundImageUrl})`;
 // document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
@@ -6420,7 +6429,7 @@ this.slider.events.on('touchStart',function(e){_this.onTouchStart({x:e.event.tou
 var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return counter;}}]);return ScreenUnitsMenu;}();exports.default=ScreenUnitsMenu;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 /*!
@@ -6433,20 +6442,20 @@ var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return 
 //# sourceMappingURL=zingtouch.min.js.map
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(45);
+__webpack_require__(46);
 module.exports = ZingTouch;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
-var _zingtouch=__webpack_require__(46);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(1);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel;document.querySelector('#sm-home h1').innerHTML=title;//Nivel
+var _zingtouch=__webpack_require__(47);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel;document.querySelector('#sm-home h1').innerHTML=title;//Nivel
 if(nivel){var nivelParts=nivel.split(" ");if(nivelParts.length>=2){document.querySelector('#sm-home h2 strong').innerHTML=nivelParts[0];document.querySelector('#sm-home h2 span').innerHTML=nivel.substr(nivelParts[0].length+1);document.querySelector('#sm-home h2 span').innerHTML=nivel.substr(nivelParts[0].length+1).replace('BACHILLERATO','BTO').replace('bachillerato','BTO').replace('Bachillerato','BTO');//.replace('SECONDARY', 'BTO').replace('secondary', 'BTO').replace('Secondary', 'BTO').replace('Baccalaureate', 'BTO');
 }else{document.querySelector('#sm-home h2').style.display='none';}}else{document.querySelector('#sm-home h2').style.display='none';}document.querySelector('#sm-home').style.backgroundImage='url('+window.smBookBackgroundImage+')';// document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
 //Scroll event for no-touch
@@ -6460,7 +6469,7 @@ type:data.type,nivel:data.nivel};return screenData;}},{key:'onNextButton',value:
 }}]);return ScreenHome;}();exports.default=ScreenHome;
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6486,7 +6495,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6506,7 +6515,7 @@ if(Array.isArray(routeTransitions[fromRoute+'__to__'+toRoute].from)){routeTransi
 }}}]);return Transitions;}();exports.default=Transitions;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6515,12 +6524,12 @@ this.routes=routes;this.state={route:null,routeData:{}};var _this=this;window.on
 var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var hashProcessed=route.object.processHash(hashParts);if(hashProcessed.is){routeFound=true;_this2.state.route=route;_this2.state.routeData=hashProcessed.data;}}});if(!routeFound){this.state.route=this.routes[0];this.state.routeData={};}}},{key:'goToState',value:function goToState(){this.updateCurrentState();this.updateRouter(this.state.route,this.state.routeData);}},{key:'updateUrlHash',value:function updateUrlHash(urlHash){window.location.hash=urlHash;}}]);return UrlHelper;}();exports.default=UrlHelper;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Screens
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(50);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(49);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(1);var _1ScreenHome=__webpack_require__(47);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(44);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(39);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(51);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(50);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(2);var _1ScreenHome=__webpack_require__(48);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(45);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(40);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
 // "#" o "#" => Home
 // "#units" => Menú de unidades
 // "#unit_X" => Unidad X
@@ -6535,7 +6544,7 @@ var lastRouteId=this.state.lastRoute?this.state.lastRoute.id:null;transitions.st
 this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router;
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6543,7 +6552,7 @@ this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router
 if(!("nextElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"nextElementSibling",{get:function get(){var e=this.nextSibling;while(e&&1!==e.nodeType){e=e.nextSibling;}return e;}});}if(!("previousElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"previousElementSibling",{get:function get(){var e=this.previousSibling;while(e&&1!==e.nodeType){e=e.previousSibling;}return e;}});}
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6553,7 +6562,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Templates
 // import { equal } from 'assert';
 //Polyfils
-__webpack_require__(52);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(51);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(36);var _ImagesPreload=__webpack_require__(35);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(1);var _blinkFunctions=__webpack_require__(3);var _0LeftMenu=__webpack_require__(34);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(29);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(14);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(2);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(13);__webpack_require__(12);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
+__webpack_require__(53);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(52);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(37);var _ImagesPreload=__webpack_require__(36);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(3);var _0LeftMenu=__webpack_require__(35);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(30);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(14);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(13);__webpack_require__(12);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(this.data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 //Background
 window.smDefaultBackgroundImage=this.getDefaultBackgroundUrl();if(dataraw.units.length&&dataraw.units[0].subunits.length&&dataraw.units[0].subunits[0].image.length>3){window.smBookBackgroundImage=dataraw.units[0].subunits[0].image;}else{window.smBookBackgroundImage=window.smDefaultBackgroundImage;}//Credits
@@ -6571,7 +6580,8 @@ this.data.units.shift();//If user is student, remove subunits and resources not 
 if((0,_blinkFunctions.esAlumno)()){this.data.units.forEach(function(unit){var i=unit.subunits.length;while(i--){if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.resources.length;while(i--){if(unit.resources[i].onlyVisibleTeachers){unit.resources.splice(i,1);}}});}//Regenerate units number with new property
 var unitCounter=0;this.data.units.forEach(function(unit,index){//chech if is projects
 if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
-var asideClassesName=['activitytag_flipped','activitytag_microproyecto','activitytag_basica'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;if(tags){asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){subunit.smtype=tagName.replace('activitytag_','');}});evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;var tags=resource.tag+' '+resource.tags;if(tags){// asideClassesName.forEach(tagName => {
+var asideClassesName=['microproyecto','flipped','esencial','reto'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;if(tags){asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){subunit.smtype=tagName;//.replace('activitytag_', '');
+}});evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});}if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;var tags=resource.tag+' '+resource.tags;if(tags){// asideClassesName.forEach(tagName => {
 // 	if(tags.indexOf(tagName)>=0){
 // 		if(!added){
 // 			resource.smtype=tagName;
@@ -6626,17 +6636,17 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 },{key:'actionUpdateSubunitOcultar',value:function actionUpdateSubunitOcultar(subunitid,ocultar){this.data.units.forEach(function(unit){unit.subunitsmain.forEach(function(subunit){if(subunit.id==subunitid){subunit.ocultar=ocultar;}});});this.regenerateSubunitsNumbers();}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(54);var _app=__webpack_require__(53);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(55);var _app=__webpack_require__(54);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
