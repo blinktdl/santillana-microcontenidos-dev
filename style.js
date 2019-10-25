@@ -14,10 +14,10 @@
 		name: 'santillana-microcontenidos-dev',
 		styles: [
 			{ name: 'Enunciado actividad', element: 'h2', attributes: { 'class': 'h_bold'} },
-			{ name: 'Párrafos cortos', element: 'h2', attributes: {} },
+			{ name: 'Párrafos cortos', element: 'h2', attributes: { 'class': 'h_no_bold'} },
 			{ name: 'Párrafo título', element: 'h3', attributes: { 'class': 'h_bold'} },
-			{ name: 'Párrafo normal', element: 'h3', attributes: { } },
-			{ name: 'Pie de foto', element: 'h4', attributes: { } },
+			{ name: 'Párrafo normal', element: 'h3', attributes: { 'class': 'h_no_bold'} },
+			{ name: 'Pie de foto', element: 'h4', attributes: { 'class': 'h_no_bold'} },
 			{ name: 'Caja enlace',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-enlace'} },
 			{ name: 'Caja destacada',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-destacada'} },
 			{ name: 'Caja Think',  type: 'widget', widget: 'blink_box', attributes: { 'class': 'sm__caja-think'} },
