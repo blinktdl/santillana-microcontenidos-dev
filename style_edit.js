@@ -172,10 +172,25 @@ function polyfill(window) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _elementClosest=__webpack_require__(11);var _elementClosest2=_interopRequireDefault(_elementClosest);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(10);var _blinkFunctions=__webpack_require__(3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}(0,_elementClosest2.default)(window);var replaceStringInTemplates=new _replaceStringInTemplates2.default();$(document).ready(function(){console.log("Iniciando ajustos JS del modo editar.");if(!window.smStylesEditExecuted){window.smStylesEditExecuted=true;//to no execute this more than once
-blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);});}});var smStylesEditInit=function smStylesEditInit(data){console.log("Iniciando ajustos JS del modo editar.");window.losdatos=data;console.log(data);//Activities list
-var subunitsItemsDom=document.querySelectorAll('.actividades ul li.item');if(subunitsItemsDom.length){subunitsItemsDom.forEach(function(item){var unitId=item.closest('.unit-content').dataset.id;var subUnitId=item.dataset.id;var unitObject=_.find(data.units,{id:unitId});var subUnitObject=_.find(unitObject.subunits,{id:subUnitId});var isEvaluacion=subUnitObject.tag.indexOf('evaluacion')>=0||subUnitObject.tags.indexOf('evaluacion')>=0;var classesNames=['microproyecto','flipped','esencial','reto'];//Tags
-var tipoTexto='';classesNames.forEach(function(className){if(subUnitObject.tag&&subUnitObject.tag.indexOf(className)>-1){tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_'+className+'--');}});if(tipoTexto===''){tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_estandar--');}if(isEvaluacion){item.classList.add('item--is-evaluation');}var descriptionSpanItem=item.querySelector('.item-containment span.text');var titleItem=item.querySelector('.js-title');if(descriptionSpanItem&&titleItem){titleItem.insertBefore(descriptionSpanItem,titleItem.firstElementChild);}var tagItem=document.createElement('span');tagItem.classList.add('tags');tagItem.innerHTML=tipoTexto;titleItem.appendChild(tagItem);});}//Remove cover page unit for teachers
+var _elementClosest=__webpack_require__(11);var _elementClosest2=_interopRequireDefault(_elementClosest);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(10);var _blinkFunctions=__webpack_require__(3);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}(0,_elementClosest2.default)(window);var replaceStringInTemplates=new _replaceStringInTemplates2.default();$(document).ready(function(){// const smStylesEditLoadData = () =>{
+console.log("Iniciando ajustes JS del modo editar.");if(!window.smStylesEditExecuted){window.smStylesEditExecuted=true;//to no execute this more than once
+blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);});}// }
+// function smStylesCheckIfBlinkObjectExists() {
+// 	if (blink && blink.getCourse) {
+// 			// Here is your next action
+// 			console.log("existe");
+// 			smStylesEditLoadData();
+// 	} else {
+// 		setTimeout(smStylesCheckIfBlinkObjectExists, 50);
+// 		console.log("no existe");
+// 	}
+// }
+// setTimeout(smStylesCheckIfBlinkObjectExists, 0);
+});var smStylesEditInit=function smStylesEditInit(data){console.log("Datos cargados.");//indow.losdatos = data;
+//onsole.log(data);
+//Activities list
+var subunitsItemsDom=document.querySelectorAll('.actividades ul li.item');if(subunitsItemsDom.length){subunitsItemsDom.forEach(function(item){var unitId=item.closest('.unit-content').dataset.id;var subUnitId=item.dataset.id;var unitObject=_.find(data.units,{id:unitId});if(unitObject){var subUnitObject=_.find(unitObject.subunits,{id:subUnitId});var isEvaluacion=subUnitObject.tag.indexOf('evaluacion')>=0||subUnitObject.tags.indexOf('evaluacion')>=0;var classesNames=['microproyecto','flipped','esencial','reto'];//Tags
+var tipoTexto='';classesNames.forEach(function(className){if(subUnitObject.tag&&subUnitObject.tag.indexOf(className)>-1){tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_'+className+'--');}});if(tipoTexto===''){tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_estandar--');}if(isEvaluacion){item.classList.add('item--is-evaluation');}var descriptionSpanItem=item.querySelector('.item-containment span.text');var titleItem=item.querySelector('.js-title');if(descriptionSpanItem&&titleItem){titleItem.insertBefore(descriptionSpanItem,titleItem.firstElementChild);}var tagItem=document.createElement('span');tagItem.classList.add('tags');tagItem.innerHTML=tipoTexto;titleItem.appendChild(tagItem);}});}//Remove cover page unit for teachers
 if(!(0,_blinkFunctions.esEditorOMas)()){//onsole.log("Borrando...")
 var unitsItemDom=document.querySelectorAll('#list-units li.litema');if(unitsItemDom.length>1){//If cover page unit is active
 var intervalo=setInterval(function(){if(document.querySelectorAll('#list-units li.litema.active').length){var unitItemSecondLinkDom=unitsItemDom[1].querySelector('a.js-tema');if(unitItemSecondLinkDom){if(unitsItemDom[0].classList.contains('active')){unitItemSecondLinkDom.click();}unitsItemDom[0].remove();}clearInterval(intervalo);}},20);}}};
