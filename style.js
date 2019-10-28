@@ -4426,8 +4426,7 @@ var videoContainerElement=document.createElement("DIV");videoContainerElement.cl
 // document.querySelector('.sm-subunit-start').appendChild(videoElement);
 }else{//l("Tiene imagen");
 document.querySelector('.sm-subunit-start').style.backgroundImage='url('+subunitImage+')';}//Secuencia didáctica
-// document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__number').innerHTML = numberString;
-document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__title').innerHTML=this.subUnitObject.title;this.updateCompleted();document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--general .sm-subunit-start__start_button').addEventListener('click',function(){return _this.goFirstBlinkSlide();});//Flipped, and other types
+document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__number').innerHTML=numberString;document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__title').innerHTML=this.subUnitObject.title;this.updateCompleted();document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--general .sm-subunit-start__start_button').addEventListener('click',function(){return _this.goFirstBlinkSlide();});//Flipped, and other types
 // if(subUnitObject.smtype){
 //     //Hide number
 //     document.querySelector('.sm-subunit-start__number').style.display = 'none';
