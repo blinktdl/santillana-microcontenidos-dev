@@ -7,7 +7,7 @@
 		exports["SantillanaMicrocontenidosStyleUI"] = factory(require("lodash"));
 	else
 		root["SantillanaMicrocontenidosStyleUI"] = factory(root["_"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__6__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__7__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -177,22 +177,6 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 /* 4 */,
 /* 5 */,
 /* 6 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__6__;
-
-/***/ }),
-/* 7 */,
-/* 8 */,
-/* 9 */,
-/* 10 */,
-/* 11 */
-/***/ (function(module, exports) {
-
-module.exports = "<div class=sm-editar-block__header> <div class=sm-editar-block__number__line></div> <div class=sm-editar-block__number></div> <div class=sm-editar-block__title><h4>--TITULO--</h4><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=8 height=8 viewBox=\"0 0 8 8\"> <defs> <path id=checkbox-ok-a d=\"M131.93864,522.576849 L127.328004,529.804322 C127.269615,529.892674 127.179996,529.951695 127.079514,529.962558 C127.065935,529.966179 127.056091,529.966179 127.042173,529.966179 C126.955948,529.966179 126.869045,529.929245 126.804206,529.862982 L124.107483,527.137471 C124.037892,527.071569 124.000211,526.975976 124.000211,526.876399 C123.996817,526.777184 124.034497,526.681228 124.100354,526.611705 L124.986702,525.666268 C125.055613,525.592762 125.148627,525.548948 125.245375,525.559449 C125.342123,525.563432 125.431742,525.607246 125.493186,525.684735 L126.772975,527.269999 L131.40432,522.113002 C131.528225,521.973232 131.731905,521.962731 131.873123,522.083672 C132.010947,522.201354 132.042178,522.418612 131.93864,522.576849\"/> </defs> <use fill=#FFF fill-rule=evenodd transform=\"translate(-124 -522)\" xlink:href=#checkbox-ok-a /> </svg></div> <div class=\"sm-editar-block__plegar-icon sm-editar-block__plegar-icon--opened\"><span class=sm-block-toggle><svg width=32px height=20px viewBox=\"0 0 32 20\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=Page-1 stroke=none stroke-width=1 fill=none fill-rule=evenodd> <path d=\"M7.36753443,-4.63316247 C6.30189532,-3.5782874 6.29316935,-1.85927101 7.34804442,-0.793631906 C7.35450536,-0.787105043 7.36099937,-0.780611006 7.3675262,-0.774150044 L18.2272028,9.97592454 L18.2272028,9.97592454 L7.3675262,20.7259991 C6.30189159,21.7808787 6.29317295,23.4998952 7.34805256,24.5655298 C7.35451353,24.5720566 7.36100756,24.5785506 7.36753443,24.5850115 C8.447229,25.6538001 10.1862216,25.6538001 11.2659161,24.5850115 L26.0240755,9.97592454 L26.0240755,9.97592454 L11.2659161,-4.63316247 C10.1862216,-5.70195103 8.447229,-5.70195103 7.36753443,-4.63316247 Z\" id=arrow fill=#FF0000 transform=\"translate(16.000000, 9.975925) rotate(-270.000000) translate(-16.000000, -9.975925) \"></path> </g> </svg></span></div> </div> ";
-
-/***/ }),
-/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -365,11 +349,27 @@ var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
 
 
 /***/ }),
+/* 7 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__7__;
+
+/***/ }),
+/* 8 */,
+/* 9 */,
+/* 10 */,
+/* 11 */,
+/* 12 */
+/***/ (function(module, exports) {
+
+module.exports = "<div class=sm-editar-block__header> <div class=sm-editar-block__number></div> <div class=sm-editar-block__title><h4>--TITULO--</h4><svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=8 height=8 viewBox=\"0 0 8 8\"> <defs> <path id=checkbox-ok-a d=\"M131.93864,522.576849 L127.328004,529.804322 C127.269615,529.892674 127.179996,529.951695 127.079514,529.962558 C127.065935,529.966179 127.056091,529.966179 127.042173,529.966179 C126.955948,529.966179 126.869045,529.929245 126.804206,529.862982 L124.107483,527.137471 C124.037892,527.071569 124.000211,526.975976 124.000211,526.876399 C123.996817,526.777184 124.034497,526.681228 124.100354,526.611705 L124.986702,525.666268 C125.055613,525.592762 125.148627,525.548948 125.245375,525.559449 C125.342123,525.563432 125.431742,525.607246 125.493186,525.684735 L126.772975,527.269999 L131.40432,522.113002 C131.528225,521.973232 131.731905,521.962731 131.873123,522.083672 C132.010947,522.201354 132.042178,522.418612 131.93864,522.576849\"/> </defs> <use fill=#FFF fill-rule=evenodd transform=\"translate(-124 -522)\" xlink:href=#checkbox-ok-a /> </svg></div> <div class=sm-editar-block__plegar-icon><span class=sm-block-toggle><svg width=32px height=20px viewBox=\"0 0 32 20\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=Page-1 stroke=none stroke-width=1 fill=none fill-rule=evenodd> <path d=\"M7.36753443,-4.63316247 C6.30189532,-3.5782874 6.29316935,-1.85927101 7.34804442,-0.793631906 C7.35450536,-0.787105043 7.36099937,-0.780611006 7.3675262,-0.774150044 L18.2272028,9.97592454 L18.2272028,9.97592454 L7.3675262,20.7259991 C6.30189159,21.7808787 6.29317295,23.4998952 7.34805256,24.5655298 C7.35451353,24.5720566 7.36100756,24.5785506 7.36753443,24.5850115 C8.447229,25.6538001 10.1862216,25.6538001 11.2659161,24.5850115 L26.0240755,9.97592454 L26.0240755,9.97592454 L11.2659161,-4.63316247 C10.1862216,-5.70195103 8.447229,-5.70195103 7.36753443,-4.63316247 Z\" id=arrow fill=#FF0000 transform=\"translate(16.000000, 9.975925) rotate(-270.000000) translate(-16.000000, -9.975925) \"></path> </g> </svg></span></div> </div> ";
+
+/***/ }),
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _lodash=__webpack_require__(6);var _lodash2=_interopRequireDefault(_lodash);var _jsCookie=__webpack_require__(12);var _jsCookie2=_interopRequireDefault(_jsCookie);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);var _editarBlockHeader=__webpack_require__(11);var _editarBlockHeader2=_interopRequireDefault(_editarBlockHeader);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();//Templates
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _lodash=__webpack_require__(7);var _lodash2=_interopRequireDefault(_lodash);var _jsCookie=__webpack_require__(6);var _jsCookie2=_interopRequireDefault(_jsCookie);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);var _editarBlockHeader=__webpack_require__(12);var _editarBlockHeader2=_interopRequireDefault(_editarBlockHeader);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();//Templates
 var EditarBloques=function(){function EditarBloques(){_classCallCheck(this,EditarBloques);}_createClass(EditarBloques,[{key:'init',value:function init(units){var _this=this;//First of all, create an array with blocks info with
 //-block container dom element
 //-block header subunit (with data and domElement)
@@ -392,8 +392,8 @@ var containerList=document.createElement('ul');containerList.classList.add('sm-e
 var containerActions=document.createElement('div');containerActions.classList.add('sm-editar-block__actions');containerActions.innerHTML='<a><span>'+replaceStringInTemplates.replace('--santillana_microcontenidos_add_activity--')+'</span></a>';containerContent.appendChild(containerActions);//Insert content element in block
 block.containerDomElement.appendChild(containerContent);//Move subunit elements
 _lodash2.default.forEach(block.subUnits,function(subUnit){containerList.appendChild(subUnit.domElement);});//Add eventes
-block.containerDomElement.querySelector('.sm-block-toggle').addEventListener('click',_this.toggle.bind(_this,block));if(_jsCookie2.default.get('block_'+block.id+'_closed')){block.containerDomElement.classList.add('item-block-container--closed');$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideUp(0);}});//l(blocks);
-}},{key:'toggle',value:function toggle(block,e){if(block.containerDomElement.classList.contains('item-block-container--closed')){block.containerDomElement.classList.remove('item-block-container--closed');_jsCookie2.default.remove('block_'+block.id+'_closed');$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideDown(300);}else{block.containerDomElement.classList.add('item-block-container--closed');_jsCookie2.default.set('block_'+block.id+'_closed','true',{expires:1});$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideUp(300);}}}]);return EditarBloques;}();exports.default=EditarBloques;
+block.containerDomElement.querySelector('.sm-block-toggle').addEventListener('click',_this.toggle.bind(_this,block));if(_jsCookie2.default.get('block_editar_'+block.id+'_closed')){block.containerDomElement.classList.add('item-block-container--closed');$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideUp(0);}});//l(blocks);
+}},{key:'toggle',value:function toggle(block,e){if(block.containerDomElement.classList.contains('item-block-container--closed')){block.containerDomElement.classList.remove('item-block-container--closed');_jsCookie2.default.remove('block_editar_'+block.id+'_closed');$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideDown(300);}else{block.containerDomElement.classList.add('item-block-container--closed');_jsCookie2.default.set('block_editar_'+block.id+'_closed','true',{expires:1});$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideUp(300);}}}]);return EditarBloques;}();exports.default=EditarBloques;
 
 /***/ }),
 /* 14 */
