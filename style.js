@@ -6767,7 +6767,7 @@ var unitCounter=0;this.data.units.forEach(function(unit,index){//chech if is pro
 if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
 var asideClassesName=['microproyecto','flipped','esencial','reto'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;// if(tags){
 asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){subunit.smtype=tagName;//.replace('activitytag_', '');
-}});if(!subunit.smtype){subunit.smtype='estandar';}console.log(tags);evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){console.log("---------");if(!added){console.log(subunit);unit.subunitsevaluation.push(subunit);added=true;}}});// }
+}});if(!subunit.smtype){subunit.smtype='estandar';}evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});// }
 if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;var tags=resource.tag+' '+resource.tags;if(tags){// asideClassesName.forEach(tagName => {
 // 	if(tags.indexOf(tagName)>=0){
 // 		if(!added){
