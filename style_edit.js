@@ -391,7 +391,9 @@ block.headerSubUnit.domElement.remove();// block.containerDomElement.appendChild
 //Create Content (subunit list and button)
 var containerContent=document.createElement('div');containerContent.classList.add('sm-editar-block__content');//Create subunit list element
 var containerList=document.createElement('ul');containerList.classList.add('sm-editar-block__subunits');containerContent.appendChild(containerList);//Create actions element
-var containerActions=document.createElement('div');containerActions.classList.add('sm-editar-block__actions');containerActions.innerHTML='<a><span>'+replaceStringInTemplates.replace('--santillana_microcontenidos_add_activity--')+'</span></a>';containerContent.appendChild(containerActions);//Insert content element in block
+var containerActions=document.createElement('div');containerActions.classList.add('sm-editar-block__actions');containerActions.innerHTML='<a><span>'+replaceStringInTemplates.replace('--santillana_microcontenidos_add_activity--')+'</span></a>';containerActions.querySelector('a').addEventListener('click',function(){var url=new URL(window.location.href);var idgrupo=url.searchParams.get('idgrupo')||'';var idtema=url.searchParams.get('idtema')||'';// const idgrupo = ( typeof urlParams['idgrupo'] != "undefined" ) ? urlParams['idgrupo'] : '';
+var blocktag='sm_metodologia_'+block.id;console.log(idcurso,idtema,null,null,null,isResource,type,idgrupo,blocktag);// dlgCreateNewEditClass(idCourse, idTema, null, null, null, isResource, type,idgrupo,blocktag);
+});containerContent.appendChild(containerActions);//Insert content element in block
 block.containerDomElement.appendChild(containerContent);//Move subunit elements
 _lodash2.default.forEach(block.subUnits,function(subUnit){containerList.appendChild(subUnit.domElement);});//Add eventes
 block.containerDomElement.querySelector('.sm-block-toggle').addEventListener('click',_this.toggle.bind(_this,block));if(_jsCookie2.default.get('block_editar_'+block.id+'_closed')){block.containerDomElement.classList.add('item-block-container--closed');$(block.containerDomElement.querySelector('.sm-editar-block__content')).slideUp(0);}});//l(blocks);
