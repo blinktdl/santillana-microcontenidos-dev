@@ -453,9 +453,11 @@ function polyfill(window) {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-var _elementClosest=__webpack_require__(15);var _elementClosest2=_interopRequireDefault(_elementClosest);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(14);var _blinkFunctions=__webpack_require__(3);var _editar_bloques=__webpack_require__(13);var _editar_bloques2=_interopRequireDefault(_editar_bloques);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}(0,_elementClosest2.default)(window);var replaceStringInTemplates=new _replaceStringInTemplates2.default();$(document).ready(function(){// const smStylesEditLoadData = () =>{
-console.log("Iniciando ajustes JS del modo editar.");if(!window.smStylesEditExecuted){window.smStylesEditExecuted=true;//to no execute this more than once
-blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);});}// }
+var _elementClosest=__webpack_require__(15);var _elementClosest2=_interopRequireDefault(_elementClosest);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(14);var _blinkFunctions=__webpack_require__(3);var _editar_bloques=__webpack_require__(13);var _editar_bloques2=_interopRequireDefault(_editar_bloques);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}(0,_elementClosest2.default)(window);var replaceStringInTemplates=new _replaceStringInTemplates2.default();//Event example
+// document.addEventListener('blocksCreated', function (e) { console.log("HOLA 👋")}, false);
+$(document).ready(function(){// const smStylesEditLoadData = () =>{
+console.log("Iniciando ajustes JS del modo editar.");if(!window.smStylesEditExecuted){var eventBlocksCreated=new Event('blocksCreated');window.smStylesEditExecuted=true;//to no execute this more than once
+blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);document.dispatchEvent(eventBlocksCreated);});}// }
 // function smStylesCheckIfBlinkObjectExists() {
 // 	if (blink && blink.getCourse) {
 // 			// Here is your next action
