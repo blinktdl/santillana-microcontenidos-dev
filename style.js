@@ -6762,8 +6762,8 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Polyfils
 __webpack_require__(59);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(58);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(43);var _ImagesPreload=__webpack_require__(42);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(3);var _0LeftMenu=__webpack_require__(41);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(36);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(19);var _main2=_interopRequireDefault(_main);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(18);__webpack_require__(17);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(this.data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
-var portadaSubunit=false;if(dataraw.portada){_.forEach(dataraw.units,function(unit){_.forEach(unit.subunits,function(subunit){if(''+subunit.id===''+_this.data.portada){portadaSubunit=subunit;}});});}if(!portadaSubunit){portadaSubunit=dataraw.units[0].subunits[0];}//Background
-window.smDefaultBackgroundImage=this.getDefaultBackgroundUrl();if(dataraw.units.length&&dataraw.units[0].subunits.length&&portadaSubunit.image&&portadaSubunit.image.length>3){window.smBookBackgroundImage=portadaSubunit.image;}else{window.smBookBackgroundImage=window.smDefaultBackgroundImage;}//Credits
+//Background
+window.smDefaultBackgroundImage=this.getDefaultBackgroundUrl();if(dataraw.units.length&&dataraw.units[0].subunits.length&&dataraw.units[0].subunits[0].image.length>3){window.smBookBackgroundImage=dataraw.units[0].subunits[0].image;}else{window.smBookBackgroundImage=window.smDefaultBackgroundImage;}//Credits
 _.forEach(dataraw.units[0].subunits,function(subunit){if(subunit.tags){if(subunit.tags.search('creditos')>-1&&subunit.sections.length>0){_this.data.creditsHtml=subunit.sections[0].texto;}}});//get idalumno from url
 var currentUrl=new URL(window.location.href);var idAlumno=currentUrl.searchParams.get('idalumno');var idAlumnoUrlParamString=idAlumno?'&idalumno='+idAlumno:'';var urlSeguimiento='/include/javascript/seguimientoCurso.js.php?idcurso='+idcurso+idAlumnoUrlParamString;if(typeof loadScript==='function'){//If is blink enviroment
 loadScript(urlSeguimiento,true,function(){this.initAfertLoadsActivities(window.actividades);}.bind(this));}else{this.initAfertLoadsActivities([]);}//Add body class if theres is no navbar (app)
@@ -6771,12 +6771,7 @@ if((typeof blink==='undefined'?'undefined':_typeof(blink))=='object'){if(blink.i
 window.setPanelResultsHeight=function(){$('.search-side-panel-results').css('height',$(window).height()-$('.search-side-panel-results').offset().top);};window.setPanelStyle=function(){$('.side-panel').css({'top':$('.navbar').height(),'height':$(window).height()-$('.navbar').height()});};//añadir etiquetas de tipo de usuario
 if((0,_blinkFunctions.esAlumno)()){document.body.classList.add('sm-es-alumno');}if((0,_blinkFunctions.esProfesor)()){document.body.classList.add('sm-es-profesor');}if((0,_blinkFunctions.esEditorOMas)()){document.body.classList.add('sm-es-editor');}}}},{key:'getDefaultBackgroundUrl',value:function getDefaultBackgroundUrl(){var tempElement=document.createElement('div');tempElement.classList.add('sm-js-default-background');document.body.appendChild(tempElement);var tempElementInBody=document.querySelector('.sm-js-default-background');var tempStyle=tempElement.currentStyle||window.getComputedStyle(tempElementInBody,false);return tempStyle.backgroundImage.slice(4,-1).replace(/"/g,"");}},{key:'initAfertLoadsActivities',value:function initAfertLoadsActivities(activities){var _this2=this;//l('initAfertLoadsActivities');
 //l(data, activities);
-var isFrontPage=false;if(this.data.portada){isFrontPage=this.data.portada==idclase;// if(this.data.units[0].subunits.length){
-// 	if(idclase==this.data.units[0].subunits[0].id){
-// 		isFrontPage = true;
-// 	}
-// }
-}//l('Activities loaded. ');
+var isFirstSubunit=false;if(this.data.units[0].subunits.length){if(idclase==this.data.units[0].subunits[0].id){isFirstSubunit=true;}}//l('Activities loaded. ');
 //Get home image
 //Remove first unit
 this.data.units.shift();//If user is student, remove subunits and resources not visible for her
@@ -6821,7 +6816,7 @@ _.forEach(this.data.units,function(unit){_.forEach(unit.subunitsmain,function(su
 return tag.substr(0,15)==='sm_metodologia_'&&tag!=='sm_metodologia_titulo_bloque';});var metodologiaBlockId=metodologiaBlockTag?metodologiaBlockTag.replace('sm_metodologia_',''):null;var isNewKidOnTheBlock=!isBlock&&metodologiaBlockTag?true:false;if(!isBlock&&!isNewKidOnTheBlock){var newBlock={id:metodologiaBlockId,headerSubUnit:{data:{title:''}},subUnits:[{data:subunit}]};unit.blocks.push(newBlock);}});});//Delete blocks without units
 _.forEach(this.data.units,function(unit){unit.blocks=_.filter(unit.blocks,function(block){return block.subUnits.length>0;});});//Regenerate subunints numbers depending of ocultar
 this.regenerateSubunitsNumbers();// If this page is the first subunit of first unit, show menu.
-if(isFrontPage){//Hide navbar bottom
+if(isFirstSubunit){//Hide navbar bottom
 if(document.getElementsByClassName('navbar-bottom').length){document.getElementsByClassName('navbar-bottom')[0].style.display='none';}// Generate HTML Structure
 var replaceStringInTemplates=new _replaceStringInTemplates2.default();var htmlMainWithStrings=replaceStringInTemplates.replace(_main2.default);document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',htmlMainWithStrings);//Add class to hide all elemens in body except #santillana_microcontenidos_menu
 document.getElementsByTagName('body')[0].classList.add('santillana_microcontenidos_menu');//PreloadImages
@@ -6860,7 +6855,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(61);var _app=__webpack_require__(60);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log("index.init");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(61);var _app=__webpack_require__(60);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2019-12-18 10:53:52 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
