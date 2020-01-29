@@ -6846,9 +6846,33 @@ _.forEach(this.data.units,function(unit){unit.blocks=[];_.forEach(unit.subunitsm
 return tag.substr(0,15)===ACTIVITY_BLOCK&&tag!==ACTIVITY_BLOCK_TITLE;});var metodologiaBlockId=metodologiaBlockTag?metodologiaBlockTag.replace(ACTIVITY_BLOCK,''):null;if(isBlock){//l(subunit);
 var newBlock={id:metodologiaBlockId,headerSubUnit:{data:subunit},subUnits:[]};unit.blocks.push(newBlock);}});});//Then we search subunits. 
 _.forEach(this.data.units,function(unit){_.forEach(unit.subunitsmain,function(subunit){var tags=typeof subunit.tags==='string'?subunit.tags.split(' '):[];var isBlock=_.includes(tags,ACTIVITY_BLOCK_TITLE);var metodologiaBlockTag=_.find(tags,function(tag){// :D sorry...
-return tag.substr(0,15)===ACTIVITY_BLOCK&&tag!==ACTIVITY_BLOCK_TITLE;});var metodologiaBlockId=metodologiaBlockTag?metodologiaBlockTag.replace(ACTIVITY_BLOCK,''):null;var isNewKidOnTheBlock=!isBlock&&metodologiaBlockTag?true:false;if(isNewKidOnTheBlock){var currentBlock=_.find(unit.blocks,{id:metodologiaBlockId});if(currentBlock){var newKidOnTheBlock={data:subunit};currentBlock.subUnits.push(newKidOnTheBlock);}}});});//And, if ther is no 'ACTIVITY_BLOCK...' tag, we create a new block
-_.forEach(this.data.units,function(unit){_.forEach(unit.subunitsmain,function(subunit){var tags=typeof subunit.tags==='string'?subunit.tags.split(' '):[];var isBlock=_.includes(tags,ACTIVITY_BLOCK_TITLE);var metodologiaBlockTag=_.find(tags,function(tag){// :D sorry...
-return tag.substr(0,15)===ACTIVITY_BLOCK&&tag!==ACTIVITY_BLOCK_TITLE;});var metodologiaBlockId=metodologiaBlockTag?metodologiaBlockTag.replace(ACTIVITY_BLOCK,''):null;var isNewKidOnTheBlock=!isBlock&&metodologiaBlockTag?true:false;if(!isBlock&&!isNewKidOnTheBlock){var newBlock={id:metodologiaBlockId,headerSubUnit:{data:{title:''}},subUnits:[{data:subunit}]};unit.blocks.push(newBlock);}});});//Delete blocks without units
+return tag.substr(0,15)===ACTIVITY_BLOCK&&tag!==ACTIVITY_BLOCK_TITLE;});var metodologiaBlockId=metodologiaBlockTag?metodologiaBlockTag.replace(ACTIVITY_BLOCK,''):null;var isNewKidOnTheBlock=!isBlock&&metodologiaBlockTag?true:false;if(isNewKidOnTheBlock){var currentBlock=_.find(unit.blocks,{id:metodologiaBlockId});if(currentBlock){var newKidOnTheBlock={data:subunit};currentBlock.subUnits.push(newKidOnTheBlock);}}});});//And, if there is no 'ACTIVITY_BLOCK...' tag, we create a new block
+//UPDATE: We remove orphaned subunits.
+_.forEach(this.data.units,function(unit){unit.subunitsmain=_.filter(unit.subunitsmain,function(subunit){var tags=typeof subunit.tags==='string'?subunit.tags.split(' '):[];var isBlock=_.includes(tags,ACTIVITY_BLOCK_TITLE);var metodologiaBlockTag=_.find(tags,function(tag){// :D sorry...
+return tag.substr(0,15)===ACTIVITY_BLOCK&&tag!==ACTIVITY_BLOCK_TITLE;});var isNewKidOnTheBlock=!isBlock&&metodologiaBlockTag?true:false;if(!isBlock&&!isNewKidOnTheBlock){return false;}return true;});// _.forEach(unit.subunitsmain, subunit => {
+// 	const tags = typeof subunit.tags === 'string' ? subunit.tags.split(' ') : [];
+// 	const isBlock = _.includes(tags, ACTIVITY_BLOCK_TITLE);
+// 	const metodologiaBlockTag = _.find(tags, (tag) => { // :D sorry...
+// 		return tag.substr(0,15)===ACTIVITY_BLOCK && tag!==ACTIVITY_BLOCK_TITLE;
+// 	});
+// 	const metodologiaBlockId = metodologiaBlockTag ? metodologiaBlockTag.replace(ACTIVITY_BLOCK, ``) : null;
+// 	const isNewKidOnTheBlock = !isBlock && metodologiaBlockTag ? true : false;
+// 	if(!isBlock && !isNewKidOnTheBlock){
+// 		const newBlock = {
+// 			id: metodologiaBlockId,
+// 			headerSubUnit: {
+// 				data: {
+// 					title: '',
+// 				}
+// 			},
+// 			subUnits: [{
+// 				data: subunit,
+// 			}],
+// 		}
+// 		unit.blocks.push(newBlock)
+// 	}
+// });
+});//Delete blocks without units
 _.forEach(this.data.units,function(unit){unit.blocks=_.filter(unit.blocks,function(block){return block.subUnits.length>0;});});//Regenerate subunints numbers depending of ocultar
 this.regenerateSubunitsNumbers();// If this page is the first subunit of first unit, show menu.
 if(isFrontPage){//Hide navbar bottom
@@ -6890,7 +6914,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(65);var _app=__webpack_require__(64);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-1-29 11:55:51 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(65);var _app=__webpack_require__(64);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-1-29 1:17:17 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
