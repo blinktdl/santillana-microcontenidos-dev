@@ -443,7 +443,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 /* 4 */
 /***/ (function(module, exports) {
 
-module.exports = "<li id=sm-subunit-backbutton role=menuitem> </li>";
+module.exports = "<div id=sm-subunit-backbutton role=menuitem></div>";
 
 /***/ }),
 /* 5 */
@@ -5001,8 +5001,8 @@ this.screenSubUnitStart.hasBlinkSlideWithSection=function(section){return _this.
 this.screenSubUnitEnd.creditsHtml=this.book.creditsHtml;this.screenSubUnitEnd.init(this.subUnitObject);this.screenSubUnitEnd.onStartButtonClick=function(){return _this.screenSubUnitIndicators.onStartButtonClick();};// this.screenSubUnitEnd.goLastBlinkSlide = ()  => this.screenSubUnitIndicators.goLastBlinkSlide();
 //Navigation
 this.screenSubUnitIndicators.onStartShow=function(){return _this.screenSubUnitStart.show();};this.screenSubUnitIndicators.onStartHide=function(){return _this.screenSubUnitStart.hide();};this.screenSubUnitIndicators.onEndShow=function(){return _this.screenSubUnitEnd.show();};this.screenSubUnitIndicators.onEndHide=function(){return _this.screenSubUnitEnd.hide();};this.screenSubUnitIndicators.init(this.subUnitObject);//backButton
-// document.getElementsByTagName('body')[0].insertAdjacentHTML( 'beforeend', replaceStringInTemplates.replace(htmlSubUnitBackButton) );
-document.querySelector('.navbar.libro .libro-left>ul').insertAdjacentHTML('afterbegin',replaceStringInTemplates.replace(_subUnitBackButton2.default));document.querySelector('#sm-subunit-backbutton').addEventListener('click',this.onBackButtonClick.bind(this));//Activities
+// document.querySelector('.navbar.libro .libro-left>ul').insertAdjacentHTML( 'afterbegin', replaceStringInTemplates.replace(htmlSubUnitBackButton) );
+document.querySelector('.navbar.libro').insertAdjacentHTML('afterbegin',replaceStringInTemplates.replace(_subUnitBackButton2.default));document.querySelector('#sm-subunit-backbutton').addEventListener('click',this.onBackButtonClick.bind(this));//Activities
 this.activities=new _Activities2.default();this.screenSubUnitIndicators.activitiContentUpdate=this.activities.update;//If numSec exists, go to this page.
 if(numSec>0){this.goTopSlide(numSec);}}this.started=true;}},{key:'onGoToActivity',value:function onGoToActivity(page){this.state.inActivity=true;$('.slider-indicators li[data-go-to="'+(parseInt(page)-1)+'"]').trigger('click');}},{key:'onGoToActivityById',value:function onGoToActivityById(ID){this.state.inActivity=true;$('.slider-indicators li[data-sm-slide-id="'+ID+'"]').trigger('click');}},{key:'goTopSlide',value:function goTopSlide(slideNumber){$('.slider-indicators li[data-go-to="'+(parseInt(slideNumber)-1)+'"]').trigger('click');}},{key:'onBackButtonClick',value:function onBackButtonClick(){if(!this.isEvaluacion){// Chec if we are in secuencia o actividades
 if(this.state.inActivity){this.state.inActivity=false;this.screenSubUnitStart.show();this.screenSubUnitStart.goTabActividades();}else if(this.screenSubUnitStart.state.tab=='actividades'){this.screenSubUnitIndicators.onStartButtonClick();this.screenSubUnitStart.goTabSecuenciaDidactica();}else if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{document.location.href=this.book.url+'#unit_'+this.unit.id;}}else{if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{//Get url from url
@@ -6897,7 +6897,8 @@ if(isFrontPage){//Hide navbar bottom
 if(document.getElementsByClassName('navbar-bottom').length){document.getElementsByClassName('navbar-bottom')[0].style.display='none';}// Generate HTML Structure
 var replaceStringInTemplates=new _replaceStringInTemplates2.default();var htmlMainWithStrings=replaceStringInTemplates.replace(_main2.default);document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',htmlMainWithStrings);//Add class to hide all elemens in body except #santillana_microcontenidos_menu
 document.getElementsByTagName('body')[0].classList.add('santillana_microcontenidos_menu');//Backbutton
-document.querySelector('.navbar.libro .libro-left>ul').insertAdjacentHTML('afterbegin',replaceStringInTemplates.replace(_subUnitBackButton2.default));document.querySelector('#sm-subunit-backbutton').innerHTML='<a href="#"></a>';//PreloadImages
+// document.querySelector('.navbar.libro .libro-left>ul').insertAdjacentHTML( 'afterbegin', replaceStringInTemplates.replace(htmlSubUnitBackButton) );
+document.querySelector('.navbar.libro').insertAdjacentHTML('afterbegin',replaceStringInTemplates.replace(_subUnitBackButton2.default));document.querySelector('#sm-subunit-backbutton').innerHTML='<a href="#"></a>';//PreloadImages
 var preloadImages=new _ImagesPreload2.default();preloadImages.add(window.smBookBackgroundImage);//Start menu navigation
 //Router links url hash with screen
 new _router2.default({data:this.data,actionUpdateSubunitOcultar:this.actionUpdateSubunitOcultar.bind(this)});//Menú
@@ -6933,7 +6934,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(67);var _app=__webpack_require__(66);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-2-20 4:09:05 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(67);var _app=__webpack_require__(66);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-2-20 4:33:43 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
