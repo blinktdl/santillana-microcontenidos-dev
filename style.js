@@ -244,7 +244,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 69);
+/******/ 	return __webpack_require__(__webpack_require__.s = 70);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -256,7 +256,7 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__3__;
 
 /***/ }),
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports = __webpack_require__(3);
@@ -358,7 +358,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 68);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -681,7 +681,7 @@ n)k=l;else{var l=h,h=h+.1,g=0;do m=l+(h-l)/2,n=a(m,c,b)-k,0<n?h=m:l=m;while(1e-7
 d:A.apply($jscomp$this,d)}}(f)),f={type:f.type};return b}(),ha={css:function(a,c,d){return a.style[c]=d},attribute:function(a,c,d){return a.setAttribute(c,d)},object:function(a,c,d){return a[c]=d},transform:function(a,c,d,b,f){b[f]||(b[f]=[]);b[f].push(c+"("+d+")")}},v=[],B=0,ia=function(){function a(){B=requestAnimationFrame(c)}function c(c){var b=v.length;if(b){for(var d=0;d<b;)v[d]&&v[d].tick(c),d++;a()}else cancelAnimationFrame(B),B=0}return a}();q.version="2.2.0";q.speed=1;q.running=v;q.remove=
 function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.length;f--;)u(a,b[f].animatable.target)&&(b.splice(f,1),b.length||d.pause())};q.getValue=K;q.path=function(a,c){var d=h.str(a)?e(a)[0]:a,b=c||100;return function(a){return{el:d,property:a,totalLength:N(d)*(b/100)}}};q.setDashoffset=function(a){var c=N(a);a.setAttribute("stroke-dasharray",c);return c};q.bezier=A;q.easings=Q;q.timeline=function(a){var c=q(a);c.pause();c.duration=0;c.add=function(d){c.children.forEach(function(a){a.began=
 !0;a.completed=!0});m(d).forEach(function(b){var d=z(b,D(S,a||{}));d.targets=d.targets||a.targets;b=c.duration;var e=d.offset;d.autoplay=!1;d.direction=c.direction;d.offset=h.und(e)?b:L(e,b);c.began=!0;c.completed=!0;c.seek(d.offset);d=q(d);d.began=!0;d.completed=!0;d.duration>b&&(c.duration=d.duration);c.children.push(d)});c.seek(0);c.reset();c.autoplay&&c.restart();return c};return c};q.random=function(a,c){return Math.floor(Math.random()*(c-a+1))+a};return q});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(61)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(62)))
 
 /***/ }),
 /* 10 */
@@ -779,7 +779,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(53);
+var	fixUrls = __webpack_require__(54);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1185,7 +1185,7 @@ function toComment(sourceMap) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(54);
+var content = __webpack_require__(55);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -1213,10 +1213,10 @@ if(false) {}
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/Object.keys.js
-var Object_keys = __webpack_require__(56);
+var Object_keys = __webpack_require__(57);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/childNode.remove.js
-var childNode_remove = __webpack_require__(55);
+var childNode_remove = __webpack_require__(56);
 
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/raf.js
 var raf_win = window;
@@ -4512,15 +4512,22 @@ module.exports = "<div id=santillana_microcontenidos_menu class=sm-base> <div id
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});exports.getTextOfNode=getTextOfNode;function getTextOfNode(node){// crossbrowser version
-var text='';if(node.nodeType==Node.TEXT_NODE){text=node.nodeValue.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}else{text=node.innerText.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}return text;}
+Object.defineProperty(exports,"__esModule",{value:true});var getUrlParameters=exports.getUrlParameters=function getUrlParameters(){var vars={};var parts=window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value){vars[key]=value;});return vars;};
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(29);var _debug=__webpack_require__(2);var _slashSlash=__webpack_require__(5);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
+Object.defineProperty(exports,"__esModule",{value:true});exports.getTextOfNode=getTextOfNode;function getTextOfNode(node){// crossbrowser version
+var text='';if(node.nodeType==Node.TEXT_NODE){text=node.nodeValue.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}else{text=node.innerText.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}return text;}
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(30);var _debug=__webpack_require__(2);var _slashSlash=__webpack_require__(5);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
 this.state={//isVisible: true,
 };document.querySelector('.content-wrapper.actividad').classList.add('sm-actividades');//Remain attemps
 var remainBoxes=document.querySelectorAll('.attemps>*');_.forEach(remainBoxes,function(remainBox){var htmlText='';_.forEach(remainBox.childNodes,function(node){if(node.nodeType==3){//#text
@@ -4604,24 +4611,24 @@ if(!header.querySelector('.header_small_block')){header.appendChild(activityHead
 }}]);return Activities;}();exports.default=Activities;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--credits class=\"sm-modal sm-modal--big\"> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__header> <span class=sm-credits-icon> <svg width=13px height=18px viewBox=\"0 0 13 18\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g fill=#29495e fill-rule=nonzero> <path d=\"M12.5252525,5.75127421 C11.5609776,5.07712881 10.5864591,4.74006116 9.60166778,4.74006116 C9.06823913,4.74006116 8.57072179,4.83486144 8.10910084,5.02446483 C7.64747988,5.21406823 7.24228535,5.48266901 6.89350508,5.83027523 C6.5447248,6.17788145 6.27288543,6.58868265 6.07797881,7.06269113 C5.88307218,7.53669962 5.78562033,8.0686345 5.78562033,8.65851172 C5.78562033,9.22732191 5.88307218,9.74872342 6.07797881,10.2227319 C6.27288543,10.6967404 6.53959576,11.1075416 6.87811779,11.4551478 C7.21663982,11.802754 7.62183435,12.0713548 8.09371355,12.2609582 C8.56559274,12.4505616 9.06823913,12.5453619 9.60166778,12.5453619 C10.6480086,12.5453619 11.6225271,12.1766941 12.5252525,11.4393476 L12.5252525,16.3058104 C11.1506479,16.9167547 9.84787055,17.2222222 8.61688134,17.2222222 C7.46795809,17.2222222 6.37547156,17.0220883 5.33938898,16.6218145 C4.3033064,16.2215406 3.39033643,15.6474723 2.60045169,14.8995923 C1.81056695,14.1517122 1.17969445,13.2563763 0.707815253,12.2135576 C0.235936058,11.1707389 0,10.0068022 0,8.72171254 C0,7.43662286 0.225677969,6.26215279 0.677040677,5.19826707 C1.12840339,4.13438136 1.74388875,3.2179787 2.52351525,2.4490316 C3.30314175,1.6800845 4.23149885,1.07968276 5.3086144,0.647808359 C6.38572995,0.21593396 7.53976502,0 8.77075423,0 C10.1248423,0 11.3763293,0.29493419 12.5252525,0.884811417 L12.5252525,5.75127421 Z\" id=c></path> </g> </svg> </span>  <h5>--Créditos--</h5> <span class=close></span> </div> <div class=sm-modal__content> <div class=sm-modal__content__text> </div> </div> </div> </div>";
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-end sm-base\"> <div class=sm-subunit-end_completed> <div class=sm-subunit-end_completed__content> <div class=sm-subunit-end__title>--Fin de la lección--</div> <div class=sm-subunit-end__progress> <div class=sm-subunit-end__progress__title></div> <div class=sm-subunit-end__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-end__start_button_container> <div class=\"sm-subunit-end__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> <span>--Volver a inicio--</span> </div> </div> <div class=sm-subunit-end__credits_button_container> <div class=\"sm-subunit-end__credits_button sm-button-subunitnav\"> <span class=sm-subunit-end__credits_button_icon> <svg width=13px height=18px viewBox=\"0 0 13 18\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g fill=#FFFFFF fill-rule=nonzero> <path d=\"M12.5252525,5.75127421 C11.5609776,5.07712881 10.5864591,4.74006116 9.60166778,4.74006116 C9.06823913,4.74006116 8.57072179,4.83486144 8.10910084,5.02446483 C7.64747988,5.21406823 7.24228535,5.48266901 6.89350508,5.83027523 C6.5447248,6.17788145 6.27288543,6.58868265 6.07797881,7.06269113 C5.88307218,7.53669962 5.78562033,8.0686345 5.78562033,8.65851172 C5.78562033,9.22732191 5.88307218,9.74872342 6.07797881,10.2227319 C6.27288543,10.6967404 6.53959576,11.1075416 6.87811779,11.4551478 C7.21663982,11.802754 7.62183435,12.0713548 8.09371355,12.2609582 C8.56559274,12.4505616 9.06823913,12.5453619 9.60166778,12.5453619 C10.6480086,12.5453619 11.6225271,12.1766941 12.5252525,11.4393476 L12.5252525,16.3058104 C11.1506479,16.9167547 9.84787055,17.2222222 8.61688134,17.2222222 C7.46795809,17.2222222 6.37547156,17.0220883 5.33938898,16.6218145 C4.3033064,16.2215406 3.39033643,15.6474723 2.60045169,14.8995923 C1.81056695,14.1517122 1.17969445,13.2563763 0.707815253,12.2135576 C0.235936058,11.1707389 0,10.0068022 0,8.72171254 C0,7.43662286 0.225677969,6.26215279 0.677040677,5.19826707 C1.12840339,4.13438136 1.74388875,3.2179787 2.52351525,2.4490316 C3.30314175,1.6800845 4.23149885,1.07968276 5.3086144,0.647808359 C6.38572995,0.21593396 7.53976502,0 8.77075423,0 C10.1248423,0 11.3763293,0.29493419 12.5252525,0.884811417 L12.5252525,5.75127421 Z\" id=c></path> </g> </svg> </span> </div> </div> </div> </div> </div>";
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(32);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _modalCredits=__webpack_require__(31);var _modalCredits2=_interopRequireDefault(_modalCredits);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// onsole.log(this.subUnitObject);
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(33);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _modalCredits=__webpack_require__(32);var _modalCredits2=_interopRequireDefault(_modalCredits);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// onsole.log(this.subUnitObject);
 document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;document.querySelector('.sm-subunit-end').style.backgroundImage='url('+subunitImage+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});//Credits button
 if(this.creditsHtml){document.querySelector('.sm-subunit-end__credits_button_container .sm-subunit-end__credits_button').addEventListener('click',this.showCreditsModal.bind(this));}else{document.querySelector('.sm-subunit-end__credits_button_container').remove();}}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 //if(config.dev)
@@ -4634,32 +4641,32 @@ document.querySelector('#sm-modal--credits .close').addEventListener('click',thi
 setTimeout(function(){document.querySelector('#sm-modal--credits').classList.add('active');},1);}},{key:'hideCreditsModal',value:function hideCreditsModal(){document.querySelector('#sm-modal--credits').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--credits').remove();},400);}}]);return ScreenSubUnitEnd;}();exports.default=ScreenSubUnitEnd;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-subunit-start__actividades__item> <div class=sm-subunit-start__actividades__item__icon></div> <div class=sm-subunit-start__actividades__item__type>Tipo de recurso</div> <div class=sm-subunit-start__actividades__item__title>Nombre de la actividad</div> </div>";
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-start sm-base\"> <div class=sm-subunit-start__secuencia> <div class=sm-subunit-start__secuencia__content> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__type> <div class=sm-subunit-start__type__content> <span class=sm-color-color></span> </div> </div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--Comienza secuencia didáctica--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> <div class=sm-subunit-start__start_button_content--flipped> <div class=\"sm-subunit-start__start_button--flipped-casa sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--santillana_microcontenidos_tareas_casa--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> <div class=\"sm-subunit-start__start_button--flipped-clase sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--santillana_microcontenidos_tareas_clase--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__actividades style=display:none> <div class=sm-subunit-start__actividades__container> <div class=sm-subunit-start__actividades__content> <div class=sm-subunit-start__actividades__header> <div class=sm-subunit-start__title__actividades>Actividades</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=sm-color-color></div> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> </div> <div class=sm-subunit-start__actividades__list__container> <div class=sm-subunit-start__actividades__list> </div> </div> </div> </div> </div> <div class=sm-subunit-start__evaluacion> <div class=sm-subunit-start__evaluacion__background></div> <div class=sm-subunit-start__evaluacion__content> <div class=sm-subunit-start__title__evaluacion>--Evaluación final--</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=sm-subunit-start__image></div> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-child-color--hover sm-color-child-color--pressed sm-color-background-color sm-color-border-color sm-color-border-color--hover sm-color-border-color--pressed sm-color-svg-fill--hover sm-color-svg-fill--pressed\"> <span>--Comienza evaluación final--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__nav> <div class=sm-subunit-start__nav__actions> <div id=subunit-boton-actividades class=sm-button-subunitnav><span>--Actividades--</span></div> <div id=subunit-boton-evaluacion-final class=sm-button-subunitnav><span>--Evaluación final--</span></div> </div> </div> </div>";
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(exports,"__esModule",{value:true});exports.removeParam=removeParam;function removeParam(key,sourceURL){var rtn=sourceURL.split("?")[0],param,params_arr=[],queryString=sourceURL.indexOf("?")!==-1?sourceURL.split("?")[1]:"";if(queryString!==""){params_arr=queryString.split("&");for(var i=params_arr.length-1;i>=0;i-=1){param=params_arr[i].split("=")[0];if(param===key){params_arr.splice(i,1);}}rtn=rtn+"?"+params_arr.join("&");}return rtn;}
 
 /***/ }),
 /* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+Object.defineProperty(exports,"__esModule",{value:true});exports.removeParam=removeParam;function removeParam(key,sourceURL){var rtn=sourceURL.split("?")[0],param,params_arr=[],queryString=sourceURL.indexOf("?")!==-1?sourceURL.split("?")[1]:"";if(queryString!==""){params_arr=queryString.split("&");for(var i=params_arr.length-1;i>=0;i-=1){param=params_arr[i].split("=")[0];if(param===key){params_arr.splice(i,1);}}rtn=rtn+"?"+params_arr.join("&");}return rtn;}
+
+/***/ }),
+/* 38 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
 //Templates
-var _debug=__webpack_require__(2);var _removeParam=__webpack_require__(36);var _slashSlash=__webpack_require__(5);var _subUnitStart=__webpack_require__(35);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(34);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
+var _debug=__webpack_require__(2);var _removeParam=__webpack_require__(37);var _slashSlash=__webpack_require__(5);var _subUnitStart=__webpack_require__(36);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(35);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
 };this.number={};this.subUnitObject={};this.isEvaluacion=false;}_createClass(ScreenSubUnitStart,[{key:'init',value:function init(subUnitObject,number,isEvaluacion){var _this=this;//l("ScreenSubUnitStart.Init");
 //l(subUnitObject, number, isEvaluacion);
 this.number=number;this.subUnitObject=subUnitObject;this.isEvaluacion=isEvaluacion;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitStart2.default));var numberString=this.number.toString();while(numberString.length<2){numberString='0'+numberString;}if(!this.isEvaluacion){var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;if(this.subUnitObject.hasOwnProperty('video')&&this.subUnitObject.video.length>3){//l("Tiene video");
@@ -4735,31 +4742,31 @@ document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progres
 }.bind(this));}}]);return ScreenSubUnitStart;}();exports.default=ScreenSubUnitStart;
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-end\">--Fin--</li>";
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-start\">--Inicio--</li>";
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-right> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-left> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4767,12 +4774,12 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getCoords=getCo
 var box=elem.getBoundingClientRect();var body=document.body;var docEl=document.documentElement;var scrollTop=window.pageYOffset||docEl.scrollTop||body.scrollTop;var scrollLeft=window.pageXOffset||docEl.scrollLeft||body.scrollLeft;var clientTop=docEl.clientTop||body.clientTop||0;var clientLeft=docEl.clientLeft||body.clientLeft||0;var top=box.top+scrollTop-clientTop;var left=box.left+scrollLeft-clientLeft;return{top:Math.round(top),left:Math.round(left)};}
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _lodash=__webpack_require__(3);var _lodash2=_interopRequireDefault(_lodash);var _responsiveStatus=__webpack_require__(8);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(42);var _sliderIndicatorArrowLeft=__webpack_require__(41);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(40);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(39);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(38);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _lodash=__webpack_require__(3);var _lodash2=_interopRequireDefault(_lodash);var _responsiveStatus=__webpack_require__(8);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(43);var _sliderIndicatorArrowLeft=__webpack_require__(42);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(41);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(40);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(39);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
 contentTop:0,//desktop
 isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};this.line=null;this.lines=null;}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){var _this2=this;//l("ScreenSubUnitIndicators.Init");
 if(!this.started){var _this=this;this.responsiveStatus=new _responsiveStatus2.default();this.subunit=subunit;//Apply book colors with class
@@ -4989,11 +4996,11 @@ $('.slider-indicators li[data-go-to="0"]').trigger('click');this.onSliderIndicat
 $('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').trigger('click');}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(43);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(37);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(33);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(30);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(4);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(44);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(38);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(34);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(31);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(4);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _getUrlParameters=__webpack_require__(29);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
 ////l(subUnitObject, number, unit, book, isEvaluacion);  
 ////l("¿Es evaluación? " + (isEvaluacion ? "Sí" : "No"));
 if(!this.started){this.number=number;this.subUnitObject=subUnitObject;this.unit=unit;this.book=book;this.isEvaluacion=isEvaluacion;this.screenSubUnitStart=new _ScreenSubUnitStart2.default();this.screenSubUnitEnd=new _ScreenSubUnitEnd2.default();this.screenSubUnitIndicators=new _ScreenSubUnitSliderIndicators2.default();//StartPage
@@ -5005,8 +5012,10 @@ this.screenSubUnitIndicators.onStartShow=function(){return _this.screenSubUnitSt
 document.querySelector('.navbar.libro').insertAdjacentHTML('afterbegin',replaceStringInTemplates.replace(_subUnitBackButton2.default));document.querySelector('#sm-subunit-backbutton').addEventListener('click',this.onBackButtonClick.bind(this));//Activities
 this.activities=new _Activities2.default();this.screenSubUnitIndicators.activitiContentUpdate=this.activities.update;//If numSec exists, go to this page.
 if(numSec>0){this.goTopSlide(numSec);}}this.started=true;}},{key:'onGoToActivity',value:function onGoToActivity(page){this.state.inActivity=true;$('.slider-indicators li[data-go-to="'+(parseInt(page)-1)+'"]').trigger('click');}},{key:'onGoToActivityById',value:function onGoToActivityById(ID){this.state.inActivity=true;$('.slider-indicators li[data-sm-slide-id="'+ID+'"]').trigger('click');}},{key:'goTopSlide',value:function goTopSlide(slideNumber){$('.slider-indicators li[data-go-to="'+(parseInt(slideNumber)-1)+'"]').trigger('click');}},{key:'onBackButtonClick',value:function onBackButtonClick(){if(!this.isEvaluacion){// Chec if we are in secuencia o actividades
-if(this.state.inActivity){this.state.inActivity=false;this.screenSubUnitStart.show();this.screenSubUnitStart.goTabActividades();}else if(this.screenSubUnitStart.state.tab=='actividades'){this.screenSubUnitIndicators.onStartButtonClick();this.screenSubUnitStart.goTabSecuenciaDidactica();}else if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{document.location.href=this.book.url+'#unit_'+this.unit.id;}}else{if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{//Get url from url
-var url=new URL(window.location.href);var smParentUrl=url.searchParams.get("smparenturl");document.location.href=''+decodeURIComponent(smParentUrl);}}}},{key:'hasBlinkSlideWithSection',value:function hasBlinkSlideWithSection(section){var result=false;//l('hasBlinkSlideWithSection('+section+')');
+if(this.state.inActivity){this.state.inActivity=false;this.screenSubUnitStart.show();this.screenSubUnitStart.goTabActividades();}else if(this.screenSubUnitStart.state.tab=='actividades'){this.screenSubUnitIndicators.onStartButtonClick();this.screenSubUnitStart.goTabSecuenciaDidactica();}else if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{//Si es tá en modo pseudo editar (navega en editar pero no tiene permisos para ciertas actividades). Miramos en la url si está en editar.
+var isInPseudoeditar=(0,_getUrlParameters.getUrlParameters)()['editar']=='1';if(isInPseudoeditar){document.location.href=this.book.url.replace('editar=0','editar=1');}else{document.location.href=this.book.url+'#unit_'+this.unit.id;}}}else{if(!this.screenSubUnitStart.state.isVisible){this.screenSubUnitIndicators.onStartButtonClick();}else{//Si es tá en modo pseudo editar (navega en editar pero no tiene permisos para ciertas actividades). Miramos en la url si está en editar.
+var _isInPseudoeditar=(0,_getUrlParameters.getUrlParameters)()['editar']=='1';if(_isInPseudoeditar){document.location.href=this.book.url.replace('editar=0','editar=1');}else{//Get url from url
+var url=new URL(window.location.href);var smParentUrl=url.searchParams.get("smparenturl");document.location.href=''+decodeURIComponent(smParentUrl);}}}}},{key:'hasBlinkSlideWithSection',value:function hasBlinkSlideWithSection(section){var result=false;//l('hasBlinkSlideWithSection('+section+')');
 //l(this.subUnitObject);
 this.subUnitObject.sections.forEach(function(sectionObj){//l(section);
 //l(sectionObj.seccion);
@@ -5015,13 +5024,13 @@ this.subUnitObject.sections.forEach(function(sectionObj){//l(section);
 if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){result=true;}});return result;}}]);return ScreenSubUnit;}();exports.default=ScreenSubUnit;
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-left-menu__background></div> <div id=sm-left-menu> <a class=sm-left-menu--book-image><strong></strong></a> <div class=\"sm-left-menu--level1 sm-color-background-color_before\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </div> <div class=\"sm-left-menu--block sm-color-background-color_before sm-color-child-color--hover sm-color-child-color--active\"> <div class=sm-left-menu--block__header> <strong></strong> </div> <div class=sm-left-menu--block__subunits></div> </div> <a class=\"sm-left-menu--level2 sm-color-background-color--active sm-color-background-color--hover\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title><em class=sm-color-color></em><strong></strong></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg width=16 height=16 viewBox=\"0 0 16 16\"> <path fill=#FFF fill-rule=evenodd d=\"M14.8256508,3.95720635 C14.1151746,2.73993651 13.1513651,1.77612698 11.9340952,1.06565079 C10.7165714,0.355174603 9.38742857,0 7.94577778,0 C6.50425397,0 5.17473016,0.355174603 3.95746032,1.06565079 C2.74006349,1.776 1.77625397,2.73980952 1.06577778,3.95720635 C0.355174603,5.17460317 0,6.50412698 0,7.94552381 C0,9.38704762 0.355301587,10.7163175 1.06565079,11.9338413 C1.77612698,13.1509841 2.73993651,14.1149206 3.95733333,14.8253968 C5.17473016,15.535873 6.50412698,15.8910476 7.94565079,15.8910476 C9.3871746,15.8910476 10.7166984,15.535873 11.9339683,14.8253968 C13.1512381,14.1150476 14.1150476,13.1511111 14.8255238,11.9338413 C15.535873,10.7164444 15.8910476,9.38692063 15.8910476,7.94552381 C15.8910476,6.504 15.535873,5.17447619 14.8256508,3.95720635 L14.8256508,3.95720635 Z M10.4596825,11.1215238 C10.5907302,11.2525714 10.6565079,11.407873 10.6565079,11.5871746 C10.6565079,11.7664762 10.5907302,11.9217778 10.4596825,12.0526984 L9.40419048,13.1081905 C9.27339683,13.2392381 9.11822222,13.3047619 8.93892063,13.3046349 C8.75949206,13.3046349 8.60431746,13.2389841 8.47314286,13.1080635 L3.77625397,8.41092063 C3.64520635,8.27987302 3.57968254,8.12469841 3.57968254,7.94539683 C3.57968254,7.76609524 3.64520635,7.61079365 3.77625397,7.47987302 L8.47314286,2.78285714 C8.60431746,2.65180952 8.75949206,2.58628571 8.93892063,2.58628571 C9.11822222,2.58628571 9.27339683,2.65180952 9.40419048,2.78285714 L10.4596825,3.83834921 C10.5907302,3.96939683 10.6565079,4.12457143 10.6565079,4.30387302 C10.6565079,4.4831746 10.5907302,4.63847619 10.4596825,4.76939683 L7.28355556,7.94552381 L10.4596825,11.1215238 L10.4596825,11.1215238 Z\" transform=\"matrix(-1 0 0 1 15.891 0)\"/> </svg> </div> </a> </div>";
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(13)(false);
@@ -5035,11 +5044,11 @@ exports.push([module.i, "/*\n * Container style\n */\n.ps {\n  overflow: hidden 
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(46);
+var content = __webpack_require__(47);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -5060,7 +5069,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6384,13 +6393,13 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Scroll for left menu
 //Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(48);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(47);var _leftMenu=__webpack_require__(45);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _perfectScrollbar=__webpack_require__(49);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(48);var _leftMenu=__webpack_require__(46);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
 document.querySelector('.libro-left-button a').addEventListener('click',function(e){e.preventDefault();});}_createClass(LeftMenu,[{key:'fillData',value:function fillData(){var _this=this;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',_leftMenu2.default);var bookImageDomElement=document.querySelector('#sm-left-menu .sm-left-menu--book-image');var level1DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level1');var level2BlockDomElement=document.querySelector('#sm-left-menu .sm-left-menu--block');var level2DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level2');document.querySelector('#sm-left-menu .sm-left-menu--level1').remove();document.querySelector('#sm-left-menu .sm-left-menu--block').remove();document.querySelector('#sm-left-menu .sm-left-menu--level2').remove();var ulLevel1DomElement=document.createElement('ul');//onsole.log(window.smBookBackgroundImage);
 //Image an title
 bookImageDomElement.style.backgroundImage='url('+window.smBookBackgroundImage+')';bookImageDomElement.querySelector('strong').innerText=this.data.title;bookImageDomElement.setAttribute('href',this.data.url);//Units
@@ -6407,24 +6416,24 @@ _ulElement.style.height=heightMax+'px';target.classList.add('active');setTimeout
 subUnitElement.querySelector('.sm-left-menu--title em').innerHTML=''+subunit.data.description;subUnitElement.querySelector('.sm-left-menu--title strong').innerHTML=''+subunit.data.title;if(subunit.data.ocultar){subUnitElement.classList.add('sm-ocultar');}else{subUnitElement.classList.remove('sm-ocultar');}});});});}}]);return LeftMenu;}();exports.default=LeftMenu;
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ImagesPreload=function(){function ImagesPreload(){_classCallCheck(this,ImagesPreload);this.image=[];}_createClass(ImagesPreload,[{key:'add',value:function add(imagesToLoad){if(typeof imagesToLoad=='string'){imagesToLoad=[imagesToLoad];}imagesToLoad.forEach(function(imageToLoad){var newImage=new Image();newImage.src=imageToLoad;});}}]);return ImagesPreload;}();exports.default=ImagesPreload;
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--student-no--access class=sm-modal> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__content> <div class=sm-modal__content__icon> <svg width=64px height=64px viewBox=\"0 0 64 64\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=MODO-VER stroke=none stroke-width=1 fill=none fill-rule=evenodd> <g id=3_alumno-alerta transform=\"translate(-628.000000, -99.000000)\"> <rect fill=#FFFFFF x=0 y=0 width=1600 height=900></rect> <g id=Group-4 transform=\"translate(582.000000, 53.000000)\"> <g id=i-/-candado transform=\"translate(46.000000, 46.000000)\"> <g id=Group-20> <g id=Group-19> <path d=\"M24.3810786,0 C12.9080572,0 3.55555556,9.27100006 3.55555556,20.6443193 L3.55555556,32.1550239 C3.55555556,33.2061835 4.38849065,34.031746 5.4487505,34.031746 L13.0216565,34.031746 C14.0820426,34.031746 14.9148514,33.2060583 14.9148514,32.1550239 L14.9148514,20.6443193 C14.9148514,15.464471 19.1556384,11.2605833 24.3809524,11.2605833 C29.6062664,11.2605833 33.8470533,15.464471 33.8470533,20.6443193 L33.8470533,24.3977637 C33.8470533,25.4489233 34.6799884,26.2744859 35.7402483,26.2744859 L43.3131543,26.2744859 C44.3735403,26.2744859 45.2063492,25.4487982 45.2063492,24.3977637 L45.2063492,20.6443193 C45.2066016,9.27100006 35.8541,0 24.3810786,0\" id=Fill-1 fill=#C8C6CD></path> <path d=\"M43.1353821,29.968254 L5.62639767,29.968254 C2.51298592,29.968254 0,32.5017243 0,35.6402326 L0,58.3280213 C0,61.4666557 2.51298592,64 5.62639767,64 L43.1355071,64 C46.2489188,64 48.7619048,61.4666557 48.7619048,58.3280213 L48.7619048,35.6402326 C48.7617797,32.5017243 46.2487938,29.968254 43.1353821,29.968254\" id=Fill-3 fill=#FEA832></path> <path d=\"M45.2063492,20.7529153 L45.2063492,24.5261041 C45.2063492,25.5827931 44.3734141,26.4126984 43.3131543,26.4126984 L35.7402483,26.4126984 C34.6798622,26.4126984 33.8470533,25.5826673 33.8470533,24.5261041 L33.8470533,20.7529153 C33.8470533,15.5458193 29.6062664,11.3198177 24.3809524,11.3198177 L24.3809524,0 C35.8538475,0 45.2063492,9.3197686 45.2063492,20.7529153\" id=Fill-5 fill=#AEADB3></path> <path d=\"M53.8583417,19.247522 L61.3031294,15.4614141 C63.5117362,14.3425447 65.1568683,17.7349973 62.9679913,18.8483134 L55.5232036,22.6344213 C53.3123633,23.7512714 51.668472,20.361343 53.8583417,19.247522\" id=Fill-7 fill=#159CE4></path> <path d=\"M61.3038134,41.4250067 L53.8587881,37.6402663 C51.6681039,36.5266324 53.31242,33.1372844 55.5237031,34.2547032 L62.9687284,38.0393174 C65.143405,39.1450031 63.5375568,42.5528969 61.3038134,41.4250067\" id=Fill-9 fill=#159CE4></path> <path d=\"M62.1491797,29.968254 L54.6762172,29.968254 C52.2135038,29.968254 52.2034148,26.4126984 54.6762172,26.4126984 L62.1491797,26.4126984 C64.611893,26.4125799 64.621982,29.968254 62.1491797,29.968254\" id=Fill-11 fill=#159CE4></path> <path d=\"M48.7619048,35.6402326 L48.7619048,58.3280213 C48.7619048,61.4666557 46.2489124,64 43.1354927,64 L24.3809524,64 L24.3809524,29.968254 L43.1354927,29.968254 C46.2489124,29.968254 48.7619048,32.5017243 48.7619048,35.6402326\" id=Fill-13 fill=#FE8821></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 C23.4497975,56.3809524 22.5185185,55.7420637 22.5185185,54.5016249 L22.5185185,48.5250903 C20.3579512,47.7358455 18.7936508,45.668698 18.7936508,43.2254094 C18.7936508,40.1055177 21.2892302,37.5873016 24.3810766,37.5873016 C27.4729229,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-15 fill=#787780></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 L24.3809524,37.5873016 C27.4726745,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-17 fill=#57555C></path> </g> </g> </g> </g> </g> </g> </svg> </div> <div class=sm-modal__content__text> <p>--Tu profesor no ha dado permisos de acceso a este contenido--</p> </div> </div> <div class=sm-modal__actions> <div class=sm-modal__button>--Aceptar--</div> </div> </div> </div>";
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(8);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _jsCookie=__webpack_require__(7);var _jsCookie2=_interopRequireDefault(_jsCookie);__webpack_require__(14);var _debug=__webpack_require__(2);var _dropdown=__webpack_require__(11);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(51);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(6);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(8);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(9);var _animejs2=_interopRequireDefault(_animejs);var _jsCookie=__webpack_require__(7);var _jsCookie2=_interopRequireDefault(_jsCookie);__webpack_require__(14);var _debug=__webpack_require__(2);var _dropdown=__webpack_require__(11);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(52);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(6);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
 if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus(this.updateSlider.bind(this));
 }this.started=true;this.unit=data.unit;this.actionUpdateSubunitOcultar=data.actionUpdateSubunitOcultar;var unitElement=document.getElementById('sm-unit');// Background
 var unitImage=this.unit.image.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:this.unit.image;document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+unitImage+')';document.querySelector('.sm-unit__header__proyecto_imagen').style.backgroundImage='url('+unitImage+')';// Header
@@ -6482,7 +6491,7 @@ document.querySelector('#sm-modal--student-no--access .sm-modal__button').addEve
 setTimeout(function(){document.querySelector('#sm-modal--student-no--access').classList.add('active');},1);}},{key:'hideStudentNoAccessModal',value:function hideStudentNoAccessModal(){document.querySelector('#sm-modal--student-no--access').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--student-no--access').remove();},400);}},{key:'toggle',value:function toggle(block,e){if(block.containerDomElement.classList.contains('sm-unit__block--closed')){block.containerDomElement.classList.remove('sm-unit__block--closed');_jsCookie2.default.remove('block_ver_'+block.id+'_closed');$(block.containerDomElement.querySelector('.sm-unit__block__subunits')).slideDown(300);}else{block.containerDomElement.classList.add('sm-unit__block--closed');_jsCookie2.default.set('block_ver_'+block.id+'_closed','true',{expires:1});$(block.containerDomElement.querySelector('.sm-unit__block__subunits')).slideUp(300);}}}]);return ScreenUnit;}();exports.default=ScreenUnit;
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports) {
 
 
@@ -6577,7 +6586,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(13)(false);
@@ -6591,7 +6600,7 @@ exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{dis
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports) {
 
 // ChildNode.remove
@@ -6604,7 +6613,7 @@ if(!("remove" in Element.prototype)){
 }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports) {
 
 // Object.keys
@@ -6621,7 +6630,7 @@ if (!Object.keys) {
 }
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6678,7 +6687,7 @@ this.slider.events.on('touchStart',function(e){_this.onTouchStart({x:e.event.tou
 var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return counter;}}]);return ScreenUnitsMenu;}();exports.default=ScreenUnitsMenu;
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports) {
 
 /*!
@@ -6691,20 +6700,20 @@ var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return 
 //# sourceMappingURL=zingtouch.min.js.map
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58);
+__webpack_require__(59);
 module.exports = ZingTouch;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
-var _zingtouch=__webpack_require__(59);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel;document.querySelector('#sm-home h1').innerHTML=title;//Nivel
+var _zingtouch=__webpack_require__(60);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel;document.querySelector('#sm-home h1').innerHTML=title;//Nivel
 if(nivel){var nivelParts=nivel.split(" ");if(nivelParts.length>=2){document.querySelector('#sm-home h2 strong').innerHTML=nivelParts[0].replace('º',' ').replace('ª',' ');document.querySelector('#sm-home h2 span').innerHTML=nivel.substr(nivelParts[0].length+1);document.querySelector('#sm-home h2 span').innerHTML=nivel.substr(nivelParts[0].length+1).replace('BACHILLERATO','BTO').replace('bachillerato','BTO').replace('Bachillerato','BTO').replace('º',' ').replace('ª',' ');}else{document.querySelector('#sm-home h2').style.display='none';}}else{document.querySelector('#sm-home h2').style.display='none';}document.querySelector('#sm-home').style.backgroundImage='url('+window.smBookBackgroundImage+')';// document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
 //Scroll event for no-touch
 var _this=this;document.getElementById("sm-home").addEventListener("wheel",function(e){if(e.deltaY>0){//Check if we are here
@@ -6717,7 +6726,7 @@ type:data.type,nivel:data.nivel};return screenData;}},{key:'onNextButton',value:
 }}]);return ScreenHome;}();exports.default=ScreenHome;
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports) {
 
 var g;
@@ -6743,7 +6752,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6763,7 +6772,7 @@ if(Array.isArray(routeTransitions[fromRoute+'__to__'+toRoute].from)){routeTransi
 }}}]);return Transitions;}();exports.default=Transitions;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6772,12 +6781,12 @@ this.routes=routes;this.state={route:null,routeData:{}};var _this=this;window.on
 var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var hashProcessed=route.object.processHash(hashParts);if(hashProcessed.is){routeFound=true;_this2.state.route=route;_this2.state.routeData=hashProcessed.data;}}});if(!routeFound){this.state.route=this.routes[0];this.state.routeData={};}}},{key:'goToState',value:function goToState(){this.updateCurrentState();this.updateRouter(this.state.route,this.state.routeData);}},{key:'updateUrlHash',value:function updateUrlHash(urlHash){window.location.hash=urlHash;}}]);return UrlHelper;}();exports.default=UrlHelper;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Screens
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(63);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(62);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(2);var _1ScreenHome=__webpack_require__(60);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(57);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(52);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(64);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(63);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(2);var _1ScreenHome=__webpack_require__(61);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(58);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(53);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
 // "#" o "#" => Home
 // "#units" => Menú de unidades
 // "#unit_X" => Unidad X
@@ -6792,7 +6801,7 @@ var lastRouteId=this.state.lastRoute?this.state.lastRoute.id:null;transitions.st
 this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6800,7 +6809,7 @@ this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router
 if(!("nextElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"nextElementSibling",{get:function get(){var e=this.nextSibling;while(e&&1!==e.nodeType){e=e.nextSibling;}return e;}});}if(!("previousElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"previousElementSibling",{get:function get(){var e=this.previousSibling;while(e&&1!==e.nodeType){e=e.previousSibling;}return e;}});}
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6810,7 +6819,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Templates
 // import { equal } from 'assert';
 //Polyfils
-__webpack_require__(65);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(64);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(10);var _ImagesPreload=__webpack_require__(50);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(6);var _0LeftMenu=__webpack_require__(49);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(44);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(28);var _main2=_interopRequireDefault(_main);var _subUnitBackButton=__webpack_require__(4);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(27);__webpack_require__(26);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var PORTADASPORTAG=true;var ACTIVITY_BLOCK="activity_block_";var ACTIVITY_BLOCK_TITLE="activity_block_title";var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
+__webpack_require__(66);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(65);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(10);var _ImagesPreload=__webpack_require__(51);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(6);var _0LeftMenu=__webpack_require__(50);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(45);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(28);var _main2=_interopRequireDefault(_main);var _subUnitBackButton=__webpack_require__(4);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(27);__webpack_require__(26);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var PORTADASPORTAG=true;var ACTIVITY_BLOCK="activity_block_";var ACTIVITY_BLOCK_TITLE="activity_block_title";var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(this.data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 //Disable contextual menu (right click)
 var imagesVideosAndAudios=document.querySelectorAll('img, video, video, svg');_.forEach(imagesVideosAndAudios,function(elem){elem.addEventListener('contextmenu',function(event){return event.preventDefault();});});var portadaSubunit=false;if(PORTADASPORTAG){if(typeof this.data.portada==='undefined'){console.log("ERROR: Portada no definida en JSON");}if(dataraw.portada){_.forEach(dataraw.units,function(unit){_.forEach(unit.subunits,function(subunit){if(''+subunit.id===''+_this.data.portada){portadaSubunit=subunit;}});});}if(!portadaSubunit){portadaSubunit=dataraw.units[0].subunits[0];}//Background
@@ -6924,17 +6933,17 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 },{key:'actionUpdateSubunitOcultar',value:function actionUpdateSubunitOcultar(subunitid,ocultar){this.data.units.forEach(function(unit){unit.subunitsmain.forEach(function(subunit){if(subunit.id==subunitid){subunit.ocultar=ocultar;}});});this.regenerateSubunitsNumbers();}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(67);var _app=__webpack_require__(66);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-2-21 5:44:15 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-2-22 7:35:18 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
