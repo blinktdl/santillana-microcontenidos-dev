@@ -519,7 +519,8 @@ headerDomHtml=headerDomHtml.replace('--TITULO--',block.headerSubUnit.data.title)
 block.containerDomElement.querySelector('.sm-editar-block__title').insertBefore(block.headerSubUnit.domElement.querySelector('a.edit'),block.containerDomElement.querySelector('.sm-editar-block__title h4'));//Add id to header. Needed for Blink rename function.
 block.containerDomElement.querySelector('.sm-editar-block__header').dataset['id']=block.headerSubUnit.data.id;//Insert delete element
 block.containerDomElement.querySelector('.sm-editar-block__header .sm-editar-block__lock_and_link-icons').appendChild(block.headerSubUnit.domElement.querySelector('.item-containment'));//Insert link and lock
-block.containerDomElement.querySelector('.sm-editar-block__header .sm-editar-block__delete-icon').appendChild(block.headerSubUnit.domElement.querySelector('a.delete'));console.log(block.headerSubUnit.domElement);//remove headerSubunit. We don't need it
+block.containerDomElement.querySelector('.sm-editar-block__header .sm-editar-block__delete-icon').appendChild(block.headerSubUnit.domElement.querySelector('a.delete'));//onsole.log(block.headerSubUnit.domElement)
+//remove headerSubunit. We don't need it
 block.headerSubUnit.domElement.remove();// block.containerDomElement.appendChild(block.headerSubUnit.domElement)
 //Create Content (subunit list and button)
 var containerContent=document.createElement('div');containerContent.classList.add('sm-editar-block__content');//Create subunit list element
@@ -608,7 +609,7 @@ blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);document.dis
 // 	}
 // }
 // setTimeout(smStylesCheckIfBlinkObjectExists, 0);
-});var smStylesEditInit=function smStylesEditInit(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-3 10:27:35 AM.');console.log("Iniciando...");console.log("Datos cargados.");(0,_editar_add_color_classes.editarAddColorClasses)();var isInTocPage=document.querySelector('.content-wrapper.libro')?true:false;//Disable contextual menu (right click)
+});var smStylesEditInit=function smStylesEditInit(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-6 7:17:22 PM.');console.log("Iniciando...");console.log("Datos cargados.");(0,_editar_add_color_classes.editarAddColorClasses)();var isInTocPage=document.querySelector('.content-wrapper.libro')?true:false;//Disable contextual menu (right click)
 var imagesVideosAndAudios=document.querySelectorAll('img, video, video, svg');_.forEach(imagesVideosAndAudios,function(elem){elem.addEventListener('contextmenu',function(event){return event.preventDefault();});});//Activities list
 if(isInTocPage){console.log("Is in TOC page");var subunitsItemsDom=document.querySelectorAll('.actividades ul li.item');if(subunitsItemsDom.length){subunitsItemsDom.forEach(function(item){var unitId=item.closest('.unit-content').dataset.id;var subUnitId=item.dataset.id;var unitObject=_.find(data.units,{id:unitId});if(unitObject){var subUnitObject=_.find(unitObject.subunits,{id:subUnitId});//Fix to avoid error if tag or tags doesn't exist
 if(typeof subUnitObject.tag==='undefined')subUnitObject.tag='';if(typeof subUnitObject.tags==='undefined')subUnitObject.tags='';var isEvaluacion=subUnitObject.tag.indexOf('evaluacion')>=0||subUnitObject.tags.indexOf('evaluacion')>=0;var classesNames=['microproyecto','flipped','esencial','reto'];//Tags
