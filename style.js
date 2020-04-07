@@ -4571,21 +4571,7 @@ var tabsBoxes=document.querySelectorAll('.bck-tabs-box');_.forEach(tabsBoxes,fun
 //     tooltip.classList.add('sm-color-color');
 // });
 //Button correct
-var correctBtns=document.querySelectorAll('.sm-actividades .btn-correct, .sm-actividades .btn-save, .sm-actividades .btn-danger');_.forEach(correctBtns,function(correctBtn){correctBtn.classList.add('sm-color-background-color');correctBtn.classList.add('sm-color-border-color');correctBtn.classList.add('sm-color-border-color--hover');correctBtn.classList.add('sm-color-color--focus');correctBtn.classList.add('sm-color-border-color--pressed');correctBtn.classList.add('sm-color-color--hover');correctBtn.classList.add('sm-color-color--pressed');});//Info popup
-var infoButtonsInline=document.querySelectorAll('.info-button');_.forEach(infoButtonsInline,function(infoButton){// infoButton.classList.add('sm-color-background-color');
-var infoButtonPopover=infoButton.previousElementSibling;if(infoButtonPopover&&infoButtonPopover.classList.contains('info-popover')&&infoButtonPopover.querySelectorAll('.popover-title').length>0){infoButtonPopover.classList.add('sm-info-popover--with-title');infoButton.classList.add('sm-info-button--with-title');// const titleString = infoButton.dataset['title'];
-// infoButton.innerText = titleString; //Todo translate
-// const accion1 = () => {
-//     infoButtonPopover.classList.add('sm-info-popover--with-title');
-//     infoButtonPopover.parentNode.appendChild(infoButtonPopover);
-//     infoButton.parentNode.appendChild(infoButton);
-// }
-// const accion2 = () => {
-//     infoButton.innerText = 'Solucionario'; //Todo translate
-//     infoButton.classList.add('sm-info-button--with-title');
-// }
-}});//Los flotantes se actualizan al cambiar de slide
-//True false with feedbacks
+var correctBtns=document.querySelectorAll('.sm-actividades .btn-correct, .sm-actividades .btn-save, .sm-actividades .btn-danger');_.forEach(correctBtns,function(correctBtn){correctBtn.classList.add('sm-color-background-color');correctBtn.classList.add('sm-color-border-color');correctBtn.classList.add('sm-color-border-color--hover');correctBtn.classList.add('sm-color-color--focus');correctBtn.classList.add('sm-color-border-color--pressed');correctBtn.classList.add('sm-color-color--hover');correctBtn.classList.add('sm-color-color--pressed');});//True false with feedbacks
 _.forEach(document.querySelectorAll('.sm-actividades #actividad .workspace.true-false ul li'),function(trueFalseLi){var trueFalseLiNextSibling=trueFalseLi.nextElementSibling;//onsole.log(trueFalseLiNextSibling.nodeName)
 if(trueFalseLiNextSibling){if(trueFalseLiNextSibling.classList.contains('fb_right')||trueFalseLiNextSibling.classList.contains('fb_wrong')){trueFalseLi.classList.add('true-false-li-item--no-border');}}});//Add sm-no-evaluable class to revision-buget element of each slide if is not evaluable
 _.forEach(document.querySelectorAll('.revision-budget'),function(el){var elementId=el.id;var elementIdStringParts=elementId.split('_');if(elementIdStringParts.length>0){var slideId=elementIdStringParts[0]+'_slide';var isNotEvaluable=window[slideId]&&window[slideId].esEjercicioNoEvaluable;if(isNotEvaluable){el.classList.add('sm-no-evaluable');var notaElement=el.querySelector('.nota-budget');// notaElement.dataset.title="Actividad no evaluable";
@@ -4603,8 +4589,7 @@ _.forEach(document.querySelectorAll('.revision-budget'),function(el){el.parentEl
 var originalFlipboxPositions=flipboxPositions;window.flipboxPositions=function(e){_.forEach(document.querySelectorAll('.bck-flipbox .bck-flipbox-face .bck-flipbox-section'),function(el){el.classList.remove('sm-height-fix');});originalFlipboxPositions(e);_.forEach(document.querySelectorAll('.bck-flipbox .bck-flipbox-face .bck-flipbox-section'),function(el){el.classList.add('sm-height-fix');});};//Remove title when starts with ##
 _.forEach(document.querySelectorAll('#slider .item-container .header'),function(headerDomElement){var titleString=headerDomElement.querySelector('.title h3').innerText;if((0,_slashSlash.hasSlash)(titleString)){headerDomElement.classList.add('header--no-title');}});//Next button when has more than one line
 var nextButtonsUpdate=function nextButtonsUpdate(){_.forEach(document.querySelectorAll('#slider .nextbutton-warp .nextbutton-content'),function(nextButton){nextButton.classList.remove('nextbutton-content--two-lines');var pHeight=nextButton.clientHeight;if(pHeight>81){nextButton.classList.add('nextbutton-content--two-lines');}});};window.addEventListener('resize',function(){nextButtonsUpdate();},false);nextButtonsUpdate();//Resivion mode (iframe from Gradebook)
-var revisionModeBarUpdate=function revisionModeBarUpdate(){var labelEl=document.querySelector('.modo_revision .nota_revision>label');var inputEl=document.querySelector('.modo_revision .nota_revision .revision_container input');if(inputEl.classList.contains('r_suspenso')){labelEl.classList.add('sm-r_suspenso');inputEl.parentElement.classList.add('sm-r_suspenso');}else{labelEl.classList.remove('sm-r_suspenso');inputEl.parentElement.classList.remove('sm-r_suspenso');}};var revisionModeBarObserver=new MutationObserver(function(mutationsList,observer){revisionModeBarUpdate();});revisionModeBarObserver.observe(document.querySelector('.modo_revision .nota_revision .revision_container input'),{attributes:true});revisionModeBarUpdate();this.update();}_createClass(Activities,[{key:'update',value:function update(){////l('Activities.update()');
-//Activitie header book color small block
+var revisionModeBarUpdate=function revisionModeBarUpdate(){var labelEl=document.querySelector('.modo_revision .nota_revision>label');var inputEl=document.querySelector('.modo_revision .nota_revision .revision_container input');if(inputEl.classList.contains('r_suspenso')){labelEl.classList.add('sm-r_suspenso');inputEl.parentElement.classList.add('sm-r_suspenso');}else{labelEl.classList.remove('sm-r_suspenso');inputEl.parentElement.classList.remove('sm-r_suspenso');}};var revisionModeBarObserver=new MutationObserver(function(mutationsList,observer){revisionModeBarUpdate();});revisionModeBarObserver.observe(document.querySelector('.modo_revision .nota_revision .revision_container input'),{attributes:true});revisionModeBarUpdate();this.update();}_createClass(Activities,[{key:'update',value:function update(){(0,_debug.cl)('Activities.update()');//Activitie header book color small block
 var activityHeaderSmallBlockElement=document.createElement('div');activityHeaderSmallBlockElement.classList.add('header_small_block');activityHeaderSmallBlockElement.classList.add('sm-color-background-color');var allTitles=document.querySelectorAll('#actividad .class_slide .header .title');//onsole.log("HEADERS");
 _.forEach(allTitles,function(header){//onsole.log(header);
 if(!header.querySelector('.header_small_block')){header.appendChild(activityHeaderSmallBlockElement.cloneNode(true));}});// const infoButtonsFloating = document.querySelectorAll('.info-template');
@@ -4614,6 +4599,21 @@ if(!header.querySelector('.header_small_block')){header.appendChild(activityHead
 //     infoButton.querySelector('.info-title').classList.add('sm-color-color--hover');
 //     infoButton.querySelector('.info-title').classList.add('sm-color-color--pressed');
 // });
+var infopopopUpdate=function infopopopUpdate(){//Info popup
+var infoButtonsInline=document.querySelectorAll('.info-button');_.forEach(infoButtonsInline,function(infoButton){// infoButton.classList.add('sm-color-background-color');
+var infoButtonPopover=infoButton.previousElementSibling;if(infoButtonPopover&&infoButtonPopover.classList.contains('info-popover')&&infoButtonPopover.querySelectorAll('.popover-title').length>0){infoButtonPopover.classList.add('sm-info-popover--with-title');infoButton.classList.add('sm-info-button--with-title');// const titleString = infoButton.dataset['title'];
+// infoButton.innerText = titleString; //Todo translate
+// const accion1 = () => {
+//     infoButtonPopover.classList.add('sm-info-popover--with-title');
+//     infoButtonPopover.parentNode.appendChild(infoButtonPopover);
+//     infoButton.parentNode.appendChild(infoButton);
+// }
+// const accion2 = () => {
+//     infoButton.innerText = 'Solucionario'; //Todo translate
+//     infoButton.classList.add('sm-info-button--with-title');
+// }
+}});};//Como esto se ejecuta con javascript por parte de blink, lo ejecutamos con algo de retraso de forma consecutiva para asegurarnos de que se ha reproducido bien.
+setTimeout(infopopopUpdate,0);setTimeout(infopopopUpdate,200);setTimeout(infopopopUpdate,600);//Los flotantes se actualizan al cambiar de slide
 }}]);return Activities;}();exports.default=Activities;
 
 /***/ }),
@@ -6970,7 +6970,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-6 7:17:22 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-7 6:34:24 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
