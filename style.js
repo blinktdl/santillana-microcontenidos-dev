@@ -4613,7 +4613,8 @@ var infoButtonPopover=infoButton.previousElementSibling;if(infoButtonPopover&&in
 //     infoButton.classList.add('sm-info-button--with-title');
 // }
 }});};//Como esto se ejecuta con javascript por parte de blink, lo ejecutamos con algo de retraso de forma consecutiva para asegurarnos de que se ha reproducido bien.
-setTimeout(infopopopUpdate,0);setTimeout(infopopopUpdate,200);setTimeout(infopopopUpdate,600);//Los flotantes se actualizan al cambiar de slide
+setTimeout(infopopopUpdate,0);setTimeout(infopopopUpdate,200);setTimeout(infopopopUpdate,600);setTimeout(infopopopUpdate,1200);setTimeout(infopopopUpdate,2400);setTimeout(infopopopUpdate,3600);//Lo sé, no es lo más limpio del mundo, lo ideal sería tener un callback o un evento.
+//Los flotantes se actualizan al cambiar de slide
 }}]);return Activities;}();exports.default=Activities;
 
 /***/ }),
@@ -6970,7 +6971,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-7 6:34:24 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-14 6:05:23 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
