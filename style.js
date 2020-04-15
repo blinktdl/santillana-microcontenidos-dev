@@ -4831,7 +4831,7 @@ if(isMultimedia){_this2.lines[index]=document.createElement('div');_this2.lines[
 this.line=document.createElement('div');this.line.setAttribute('class','slider-indicators__line');document.querySelector('.navbar-bottom').insertBefore(this.line,document.querySelector('.navbar-bottom').firstChild);//Refresh on resize
 window.addEventListener('resize',this.update.bind(this),false);//this.update
 if(!numSec){this.onStartButtonClick();}// this.removeActivitiesSlides();
-document.querySelector('.slider-control.left').setAttribute('onclick','void(0);');document.querySelector('.slider-control.right').setAttribute('onclick','void(0);');this.started=true;}this.update();}// removeActivitiesSlides(){
+document.querySelector('.slider-control.left').setAttribute('onclick','void(0);');document.querySelector('.slider-control.right').setAttribute('onclick','void(0);');this.started=true;}if(document.querySelector('.navbar-bottom .slider-indicators')){this.update();}}// removeActivitiesSlides(){
 // //Remove Buttons
 // const buttons = document.querySelectorAll('.slider-indicators .slider-indicator');
 // const itemsToRemove = [];
@@ -6971,7 +6971,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-14 6:05:23 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-15 12:06:04 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
