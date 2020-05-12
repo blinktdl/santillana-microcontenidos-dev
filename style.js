@@ -161,7 +161,7 @@
 		exports["SantillanaMicrocontenidosStyleUI"] = factory(require("lodash"));
 	else
 		root["SantillanaMicrocontenidosStyleUI"] = factory(root["_"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__69__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__70__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -245,22 +245,22 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 70);
+/******/ 	return __webpack_require__(__webpack_require__.s = 71);
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ 69:
+/***/ 70:
 /***/ (function(module, exports) {
 
-module.exports = __WEBPACK_EXTERNAL_MODULE__69__;
+module.exports = __WEBPACK_EXTERNAL_MODULE__70__;
 
 /***/ }),
 
-/***/ 70:
+/***/ 71:
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(69);
+module.exports = __webpack_require__(70);
 
 
 /***/ })
@@ -359,7 +359,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 68);
+/******/ 	return __webpack_require__(__webpack_require__.s = 69);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -677,7 +677,7 @@ n)k=l;else{var l=h,h=h+.1,g=0;do m=l+(h-l)/2,n=a(m,c,b)-k,0<n?h=m:l=m;while(1e-7
 d:A.apply($jscomp$this,d)}}(f)),f={type:f.type};return b}(),ha={css:function(a,c,d){return a.style[c]=d},attribute:function(a,c,d){return a.setAttribute(c,d)},object:function(a,c,d){return a[c]=d},transform:function(a,c,d,b,f){b[f]||(b[f]=[]);b[f].push(c+"("+d+")")}},v=[],B=0,ia=function(){function a(){B=requestAnimationFrame(c)}function c(c){var b=v.length;if(b){for(var d=0;d<b;)v[d]&&v[d].tick(c),d++;a()}else cancelAnimationFrame(B),B=0}return a}();q.version="2.2.0";q.speed=1;q.running=v;q.remove=
 function(a){a=P(a);for(var c=v.length;c--;)for(var d=v[c],b=d.animations,f=b.length;f--;)u(a,b[f].animatable.target)&&(b.splice(f,1),b.length||d.pause())};q.getValue=K;q.path=function(a,c){var d=h.str(a)?e(a)[0]:a,b=c||100;return function(a){return{el:d,property:a,totalLength:N(d)*(b/100)}}};q.setDashoffset=function(a){var c=N(a);a.setAttribute("stroke-dasharray",c);return c};q.bezier=A;q.easings=Q;q.timeline=function(a){var c=q(a);c.pause();c.duration=0;c.add=function(d){c.children.forEach(function(a){a.began=
 !0;a.completed=!0});m(d).forEach(function(b){var d=z(b,D(S,a||{}));d.targets=d.targets||a.targets;b=c.duration;var e=d.offset;d.autoplay=!1;d.direction=c.direction;d.offset=h.und(e)?b:L(e,b);c.began=!0;c.completed=!0;c.seek(d.offset);d=q(d);d.began=!0;d.completed=!0;d.duration>b&&(c.duration=d.duration);c.children.push(d)});c.seek(0);c.reset();c.autoplay&&c.restart();return c};return c};q.random=function(a,c){return Math.floor(Math.random()*(c-a+1))+a};return q});
-/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(61)))
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(14)))
 
 /***/ }),
 /* 9 */
@@ -775,7 +775,7 @@ var singleton = null;
 var	singletonCounter = 0;
 var	stylesInsertedAtTop = [];
 
-var	fixUrls = __webpack_require__(53);
+var	fixUrls = __webpack_require__(55);
 
 module.exports = function(list, options) {
 	if (typeof DEBUG !== "undefined" && DEBUG) {
@@ -1181,7 +1181,7 @@ function toComment(sourceMap) {
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(54);
+var content = __webpack_require__(56);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -1203,16 +1203,42 @@ if(false) {}
 
 /***/ }),
 /* 14 */
+/***/ (function(module, exports) {
+
+var g;
+
+// This works in non-strict mode
+g = (function() {
+	return this;
+})();
+
+try {
+	// This works if eval is allowed (see CSP)
+	g = g || Function("return this")() || (1, eval)("this");
+} catch (e) {
+	// This works if the window reference is available
+	if (typeof window === "object") g = window;
+}
+
+// g can still be undefined, but nothing to do about it...
+// We return undefined, instead of nothing here, so it's
+// easier to handle this case. if(!global) { ...}
+
+module.exports = g;
+
+
+/***/ }),
+/* 15 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/Object.keys.js
-var Object_keys = __webpack_require__(56);
+var Object_keys = __webpack_require__(58);
 
 // EXTERNAL MODULE: ./node_modules/tiny-slider/src/helpers/childNode.remove.js
-var childNode_remove = __webpack_require__(55);
+var childNode_remove = __webpack_require__(57);
 
 // CONCATENATED MODULE: ./node_modules/tiny-slider/src/helpers/raf.js
 var raf_win = window;
@@ -4453,7 +4479,6 @@ var tns = function(options) {
 
 
 /***/ }),
-/* 15 */,
 /* 16 */,
 /* 17 */,
 /* 18 */,
@@ -4463,14 +4488,505 @@ var tns = function(options) {
 /* 22 */,
 /* 23 */,
 /* 24 */,
-/* 25 */
+/* 25 */,
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {(function(global) {
+  /**
+   * Polyfill URLSearchParams
+   *
+   * Inspired from : https://github.com/WebReflection/url-search-params/blob/master/src/url-search-params.js
+   */
+
+  var checkIfIteratorIsSupported = function() {
+    try {
+      return !!Symbol.iterator;
+    } catch (error) {
+      return false;
+    }
+  };
+
+
+  var iteratorSupported = checkIfIteratorIsSupported();
+
+  var createIterator = function(items) {
+    var iterator = {
+      next: function() {
+        var value = items.shift();
+        return { done: value === void 0, value: value };
+      }
+    };
+
+    if (iteratorSupported) {
+      iterator[Symbol.iterator] = function() {
+        return iterator;
+      };
+    }
+
+    return iterator;
+  };
+
+  /**
+   * Search param name and values should be encoded according to https://url.spec.whatwg.org/#urlencoded-serializing
+   * encodeURIComponent() produces the same result except encoding spaces as `%20` instead of `+`.
+   */
+  var serializeParam = function(value) {
+    return encodeURIComponent(value).replace(/%20/g, '+');
+  };
+
+  var deserializeParam = function(value) {
+    return decodeURIComponent(String(value).replace(/\+/g, ' '));
+  };
+
+  var polyfillURLSearchParams = function() {
+
+    var URLSearchParams = function(searchString) {
+      Object.defineProperty(this, '_entries', { writable: true, value: {} });
+      var typeofSearchString = typeof searchString;
+
+      if (typeofSearchString === 'undefined') {
+        // do nothing
+      } else if (typeofSearchString === 'string') {
+        if (searchString !== '') {
+          this._fromString(searchString);
+        }
+      } else if (searchString instanceof URLSearchParams) {
+        var _this = this;
+        searchString.forEach(function(value, name) {
+          _this.append(name, value);
+        });
+      } else if ((searchString !== null) && (typeofSearchString === 'object')) {
+        if (Object.prototype.toString.call(searchString) === '[object Array]') {
+          for (var i = 0; i < searchString.length; i++) {
+            var entry = searchString[i];
+            if ((Object.prototype.toString.call(entry) === '[object Array]') || (entry.length !== 2)) {
+              this.append(entry[0], entry[1]);
+            } else {
+              throw new TypeError('Expected [string, any] as entry at index ' + i + ' of URLSearchParams\'s input');
+            }
+          }
+        } else {
+          for (var key in searchString) {
+            if (searchString.hasOwnProperty(key)) {
+              this.append(key, searchString[key]);
+            }
+          }
+        }
+      } else {
+        throw new TypeError('Unsupported input\'s type for URLSearchParams');
+      }
+    };
+
+    var proto = URLSearchParams.prototype;
+
+    proto.append = function(name, value) {
+      if (name in this._entries) {
+        this._entries[name].push(String(value));
+      } else {
+        this._entries[name] = [String(value)];
+      }
+    };
+
+    proto.delete = function(name) {
+      delete this._entries[name];
+    };
+
+    proto.get = function(name) {
+      return (name in this._entries) ? this._entries[name][0] : null;
+    };
+
+    proto.getAll = function(name) {
+      return (name in this._entries) ? this._entries[name].slice(0) : [];
+    };
+
+    proto.has = function(name) {
+      return (name in this._entries);
+    };
+
+    proto.set = function(name, value) {
+      this._entries[name] = [String(value)];
+    };
+
+    proto.forEach = function(callback, thisArg) {
+      var entries;
+      for (var name in this._entries) {
+        if (this._entries.hasOwnProperty(name)) {
+          entries = this._entries[name];
+          for (var i = 0; i < entries.length; i++) {
+            callback.call(thisArg, entries[i], name, this);
+          }
+        }
+      }
+    };
+
+    proto.keys = function() {
+      var items = [];
+      this.forEach(function(value, name) {
+        items.push(name);
+      });
+      return createIterator(items);
+    };
+
+    proto.values = function() {
+      var items = [];
+      this.forEach(function(value) {
+        items.push(value);
+      });
+      return createIterator(items);
+    };
+
+    proto.entries = function() {
+      var items = [];
+      this.forEach(function(value, name) {
+        items.push([name, value]);
+      });
+      return createIterator(items);
+    };
+
+    if (iteratorSupported) {
+      proto[Symbol.iterator] = proto.entries;
+    }
+
+    proto.toString = function() {
+      var searchArray = [];
+      this.forEach(function(value, name) {
+        searchArray.push(serializeParam(name) + '=' + serializeParam(value));
+      });
+      return searchArray.join('&');
+    };
+
+
+    global.URLSearchParams = URLSearchParams;
+  };
+
+  var checkIfURLSearchParamsSupported = function() {
+    try {
+      var URLSearchParams = global.URLSearchParams;
+
+      return (new URLSearchParams('?a=1').toString() === 'a=1') && (typeof URLSearchParams.prototype.set === 'function');
+    } catch (e) {
+      return false;
+    }
+  };
+
+  if (!checkIfURLSearchParamsSupported()) {
+    polyfillURLSearchParams();
+  }
+
+  var proto = global.URLSearchParams.prototype;
+
+  if (typeof proto.sort !== 'function') {
+    proto.sort = function() {
+      var _this = this;
+      var items = [];
+      this.forEach(function(value, name) {
+        items.push([name, value]);
+        if (!_this._entries) {
+          _this.delete(name);
+        }
+      });
+      items.sort(function(a, b) {
+        if (a[0] < b[0]) {
+          return -1;
+        } else if (a[0] > b[0]) {
+          return +1;
+        } else {
+          return 0;
+        }
+      });
+      if (_this._entries) { // force reset because IE keeps keys index
+        _this._entries = {};
+      }
+      for (var i = 0; i < items.length; i++) {
+        this.append(items[i][0], items[i][1]);
+      }
+    };
+  }
+
+  if (typeof proto._fromString !== 'function') {
+    Object.defineProperty(proto, '_fromString', {
+      enumerable: false,
+      configurable: false,
+      writable: false,
+      value: function(searchString) {
+        if (this._entries) {
+          this._entries = {};
+        } else {
+          var keys = [];
+          this.forEach(function(value, name) {
+            keys.push(name);
+          });
+          for (var i = 0; i < keys.length; i++) {
+            this.delete(keys[i]);
+          }
+        }
+
+        searchString = searchString.replace(/^\?/, '');
+        var attributes = searchString.split('&');
+        var attribute;
+        for (var i = 0; i < attributes.length; i++) {
+          attribute = attributes[i].split('=');
+          this.append(
+            deserializeParam(attribute[0]),
+            (attribute.length > 1) ? deserializeParam(attribute[1]) : ''
+          );
+        }
+      }
+    });
+  }
+
+  // HTMLAnchorElement
+
+})(
+  (typeof global !== 'undefined') ? global
+    : ((typeof window !== 'undefined') ? window
+    : ((typeof self !== 'undefined') ? self : this))
+);
+
+(function(global) {
+  /**
+   * Polyfill URL
+   *
+   * Inspired from : https://github.com/arv/DOM-URL-Polyfill/blob/master/src/url.js
+   */
+
+  var checkIfURLIsSupported = function() {
+    try {
+      var u = new global.URL('b', 'http://a');
+      u.pathname = 'c d';
+      return (u.href === 'http://a/c%20d') && u.searchParams;
+    } catch (e) {
+      return false;
+    }
+  };
+
+
+  var polyfillURL = function() {
+    var _URL = global.URL;
+
+    var URL = function(url, base) {
+      if (typeof url !== 'string') url = String(url);
+
+      // Only create another document if the base is different from current location.
+      var doc = document, baseElement;
+      if (base && (global.location === void 0 || base !== global.location.href)) {
+        doc = document.implementation.createHTMLDocument('');
+        baseElement = doc.createElement('base');
+        baseElement.href = base;
+        doc.head.appendChild(baseElement);
+        try {
+          if (baseElement.href.indexOf(base) !== 0) throw new Error(baseElement.href);
+        } catch (err) {
+          throw new Error('URL unable to set base ' + base + ' due to ' + err);
+        }
+      }
+
+      var anchorElement = doc.createElement('a');
+      anchorElement.href = url;
+      if (baseElement) {
+        doc.body.appendChild(anchorElement);
+        anchorElement.href = anchorElement.href; // force href to refresh
+      }
+
+      if (anchorElement.protocol === ':' || !/:/.test(anchorElement.href)) {
+        throw new TypeError('Invalid URL');
+      }
+
+      Object.defineProperty(this, '_anchorElement', {
+        value: anchorElement
+      });
+
+
+      // create a linked searchParams which reflect its changes on URL
+      var searchParams = new global.URLSearchParams(this.search);
+      var enableSearchUpdate = true;
+      var enableSearchParamsUpdate = true;
+      var _this = this;
+      ['append', 'delete', 'set'].forEach(function(methodName) {
+        var method = searchParams[methodName];
+        searchParams[methodName] = function() {
+          method.apply(searchParams, arguments);
+          if (enableSearchUpdate) {
+            enableSearchParamsUpdate = false;
+            _this.search = searchParams.toString();
+            enableSearchParamsUpdate = true;
+          }
+        };
+      });
+
+      Object.defineProperty(this, 'searchParams', {
+        value: searchParams,
+        enumerable: true
+      });
+
+      var search = void 0;
+      Object.defineProperty(this, '_updateSearchParams', {
+        enumerable: false,
+        configurable: false,
+        writable: false,
+        value: function() {
+          if (this.search !== search) {
+            search = this.search;
+            if (enableSearchParamsUpdate) {
+              enableSearchUpdate = false;
+              this.searchParams._fromString(this.search);
+              enableSearchUpdate = true;
+            }
+          }
+        }
+      });
+    };
+
+    var proto = URL.prototype;
+
+    var linkURLWithAnchorAttribute = function(attributeName) {
+      Object.defineProperty(proto, attributeName, {
+        get: function() {
+          return this._anchorElement[attributeName];
+        },
+        set: function(value) {
+          this._anchorElement[attributeName] = value;
+        },
+        enumerable: true
+      });
+    };
+
+    ['hash', 'host', 'hostname', 'port', 'protocol']
+      .forEach(function(attributeName) {
+        linkURLWithAnchorAttribute(attributeName);
+      });
+
+    Object.defineProperty(proto, 'search', {
+      get: function() {
+        return this._anchorElement['search'];
+      },
+      set: function(value) {
+        this._anchorElement['search'] = value;
+        this._updateSearchParams();
+      },
+      enumerable: true
+    });
+
+    Object.defineProperties(proto, {
+
+      'toString': {
+        get: function() {
+          var _this = this;
+          return function() {
+            return _this.href;
+          };
+        }
+      },
+
+      'href': {
+        get: function() {
+          return this._anchorElement.href.replace(/\?$/, '');
+        },
+        set: function(value) {
+          this._anchorElement.href = value;
+          this._updateSearchParams();
+        },
+        enumerable: true
+      },
+
+      'pathname': {
+        get: function() {
+          return this._anchorElement.pathname.replace(/(^\/?)/, '/');
+        },
+        set: function(value) {
+          this._anchorElement.pathname = value;
+        },
+        enumerable: true
+      },
+
+      'origin': {
+        get: function() {
+          // get expected port from protocol
+          var expectedPort = { 'http:': 80, 'https:': 443, 'ftp:': 21 }[this._anchorElement.protocol];
+          // add port to origin if, expected port is different than actual port
+          // and it is not empty f.e http://foo:8080
+          // 8080 != 80 && 8080 != ''
+          var addPortToOrigin = this._anchorElement.port != expectedPort &&
+            this._anchorElement.port !== '';
+
+          return this._anchorElement.protocol +
+            '//' +
+            this._anchorElement.hostname +
+            (addPortToOrigin ? (':' + this._anchorElement.port) : '');
+        },
+        enumerable: true
+      },
+
+      'password': { // TODO
+        get: function() {
+          return '';
+        },
+        set: function(value) {
+        },
+        enumerable: true
+      },
+
+      'username': { // TODO
+        get: function() {
+          return '';
+        },
+        set: function(value) {
+        },
+        enumerable: true
+      },
+    });
+
+    URL.createObjectURL = function(blob) {
+      return _URL.createObjectURL.apply(_URL, arguments);
+    };
+
+    URL.revokeObjectURL = function(url) {
+      return _URL.revokeObjectURL.apply(_URL, arguments);
+    };
+
+    global.URL = URL;
+
+  };
+
+  if (!checkIfURLIsSupported()) {
+    polyfillURL();
+  }
+
+  if ((global.location !== void 0) && !('origin' in global.location)) {
+    var getOrigin = function() {
+      return global.location.protocol + '//' + global.location.hostname + (global.location.port ? (':' + global.location.port) : '');
+    };
+
+    try {
+      Object.defineProperty(global.location, 'origin', {
+        get: getOrigin,
+        enumerable: true
+      });
+    } catch (e) {
+      setInterval(function() {
+        global.location.origin = getOrigin();
+      }, 100);
+    }
+  }
+
+})(
+  (typeof global !== 'undefined') ? global
+    : ((typeof window !== 'undefined') ? window
+    : ((typeof self !== 'undefined') ? self : this))
+);
+
+/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(14)))
+
+/***/ }),
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 if(!Array.prototype.forEach){Array.prototype.forEach=function(fn,scope){'use strict';var i,len;for(i=0,len=this.length;i<len;++i){if(i in this){fn.call(scope,this[i],i,this);}}};}
 
 /***/ }),
-/* 26 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4498,20 +5014,20 @@ if(!testElement.classList.contains("c2")){var createMethod=function createMethod
 if(testElement.classList.contains("c3")){var _toggle=DOMTokenList.prototype.toggle;DOMTokenList.prototype.toggle=function(token,force){if(1 in arguments&&!this.contains(token)===!force){return force;}else{return _toggle.call(this,token);}};}testElement=null;})();}
 
 /***/ }),
-/* 27 */
+/* 29 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=santillana_microcontenidos_menu class=sm-base> <div id=sm-home> <div class=sm-content> <div class=sm-content--content> <h2><strong class=sm-color-color>3º</strong><span>ESO</span></h2> <h1></h1> <div class=sm-content-logosantillana></div> <a href=#units class=\"sm-button-next-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Unidades--</span> </a> </div> <div class=sm-home-touchable-area></div> </div> </div> <div id=sm-units-menu> <div id=sm-units-menu__unit--template class=\"sm-units-menu__unit sm-color-background-color_after\"> <div class=sm-units-menu__unit__image> <div class=sm-units-menu__unit__image__image> <div class=sm-units-menu__unit__image__image--proyecto-container> <div class=sm-units-menu__unit__image__image--proyecto></div> </div> </div> </div> <a> <div class=sm-units-menu__unit__number></div> <div class=\"sm-units-menu__unit__proyect_description sm-color-color\"></div> <div class=sm-units-menu__unit__title></div> <div class=sm-units-menu__unit__progress> <div class=sm-units-menu__unit__progress__title></div> <div class=sm-units-menu__unit__progress__bar> <div class=sm-color-background-color></div> </div> </div> </a> </div> <div class=sm-content> <div id=sm-units-menu-slider__controls> <div class=\"sm-units-menu-slider__controls__prev sm-button-slide-left\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div> <div class=\"sm-units-menu-slider__controls__next sm-button-slide-right\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div> </div> <div class=sm-units-menu-slider></div> <a href=# class=\"sm-button-back-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Portada--</span> </a> </div> </div> <div id=sm-unit> <div id=sm-unit__block--template class=sm-unit__block> <div class=sm-unit__block__header> <div class=sm-unit__block__number></div> <div class=sm-unit__block__title></div> <div class=sm-unit__block__send_link> <svg xmlns=http://www.w3.org/2000/svg width=17 height=14 viewBox=\"0 0 17 14\"> <path d=\"M1.12941176 13.1388235C1.12941176 12.8752941 7.49176471 7.19058824 7.79294118 7.19058824 8.11294118 7.19058824 8.96 7.92470588 13.3458824 12.0282353L14.5882353 13.1952941 7.86823529 13.2141176C4.16 13.2141176 1.12941176 13.1764706 1.12941176 13.1388235zM0 8.28235294L0 4.08470588 2.16470588 6.24941176C3.35058824 7.43529412 4.32941176 8.41411765 4.32941176 8.41411765 4.32941176 8.41411765 3.35058824 9.33647059 2.16470588 10.4470588L0 12.48 0 8.28235294zM13.5717647 10.5976471L11.8023529 8.94117647 12.7435294 8.80941176C13.2705882 8.75294118 14.0988235 8.48941176 14.6070588 8.22588235 15.1152941 7.96235294 15.5482353 7.75529412 15.5858824 7.75529412 15.6047059 7.75529412 15.6235294 8.77176471 15.6235294 10.0141176 15.6235294 11.2564706 15.5670588 12.2729412 15.4917647 12.2729412 15.3976471 12.2541176 14.5505882 11.5011765 13.5717647 10.5976471zM3.01176471 5.40235294L.847058824 3.23764706 4.00941176 3.23764706 7.15294118 3.23764706 7.15294118 3.76470588C7.15294118 4.06588235 7.26588235 4.70588235 7.41647059 5.17647059 7.66117647 6.00470588 7.66117647 6.06117647 7.32235294 6.06117647 7.13411765 6.06117647 6.70117647 6.28705882 6.36235294 6.58823529 6.02352941 6.87058824 5.60941176 7.20941176 5.44 7.32235294 5.19529412 7.51058824 4.81882353 7.20941176 3.01176471 5.40235294zM10.6352941 7.24705882C9.24235294 6.51294118 8.47058824 5.28941176 8.47058824 3.80235294 8.47058824 2.54117647 8.80941176 1.78823529 9.75058824.941176471 11.52-.658823529 14.5882353-.112941176 15.6047059 1.95764706 16.0376471 2.88 16.1317647 4.36705882 15.7929412 5.25176471 15.5294118 5.96705882 14.5317647 6.98352941 13.7976471 7.30352941 12.9882353 7.66117647 11.3317647 7.62352941 10.6352941 7.24705882zM13.4023529 2.63529412L12.2352941 1.44941176 12.2352941 2.33411765 12.2352941 3.21882353 11.1623529 3.27529412C10.1458824 3.33176471 10.0705882 3.36941176 10.0705882 3.80235294 10.0705882 4.23529412 10.1458824 4.27294118 11.1623529 4.32941176L12.2352941 4.38588235 12.2352941 5.27058824 12.2352941 6.15529412 13.4023529 4.96941176 14.5882353 3.80235294 13.4023529 2.63529412z\" transform=\"matrix(1 0 0 -1 .766 13.83)\"/> </svg> </div> <div class=sm-unit__block__plegar-icon> <span class=sm-block-toggle><svg width=32px height=20px viewBox=\"0 0 32 20\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=Page-1 stroke=none stroke-width=1 fill=none fill-rule=evenodd> <path d=\"M7.36753443,-4.63316247 C6.30189532,-3.5782874 6.29316935,-1.85927101 7.34804442,-0.793631906 C7.35450536,-0.787105043 7.36099937,-0.780611006 7.3675262,-0.774150044 L18.2272028,9.97592454 L18.2272028,9.97592454 L7.3675262,20.7259991 C6.30189159,21.7808787 6.29317295,23.4998952 7.34805256,24.5655298 C7.35451353,24.5720566 7.36100756,24.5785506 7.36753443,24.5850115 C8.447229,25.6538001 10.1862216,25.6538001 11.2659161,24.5850115 L26.0240755,9.97592454 L26.0240755,9.97592454 L11.2659161,-4.63316247 C10.1862216,-5.70195103 8.447229,-5.70195103 7.36753443,-4.63316247 Z\" id=arrow fill=#FF0000 transform=\"translate(16.000000, 9.975925) rotate(-270.000000) translate(-16.000000, -9.975925) \"></path> </g> </svg></span> </div> </div> <div class=sm-unit__block__subunits></div> </div> <div id=sm-unit__activity_main--template class=sm-unit__activity_main> <a class=sm-unit__activity_main__link> <div class=sm-unit__activity_main__texts> <div class=\"sm-unit__activity_main__checkbox sm-color-border-color sm-color-background-color\"></div> <div class=sm-unit__activity_main__indent> <svg xmlns=http://www.w3.org/2000/svg width=22 height=49 viewBox=\"0 0 22 49\"> <g fill=none fill-rule=evenodd stroke=#FF1D25 transform=translate(.727) class=sm-color-svg-stroke> <polyline stroke-linejoin=round points=\"0 0 0 40 20 40 12 30\"/> <path d=\"M12,49 L20,40\"/> </g> </svg> </div> <div class=sm-unit__activity_main__texts__content> <div class=\"sm-unit__activity_main__description sm-color-color\"></div> <div class=sm-unit__activity_main__title></div> <div class=sm-unit__activity_main__type></div> </div> </div> <div class=sm-unit__activity_main__progress> <div class=sm-unit__activity_main__progress__title></div> <div class=sm-unit__activity_main__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-unit__activity_main__image></div> </a> <div class=sm-unit__activity_main__actions> <div class=sm-unit__activity_main__actions__pages></div> <div class=sm-unit__activity_main__actions__send_link> <svg xmlns=http://www.w3.org/2000/svg width=17 height=14 viewBox=\"0 0 17 14\"> <path d=\"M1.12941176 13.1388235C1.12941176 12.8752941 7.49176471 7.19058824 7.79294118 7.19058824 8.11294118 7.19058824 8.96 7.92470588 13.3458824 12.0282353L14.5882353 13.1952941 7.86823529 13.2141176C4.16 13.2141176 1.12941176 13.1764706 1.12941176 13.1388235zM0 8.28235294L0 4.08470588 2.16470588 6.24941176C3.35058824 7.43529412 4.32941176 8.41411765 4.32941176 8.41411765 4.32941176 8.41411765 3.35058824 9.33647059 2.16470588 10.4470588L0 12.48 0 8.28235294zM13.5717647 10.5976471L11.8023529 8.94117647 12.7435294 8.80941176C13.2705882 8.75294118 14.0988235 8.48941176 14.6070588 8.22588235 15.1152941 7.96235294 15.5482353 7.75529412 15.5858824 7.75529412 15.6047059 7.75529412 15.6235294 8.77176471 15.6235294 10.0141176 15.6235294 11.2564706 15.5670588 12.2729412 15.4917647 12.2729412 15.3976471 12.2541176 14.5505882 11.5011765 13.5717647 10.5976471zM3.01176471 5.40235294L.847058824 3.23764706 4.00941176 3.23764706 7.15294118 3.23764706 7.15294118 3.76470588C7.15294118 4.06588235 7.26588235 4.70588235 7.41647059 5.17647059 7.66117647 6.00470588 7.66117647 6.06117647 7.32235294 6.06117647 7.13411765 6.06117647 6.70117647 6.28705882 6.36235294 6.58823529 6.02352941 6.87058824 5.60941176 7.20941176 5.44 7.32235294 5.19529412 7.51058824 4.81882353 7.20941176 3.01176471 5.40235294zM10.6352941 7.24705882C9.24235294 6.51294118 8.47058824 5.28941176 8.47058824 3.80235294 8.47058824 2.54117647 8.80941176 1.78823529 9.75058824.941176471 11.52-.658823529 14.5882353-.112941176 15.6047059 1.95764706 16.0376471 2.88 16.1317647 4.36705882 15.7929412 5.25176471 15.5294118 5.96705882 14.5317647 6.98352941 13.7976471 7.30352941 12.9882353 7.66117647 11.3317647 7.62352941 10.6352941 7.24705882zM13.4023529 2.63529412L12.2352941 1.44941176 12.2352941 2.33411765 12.2352941 3.21882353 11.1623529 3.27529412C10.1458824 3.33176471 10.0705882 3.36941176 10.0705882 3.80235294 10.0705882 4.23529412 10.1458824 4.27294118 11.1623529 4.32941176L12.2352941 4.38588235 12.2352941 5.27058824 12.2352941 6.15529412 13.4023529 4.96941176 14.5882353 3.80235294 13.4023529 2.63529412z\" transform=\"matrix(1 0 0 -1 .766 13.83)\"/> </svg> </div> <div class=sm-unit__activity_main__actions__candado> <svg xmlns=http://www.w3.org/2000/svg width=17 height=16 viewBox=\"0 0 17 16\"> <path fill=#234054 fill-rule=evenodd d=\"M688.91131,587.192276 L688.91131,585.034483 C688.91131,584.240414 688.630345,583.562345 688.068552,583.000552 C687.506759,582.438621 686.828828,582.157793 686.034621,582.157793 C685.240414,582.157793 684.562483,582.438621 684.000552,583.000552 C683.438621,583.562345 683.157655,584.240414 683.157655,585.034483 L683.157655,587.192276 L687.487151,587.192276 C687.537204,587.22806 687.585117,587.268842 687.630897,587.314621 C687.840828,587.524414 687.945931,587.779172 687.945793,588.078759 L687.945793,594.551862 C687.945793,594.851448 687.840828,595.106207 687.631172,595.316 C687.421379,595.525793 687.166759,595.630621 686.866897,595.630621 L676.078759,595.630621 C675.779172,595.630621 675.524414,595.525655 675.314621,595.316 C675.104828,595.106207 675,594.851448 675,594.551862 L675,588.078897 C675,587.779034 675.104828,587.524276 675.314621,587.314621 C675.524414,587.104828 675.779172,587 676.078759,587 L676.438345,587 L681,587 L681,585.034483 C681,583.656 681.494345,582.472414 682.48331,581.483448 C683.472138,580.494483 684.655862,580 686.034483,580 C687.413103,580 688.59669,580.494483 689.585655,581.483448 C690.574483,582.472414 691.068966,583.656 691.068966,585.034483 L691.068966,587.192276 L688.91131,587.192276 Z\" transform=\"translate(-675 -580)\"/> </svg> <svg xmlns=http://www.w3.org/2000/svg width=14 height=16 viewBox=\"0 0 14 16\"> <path fill=#234054 fill-rule=evenodd d=\"M698.098962,587 L698.098962,585.034483 C698.098962,583.656 698.593307,582.472414 699.582273,581.483448 C700.5711,580.494483 701.754824,580 703.133445,580 C704.512066,580 705.695652,580.494483 706.684617,581.483448 C707.673445,582.472414 708.167928,583.656 708.167928,585.034483 L708.167928,587 L708.527169,587 C708.827031,587 709.081652,587.104828 709.291445,587.314621 C709.501376,587.524414 709.606479,587.779172 709.606342,588.078759 L709.606342,594.551862 C709.606342,594.851448 709.501376,595.106207 709.291721,595.316 C709.081928,595.525793 708.827307,595.630621 708.527445,595.630621 L697.739307,595.630621 C697.439721,595.630621 697.184962,595.525655 696.975169,595.316 C696.765376,595.106207 696.660548,594.851448 696.660548,594.551862 L696.660548,588.078897 C696.660548,587.779034 696.765376,587.524276 696.975169,587.314621 C697.184962,587.104828 697.439721,587 697.739307,587 L698.098893,587 Z M706.010273,587.192276 L706.010273,585.034483 C706.010273,584.240414 705.729307,583.562345 705.167514,583.000552 C704.605721,582.438621 703.92779,582.157793 703.133583,582.157793 C702.339376,582.157793 701.661445,582.438621 701.099514,583.000552 C700.537583,583.562345 700.256617,584.240414 700.256617,585.034483 L700.256617,587.192276 L706.010273,587.192276 Z\" transform=\"translate(-696 -580)\"/> </svg> </div> <div class=sm-unit__activity_main__actions__nota>0</div> </div> </div> <div id=sm-unit__activity_aside--template class=sm-unit__activity_aside> <a> <div class=sm-unit__activity_aside__header> <div class=sm-unit__activity_aside__header__texts> <div class=\"sm-unit__activity_aside__type--con-tag sm-color-color\"></div> <div class=\"sm-unit__activity_aside__description--sin-tag sm-color-color\"></div> </div> <div class=sm-unit__activity_aside__image></div> </div> <div class=sm-unit__activity_aside__content> <div class=sm-unit__activity_aside__title--con-tag></div> <div class=sm-unit__activity_aside__title--sin-tag></div> </div> <div class=sm-unit__activity_aside__progress> <div class=sm-unit__activity_aside__progress__title></div> <div class=sm-unit__activity_aside__progress__bar> <div class=sm-color-background-color></div> </div> </div> </a> </div> <div class=sm-content> <div class=sm-unit__header_background> <div class=sm-unit__header_background__content> </div> </div> <a href=#units class=\"sm-button-back-screen sm-color-background-color\"> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> <span>--Unidades--</span> </a> <div class=sm-content--scrolled> <div class=sm-unit__header> <div class=sm-unit__header__content> <div class=sm-unit__header__part1> <div class=sm-unit__header__number></div> <div class=sm-unit__header__resources_button>--Contenidos complementarios--</div> <div class=sm-unit__header__proyecto_imagen></div> <div class=\"sm-unit__header__description sm-color-background-color\"></div> <div class=sm-unit__header__title></div> </div> <div class=sm-unit__header__progress> <div class=sm-unit__header__progress__title></div> <div class=sm-unit__header__progress__bar> <div class=sm-color-background-color></div> </div> </div> </div> </div> <div class=sm-unit__activities_container> <div class=sm-unit__activities_container__content> <div class=sm-unit__activities__main_container> <div class=sm-unit__activities__main> </div> </div> <div class=sm-unit__activities__aside_container> <h4>--Contenidos complementarios--</h4> <div class=sm-unit__activities__aside> </div> </div> </div> </div> </div> </div> </div> </div>";
 
 /***/ }),
-/* 28 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var getUrlParameters=exports.getUrlParameters=function getUrlParameters(){var vars={};var parts=window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi,function(m,key,value){vars[key]=value;});return vars;};
 
 /***/ }),
-/* 29 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4519,11 +5035,11 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getTextOfNode=g
 var text='';if(node.nodeType==Node.TEXT_NODE){text=node.nodeValue.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}else{text=node.innerText.trim().replace(/(\r\n\t|\n|\r\t)/gm,"");}return text;}
 
 /***/ }),
-/* 30 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(29);var _debug=__webpack_require__(2);var _slashSlash=__webpack_require__(4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _getTextOfNode=__webpack_require__(31);var _debug=__webpack_require__(2);var _slashSlash=__webpack_require__(4);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var Activities=function(){function Activities(){_classCallCheck(this,Activities);////l("Ativities.contructor()");
 this.state={//isVisible: true,
 };document.querySelector('.content-wrapper.actividad').classList.add('sm-actividades');//Remain attemps
 var remainBoxes=document.querySelectorAll('.attemps>*');_.forEach(remainBoxes,function(remainBox){var htmlText='';_.forEach(remainBox.childNodes,function(node){if(node.nodeType==3){//#text
@@ -4612,24 +5128,24 @@ setTimeout(infopopopUpdate,0);setTimeout(infopopopUpdate,200);setTimeout(infopop
 }}]);return Activities;}();exports.default=Activities;
 
 /***/ }),
-/* 31 */
+/* 33 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--credits class=\"sm-modal sm-modal--big\"> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__header> <span class=sm-credits-icon> <svg width=13px height=18px viewBox=\"0 0 13 18\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g fill=#29495e fill-rule=nonzero> <path d=\"M12.5252525,5.75127421 C11.5609776,5.07712881 10.5864591,4.74006116 9.60166778,4.74006116 C9.06823913,4.74006116 8.57072179,4.83486144 8.10910084,5.02446483 C7.64747988,5.21406823 7.24228535,5.48266901 6.89350508,5.83027523 C6.5447248,6.17788145 6.27288543,6.58868265 6.07797881,7.06269113 C5.88307218,7.53669962 5.78562033,8.0686345 5.78562033,8.65851172 C5.78562033,9.22732191 5.88307218,9.74872342 6.07797881,10.2227319 C6.27288543,10.6967404 6.53959576,11.1075416 6.87811779,11.4551478 C7.21663982,11.802754 7.62183435,12.0713548 8.09371355,12.2609582 C8.56559274,12.4505616 9.06823913,12.5453619 9.60166778,12.5453619 C10.6480086,12.5453619 11.6225271,12.1766941 12.5252525,11.4393476 L12.5252525,16.3058104 C11.1506479,16.9167547 9.84787055,17.2222222 8.61688134,17.2222222 C7.46795809,17.2222222 6.37547156,17.0220883 5.33938898,16.6218145 C4.3033064,16.2215406 3.39033643,15.6474723 2.60045169,14.8995923 C1.81056695,14.1517122 1.17969445,13.2563763 0.707815253,12.2135576 C0.235936058,11.1707389 0,10.0068022 0,8.72171254 C0,7.43662286 0.225677969,6.26215279 0.677040677,5.19826707 C1.12840339,4.13438136 1.74388875,3.2179787 2.52351525,2.4490316 C3.30314175,1.6800845 4.23149885,1.07968276 5.3086144,0.647808359 C6.38572995,0.21593396 7.53976502,0 8.77075423,0 C10.1248423,0 11.3763293,0.29493419 12.5252525,0.884811417 L12.5252525,5.75127421 Z\" id=c></path> </g> </svg> </span>  <h5>--Créditos--</h5> <span class=close></span> </div> <div class=sm-modal__content> <div class=sm-modal__content__text> </div> </div> </div> </div>";
 
 /***/ }),
-/* 32 */
+/* 34 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-end sm-base\"> <div class=sm-subunit-end_completed> <div class=sm-subunit-end_completed__content> <div class=sm-subunit-end__title>--Fin de la lección--</div> <div class=sm-subunit-end__progress> <div class=sm-subunit-end__progress__title></div> <div class=sm-subunit-end__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-end__start_button_container> <div class=\"sm-subunit-end__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> <span>--Volver a inicio--</span> </div> </div> <div class=sm-subunit-end__credits_button_container> <div class=\"sm-subunit-end__credits_button sm-button-subunitnav\"> <span class=sm-subunit-end__credits_button_icon> <svg width=13px height=18px viewBox=\"0 0 13 18\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g fill=#FFFFFF fill-rule=nonzero> <path d=\"M12.5252525,5.75127421 C11.5609776,5.07712881 10.5864591,4.74006116 9.60166778,4.74006116 C9.06823913,4.74006116 8.57072179,4.83486144 8.10910084,5.02446483 C7.64747988,5.21406823 7.24228535,5.48266901 6.89350508,5.83027523 C6.5447248,6.17788145 6.27288543,6.58868265 6.07797881,7.06269113 C5.88307218,7.53669962 5.78562033,8.0686345 5.78562033,8.65851172 C5.78562033,9.22732191 5.88307218,9.74872342 6.07797881,10.2227319 C6.27288543,10.6967404 6.53959576,11.1075416 6.87811779,11.4551478 C7.21663982,11.802754 7.62183435,12.0713548 8.09371355,12.2609582 C8.56559274,12.4505616 9.06823913,12.5453619 9.60166778,12.5453619 C10.6480086,12.5453619 11.6225271,12.1766941 12.5252525,11.4393476 L12.5252525,16.3058104 C11.1506479,16.9167547 9.84787055,17.2222222 8.61688134,17.2222222 C7.46795809,17.2222222 6.37547156,17.0220883 5.33938898,16.6218145 C4.3033064,16.2215406 3.39033643,15.6474723 2.60045169,14.8995923 C1.81056695,14.1517122 1.17969445,13.2563763 0.707815253,12.2135576 C0.235936058,11.1707389 0,10.0068022 0,8.72171254 C0,7.43662286 0.225677969,6.26215279 0.677040677,5.19826707 C1.12840339,4.13438136 1.74388875,3.2179787 2.52351525,2.4490316 C3.30314175,1.6800845 4.23149885,1.07968276 5.3086144,0.647808359 C6.38572995,0.21593396 7.53976502,0 8.77075423,0 C10.1248423,0 11.3763293,0.29493419 12.5252525,0.884811417 L12.5252525,5.75127421 Z\" id=c></path> </g> </svg> </span> </div> </div> </div> </div> </div>";
 
 /***/ }),
-/* 33 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(32);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _modalCredits=__webpack_require__(31);var _modalCredits2=_interopRequireDefault(_modalCredits);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// onsole.log(this.subUnitObject);
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _subUnitEnd=__webpack_require__(34);var _subUnitEnd2=_interopRequireDefault(_subUnitEnd);var _modalCredits=__webpack_require__(33);var _modalCredits2=_interopRequireDefault(_modalCredits);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitEnd=function(){function ScreenSubUnitEnd(){_classCallCheck(this,ScreenSubUnitEnd);this.state={isVisible:true};this.subUnitObject={};}_createClass(ScreenSubUnitEnd,[{key:'init',value:function init(subUnitObject){var _this=this;this.subUnitObject=subUnitObject;// onsole.log(this.subUnitObject);
 document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitEnd2.default));var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;document.querySelector('.sm-subunit-end').style.backgroundImage='url('+subunitImage+')';this.updateCompleted();document.querySelector('.sm-subunit-end_completed .sm-subunit-end__start_button_container .sm-subunit-end__start_button').addEventListener('click',function(){return _this.onStartButtonClick();});//Credits button
 if(this.creditsHtml){document.querySelector('.sm-subunit-end__credits_button_container .sm-subunit-end__credits_button').addEventListener('click',this.showCreditsModal.bind(this));}else{document.querySelector('.sm-subunit-end__credits_button_container').remove();}}},{key:'show',value:function show(){this.updateCompleted();document.querySelector('.sm-subunit-end').classList.add('active');this.state.isVisible=true;}},{key:'hide',value:function hide(){document.querySelector('.sm-subunit-end').classList.remove('active');this.state.isVisible=false;}},{key:'updateCompleted',value:function updateCompleted(){//Update copmpletado
 //if(config.dev)
@@ -4642,32 +5158,32 @@ document.querySelector('#sm-modal--credits .close').addEventListener('click',thi
 setTimeout(function(){document.querySelector('#sm-modal--credits').classList.add('active');},1);}},{key:'hideCreditsModal',value:function hideCreditsModal(){document.querySelector('#sm-modal--credits').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--credits').remove();},400);}}]);return ScreenSubUnitEnd;}();exports.default=ScreenSubUnitEnd;
 
 /***/ }),
-/* 34 */
+/* 36 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-subunit-start__actividades__item> <div class=sm-subunit-start__actividades__item__icon></div> <div class=sm-subunit-start__actividades__item__type>Tipo de recurso</div> <div class=sm-subunit-start__actividades__item__title>Nombre de la actividad</div> </div>";
 
 /***/ }),
-/* 35 */
+/* 37 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"sm-subunit-start sm-base\"> <div class=sm-subunit-start__secuencia> <div class=sm-subunit-start__secuencia__content> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__type> <div class=sm-subunit-start__type__content> <span class=sm-color-color></span> </div> </div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--Comienza secuencia didáctica--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> <div class=sm-subunit-start__start_button_content--flipped> <div class=\"sm-subunit-start__start_button--flipped-casa sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--santillana_microcontenidos_tareas_casa--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> <div class=\"sm-subunit-start__start_button--flipped-clase sm-subunit-start__start_button sm-button-general--big--arrow sm-color-background-color sm-color-border-color\"> <span>--santillana_microcontenidos_tareas_clase--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__actividades style=display:none> <div class=sm-subunit-start__actividades__container> <div class=sm-subunit-start__actividades__content> <div class=sm-subunit-start__actividades__header> <div class=sm-subunit-start__title__actividades>Actividades</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=sm-color-color></div> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> </div> <div class=sm-subunit-start__actividades__list__container> <div class=sm-subunit-start__actividades__list> </div> </div> </div> </div> </div> <div class=sm-subunit-start__evaluacion> <div class=sm-subunit-start__evaluacion__background></div> <div class=sm-subunit-start__evaluacion__content> <div class=sm-subunit-start__title__evaluacion>--Evaluación final--</div> <div class=\"sm-subunit-start__hr sm-color-background-color\"></div> <div class=sm-subunit-start__image></div> <div class=\"sm-subunit-start__description sm-color-color\"><strong></strong></div> <div class=sm-subunit-start__title></div> <div class=sm-subunit-start__progress> <div class=sm-subunit-start__progress__title></div> <div class=sm-subunit-start__progress__bar> <div class=sm-color-background-color></div> </div> </div> <div class=sm-subunit-start__start_button_container> <div class=sm-subunit-start__start_button_content--general> <div class=\"sm-subunit-start__start_button sm-button-general--big--arrow sm-color-child-color--hover sm-color-child-color--pressed sm-color-background-color sm-color-border-color sm-color-border-color--hover sm-color-border-color--pressed sm-color-svg-fill--hover sm-color-svg-fill--pressed\"> <span>--Comienza evaluación final--</span> <svg width=16px height=16px viewBox=\"0 0 16 16\" version=1.1 style=transform:scaleX(-1) xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> <path d=\"M15.4253622,15.0459617 C14.8855149,15.580356 14.0160186,15.580356 13.4761713,15.0459617 L6.09709168,7.74141817 L13.4761713,0.436874665 C14.0160186,-0.0975196173 14.8855149,-0.0975196173 15.4253622,0.436874665 C15.4286256,0.440105132 15.4318726,0.443352137 15.4351031,0.446615555 C15.9625429,0.979432858 15.9581836,1.83894107 15.4253663,2.36638088 L9.99552799,7.74141817 L15.4253663,13.1164555 C15.4286297,13.1196859 15.4318767,13.122933 15.4351072,13.1261964 C15.9625447,13.6590159 15.9581817,14.5185241 15.4253622,15.0459617 Z M9.42536219,15.0459617 C8.88551491,15.580356 8.01601863,15.580356 7.47617134,15.0459617 L0.0970916783,7.74141817 L7.47617134,0.436874665 C8.01601863,-0.0975196173 8.88551491,-0.0975196173 9.42536219,0.436874665 C9.42862563,0.440105132 9.43187264,0.443352137 9.43510313,0.446615555 C9.96254293,0.979432858 9.95818361,1.83894107 9.42536631,2.36638088 L3.99552799,7.74141817 L9.42536631,13.1164555 C9.42862972,13.1196859 9.43187673,13.122933 9.4351072,13.1261964 C9.96254473,13.6590159 9.95818175,14.5185241 9.42536219,15.0459617 Z\"></path> </g> </svg> </div> </div> </div> </div> </div> <div class=sm-subunit-start__nav> <div class=sm-subunit-start__nav__actions> <div id=subunit-boton-actividades class=sm-button-subunitnav><span>--Actividades--</span></div> <div id=subunit-boton-evaluacion-final class=sm-button-subunitnav><span>--Evaluación final--</span></div> </div> </div> </div>";
 
 /***/ }),
-/* 36 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});exports.removeParam=removeParam;function removeParam(key,sourceURL){var rtn=sourceURL.split("?")[0],param,params_arr=[],queryString=sourceURL.indexOf("?")!==-1?sourceURL.split("?")[1]:"";if(queryString!==""){params_arr=queryString.split("&");for(var i=params_arr.length-1;i>=0;i-=1){param=params_arr[i].split("=")[0];if(param===key){params_arr.splice(i,1);}}rtn=rtn+"?"+params_arr.join("&");}return rtn;}
 
 /***/ }),
-/* 37 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
 //Templates
-var _debug=__webpack_require__(2);var _removeParam=__webpack_require__(36);var _slashSlash=__webpack_require__(4);var _subUnitStart=__webpack_require__(35);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(34);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
+var _debug=__webpack_require__(2);var _removeParam=__webpack_require__(38);var _slashSlash=__webpack_require__(4);var _subUnitStart=__webpack_require__(37);var _subUnitStart2=_interopRequireDefault(_subUnitStart);var _subUnitStartActivitiesItem=__webpack_require__(36);var _subUnitStartActivitiesItem2=_interopRequireDefault(_subUnitStartActivitiesItem);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitStart=function(){function ScreenSubUnitStart(){_classCallCheck(this,ScreenSubUnitStart);this.state={isVisible:true,tab:'secuencia'//actividades, evaluacion
 };this.number={};this.subUnitObject={};this.isEvaluacion=false;}_createClass(ScreenSubUnitStart,[{key:'init',value:function init(subUnitObject,number,isEvaluacion){var _this=this;//l("ScreenSubUnitStart.Init");
 //l(subUnitObject, number, isEvaluacion);
 this.number=number;this.subUnitObject=subUnitObject;this.isEvaluacion=isEvaluacion;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',replaceStringInTemplates.replace(_subUnitStart2.default));var numberString=this.number.toString();while(numberString.length<2){numberString='0'+numberString;}if(!this.isEvaluacion){var subunitImageImage=this.subUnitObject.image?this.subUnitObject.image:'';var subunitImage=subunitImageImage.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:subunitImageImage.length<3?window.smDefaultBackgroundImage:subunitImageImage;if(this.subUnitObject.hasOwnProperty('video')&&this.subUnitObject.video.length>3){//l("Tiene video");
@@ -4743,31 +5259,31 @@ document.querySelector('.sm-subunit-start__evaluacion .sm-subunit-start__progres
 }.bind(this));}}]);return ScreenSubUnitStart;}();exports.default=ScreenSubUnitStart;
 
 /***/ }),
-/* 38 */
+/* 40 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-end\">--Fin--</li>";
 
 /***/ }),
-/* 39 */
+/* 41 */
 /***/ (function(module, exports) {
 
 module.exports = "<li class=\"slider-indicator sm-color-background-color--active sm-color-border-color--active sm-big sm-start\">--Inicio--</li>";
 
 /***/ }),
-/* 40 */
+/* 42 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-right> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 41 */
+/* 43 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=sm-slider-indicator-arrow-left> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=16 height=10 viewBox=\"0 0 16 10\"> <path d=\"M15.4251953,0.413623017 C15.9743759,0.968407485 15.9743759,1.8619621 15.4251953,2.41674657 L7.91854035,10 L0.411885438,2.41674657 C-0.137295146,1.8619621 -0.137295146,0.968407485 0.411885438,0.413623017 C0.41520529,0.410269289 0.418542137,0.406932428 0.421895851,0.403612562 C0.969455822,-0.138421122 1.852746,-0.13394118 2.39477968,0.413618791 L7.91854035,5.99369679 L13.442301,0.413618791 C13.4456209,0.410265077 13.4489577,0.40692823 13.4523115,0.403608378 C13.9998738,-0.138422971 14.8831639,-0.133939265 15.4251953,0.413623017 Z\"/> </svg> </div>";
 
 /***/ }),
-/* 42 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4775,13 +5291,13 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.getCoords=getCo
 var box=elem.getBoundingClientRect();var body=document.body;var docEl=document.documentElement;var scrollTop=window.pageYOffset||docEl.scrollTop||body.scrollTop;var scrollLeft=window.pageXOffset||docEl.scrollLeft||body.scrollLeft;var clientTop=docEl.clientTop||body.clientTop||0;var clientLeft=docEl.clientLeft||body.clientLeft||0;var top=box.top+scrollTop-clientTop;var left=box.left+scrollLeft-clientLeft;return{top:Math.round(top),left:Math.round(left)};}
 
 /***/ }),
-/* 43 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import _ from 'lodash';
 //Templates
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(42);var _sliderIndicatorArrowLeft=__webpack_require__(41);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(40);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(39);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(38);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _getCoords=__webpack_require__(44);var _sliderIndicatorArrowLeft=__webpack_require__(43);var _sliderIndicatorArrowLeft2=_interopRequireDefault(_sliderIndicatorArrowLeft);var _sliderIndicatorArrowRight=__webpack_require__(42);var _sliderIndicatorArrowRight2=_interopRequireDefault(_sliderIndicatorArrowRight);var _sliderIndicatorStartButton=__webpack_require__(41);var _sliderIndicatorStartButton2=_interopRequireDefault(_sliderIndicatorStartButton);var _sliderIndicatorEndButton=__webpack_require__(40);var _sliderIndicatorEndButton2=_interopRequireDefault(_sliderIndicatorEndButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnitIndicators=function(){function ScreenSubUnitIndicators(){_classCallCheck(this,ScreenSubUnitIndicators);this.state={started:false,contentLeft:0,//tablet y mobile
 contentTop:0,//desktop
 isStartSlide:false,isEndSlide:false,blinkSlidesLength:0};this.subunit={};this.line=null;this.lines=null;}_createClass(ScreenSubUnitIndicators,[{key:'init',value:function init(subunit){var _this2=this;//l("ScreenSubUnitIndicators.Init");
 if(!blink.activity.slidePreview){//Si no está en modo preview
@@ -5002,11 +5518,11 @@ $('.slider-indicators li[data-go-to="0"]').trigger('click');this.onSliderIndicat
 $('.navbar-bottom ol.slider-indicators li.slider-indicator[data-sm-slide-id="'+sectionObj.ID+'"]').trigger('click');}});}}]);return ScreenSubUnitIndicators;}();exports.default=ScreenSubUnitIndicators;
 
 /***/ }),
-/* 44 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(43);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(37);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(33);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(30);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(3);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _getUrlParameters=__webpack_require__(28);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _ScreenSubUnitSliderIndicators=__webpack_require__(45);var _ScreenSubUnitSliderIndicators2=_interopRequireDefault(_ScreenSubUnitSliderIndicators);var _ScreenSubUnitStart=__webpack_require__(39);var _ScreenSubUnitStart2=_interopRequireDefault(_ScreenSubUnitStart);var _ScreenSubUnitEnd=__webpack_require__(35);var _ScreenSubUnitEnd2=_interopRequireDefault(_ScreenSubUnitEnd);var _Activities=__webpack_require__(32);var _Activities2=_interopRequireDefault(_Activities);var _subUnitBackButton=__webpack_require__(3);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _getUrlParameters=__webpack_require__(30);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenSubUnit=function(){function ScreenSubUnit(){_classCallCheck(this,ScreenSubUnit);this.state={started:false,inActivity:false};this.number={};this.subUnitObject={};this.unit={};this.book={};this.isEvaluacion=false;}_createClass(ScreenSubUnit,[{key:'init',value:function init(subUnitObject,number,unit,book,isEvaluacion){var _this=this;////l("ScreenSubUnit.Init");
 ////l(subUnitObject, number, unit, book, isEvaluacion);  
 ////l("¿Es evaluación? " + (isEvaluacion ? "Sí" : "No"));
 if(!this.started){this.number=number;this.subUnitObject=subUnitObject;this.unit=unit;this.book=book;this.isEvaluacion=isEvaluacion;this.screenSubUnitStart=new _ScreenSubUnitStart2.default();this.screenSubUnitEnd=new _ScreenSubUnitEnd2.default();this.screenSubUnitIndicators=new _ScreenSubUnitSliderIndicators2.default();//StartPage
@@ -5041,13 +5557,13 @@ this.subUnitObject.sections.forEach(function(sectionObj){//l(section);
 if(sectionObj.hasOwnProperty('seccion')&&sectionObj.seccion==section){result=true;}});return result;}}]);return ScreenSubUnit;}();exports.default=ScreenSubUnit;
 
 /***/ }),
-/* 45 */
+/* 47 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-left-menu__background></div> <div id=sm-left-menu> <a class=sm-left-menu--book-image><strong></strong></a> <div class=\"sm-left-menu--level1 sm-color-background-color_before\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink width=10 height=16 viewBox=\"0 0 10 16\"> <path d=\"M0.413623017,0.411885438 C0.968407485,-0.137295146 1.8619621,-0.137295146 2.41674657,0.411885438 L10,7.91854035 L2.41674657,15.4251953 C1.8619621,15.9743759 0.968407485,15.9743759 0.413623017,15.4251953 C0.410269289,15.4218754 0.406932428,15.4185386 0.403612562,15.4151849 C-0.138421122,14.8676249 -0.13394118,13.9843347 0.413618791,13.442301 L5.99369679,7.91854035 L0.413618791,2.39477968 C0.410265077,2.39145982 0.40692823,2.38812296 0.403608378,2.38476923 C-0.138422971,1.83720695 -0.133939265,0.953916788 0.413623017,0.411885438 Z\"/> </svg> </div> </div> <div class=\"sm-left-menu--block sm-color-background-color_before sm-color-child-color--hover sm-color-child-color--active\"> <div class=sm-left-menu--block__header> <strong></strong> </div> <div class=sm-left-menu--block__subunits></div> </div> <a class=\"sm-left-menu--level2 sm-color-background-color--active sm-color-background-color--hover\"> <div class=sm-left-menu--image></div> <div class=sm-left-menu--title><em class=sm-color-color></em><strong></strong><small></small></div> <div class=sm-left-menu--arrow> <svg xmlns=http://www.w3.org/2000/svg width=16 height=16 viewBox=\"0 0 16 16\"> <path fill=#FFF fill-rule=evenodd d=\"M14.8256508,3.95720635 C14.1151746,2.73993651 13.1513651,1.77612698 11.9340952,1.06565079 C10.7165714,0.355174603 9.38742857,0 7.94577778,0 C6.50425397,0 5.17473016,0.355174603 3.95746032,1.06565079 C2.74006349,1.776 1.77625397,2.73980952 1.06577778,3.95720635 C0.355174603,5.17460317 0,6.50412698 0,7.94552381 C0,9.38704762 0.355301587,10.7163175 1.06565079,11.9338413 C1.77612698,13.1509841 2.73993651,14.1149206 3.95733333,14.8253968 C5.17473016,15.535873 6.50412698,15.8910476 7.94565079,15.8910476 C9.3871746,15.8910476 10.7166984,15.535873 11.9339683,14.8253968 C13.1512381,14.1150476 14.1150476,13.1511111 14.8255238,11.9338413 C15.535873,10.7164444 15.8910476,9.38692063 15.8910476,7.94552381 C15.8910476,6.504 15.535873,5.17447619 14.8256508,3.95720635 L14.8256508,3.95720635 Z M10.4596825,11.1215238 C10.5907302,11.2525714 10.6565079,11.407873 10.6565079,11.5871746 C10.6565079,11.7664762 10.5907302,11.9217778 10.4596825,12.0526984 L9.40419048,13.1081905 C9.27339683,13.2392381 9.11822222,13.3047619 8.93892063,13.3046349 C8.75949206,13.3046349 8.60431746,13.2389841 8.47314286,13.1080635 L3.77625397,8.41092063 C3.64520635,8.27987302 3.57968254,8.12469841 3.57968254,7.94539683 C3.57968254,7.76609524 3.64520635,7.61079365 3.77625397,7.47987302 L8.47314286,2.78285714 C8.60431746,2.65180952 8.75949206,2.58628571 8.93892063,2.58628571 C9.11822222,2.58628571 9.27339683,2.65180952 9.40419048,2.78285714 L10.4596825,3.83834921 C10.5907302,3.96939683 10.6565079,4.12457143 10.6565079,4.30387302 C10.6565079,4.4831746 10.5907302,4.63847619 10.4596825,4.76939683 L7.28355556,7.94552381 L10.4596825,11.1215238 L10.4596825,11.1215238 Z\" transform=\"matrix(-1 0 0 1 15.891 0)\"/> </svg> </div> </a> </div>";
 
 /***/ }),
-/* 46 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -5061,11 +5577,11 @@ exports.push([module.i, "/*\n * Container style\n */\n.ps {\n  overflow: hidden 
 
 
 /***/ }),
-/* 47 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-var content = __webpack_require__(46);
+var content = __webpack_require__(48);
 
 if(typeof content === 'string') content = [[module.i, content, '']];
 
@@ -5086,7 +5602,7 @@ if(content.locals) module.exports = content.locals;
 if(false) {}
 
 /***/ }),
-/* 48 */
+/* 50 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -6410,11 +6926,11 @@ PerfectScrollbar.prototype.removePsClasses = function removePsClasses () {
 
 
 /***/ }),
-/* 49 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _perfectScrollbar=__webpack_require__(48);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(47);var _leftMenu=__webpack_require__(45);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();//Scroll for left menu
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _perfectScrollbar=__webpack_require__(50);var _perfectScrollbar2=_interopRequireDefault(_perfectScrollbar);__webpack_require__(49);var _leftMenu=__webpack_require__(47);var _leftMenu2=_interopRequireDefault(_leftMenu);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();//Scroll for left menu
 //Templates
 var LeftMenu=function(){function LeftMenu(data,subunitIdLoaded){_classCallCheck(this,LeftMenu);this.state={unitSelected:null,subunitSelected:null};this.data=data;this.perfectScrollbar=null;this.subunitIdLoaded=subunitIdLoaded;this.fillData();//fix para boton de blink, que cargar # y hacer que la navegación falle
 document.querySelector('.libro-left-button a').addEventListener('click',function(e){e.preventDefault();});}_createClass(LeftMenu,[{key:'fillData',value:function fillData(){var _this=this;document.getElementsByTagName('body')[0].insertAdjacentHTML('beforeend',_leftMenu2.default);var bookImageDomElement=document.querySelector('#sm-left-menu .sm-left-menu--book-image');var level1DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level1');var level2BlockDomElement=document.querySelector('#sm-left-menu .sm-left-menu--block');var level2DomElement=document.querySelector('#sm-left-menu .sm-left-menu--level2');document.querySelector('#sm-left-menu .sm-left-menu--level1').remove();document.querySelector('#sm-left-menu .sm-left-menu--block').remove();document.querySelector('#sm-left-menu .sm-left-menu--level2').remove();var ulLevel1DomElement=document.createElement('ul');//onsole.log(window.smBookBackgroundImage);
@@ -6434,24 +6950,24 @@ subUnitElement.querySelector('.sm-left-menu--title em').innerHTML=''+subunit.dat
 break;case'basica':tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_basica--');break;case'ninguna':tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_ninguna--');break;case'reto':tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_reto--');break;case'reto':tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_reto--');break;default:tipoTexto=replaceStringInTemplates.replace('--santillana_microcontenidos_estandar--');}subUnitElement.querySelector('.sm-left-menu--title small').innerHTML=''+tipoTexto.toLowerCase();});});});}}]);return LeftMenu;}();exports.default=LeftMenu;
 
 /***/ }),
-/* 50 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ImagesPreload=function(){function ImagesPreload(){_classCallCheck(this,ImagesPreload);this.image=[];}_createClass(ImagesPreload,[{key:'add',value:function add(imagesToLoad){if(typeof imagesToLoad=='string'){imagesToLoad=[imagesToLoad];}imagesToLoad.forEach(function(imageToLoad){var newImage=new Image();newImage.src=imageToLoad;});}}]);return ImagesPreload;}();exports.default=ImagesPreload;
 
 /***/ }),
-/* 51 */
+/* 53 */
 /***/ (function(module, exports) {
 
 module.exports = "<div id=sm-modal--student-no--access class=sm-modal> <div class=sm-modal__background></div> <div class=sm-modal__modal> <div class=sm-modal__content> <div class=sm-modal__content__icon> <svg width=64px height=64px viewBox=\"0 0 64 64\" version=1.1 xmlns=http://www.w3.org/2000/svg xmlns:xlink=http://www.w3.org/1999/xlink> <g id=MODO-VER stroke=none stroke-width=1 fill=none fill-rule=evenodd> <g id=3_alumno-alerta transform=\"translate(-628.000000, -99.000000)\"> <rect fill=#FFFFFF x=0 y=0 width=1600 height=900></rect> <g id=Group-4 transform=\"translate(582.000000, 53.000000)\"> <g id=i-/-candado transform=\"translate(46.000000, 46.000000)\"> <g id=Group-20> <g id=Group-19> <path d=\"M24.3810786,0 C12.9080572,0 3.55555556,9.27100006 3.55555556,20.6443193 L3.55555556,32.1550239 C3.55555556,33.2061835 4.38849065,34.031746 5.4487505,34.031746 L13.0216565,34.031746 C14.0820426,34.031746 14.9148514,33.2060583 14.9148514,32.1550239 L14.9148514,20.6443193 C14.9148514,15.464471 19.1556384,11.2605833 24.3809524,11.2605833 C29.6062664,11.2605833 33.8470533,15.464471 33.8470533,20.6443193 L33.8470533,24.3977637 C33.8470533,25.4489233 34.6799884,26.2744859 35.7402483,26.2744859 L43.3131543,26.2744859 C44.3735403,26.2744859 45.2063492,25.4487982 45.2063492,24.3977637 L45.2063492,20.6443193 C45.2066016,9.27100006 35.8541,0 24.3810786,0\" id=Fill-1 fill=#C8C6CD></path> <path d=\"M43.1353821,29.968254 L5.62639767,29.968254 C2.51298592,29.968254 0,32.5017243 0,35.6402326 L0,58.3280213 C0,61.4666557 2.51298592,64 5.62639767,64 L43.1355071,64 C46.2489188,64 48.7619048,61.4666557 48.7619048,58.3280213 L48.7619048,35.6402326 C48.7617797,32.5017243 46.2487938,29.968254 43.1353821,29.968254\" id=Fill-3 fill=#FEA832></path> <path d=\"M45.2063492,20.7529153 L45.2063492,24.5261041 C45.2063492,25.5827931 44.3734141,26.4126984 43.3131543,26.4126984 L35.7402483,26.4126984 C34.6798622,26.4126984 33.8470533,25.5826673 33.8470533,24.5261041 L33.8470533,20.7529153 C33.8470533,15.5458193 29.6062664,11.3198177 24.3809524,11.3198177 L24.3809524,0 C35.8538475,0 45.2063492,9.3197686 45.2063492,20.7529153\" id=Fill-5 fill=#AEADB3></path> <path d=\"M53.8583417,19.247522 L61.3031294,15.4614141 C63.5117362,14.3425447 65.1568683,17.7349973 62.9679913,18.8483134 L55.5232036,22.6344213 C53.3123633,23.7512714 51.668472,20.361343 53.8583417,19.247522\" id=Fill-7 fill=#159CE4></path> <path d=\"M61.3038134,41.4250067 L53.8587881,37.6402663 C51.6681039,36.5266324 53.31242,33.1372844 55.5237031,34.2547032 L62.9687284,38.0393174 C65.143405,39.1450031 63.5375568,42.5528969 61.3038134,41.4250067\" id=Fill-9 fill=#159CE4></path> <path d=\"M62.1491797,29.968254 L54.6762172,29.968254 C52.2135038,29.968254 52.2034148,26.4126984 54.6762172,26.4126984 L62.1491797,26.4126984 C64.611893,26.4125799 64.621982,29.968254 62.1491797,29.968254\" id=Fill-11 fill=#159CE4></path> <path d=\"M48.7619048,35.6402326 L48.7619048,58.3280213 C48.7619048,61.4666557 46.2489124,64 43.1354927,64 L24.3809524,64 L24.3809524,29.968254 L43.1354927,29.968254 C46.2489124,29.968254 48.7619048,32.5017243 48.7619048,35.6402326\" id=Fill-13 fill=#FE8821></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 C23.4497975,56.3809524 22.5185185,55.7420637 22.5185185,54.5016249 L22.5185185,48.5250903 C20.3579512,47.7358455 18.7936508,45.668698 18.7936508,43.2254094 C18.7936508,40.1055177 21.2892302,37.5873016 24.3810766,37.5873016 C27.4729229,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-15 fill=#787780></path> <path d=\"M29.968254,43.2254094 C29.968254,45.668698 28.4039536,47.7358455 26.2433862,48.5250903 L26.2433862,54.5016249 C26.2433862,55.742189 25.3121072,56.3809524 24.3809524,56.3809524 L24.3809524,37.5873016 C27.4726745,37.5873016 29.968254,40.105643 29.968254,43.2254094\" id=Fill-17 fill=#57555C></path> </g> </g> </g> </g> </g> </g> </svg> </div> <div class=sm-modal__content__text> <p>--Tu profesor no ha dado permisos de acceso a este contenido--</p> </div> </div> <div class=sm-modal__actions> <div class=sm-modal__button>--Aceptar--</div> </div> </div> </div>";
 
 /***/ }),
-/* 52 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _jsCookie=__webpack_require__(6);var _jsCookie2=_interopRequireDefault(_jsCookie);__webpack_require__(13);var _debug=__webpack_require__(2);var _dropdown=__webpack_require__(10);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(51);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(5);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
+Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _animejs=__webpack_require__(8);var _animejs2=_interopRequireDefault(_animejs);var _jsCookie=__webpack_require__(6);var _jsCookie2=_interopRequireDefault(_jsCookie);__webpack_require__(13);var _debug=__webpack_require__(2);var _dropdown=__webpack_require__(10);var _dropdown2=_interopRequireDefault(_dropdown);var _modalStudentNoAccess=__webpack_require__(53);var _modalStudentNoAccess2=_interopRequireDefault(_modalStudentNoAccess);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);var _blinkFunctions=__webpack_require__(5);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnit=function(){function ScreenUnit(){_classCallCheck(this,ScreenUnit);this.state={started:false};this.goto=null;this.unit=null;this.responsiveStatus=null;}_createClass(ScreenUnit,[{key:'init',value:function init(_ref){var _this=this;var data=_ref.data,goTo=_ref.goTo;//onsole.log("Units menu init");
 if(!this.started){this.goTo=goTo;// this.responsiveStatus = new responsiveStatus(this.updateSlider.bind(this));
 }this.started=true;this.unit=data.unit;this.actionUpdateSubunitOcultar=data.actionUpdateSubunitOcultar;var unitElement=document.getElementById('sm-unit');// Background
 var unitImage=this.unit.image.search('../themes/responsive/images')>-1?window.smDefaultBackgroundImage:this.unit.image;document.querySelector('.sm-unit__header_background__content').style.backgroundImage='url('+unitImage+')';document.querySelector('.sm-unit__header__proyecto_imagen').style.backgroundImage='url('+unitImage+')';// Header
@@ -6519,7 +7035,7 @@ document.querySelector('#sm-modal--student-no--access .sm-modal__button').addEve
 setTimeout(function(){document.querySelector('#sm-modal--student-no--access').classList.add('active');},1);}},{key:'hideStudentNoAccessModal',value:function hideStudentNoAccessModal(){document.querySelector('#sm-modal--student-no--access').classList.remove('active');setTimeout(function(){document.querySelector('#sm-modal--student-no--access').remove();},400);}},{key:'toggle',value:function toggle(block,e){if(block.containerDomElement.classList.contains('sm-unit__block--closed')){block.containerDomElement.classList.remove('sm-unit__block--closed');_jsCookie2.default.remove('block_ver_'+block.id+'_closed');$(block.containerDomElement.querySelector('.sm-unit__block__subunits')).slideDown(300);}else{block.containerDomElement.classList.add('sm-unit__block--closed');_jsCookie2.default.set('block_ver_'+block.id+'_closed','true',{expires:1});$(block.containerDomElement.querySelector('.sm-unit__block__subunits')).slideUp(300);}}}]);return ScreenUnit;}();exports.default=ScreenUnit;
 
 /***/ }),
-/* 53 */
+/* 55 */
 /***/ (function(module, exports) {
 
 
@@ -6614,7 +7130,7 @@ module.exports = function (css) {
 
 
 /***/ }),
-/* 54 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(12)(false);
@@ -6628,7 +7144,7 @@ exports.push([module.i, ".tns-outer{padding:0 !important}.tns-outer [hidden]{dis
 
 
 /***/ }),
-/* 55 */
+/* 57 */
 /***/ (function(module, exports) {
 
 // ChildNode.remove
@@ -6641,7 +7157,7 @@ if(!("remove" in Element.prototype)){
 }
 
 /***/ }),
-/* 56 */
+/* 58 */
 /***/ (function(module, exports) {
 
 // Object.keys
@@ -6658,11 +7174,11 @@ if (!Object.keys) {
 }
 
 /***/ }),
-/* 57 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(14);__webpack_require__(13);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
+Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _responsiveStatus=__webpack_require__(7);var _responsiveStatus2=_interopRequireDefault(_responsiveStatus);var _tinySlider=__webpack_require__(15);__webpack_require__(13);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var replaceStringInTemplates=new _replaceStringInTemplates2.default();var ScreenUnitsMenu=function(){function ScreenUnitsMenu(){_classCallCheck(this,ScreenUnitsMenu);this.state={started:false};this.slider=null;this.goto=null;this.units=[];this.responsiveStatus=null;}_createClass(ScreenUnitsMenu,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;this.units=data.units;document.querySelector('#sm-units-menu').classList.add('active');// document.querySelector('#sm-home h1').innerHTML = title;
 // // document.querySelector('#sm-home h2').innerHTML = type;
 // document.querySelector('#sm-home').style.backgroundImage = `url(${homeBackgroundImageUrl})`;
 // document.querySelector('#sm-home .sm-button-next-screen').addEventListener('click', this.onNextButton.bind(this));
@@ -6715,7 +7231,7 @@ this.slider.events.on('touchStart',function(e){_this.onTouchStart({x:e.event.tou
 var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return counter;}}]);return ScreenUnitsMenu;}();exports.default=ScreenUnitsMenu;
 
 /***/ }),
-/* 58 */
+/* 60 */
 /***/ (function(module, exports) {
 
 /*!
@@ -6728,20 +7244,20 @@ var counter=0;_.forEach(this.units,function(unit){if(unit){counter++;}});return 
 //# sourceMappingURL=zingtouch.min.js.map
 
 /***/ }),
-/* 59 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(58);
+__webpack_require__(60);
 module.exports = ZingTouch;
 
 
 /***/ }),
-/* 60 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol&&obj!==Symbol.prototype?"symbol":typeof obj;};var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();// import config from './config';
-var _zingtouch=__webpack_require__(59);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel,courseTags=data.courseTags;console.log(data);document.querySelector('#sm-home h1').innerHTML=title;//Nivel
+var _zingtouch=__webpack_require__(61);var _zingtouch2=_interopRequireDefault(_zingtouch);var _debug=__webpack_require__(2);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var ScreenHome=function(){function ScreenHome(){_classCallCheck(this,ScreenHome);this.state={started:false};this.goto=null;}_createClass(ScreenHome,[{key:'init',value:function init(_ref){var data=_ref.data,goTo=_ref.goTo;if(!this.started){this.goTo=goTo;var title=data.title,type=data.type,nivel=data.nivel,courseTags=data.courseTags;console.log(data);document.querySelector('#sm-home h1').innerHTML=title;//Nivel
 if(nivel){var nivelParts=nivel.split(" ");if(nivelParts.length>=2){document.querySelector('#sm-home h2 strong').innerHTML=nivelParts[0].replace('º',' ').replace('ª',' ');// document.querySelector('#sm-home h2 span').innerHTML = nivel.substr(nivelParts[0].length + 1);
 document.querySelector('#sm-home h2 span').innerHTML=' '+nivel.substr(nivelParts[0].length+1).replace('BACHILLERATO','BTO').replace('bachillerato','BTO').replace('Bachillerato','BTO').replace('º',' ').replace('ª',' ');//Is text is more than 5 chars lengh, we add a class to add padding.
 setTimeout(function(){if(document.querySelector('#sm-home h2').innerText.length>5){document.querySelector('#sm-home h2').classList.add('sm-long-text');}},100);}else{document.querySelector('#sm-home h2').style.display='none';}}else{document.querySelector('#sm-home h2').style.display='none';}// **andalucia** >> Grazalema
@@ -6764,33 +7280,7 @@ type:data.type,nivel:data.nivel,courseTags:data.courseTags};return screenData;}}
 }}]);return ScreenHome;}();exports.default=ScreenHome;
 
 /***/ }),
-/* 61 */
-/***/ (function(module, exports) {
-
-var g;
-
-// This works in non-strict mode
-g = (function() {
-	return this;
-})();
-
-try {
-	// This works if eval is allowed (see CSP)
-	g = g || Function("return this")() || (1, eval)("this");
-} catch (e) {
-	// This works if the window reference is available
-	if (typeof window === "object") g = window;
-}
-
-// g can still be undefined, but nothing to do about it...
-// We return undefined, instead of nothing here, so it's
-// easier to handle this case. if(!global) { ...}
-
-module.exports = g;
-
-
-/***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6810,7 +7300,7 @@ if(Array.isArray(routeTransitions[fromRoute+'__to__'+toRoute].from)){routeTransi
 }}}]);return Transitions;}();exports.default=Transitions;
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6819,12 +7309,12 @@ this.routes=routes;this.state={route:null,routeData:{}};var _this=this;window.on
 var routeFound=false;this.routes.forEach(function(route){if(!routeFound){var hashProcessed=route.object.processHash(hashParts);if(hashProcessed.is){routeFound=true;_this2.state.route=route;_this2.state.routeData=hashProcessed.data;}}});if(!routeFound){this.state.route=this.routes[0];this.state.routeData={};}}},{key:'goToState',value:function goToState(){this.updateCurrentState();this.updateRouter(this.state.route,this.state.routeData);}},{key:'updateUrlHash',value:function updateUrlHash(urlHash){window.location.hash=urlHash;}}]);return UrlHelper;}();exports.default=UrlHelper;
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(exports,"__esModule",{value:true});var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||false;descriptor.configurable=true;if("value"in descriptor)descriptor.writable=true;Object.defineProperty(target,descriptor.key,descriptor);}}return function(Constructor,protoProps,staticProps){if(protoProps)defineProperties(Constructor.prototype,protoProps);if(staticProps)defineProperties(Constructor,staticProps);return Constructor;};}();//Screens
-var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(63);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(62);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(2);var _1ScreenHome=__webpack_require__(60);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(57);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(52);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
+var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _urlHelper=__webpack_require__(64);var _urlHelper2=_interopRequireDefault(_urlHelper);var _Transitions=__webpack_require__(63);var _Transitions2=_interopRequireDefault(_Transitions);var _debug=__webpack_require__(2);var _1ScreenHome=__webpack_require__(62);var _1ScreenHome2=_interopRequireDefault(_1ScreenHome);var _2ScreenUnitsMenu=__webpack_require__(59);var _2ScreenUnitsMenu2=_interopRequireDefault(_2ScreenUnitsMenu);var _3ScreenUnit=__webpack_require__(54);var _3ScreenUnit2=_interopRequireDefault(_3ScreenUnit);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}//El hash puede ser
 // "#" o "#" => Home
 // "#units" => Menú de unidades
 // "#unit_X" => Unidad X
@@ -6839,7 +7329,7 @@ var lastRouteId=this.state.lastRoute?this.state.lastRoute.id:null;transitions.st
 this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router;
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6847,7 +7337,7 @@ this.urlHelper.updateUrlHash(hash);}}]);return Router;}();exports.default=Router
 if(!("nextElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"nextElementSibling",{get:function get(){var e=this.nextSibling;while(e&&1!==e.nodeType){e=e.nextSibling;}return e;}});}if(!("previousElementSibling"in document.documentElement)){Object.defineProperty(Element.prototype,"previousElementSibling",{get:function get(){var e=this.previousSibling;while(e&&1!==e.nodeType){e=e.previousSibling;}return e;}});}
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6857,7 +7347,7 @@ Object.defineProperty(exports,"__esModule",{value:true});var _typeof=typeof Symb
 //Templates
 // import { equal } from 'assert';
 //Polyfils
-__webpack_require__(65);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(64);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(9);var _ImagesPreload=__webpack_require__(50);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(5);var _0LeftMenu=__webpack_require__(49);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(44);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(27);var _main2=_interopRequireDefault(_main);var _subUnitBackButton=__webpack_require__(3);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(26);__webpack_require__(25);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var PORTADASPORTAG=true;var ACTIVITY_BLOCK="activity_block_";var ACTIVITY_BLOCK_TITLE="activity_block_title";var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
+__webpack_require__(66);var _config=__webpack_require__(0);var _config2=_interopRequireDefault(_config);var _router=__webpack_require__(65);var _router2=_interopRequireDefault(_router);var _bookColors=__webpack_require__(9);var _ImagesPreload=__webpack_require__(52);var _ImagesPreload2=_interopRequireDefault(_ImagesPreload);var _debug=__webpack_require__(2);var _blinkFunctions=__webpack_require__(5);var _0LeftMenu=__webpack_require__(51);var _0LeftMenu2=_interopRequireDefault(_0LeftMenu);var _ScreenSubUnit=__webpack_require__(46);var _ScreenSubUnit2=_interopRequireDefault(_ScreenSubUnit);var _main=__webpack_require__(29);var _main2=_interopRequireDefault(_main);var _subUnitBackButton=__webpack_require__(3);var _subUnitBackButton2=_interopRequireDefault(_subUnitBackButton);var _replaceStringInTemplates=__webpack_require__(1);var _replaceStringInTemplates2=_interopRequireDefault(_replaceStringInTemplates);__webpack_require__(28);__webpack_require__(27);__webpack_require__(26);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor)){throw new TypeError("Cannot call a class as a function");}}var PORTADASPORTAG=true;var ACTIVITY_BLOCK="activity_block_";var ACTIVITY_BLOCK_TITLE="activity_block_title";var SantillanaMicrocontenidos=function(){function SantillanaMicrocontenidos(){_classCallCheck(this,SantillanaMicrocontenidos);this.state={isLaunched:false};this.data={};this.leftMenu=null;}_createClass(SantillanaMicrocontenidos,[{key:'init',value:function init(dataraw){var _this=this;this.data=JSON.parse(JSON.stringify(dataraw));//l("app.init()");
 (0,_debug.cl)(JSON.parse(JSON.stringify(dataraw)));(0,_debug.cl)(this.data);if(!this.state.isLaunched){this.state.isLaunched=true;//l('Iniciando estilos Santillana ');
 //Disable contextual menu (right click)
 var imagesVideosAndAudios=document.querySelectorAll('img, video, video, svg');_.forEach(imagesVideosAndAudios,function(elem){elem.addEventListener('contextmenu',function(event){return event.preventDefault();});});var portadaSubunit=false;if(PORTADASPORTAG){if(typeof this.data.portada==='undefined'){console.log("ERROR: Portada no definida en JSON");}if(dataraw.portada){_.forEach(dataraw.units,function(unit){_.forEach(unit.subunits,function(subunit){if(''+subunit.id===''+_this.data.portada){portadaSubunit=subunit;}});});}if(!portadaSubunit){portadaSubunit=dataraw.units[0].subunits[0];}//Background
@@ -6878,7 +7368,7 @@ this.data.units.shift();//If user is student, remove subunits and resources not 
 if((0,_blinkFunctions.esAlumno)()){this.data.units.forEach(function(unit){var i=unit.subunits.length;while(i--){if(unit.subunits[i].onlyVisibleTeachers){unit.subunits.splice(i,1);}}i=unit.resources.length;while(i--){if(unit.resources[i].onlyVisibleTeachers){unit.resources.splice(i,1);}}});}//Regenerate units number with new property
 var unitCounter=0;this.data.units.forEach(function(unit,index){//chech if is projects
 if(unit.tags&&unit.tags.search('proyecto')>-1){unit.smIsProyect=true;unit.numberformenu='';}else{unitCounter++;unit.numberformenu=unitCounter;}});//Divide subunits in main, aside and evaluation
-var asideClassesName=['microproyecto','flipped','esencial','ninguna','basica','reto'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;// if(tags){
+var asideClassesName=['microproyecto','flipped','ninguna','basica','reto'];var evaluationClassesName=['evaluacion'];this.data.units.forEach(function(unit){unit.subunitsmain=[];unit.subunitsevaluation=[];unit.resourcesmain=[];unit.resourcesevaluation=[];unit.subunits.forEach(function(subunit){var added=false;var tags=subunit.tag+' '+subunit.tags;// if(tags){
 asideClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){subunit.smtype=tagName;//.replace('activitytag_', '');
 }});if(!subunit.smtype){subunit.smtype='estandar';}evaluationClassesName.forEach(function(tagName){if(tags.indexOf(tagName)>=0){if(!added){unit.subunitsevaluation.push(subunit);added=true;}}});// }
 if(!added){unit.subunitsmain.push(subunit);}});unit.resources.forEach(function(resource){var added=false;var tags=resource.tag+' '+resource.tags;if(tags){// asideClassesName.forEach(tagName => {
@@ -6971,17 +7461,17 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 },{key:'actionUpdateSubunitOcultar',value:function actionUpdateSubunitOcultar(subunitid,ocultar){this.data.units.forEach(function(unit){unit.subunitsmain.forEach(function(subunit){if(subunit.id==subunitid){subunit.ocultar=ocultar;}});});this.regenerateSubunitsNumbers();}}]);return SantillanaMicrocontenidos;}();exports.default=SantillanaMicrocontenidos;
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(67);var _app=__webpack_require__(66);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-4-28 4:16:10 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-5-12 7:28:57 AM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
