@@ -70,9 +70,14 @@
 			})
 		},
 
-    onCourseDataLoaded: function (data) {
-      SantillanaMicrocontenidosStyleUI.init(data);
-    },
+		customTriggerScrollCocatenate: function() {
+			return 'santimicro:toconcatenate';
+		},
+
+	    onCourseDataLoaded: function (data) {
+				SantillanaMicrocontenidosStyleUI.init(data);
+				blink.events.trigger(this.customTriggerScrollCocatenate());
+	    },
 
 		//BK-18213 - 4: MODO EDITAR DESDE ACTIVIDAD PORTADA
 		getCourseStyleUI: function () {
