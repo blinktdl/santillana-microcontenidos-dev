@@ -549,13 +549,13 @@ Object.defineProperty(exports,"__esModule",{value:true});exports.editarAddColorC
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 function polyfill(window) {
-  const ElementPrototype = window.Element.prototype;
+  var ElementPrototype = window.Element.prototype;
 
   if (typeof ElementPrototype.matches !== 'function') {
     ElementPrototype.matches = ElementPrototype.msMatchesSelector || ElementPrototype.mozMatchesSelector || ElementPrototype.webkitMatchesSelector || function matches(selector) {
-      let element = this;
-      const elements = (element.document || element.ownerDocument).querySelectorAll(selector);
-      let index = 0;
+      var element = this;
+      var elements = (element.document || element.ownerDocument).querySelectorAll(selector);
+      var index = 0;
 
       while (elements[index] && elements[index] !== element) {
         ++index;
@@ -567,7 +567,7 @@ function polyfill(window) {
 
   if (typeof ElementPrototype.closest !== 'function') {
     ElementPrototype.closest = function closest(selector) {
-      let element = this;
+      var element = this;
 
       while (element && element.nodeType === 1) {
         if (element.matches(selector)) {
@@ -607,7 +607,7 @@ blink.getCourse(idcurso).done(function(data){smStylesEditInit(data);document.dis
 // 	}
 // }
 // setTimeout(smStylesCheckIfBlinkObjectExists, 0);
-});var smStylesEditInit=function smStylesEditInit(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-5-22 1:15:19 PM.');console.log(data);console.log("Iniciando...");console.log("Datos cargados.");(0,_editar_add_color_classes.editarAddColorClasses)();var isInTocPage=document.querySelector('.content-wrapper.libro')?true:false;//Disable contextual menu (right click)
+});var smStylesEditInit=function smStylesEditInit(data){console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 2020-5-27 11:05:34.');console.log(data);console.log("Iniciando...");console.log("Datos cargados.");(0,_editar_add_color_classes.editarAddColorClasses)();var isInTocPage=document.querySelector('.content-wrapper.libro')?true:false;//Disable contextual menu (right click)
 var imagesVideosAndAudios=document.querySelectorAll('img, video, video, svg');_.forEach(imagesVideosAndAudios,function(elem){elem.addEventListener('contextmenu',function(event){return event.preventDefault();});});//Activities list
 if(isInTocPage){console.log("Is in TOC page");var subunitsItemsDom=document.querySelectorAll('.actividades ul li.item');if(subunitsItemsDom.length){subunitsItemsDom.forEach(function(item){var unitId=item.closest('.unit-content').dataset.id;var subUnitId=item.dataset.id;var unitObject=_.find(data.units,{id:unitId});if(unitObject){var subUnitObject=_.find(unitObject.subunits,{id:subUnitId});if(subUnitObject){//Check ih has subunits
 //Fix to avoid error if tag or tags doesn't exist
