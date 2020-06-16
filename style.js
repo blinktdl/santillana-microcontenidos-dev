@@ -5215,7 +5215,7 @@ document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__title').
 // }
 // Flipped buttons
 if(subUnitObject.smtype=='flipped'){document.querySelector('.sm-subunit-start__secuencia__content').classList.add('flipped');document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-casa').addEventListener('click',function(){return _this.goFirstBlinkSlide();});//Check if has clase section
-if(this.hasBlinkSlideWithSection('clase')){document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').addEventListener('click',function(){return _this.goBlinkSlideWithSection('clase');});}else{document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').remove();}}if(subUnitObject.smtype){var tipoTexto='';switch(subUnitObject.smtype){case'flipped':tipoTexto='--santillana_microcontenidos_flipped--';break;// case 'refuerzo':
+if(this.hasBlinkSlideWithSection('clase')){document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').addEventListener('click',function(){_this.goBlinkSlideWithSection('clase');alert('asa');});}else{document.querySelector('.sm-subunit-start__secuencia .sm-subunit-start__start_button_content--flipped .sm-subunit-start__start_button--flipped-clase').remove();}}if(subUnitObject.smtype){var tipoTexto='';switch(subUnitObject.smtype){case'flipped':tipoTexto='--santillana_microcontenidos_flipped--';break;// case 'refuerzo':
 // 	tipoTexto = 'Refuerzo';
 // 	break;
 case'microproyecto':tipoTexto='--santillana_microcontenidos_microproyecto--';break;// case 'ampliacion':
@@ -7476,7 +7476,7 @@ window.SantillanaMicrocontenidosMenuToggle=function(){return _this2.leftMenu.tog
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Rafa ','font-size: 40px; font-weight: 700; color: Red; background-color: #2a495d;');console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 6/16/2020, 2:31:12 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
+__webpack_require__(68);var _app=__webpack_require__(67);var _app2=_interopRequireDefault(_app);function _interopRequireDefault(obj){return obj&&obj.__esModule?obj:{default:obj};}var SantillanaMicrocontenidosApp=new _app2.default();module.exports={init:function init(data){console.log('%c Rafa ','font-size: 40px; font-weight: 700; color: Red; background-color: #2a495d;');console.log('%c Santillana Microcontenidos ','font-size: 40px; font-weight: 700; color: white; background-color: #2a495d;');console.log('Fecha de compilación: 6/16/2020, 4:08:22 PM.');console.log("Iniciando...");if(!window.smStylesExecuted){window.smStylesExecuted=true;//to no execute this more than once
 SantillanaMicrocontenidosApp.init(data);}}};//Show loading
 // const smLoadingSpinner = document.createElement("div");
 // smLoadingSpinner.className='spinner';
