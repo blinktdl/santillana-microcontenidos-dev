@@ -7487,3 +7487,4 @@ if(document.querySelectorAll('#sm-spinner').length==0){document.write('<div id="
 /***/ })
 /******/ ]);
 });
+console.log('rafa')
